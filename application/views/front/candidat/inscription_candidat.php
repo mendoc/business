@@ -20,17 +20,17 @@
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->
+<!--=======================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
-<!--===============================================================================================-->
+<!--========================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?= theme_url() ?>assets/css/util.css">
 	<link rel="stylesheet" type="text/css" href="<?= theme_url() ?>assets/css/main.css">
-<!--===============================================================================================-->
+<!--======================================================================================-->
 </head>
 <body>
 
 <!--================= The container =======================-->
-	<div class="container-contact100">
+	<div class="container-contact100
 		<div class="wrap-contact100">
 			<!--================= Start form =======================-->
 			<form class="contact100-form validate-form">
