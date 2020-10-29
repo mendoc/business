@@ -11,6 +11,12 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-		afficher('back/commercial/statistiques');
+		// On charge le modele
+		$this->load->model('candidat');
+
+		// On recupere les enregistrements
+		$tuples = $this->candidat->tous_les_candidats();
+
+		var_dump($tuples);
 	}
 }

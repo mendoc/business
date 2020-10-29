@@ -1,39 +1,49 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Candidat extends CI_Model {
-
-public $title;
-public $content;
-public $date;
-
-public function __construct()
+class Candidat extends CI_Model
 {
-    $this->load->database();
-}
 
-public function get_last_ten_entries()
-{
-        $query = $this->db->get('entries', 10);
+    public $title;
+    public $content;
+    public $num_tel;
+    public $num_what;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+    public $date;
+
+    public function __construct()
+    {
+        $this->load->database();
+    }
+
+    public function tous_les_candidats()
+    {
+        $query = $this->db->get('candidat');
         return $query->result();
-}
+    }
 
-public function insert_entry()
-{
+    public function insert_entry()
+    {
         $this->title    = $_POST['title'];
         $this->content  = $_POST['content'];
         $this->date     = time();
 
         $this->db->insert('entries', $this);
-}
+    }
 
-public function update_entry()
-{
+    public function update_entry()
+    {
         $this->title    = $_POST['title'];
         $this->content  = $_POST['content'];
         $this->date     = time();
 
         $this->db->update('entries', $this, array('id' => $_POST['id']));
-}
-
+    }
 }
