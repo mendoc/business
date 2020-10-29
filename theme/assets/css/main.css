@@ -44,6 +44,7 @@
 /*//////////////////////////////////////////////////////////////////
 [ RESTYLE TAG ]*/
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -458,7 +459,6 @@ textarea.input100 {
   }
 }
 
-
 /*------------------------------------------------------------------
 [ Alert validate ]*/
 
@@ -525,7 +525,6 @@ textarea.input100 {
     opacity: 1;
   }
 }
-
 
 
 /*==================================================================
