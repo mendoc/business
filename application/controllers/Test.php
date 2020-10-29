@@ -11,6 +11,6 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('front/candidat/message_inscription.php');
+		$this->load->view('front/candidat/inscription_candidat');
 	}
 }
