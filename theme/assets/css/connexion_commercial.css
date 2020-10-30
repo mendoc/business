@@ -25,6 +25,8 @@ body {
 h1 {
 	font-weight: bold;
 	margin: 0;
+	margin-top:8px;
+	margin-bottom: 20PX;
 }
 
 h2 {
@@ -52,8 +54,8 @@ a {
 
 button {
 	border-radius: 10px;
-	border: 1px solid #007fff;
-	background-color: #007fff;
+	border: 1px solid #003366;
+	background-color: #003366;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -165,9 +167,7 @@ input {
 }
 
 .overlay {
-	background: #007fff;
-	background: #007fff;
-	background: #007fff;
+	background: #003366;
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;

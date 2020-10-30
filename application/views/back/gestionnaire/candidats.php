@@ -17,114 +17,38 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td><span>Mohamed Sabil</span></td>
-                          <td><a href="invoice.html" class="text-inherit">8h - 12h</a></td>
-                          <td>
-                            066262626
-                          </td>
-                          <td>
-                            Art & Divertissement
-                          </td>
-                          <td>
-                            <span class="status-icon bg-success"></span> Payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span>Charles Louembet</span></td>
-                          <td><a href="invoice.html" class="text-inherit">8h - 12h</a></td>
-                          <td>
-                            066262626
-                          </td>
-                          <td>
-                            Tech
-                          </td>
-                          <td>
-                            <span class="status-icon bg-danger"></span> Non payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span>Juste Mba</span></td>
-                          <td><a href="invoice.html" class="text-inherit">8h - 12h</a></td>
-                          <td>
-                            066262626
-                          </td>
-                          <td>
-                            Vente en ligne
-                          </td>
-                          <td>
-                            <span class="status-icon bg-danger"></span> Non payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span>Harry Cover</span></td>
-                          <td><a href="invoice.html" class="text-inherit">14h - 18h</a></td>
-                          <td>
-                            066254546
-                          </td>
-                          <td>
-                            Vente en ligne
-                          </td>
-                          <td>
-                            <span class="status-icon bg-success"></span> Payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span>Richard Ogoula</span></td>
-                          <td><a href="invoice.html" class="text-inherit">8h - 12h</a></td>
-                          <td>
-                            066789962
-                          </td>
-                          <td>
-                            Art & Divertissement
-                          </td>
-                          <td>
-                            <span class="status-icon bg-success"></span> Payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td><span>Elvis Ousman</span></td>
-                          <td><a href="invoice.html" class="text-inherit">14h - 18h</a></td>
-                          <td>
-                            077302680
-                          </td>
-                          <td>
-                            Art & Divertissement
-                          </td>
-                          <td>
-                            <span class="status-icon bg-success"></span> Payé
-                          </td>
-                          <td>
-                            <a class="icon" href="javascript:void(0)">
-                              <i class="fe fe-edit"></i>
-                            </a>
-                          </td>
-                        </tr>
+                      <?php if (empty($candidats)) { ?>
+                          <tr>
+                            <td colspan="6" class="text-center h1">
+                              <span> Il n'y a pas encore de candidat </span>
+                            </td>
+                          </tr>
+                      <?php } else {
+                        foreach ($candidats as $candidat): ?>
+                          <tr>
+                            <td><span><?= $candidat->nom_prenom; ?></span></td>
+                            <td><a href="invoice.html" class="text-inherit"><?= $candidat->horaire ?></a></td>
+                            <td>
+                              <?= $candidat->num_tel ?>
+                            </td>
+                            <td>
+                              <?= $candidat->domaine_act ?>
+                            </td>
+                            <td>
+                              <?php if ($candidat->est_apprenant) { ?>
+                                <span class="status-icon bg-success"></span> Payé
+                              <?php } else {  ?>
+                                <span class="status-icon bg-danger"></span> Non payé
+                              <?php } ?>
+                            </td>
+                            <td>
+                              <a class="icon" href="javascript:void(0)">
+                                <i class="fe fe-edit"></i>
+                              </a>
+                            </td>
+                          </tr>
+                        <?php endforeach; } ?>
+                        
                       </tbody>
                     </table>
                   </div>
