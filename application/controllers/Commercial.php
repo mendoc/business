@@ -43,7 +43,7 @@ class Commercial extends CI_Controller {
     
 	public function statistiques()
 	{
-		$this->load->view('front/commercial/connexion');
+		$this->load->view('front/commercial/statistiques');
     }
     
 
@@ -60,30 +60,32 @@ class Commercial extends CI_Controller {
         //methode1
 
         // récupération des données
-        
-        $nom = $this->input->post('name');
-        $prenom = $this->input->post('name');
-        $sexe = $this->input->post('name');
-        $dateNais = $this->input->post('name');
-        $email = $this->input->post('name');
-        $numTel = $this->input->post('name');
-        $numTel = $this->input->post('name');
-        $name = $this->input->post('name');
-        $name = $this->input->post('name');
-        $name = $this->input->post('name');
-        $name = $this->input->post('name');
+        $params = [
+            'nom_prenom'   => $this->input->post('nom_prenom'),
+            'num_tel'      => $this->input->post('num_tel'),
+            'num_what'     => $this->input->post('num_what'),
+            'email'        => $this->input->post('email'),
+            'sexe'         => $this->input->post('sexe'),
+            'date_n'       => $this->input->post('date_n'),
+            'nom_util'     => $this->input->post('nom_util'),
+            'mot_passe'    => $this->input->post('mot_passe')
+        ];
 
-
-        // vérification des données
 
         //chargement du modèle
 
-        $this->load->model(inscription_model)
-
-        //insertion d'information
-        //$succes = $this->inscription_model->inserer_inscription()
+        $this->load->model(commercial)
+        
+        // insertion des informations
+        //$succes = $this->commercial->ajouter_commercial($params)
 
         //redirection vers lapage d'acceuil
-		afficher('back/commercial/statistiques');
+        if ($succes) {
+            redirect('commercial/statistiques');
+        }
+        else {
+            redirect('commercial/inscription');
+        }
+		
 	}*/
 }
