@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Playfair+Display:wght@700&display=swap');
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #aaa;
+}
+
+main {
+    background-image: url(https://www.sencampus.com/app/uploads/etudiants-africains-850x478.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+main section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, .95);
+    padding: 20px 80px;
+    border-radius: 5px;
+}
+
+main section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    padding: 0;
+    margin: 0;
+    color: #000000;
+}
+
+main section h2 {
+    font-family: 'Courgette', cursive;
+    margin: 10px 0 30px;
+    font-size: .8rem;
+}
+
+main section form input {
+    display: block;
+    padding: 10px 20px;
+    text-align: center;
+    border: none;
+    background-color: rgba(238, 238, 238, 0.4);
+    font-size: .8rem;
+    border-radius: 5px;
+}
+
+main section form button {
+    display: block;
+    margin: 30px auto;
+    padding: 6px 18px;
+    border: none;
+    font-size: .6rem;
+    border-radius: 5px;
+    color: #fff;
+    box-shadow: 0 5px 10px #6f7b9575;
+    cursor: pointer;
+    background: linear-gradient(90deg, #D19B00, #6f7b9575);
+}
+
+main section p.message {
+    color: #f00;
+    font-style: italic;
+}
+/* Style de la validation  */
+
+main section#validation h1 {
+    font-size: 2.5rem;
+}
+
+main section#validation img {
+    width: 10vw;
+}
+
+main section#validation p {
+    font-family: 'Courgette', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+    text-align: center;
+}
