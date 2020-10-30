@@ -91,7 +91,7 @@
 						placeholder="Confirmez votre mot de passe"
 					/>
 
-					<button class="animation a6">S’inscrire</button>
+					<button class="animation a6">S'inscrire</button>
 				</form>
 				<!--===*** End of Form ***===-->
 			</div>
