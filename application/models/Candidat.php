@@ -1,39 +1,47 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Candidat extends CI_Model {
-
-public $title;
-public $content;
-public $date;
-
-public function __construct()
+class Candidat extends CI_Model
 {
-    $this->load->database();
-}
 
-public function get_last_ten_entries()
-{
-        $query = $this->db->get('entries', 10);
+    public $nom_prenom;
+    public $num_tel;
+    public $num_what;
+    public $email;
+    public $sexe;
+    public $date_n;
+    public $domaine_act;
+    public $type_serv;
+    public $attentes;
+    public $horaire;
+    public $id_res_part;
+
+    public function __construct()
+    {
+        $this->load->database();
+    }
+
+
+    public function tous_les_candidats() // fonction pour lister tous les candidats
+    {
+        $query = $this->db->get('eb_candidat');
         return $query->result();
-}
+    }
 
-public function insert_entry()
-{
-        $this->title    = $_POST['title'];
-        $this->content  = $_POST['content'];
-        $this->date     = time();
+    public function ajouter_candidat($params) //fonction pour ajouter un candidat
+    {
+        $this->nom_prenom = $params['nom_prenom']; 
+        $this->num_tel    = $params['num_tel'];
+        $this->num_what   = $params['num_what'];
+        $this->email      = $params['email'];
+        $this->sexe       = $params['sexe'];
+        $this->date_n     = $params['date_n'];
+        $this->domaine_act   = $params['domaine_act'];
+        $this->type_serv = $params['type_serv'];
+        $this->attentes = $params['attentes'];
+        $this->horaire = $params['horaire'];
+        $this->id_res_part = $params['id_res_part'];
 
-        $this->db->insert('entries', $this);
-}
-
-public function update_entry()
-{
-        $this->title    = $_POST['title'];
-        $this->content  = $_POST['content'];
-        $this->date     = time();
-
-        $this->db->update('entries', $this, array('id' => $_POST['id']));
-}
-
+        return $this->db->insert('eb_candidat', $this);
+    }
 }
