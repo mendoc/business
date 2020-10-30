@@ -10,8 +10,8 @@
 <div class="container" id="container">
     <div class="form-container sign-in-container">
         <form action="<?= site_url('commercial/traitement_connexion') ?>" method='post'>
-            <h1 class="h1" >Connexion</h1>
             <img src="<?= theme_url() ?>assets/images/blue.png" alt="" width="150px">
+            <h1 class="h1" >Connexion</h1>
             <input type="text" placeholder="nom d'utilisateur" name="nom_util" />
             <input type="password" placeholder="Mot de passe" name="mot_passe" />
             <a href="#">Mot de passe oublié?</a>
