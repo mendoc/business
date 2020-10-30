@@ -6,7 +6,7 @@
         <div class="container">
           <div class="d-flex">
             <a class="header-brand" href=".">
-              <img src="<?= theme_url() ?>demo/brand/tabler.svg" class="header-brand-img" alt="tabler logo">
+              <img src="<?= theme_url() ?>assets/icon/favicon.ico" class="header-brand-img" alt="tabler logo">
             </a>
             <div class="d-flex order-lg-2 ml-auto">
               <div class="nav-item d-none d-md-flex">
