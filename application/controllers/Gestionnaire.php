@@ -14,6 +14,11 @@ class Gestionnaire extends CI_Controller {
 		$this->load->view('/back/gestionnaire/connexion_du_gestion');
 	}
 
+	public function index()
+	{
+		afficher('back/gestionnaire/statistique');
+	}
+
 
 	public function candidats()
 	{
@@ -54,7 +59,7 @@ class Gestionnaire extends CI_Controller {
 		if ($est_connecte) {
 			$gestionnaire = $this->gestionnaire_model->connexion($data);
 			$this->session->set_userdata('id', $gestionnaire->id_gest);
-			redirect('gestionnaire/candidats');
+			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Incorrect !!');
 			redirect('gestionnaire/connexion');
