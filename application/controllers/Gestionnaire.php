@@ -25,7 +25,35 @@ class Gestionnaire extends CI_Controller {
 
 	public function connexion()
 	{
+		$this->load->helper('form');
+		$this->load->library('session');
+		$this->load->view('/back/gestionnaire/connexion_du_gestion');
+	}
 
+	public function traitement_connexion()
+	{
+		$this->load->library('session');
+		$this->load->model('gestionnaire_model');
+
+		$email = $this->input->post('email');
+		$mot_de_passe = $this->input->post('password');
+
+		$data = [
+			'email_gest' => $email,
+			'mot_passe' => $mot_de_passe
+		];
+
+		$est_connecte = $this->gestionnaire_model->connexion($data) ? true : false;
+
+		if ($est_connecte) {
+			$gestionnaire = $this->gestionnaire_model->connexion($data);
+			$this->session->set_userdata('id', $gestionnaire->id_gest);
+			redirect('gestionnaire/candidats');
+		} else {
+			$this->session->set_flashdata('message', 'Incorrect !!');
+			redirect('gestionnaire/connexion');
+		}
+		
 	}
 
 	public function listing_commercial()
