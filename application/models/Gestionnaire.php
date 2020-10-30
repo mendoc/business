@@ -22,7 +22,7 @@ class Gestionnaire extends CI_Model
     {
         return $query = $this->db->get('eb_ressource', array('email_gest' => $params['email_gest']));
     }
-
+    //inscription d'un gestionnaire
     public function ajout_gestionnaire($params)
     {
         $this->nom_prenom    = $params['nom_prenom'];
@@ -31,23 +31,25 @@ class Gestionnaire extends CI_Model
 
         return $this->db->insert('eb_gestionnaire', $this);
     }
+    //modifier les informations d'un gestionnaire
     public function modifier_gestionnaire($params)
     {
-        $this->nom_prenom = $params['nom_prenom']; // please read the below note
+        $this->nom_prenom = $params['nom_prenom']; 
         $this->email_gest    = $params['email_gest'];
         $this->mot_passe   = $params['mot_passe'];
 
         return $this->db->update('eb_gestionnaire', $this, array('id_gest' => $params['id_gest']));
     }
-
+    // supprimer un gestionnaire
     public function supprimer_gestionnaire($params)
     {
-        $this->nom_prenom = $params['nom_prenom']; // please read the below note
+        $this->nom_prenom = $params['nom_prenom']; 
         $this->email_gest    = $params['email_gest'];
         $this->mot_passe   = $params['mot_passe'];
 
         return $this->db->delete('eb_gestionnaire', array('id_gest' => $params['id_gest']));
     }
+    //connexion d'un gestionnaire
     public function connexion($params)
     {
         $this->nom_util   = $params['email_gest'];
@@ -56,16 +58,19 @@ class Gestionnaire extends CI_Model
 
         return $query->row();
     }
+    //listing des commerciaux par le gestionnaire
     public function lister_commerciaux()
     {
         $query = $this->db->get('eb_commercial');
         return $query->result();
     }
+    //listing des candidats par le gestionnaire
     public function lister_candidats()
     {
         $query = $this->db->get('eb_candidat');
         return $query->result();
     }
+    //ajout thematique par le gestionnaire
     public function ajout_thematique($params)
     {
         $this->titre    = $params['titre'];
@@ -76,6 +81,7 @@ class Gestionnaire extends CI_Model
 
         return $this->db->insert('eb_thematique', $this);
     }
+    //ajout d'une ressource par le gestionnaire
     public function ajout_ressource($params)
     {
         $this->nom_res    = $params['nom_res'];
@@ -87,6 +93,7 @@ class Gestionnaire extends CI_Model
 
         return $this->db->insert('eb_ressource', $this);
     }
+    //supression d'une ressource par le gestionnaire
     public function supprimer_ressource($params)
     {
         $this->nom_res    = $params['nom_res'];
@@ -98,6 +105,7 @@ class Gestionnaire extends CI_Model
 
         return $this->db->delete('eb_ressource', array('id_res' => $params['id_res']));
     }
+    //listing des ressources par le gestionnaire
     public function lister_ressources()
     {
         $query = $this->db->get('eb_ressource');
