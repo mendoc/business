@@ -14,7 +14,7 @@
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">0</div>
-                    <div class="text-muted mb-4">Nombre de visite
+                    <div class="text-muted mb-4">Nombre de filleules
                     </div>
                   </div>
                 </div>
@@ -40,7 +40,7 @@
                       <i class="fe fe-chevron-up"></i>
                     </div>
                     <div class="h1 m-0">0</div>
-                    <div class="text-muted mb-4">Nombre de filleules 
+                    <div class="text-muted mb-4">Nombre de visites 
                     </div>
                   </div>
                 </div>
@@ -110,6 +110,5 @@
               </div>
             </div>
           </div>
-              
            
           </div>

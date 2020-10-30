@@ -24,6 +24,7 @@ class Candidat extends CI_Model
 
     public function tous_les_candidats() // fonction pour lister tous les candidats
     {
+
         $query = $this->db->get('eb_candidat');
         return $query->result();
     }
