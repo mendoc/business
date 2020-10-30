@@ -35,21 +35,45 @@ class Candidat_controller  extends CI_Controller
 		];
 		// validation des données du formulaire
 
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('nom', 'nom', 'required');
+		$this->form_validation->set_rules('prenom', 'prenom', 'required');
+		$this->form_validation->set_rules('telephone', 'telephone', 'required');
+		$this->form_validation->set_rules('numero-whatsapp', 'numero-whatsapp', 'required');
+		$this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+		$this->form_validation->set_rules('sexe', 'sexe', 'required');
+		$this->form_validation->set_rules('date', 'date', 'required');
+		$this->form_validation->set_rules('domaine', 'domaine', 'required');
+		$this->form_validation->set_rules('service', 'service', 'required');
+		$this->form_validation->set_rules('attentes', 'attentes', 'required');
+		$this->form_validation->set_rules('horaire', 'horaire', 'required');
 
 
-		// Chargement du modele
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('candidat_controller/index');
+		} else {
+			// Chargement du modele
 		$this->load->model('candidat');
 
 		// Insertion d'informations
 		$success = $this->candidat->ajouter_candidat($params);
 
-		if ($success) {
-			// Redirection vers la page d'accueil
+			if ($success) {
+				// Redirection vers la page d'accueil
+		
 			redirect('candidat_controller/inscription_reussi');
-			mail('christadinsi@gmail.com', 'messsage de confirmation', 'Feliciatation pour votre enrégistrement');
-		} else {
-			// Redirection vers le formulaire
-			redirect('front/candidat/inscription_candidat.php');
+				mail('christadinsi@gmail.com', 'messsage de confirmation', 'Feliciatation pour votre enrégistrement');
+			} else {
+				// Redirection vers le formulaire
+				redirect('candidat_controller/inscrription');
+			}
+			//$this->load->view('candidat_controller/inscription_reussi');
 		}
+
+
+
+		
 	}
 }
