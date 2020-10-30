@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => (ENVIRONMENT !== 'production') ? 'localhost' : '',
-	'username' => (ENVIRONMENT !== 'production') ? 'root'      : '',
-	'password' => (ENVIRONMENT !== 'production') ? ''          : '',
-	'database' => (ENVIRONMENT !== 'production') ? 'business'  : '',
+	'hostname' => (ENVIRONMENT !== 'production') ? 'localhost' : 'ecoleorgew241.mysql.db',
+	'username' => (ENVIRONMENT !== 'production') ? 'root'      : 'ecoleorgew241',
+	'password' => (ENVIRONMENT !== 'production') ? 'Men5P@sS'  : 'Paradoxe2020',
+	'database' => (ENVIRONMENT !== 'production') ? 'business'  : 'ecoleorgew241',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

@@ -29,9 +29,10 @@ class Candidat_controller  extends CI_Controller
 			'sexe'         => $this->input->post('sexe'),
 			'date_n'       => $this->input->post('date'),
 			'domaine_act'  => $this->input->post('domain'),
-			'type_serv' => $this->input->post('service'),
-			'attentes'      => $this->input->post('attentes'),
-			'horaire'      => $this->input->post('horaire')
+			'type_serv'    => $this->input->post('service'),
+			'attentes'     => $this->input->post('attentes'),
+			'horaire'      => $this->input->post('horaire'),
+			'id_res_part'  => NULL
 		];
 		
 		  // Chargement du modele

@@ -7,6 +7,12 @@ class Gestionnaire extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 	}
+	
+	public function index(){
+		$this->load->helper('form');
+		$this->load->library('session');
+		$this->load->view('/back/gestionnaire/connexion_du_gestion');
+	}
 
 
 	public function candidats()
