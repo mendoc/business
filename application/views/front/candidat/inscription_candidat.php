@@ -36,7 +36,7 @@
         <div class="wrap-contact100">
             <!--================= Start form =======================-->
             <form class="contact100-form validate-form"
-                action="<?= site_url('candidat_controller/recuperation_donnees_candidat') ?>" method="POST">
+                action="<?= site_url('candidat)controller/traitement_candidat') ?>" method="POST">
                 <span class="contact100-form-title">
                     <img src="<?= theme_url() ?>assets/images/formulaires/Ebusiness.png" alt="">
                 </span>
