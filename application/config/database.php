@@ -78,7 +78,7 @@ $db['default'] = array(
 	'hostname' => (ENVIRONMENT !== 'production') ? 'localhost' : '',
 	'username' => (ENVIRONMENT !== 'production') ? 'root'      : '',
 	'password' => (ENVIRONMENT !== 'production') ? ''          : '',
-	'database' => (ENVIRONMENT !== 'production') ? 'business'  : '',
+	'database' => (ENVIRONMENT !== 'production') ? 'ecole241business'  : '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

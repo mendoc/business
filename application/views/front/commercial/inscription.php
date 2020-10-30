@@ -25,15 +25,15 @@
 					<h2 class="animation a1">Inscription du Commercial</h2>
 				</div>
 				<!--===*** Start of Form ***===-->
-				<form class="form">
+				<form class="form" action="<?= site_url('commercial/traitement_inscription') ?>" method='post'>
 					<input
-						type="nom"
+						type="text"
 						name="nom"
 						class="form-field animation a3"
 						placeholder="Nom Ex. SAMBA"
 					/>
 					<input
-						type="prenom"
+						type="text"
 						name="prenom"
 						class="form-field animation a3"
 						placeholder="Prenom Ex. Pscale"
@@ -41,45 +41,45 @@
 
 					<fieldset>
 						<label for="name">Votre sexe</label>
-						<input type="radio" name="sexe" /><label for="homme">H</label>
-						<input type="radio" name="sexe" /><label for="femme">F</label>
+						<input type="radio" name="sexe" value="homme" /><label for="homme">H</label>
+						<input type="radio" name="sexe" value="femme" /><label for="femme">F</label>
 					</fieldset>
 
 					<fieldset>
 						<label for="name">Date de naissance</label>
-						<input type="date" name="date" class="form-field animation a3" />
+						<input type="date" name="date_n" class="form-field animation a3" />
 					</fieldset>
 					<input
 						type="email"
-						name="mail"
+						name="email"
 						class="form-field animation a3"
 						placeholder="Adresse mail"
 					/>
 
 					<input
-						type="number"
-						name="numero"
+						type="tel"
+						name="num_tel"
 						class="form-field animation a3"
 						placeholder="Numéro de téléphone Ex. 077 01 89 00"
 					/>
 
 					<input
-						type="number"
-						name="numero"
+						type="tel"
+						name="num_what"
 						class="form-field animation a3"
 						placeholder="Numéro de téléphone WhatsApp Ex. 077 01 89 00"
 					/>
 
 					<input
-						type="nom"
-						name="nom"
+						type="text"
+						name="nom_util"
 						class="form-field animation a3"
 						placeholder="Nom utilisateur Ex. Maviogha"
 					/>
 
 					<input
 						type="password"
-						name="mot de passe"
+						name="mot_passe"
 						class="form-field animation a4"
 						placeholder="Votre mot de passe"
 					/>
@@ -91,7 +91,7 @@
 						placeholder="Confirmez votre mot de passe"
 					/>
 
-					<button class="animation a6">S'inscrire</button>
+					<button type='submit' class="animation a6">S'inscrire</button>
 				</form>
 				<!--===*** End of Form ***===-->
 			</div>

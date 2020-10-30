@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Commercial extends CI_Model
+class Commercial_model extends CI_Model
 {
 
     public $nom_prenom;

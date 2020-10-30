@@ -13,55 +13,20 @@ class Commercial extends CI_Controller {
 	{
 		$this->load->view('front/commercial/inscription');
     }
-    
-    public function traitement_connexion()
+
+    public function statistiques()
 	{
-        //récupération des données
-        $params = [
-            'nom_util'   => $this->input->post('nom_util'),
-            'mot_passe'  => $this->input->post('mot_passe')
-        ];
-
-        /*vérification des données
-        $this->form_validation->set_rules('username', 'nom_util', 'trim|required|min_length[5]|max_length[12]');
-        $this->form_validation->set_rules('password', 'mot_passe', 'trim|required|min_length[8]');*/
-
-        //chargement du modèle
-        $this->load->model(commercial);
-
-        //insertion d'information
-        $succes = $this->commercial->connexion($params);
-
-        if ($succes) {
-            redirect('commercial/statistiques');
-        }
-        else {
-            redirect('commercial/connexion');
-        }
+		afficher('back/commercial/statistiques');
     }
-    
-    
-	public function statistiques()
+
+
+
+    public function traitement_inscription()
 	{
-		$this->load->view('front/commercial/statistiques');
-    }
-    
-
-
-
-
-
-
-
-
-
-	/*public function traitement_inscription()
-	{
-        //methode1
-
         // récupération des données
+        $nom_complet = $this->input->post('nom') .' '. $this->input->post('prenom');
         $params = [
-            'nom_prenom'   => $this->input->post('nom_prenom'),
+            'nom_prenom'   => $nom_complet,
             'num_tel'      => $this->input->post('num_tel'),
             'num_what'     => $this->input->post('num_what'),
             'email'        => $this->input->post('email'),
@@ -71,21 +36,43 @@ class Commercial extends CI_Controller {
             'mot_passe'    => $this->input->post('mot_passe')
         ];
 
-
         //chargement du modèle
-
-        $this->load->model(commercial)
+        $this->load->model('commercial_model');
         
         // insertion des informations
-        //$succes = $this->commercial->ajouter_commercial($params)
+        $inscrit = $this->commercial_model->ajouter_commercial($params);
 
-        //redirection vers lapage d'acceuil
-        if ($succes) {
+        //redirection vers la page d'acceuil
+        if ($inscrit) {
             redirect('commercial/statistiques');
         }
         else {
             redirect('commercial/inscription');
         }
 		
-	}*/
+	}
+      
+    public function traitement_connexion()
+	{
+        //récupération des données
+        $params = [
+            'nom_util'   => $this->input->post('nom_util'),
+            'mot_passe'  => $this->input->post('mot_passe')
+        ];
+
+        //chargement du modèle
+        $this->load->model('commercial_model');
+
+        //insertion d'information
+        $succes = $this->commercial_model->connexion($params);
+
+        if ($succes) {
+            redirect('commercial/statistiques');
+        }
+        else {
+            redirect('commercial');
+        }
+    }
+    
+
 }
