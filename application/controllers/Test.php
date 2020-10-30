@@ -11,6 +11,6 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-		afficher('back/commercial/statistiques');
+		afficher('back/gestionaire/popup_payement_confirmé');
 	}
 }
