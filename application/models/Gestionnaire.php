@@ -20,7 +20,7 @@ class Gestionnaire extends CI_Model
     }
     public function recuperer_un_gestionnaire($params)
     {
-        return $query = $this->db->get('eb_ressource', array('email_gest' => $params['email_gest']));
+        return $query = $this->db->get('eb_gestionnaire', array('email_gest' => $params['email_gest']));
     }
     //inscription d'un gestionnaire
     public function ajout_gestionnaire($params)
