@@ -22,17 +22,27 @@
 		<div class="allh">
 			<h1>Connexion du gestionnaire</h1>
 		</div>
+
+		
 		<!--==*** Start of the form ***==-->
-		<form>
+		<!-- <form action="" method="POST"> -->
+		<?= form_open('gestionnaire/traitement_connexion') ?>
+		
+			<?php if ($this->session->flashdata('message')) { ?>
+				<div class="alert alert-danger" role="alert">
+					<?= $this->session->flashdata('message'); ?>
+				</div>
+			<?php } ?>
+
 			<div class="group">
-				<input type="mail"><span class="highlight"></span><span class="bar"></span>
+				<input type="email" name="email"><span class="highlight"></span><span class="bar"></span>
 				<label>Votre adresse mail</label>
 			</div>
 			<div class="group">
-				<input type="password"><span class="highlight"></span><span class="bar"></span>
+				<input type="password" name="password"><span class="highlight"></span><span class="bar"></span>
 				<label>Votre mot de passe</label>
 			</div>
-			<button type="button" class="button buttonBlue">Se connecter
+			<button type="submit" class="button buttonBlue">Se connecter
 				<div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
 			</button>
 			<div class="link">
