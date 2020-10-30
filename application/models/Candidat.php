@@ -20,7 +20,6 @@ public function __construct()
     $this->load->database();
 }
 
-
 public function tous_les_candidats()
 {
         $query = $this->db->get('eb_candidat');
