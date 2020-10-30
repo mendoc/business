@@ -11,6 +11,6 @@ class Test extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('front/candidat/formulaire_candidat');
+		$this->load->view('back/gestionnaire/popup');
 	}
 }

@@ -1,0 +1,165 @@
+/*==========** ALL CSS OF THE HTML POPUP **=============*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 17px;
+  font-family: 'Lato', sans-serif;
+}
+
+.container {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.button {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 1.5rem;
+  background-color: #003366;
+  color: #ffffff;
+  padding: 1rem 2rem;
+}
+.popup {
+ 
+  display: flex; 
+  align-items:center;
+  justify-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  bottom: 0;
+  right: 0;
+  background-color:  #003366;
+  z-index:2;
+  visibility: hidden;
+  overflow: hidden;
+  opacity: 0;
+  transition: 0.7s ease-in-out;
+}
+
+.popup-inner {
+  position: relative;
+  justify-content: space-between;
+  bottom: -200em;
+  display: flex;
+  align-items: center;
+  max-width: 1000px;
+  max-height: 1000px;
+  width: 80%;
+  height: 90%;
+  background-color: white;
+  transform: rotate(45deg);
+  transition: 1s ease-in-out;
+
+}
+.popup-photo {
+  display: flex;
+  background-image: url(https://gnadoemagazine.com/wp-content/uploads/2020/04/sliderhome_entrepreneuriat.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+
+
+.popup-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 60%;
+  height: 100%;
+  text-align: center;
+  padding: 4rem;
+}
+.popup-text h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color:  #003366;
+
+}
+
+.popup:target{
+  visibility: visible;
+  opacity: 1;
+}
+.popup:target .popup-inner{
+  bottom: 0;
+  right: 0;
+  transform: rotate(0);
+}
+/*Button de fermetture du*/
+.popup-close{
+  position: absolute;
+  right: -3px;
+  top: 0;
+  width: 3rem;
+  height: 3rem;
+  font-size: 0.8rem;
+  font-weight: 400;
+  border-radius: 100%;
+  z-index: 4;
+  line-height: 3rem;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+.popup-close i {
+  color: rgb(163, 18, 18);
+  font-size: 3em;
+}
+
+/*Button de confrimation de paiement*/
+
+@media screen and (max-width:800px){
+  .popup-text{
+      padding: 0;
+      overflow: hidden;
+  }
+  .popup-text h1 {
+      font-size: 1.2em;
+  }
+  
+}
+/*==========** ALL CSS OF THE CSS POPUP **=============*/
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:#ff3333;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #ff3333;
+}
