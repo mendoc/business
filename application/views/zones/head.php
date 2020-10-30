@@ -13,8 +13,8 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="HandheldFriendly" content="True">
   <meta name="MobileOptimized" content="320">
-  <link rel="icon" href="<?= theme_url() ?>favicon.ico" type="image/x-icon" />
-  <link rel="shortcut icon" type="image/x-icon" href="<?= theme_url() ?>favicon.ico" />
+  <link rel="icon" href="<?= theme_url() ?>assets/icon/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" type="image/x-icon" href="<?= theme_url() ?>assets/icon/favicon.ico" />
   <!-- Generated: 2018-04-16 09:29:05 +0200 -->
   <title>Tableau de bord - Ecole 241 Business</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
