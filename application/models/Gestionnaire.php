@@ -94,16 +94,9 @@ class Gestionnaire extends CI_Model
         return $this->db->insert('eb_ressource', $this);
     }
     //supression d'une ressource par le gestionnaire
-    public function supprimer_ressource($params)
+    public function supprimer_ressource($id)
     {
-        $this->nom_res    = $params['nom_res'];
-        $this->lien  = $params['lien'];
-        $this->fichier     = $params['fichier'];
-        $this->type_res    = $params['type_res'];
-        $this->id_them    = $params['id_them'];
-        $this->id_gest  = $params['id_gest'];
-
-        return $this->db->delete('eb_ressource', array('id_res' => $params['id_res']));
+        return $this->db->delete('eb_ressource', array('id_res' => $id));
     }
     //listing des ressources par le gestionnaire
     public function lister_ressources()
