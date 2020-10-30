@@ -55,15 +55,15 @@ class Candidat_controller  extends CI_Controller
 			$this->load->view('candidat_controller/index');
 		} else {
 			// Chargement du modele
-		$this->load->model('candidat');
+			$this->load->model('candidat');
 
-		// Insertion d'informations
-		$success = $this->candidat->ajouter_candidat($params);
+			// Insertion d'informations
+			$success = $this->candidat->ajouter_candidat($params);
 
 			if ($success) {
 				// Redirection vers la page d'accueil
-		
-			redirect('candidat_controller/inscription_reussi');
+
+				redirect('candidat_controller/inscription_reussi');
 				mail('christadinsi@gmail.com', 'messsage de confirmation', 'Feliciatation pour votre enrégistrement');
 			} else {
 				// Redirection vers le formulaire
@@ -71,9 +71,5 @@ class Candidat_controller  extends CI_Controller
 			}
 			//$this->load->view('candidat_controller/inscription_reussi');
 		}
-
-
-
-		
 	}
 }
