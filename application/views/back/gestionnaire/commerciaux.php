@@ -14,66 +14,34 @@
           </tr>
         </thead>
         <tbody>
+		<?php if (empty($commerciaux)){ ?>
+			<tr>
+				<td colspan="4" class="text-center h1">
+					<span>Aucun commercial inscrit</span>
+				</td>
+			</tr>
+		<?php } else { foreach($commerciaux as $commercial): ?>
           <tr>
-            <td><span>Retro Viseur</span></td>
-            <td><span>retrovisuer@gmail.com</span></td>
             <td>
-              066262626
+				<span>
+					<?php echo $commercial->nom_prenom; ?>
+				</span>
+			</td>
+            <td>
+				<span>
+					<?php echo $commercial->email; ?>
+				</span>
+            </td>
+			<td>
+               <span>
+					<?php echo $commercial->num_tel; ?>
+				</span>
             </td>
             <td>
               <button type="button" class="btn btn-light">Détails</button>
             </td>
           </tr>
-          <tr>
-            <td><span>Igoua Nodon</span></td>
-            <td><span>iguanodon@gmail.com</span></td>
-            <td>
-              066262626
-            </td>
-            <td>
-              <button type="button" class="btn btn-light">Détails</button>
-            </td>
-          </tr>
-          <tr>
-            <td><span>Juste Atand</span></td>
-            <td><span>arriveattant@gmail.com</span></td>
-            <td>
-              066262626
-            </td>
-            <td>
-              <button type="button" class="btn btn-light">Détails</button>
-            </td>
-          </tr>
-          <tr>
-            <td><span>Harry Cover</span></td>
-            <td><span>enpotcarrefour@gmail.com</span></td>
-            <td>
-              066254546
-            </td>
-            <td>
-              <button type="button" class="btn btn-light">Détails</button>
-            </td>
-          </tr>
-          <tr>
-            <td><span>Richard Ogoula</span></td>
-            <td><span>richardogoula@gmail.com</span></td>
-            <td>
-              066789962
-            </td>
-            <td>
-              <button type="button" class="btn btn-light">Détails</button>
-            </td>
-          </tr>
-          <tr>
-            <td><span>Elvis Ousman</span></td>
-            <td><span>elvisousman@gmail.com</span></td>
-            <td>
-              077302680
-            </td>
-            <td>
-              <button type="button" class="btn btn-light">Détails</button>
-            </td>
-          </tr>
+		<?php endforeach; }?>
         </tbody>
       </table>
     </div>
