@@ -143,6 +143,7 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('candidat_model');
 		$data['candidat'] = $this->candidat_model->recuperer($id);
 		// afficher(vue candidat);
+		var_dump($data['candidat']);
 	}
 
 	
