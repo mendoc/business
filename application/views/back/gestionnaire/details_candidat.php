@@ -1,3 +1,4 @@
+<main class="container">
 <div class="my-3 my-md-5">
         <div class="details_centre">
           <div class="card">
@@ -6,70 +7,65 @@
             </div>
             <div class="card-body">
               <div class="block_details">
-                <h5>Nom:</h5>
-                <p>Moussounda</p>
+                <h5 class="font-weight-normal text-body">Nom:</h5>
+                <p><?= $candidat->nom_prenom ?></p>
               </div>
 
               <div class="block_details">
-                <h5>prénom:</h5>
-                <p>Yanick</p>
+                <h5 class="font-weight-normal text-body">sexe:</h5>
+                <p><?= $candidat->sexe; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>sexe:</h5>
-                <p>H</p>
+                <h5 class="font-weight-normal text-body">date de naissance:</h5>
+                <p><?= $candidat->date_n ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>date de naissance:</h5>
-                <p>22/09/1999</p>
+                <h5 class="font-weight-normal text-body">Adresse e-amil:</h5>
+                <p><?= $candidat->email ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Adresse e-amil:</h5>
-                <p>Moussounda</p>
+                <h5 class="font-weight-normal text-body">Numéro de téléphone:</h5>
+                <p><?= $candidat->num_tel ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Numéro de téléphone:</h5>
-                <p>062 20 60 20</p>
+                <h5 class="font-weight-normal text-body">Numéro de téléphone whatsapp:</h5>
+                <p><?php echo empty($candidat->num_what) ? 'Aucun': $candidat->num_what ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Numéro de téléphone whatsapp:</h5>
-                <p>062 20 60 20</p>
+                <h5 class="font-weight-normal text-body">Horaire de formation:</h5>
+                <p><?= $candidat->horaire ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Horaire de formation:</h5>
-                <p>Matinée</p>
+                <h5 class="font-weight-normal text-body">Domaine d'activité:</h5>
+                <p><?= $candidat->domaine_act ; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Domaine d'activité:</h5>
-                <p>Artisana</p>
+                <h5 class="font-weight-normal text-body">Type de service:</h5>
+                <p><?= $candidat->type_serv; ?></p>
               </div>
 
               <div class="block_details">
-                <h5>Type de service:</h5>
-                <p>Artisana</p>
-              </div>
-
-              <div class="block_details">
-                <h5>Attentes:</h5>
-                <p>Artisana</p>
+                <h5 class="font-weight-normal text-body">Attentes:</h5>
+                <p><?= $candidat->attentes ; ?></p>
               </div>
             </div>
           </div> 
           <div class="col-lg-6">
             
-            <form class="mb-4">
+            <form class="mb-4" action="<?= site_url('gestionnaire/inscription_candidat/' . $candidat->id_can); ?>" method="POST">
               <div class="form-row">
                 <div class="col">
-                  <input type="number" min="5000" class="form-control" placeholder="Montant">
+                  <input type="number" name="montant" min="5000" class="form-control" placeholder="Montant">
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="Motif">
+                  <input type="text" name="motif" class="form-control" placeholder="Motif">
                 </div>
                 <button type="submit" class="btn btn-primary">valider</button>
               </div>
@@ -77,44 +73,38 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Liste de demandes de retraits</h3>
+              <h3 class="card-title">Liste des paiements effectués</h3>
             </div>
 
             <div class="table-responsive">
               <table class="table card-table table-striped table-vcenter">
+                <thead>
+                  <tr>
+                    <th>Montant</th>
+                    <th>Motif</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <td>Ronald Bradley</td>
-                    <td>Initial commit</td>
-                    <td class="text-nowrap">May 6, 2018</td>
-
-                  </tr>
-                  <tr>
-                    <td>Russell Gibson</td>
-                    <td>Main structure</td>
-                    <td class="text-nowrap">April 22, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Beverly Armstrong</td>
-                    <td>Left sidebar adjustments</td>
-                    <td class="text-nowrap">April 15, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Bobby Knight</td>
-                    <td>Topbar dropdown style</td>
-                    <td class="text-nowrap">April 8, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Sharon Wells</td>
-                    <td>Fixes #625</td>
-                    <td class="text-nowrap">April 9, 2018</td>
-                    <td> </td>
-                  </tr>
+                  <?php if (empty($paiements)) { ?>
+                      <tr>
+                          <td colspan="3" class="text-center h1">
+                              <span> Il n'y a rien paye </span>
+                          </td>
+                      </tr>
+                      <?php } else {
+                      foreach ($paiements as $paiement) : ?>
+                          <tr>
+                            <td><?=  number_format($paiement->montant, 0, ',', ' '); ?> F CFA</td>
+                            <td><?= $paiement->motif ?></td>
+                            <td class="text-nowrap"><?= $paiement->date ?></td>
+                          </tr>
+                  <?php endforeach;
+                  } ?>
                 </tbody>
               </table>
             </div>
           </div>
       </div>
+
+</main>

@@ -77,7 +77,7 @@ class Gestionnaire extends CI_Controller
 
 		// On boucle sur tous les candidats et on verifie s'ils ont payé 
 		foreach ($data['candidats'] as $candidat) {
-			$candidat->est_apprenant = $this->paiement_model->est_un_apprenant($candidat->id_can);
+			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
 		}
 
 		afficher('back/gestionnaire/candidats', $data);
@@ -134,4 +134,54 @@ class Gestionnaire extends CI_Controller
 		//Affichage de la vue de listing de transactions
 		afficher("back/gestionnaire/transactions", $data);
 	}
+
+	// Vue detail d'un candidat
+	public function detail_candidat($id)
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('candidat_model');
+		$this->load->model('paiement_model');
+		
+		// Recuperation du candidat 
+		$data = array(
+			"candidat" => $this->candidat_model->recuperer($id),
+			"paiements" => $this->paiement_model->recuperer($id)
+		);
+
+		// Recuperation de l'id du gestionnaire pour le traitement et affichage dans le lien du formulaire
+
+		
+		afficher('back/gestionnaire/details_candidat', $data);
+	}
+
+	// Vue pour confirmer une inscription ( ajouter le montant )
+	public function inscription_candidat($id_can)
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('paiement_model');
+		$this->load->model('candidat_model');
+		
+		$montant = $this->input->post('montant');
+
+		// Creation du paiement 
+		$paiement = array(
+			'montant' => (int)$montant,
+			'motif' => $this->input->post('motif'),
+			'id_gest' => 1, 
+			'id_can' => $id_can
+		);
+
+		if ($this->paiement_model->inserer($paiement)) {
+			$candidat = $this->candidat_model->recuperer($id_can);
+			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement',"Tout s'est bien passe" );
+			redirect('gestionnaire/detail_candidat/' . $id_can);
+		}
+
+	}
+
+
 }
