@@ -73,11 +73,11 @@ class Gestionnaire extends CI_Controller
 
 		$data['candidats'] =  $this->candidat_model->tout();
 
-		$this->load->model('paiement');
+		$this->load->model('paiement_model');
 
 		// On boucle sur tous les candidats et on verifie s'ils ont payé 
 		foreach ($data['candidats'] as $candidat) {
-			$candidat->est_apprenant = $this->paiement->est_un_apprenant($candidat->id_can);
+			$candidat->est_apprenant = $this->paiement_model->est_un_apprenant($candidat->id_can);
 		}
 
 		afficher('back/gestionnaire/candidats', $data);
