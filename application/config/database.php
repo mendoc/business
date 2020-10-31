@@ -80,7 +80,7 @@ $db['default'] = array(
 	'password' => (ENVIRONMENT !== 'production') ? 'Men5P@sS'  : 'Paradoxe2020',
 	'database' => (ENVIRONMENT !== 'production') ? 'business'  : 'ecoleorgew241',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => 'eb_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,

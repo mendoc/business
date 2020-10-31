@@ -1,79 +1,61 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Gestionnaire extends CI_Controller {
-
-
-	public function __construct(){
-		parent::__construct();
-	}
-	
-	public function index(){
-		$this->load->helper('form');
-		$this->load->library('session');
-		$this->load->view('/back/gestionnaire/connexion_du_gestion');
-	}
-
+class Gestionnaire extends CI_Controller
+{
 	public function index()
 	{
-		afficher('back/gestionnaire/statistique');
-	}
-
-
-	public function candidats()
-	{
-		$this->load->model('candidat');
-		$this->load->model('paiement');
-		$data['candidats'] =  $this->candidat->tous_les_candidats();
-
-		// On boucle sur tout les candidats et on verifie si ils ont payes 
-		foreach ($data['candidats'] as $candidat) {
-			$candidat->est_apprenant = $this->paiement->est_un_apprenant($candidat->id_can);
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
 		}
 
-		afficher('back/gestionnaire/candidats', $data);
+		afficher('back/gestionnaire/statistiques');
 	}
 
 	public function connexion()
 	{
-		$this->load->helper('form');
-		$this->load->library('session');
-		$this->load->view('/back/gestionnaire/connexion_du_gestion');
+		$this->load->view('back/gestionnaire/connexion');
+	}
+
+	public function deconnexion()
+	{
+		$this->session->unset_userdata('token');
+		$this->session->unset_userdata('gestionnaire');
+		$this->session->unset_userdata('nom');
+		redirect('gestionnaire/connexion');
 	}
 
 	public function traitement_connexion()
 	{
-		$this->load->library('session');
-		$this->load->model('gestionnaire_model');
+		// On récupère les informations venant du formulaire
+		$email     = $this->input->post('email');
+		$mot_passe = $this->input->post('password');
 
-		$email = $this->input->post('email');
-		$mot_de_passe = $this->input->post('password');
+		// On valide les données
 
-		$data = [
-			'email_gest' => $email,
-			'mot_passe' => $mot_de_passe
-		];
+		// On teste la connexion
+		$gestionnaire = $this->gestionnaire_model->connexion($email, $mot_passe);
 
-		$est_connecte = $this->gestionnaire_model->connexion($data) ? true : false;
-
-		if ($est_connecte) {
-			$gestionnaire = $this->gestionnaire_model->connexion($data);
-			$this->session->set_userdata('id', $gestionnaire->id_gest);
+		if ($gestionnaire) {
+			$this->session->set_userdata('token', md5(time()));
+			$this->session->set_userdata('gestionnaire', true);
+			$this->session->set_userdata('nom', $gestionnaire->nom_prenom);
 			redirect('gestionnaire');
 		} else {
-			$this->session->set_flashdata('message', 'Incorrect !!');
+			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');
+			$this->session->set_flashdata('email', $email);
 			redirect('gestionnaire/connexion');
 		}
-		
 	}
 
-	public function listing_commercial()
+	public function commerciaux()
 	{
-		//Chargement du modele
-		$this->load->model("commercial");
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
 
 		//Récupération de tous les commerciaux
-		$tuples = $this->commercial->tous_les_commerciaux();
+		$tuples = $this->commercial_model->tout();
 
 		$data = array(
 			"commerciaux" => $tuples
@@ -81,7 +63,75 @@ class Gestionnaire extends CI_Controller {
 
 		//Affichage de la vue de listing de commerciaux
 		afficher("back/gestionnaire/commerciaux", $data);
-		//var_dump($data);
 	}
 
+	public function candidats()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$data['candidats'] =  $this->candidat_model->tout();
+
+		$this->load->model('paiement');
+
+		// On boucle sur tous les candidats et on verifie s'ils ont payé 
+		foreach ($data['candidats'] as $candidat) {
+			$candidat->est_apprenant = $this->paiement->est_un_apprenant($candidat->id_can);
+		}
+
+		afficher('back/gestionnaire/candidats', $data);
+	}
+
+	public function gestionnaires()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		//Récupération de tous les gestionnaires
+		$tuples = $this->gestionnaire_model->tout();
+
+		$data = array(
+			"gestionnaires" => $tuples
+		);
+
+		//Affichage de la vue de listing de gestionnaires
+		afficher("back/gestionnaire/gestionnaires", $data);
+	}
+
+	public function ressources()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		//Récupération de toutes les ressources
+		//$tuples = $this->gestionnaire_model->tout();
+		$tuples = array();
+
+		$data = array(
+			"ressources" => $tuples
+		);
+
+		//Affichage de la vue de listing des ressources
+		afficher("back/gestionnaire/ressources", $data);
+	}
+
+	public function transactions()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		//Récupération de tous les transactions
+		$tuples = $this->gestionnaire_model->transactions();
+
+		$data = array(
+			"transactions" => $tuples
+		);
+
+		//Affichage de la vue de listing de transactions
+		afficher("back/gestionnaire/transactions", $data);
+	}
 }

@@ -3,7 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Paiement extends CI_Model
 {
-
     public function __construct()
     {
         // Chargement de la base de donnees 
@@ -16,12 +15,13 @@ class Paiement extends CI_Model
     public function est_un_apprenant($id_can)
     {
         $this->db->where('id_can', $id_can);
-        $query = $this->db->get('eb_paiement');
+        $query = $this->db->get('paiement');
         return $query->num_rows() == 1 ? true : false;
     }
+
     public function tous_paiements()
     {
-        $query = $this->db->get('eb_paiement');
+        $query = $this->db->get('paiement');
         return $query->result();
     }
 }

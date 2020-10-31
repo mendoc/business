@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Commercial_model extends CI_Model
+class Candidat_model extends CI_Model
 {
 
     public $nom_prenom;
@@ -10,14 +10,17 @@ class Commercial_model extends CI_Model
     public $email;
     public $sexe;
     public $date_n;
-    public $nom_util;
-    public $mot_passe;
+    public $domaine_act;
+    public $type_serv;
+    public $attentes;
+    public $horaire;
+    public $id_res_part;
 
     // Nom de la table
-    private $table = 'commercial';
-
+    private $table = 'candidat';
+    
     // Clé primaire de la table
-    private $id = 'id_com';
+    private $id = 'id_can';
 
     public function __construct()
     {
@@ -30,16 +33,9 @@ class Commercial_model extends CI_Model
         return $query->result();
     }
 
-    public function connexion($nom_util, $mot_passe)
+    public function s_enregistrer()
     {
-        $query = $this->db->get_where($this->table, array('nom_util' => $nom_util, 'mot_passe' => $mot_passe));
-
-        return $query->row();
-    }
-
-    public function supprimer($id)
-    {
-        return $this->db->delete($this->table, array($this->id => $id));
+        return $this->db->insert($this->table, $this);
     }
 
     public function modifier($id)
@@ -47,8 +43,8 @@ class Commercial_model extends CI_Model
         return $this->db->update($this->table, $this, array($this->id => $id));
     }
 
-    public function creer()
+    public function supprimer($id)
     {
-        return $this->db->insert($this->table, $this);
+        return $this->db->delete($this->table, array($this->id => $id));
     }
 }
