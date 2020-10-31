@@ -48,7 +48,7 @@ class Candidat_model extends CI_Model
         return $this->db->delete($this->table, array($this->id => $id));
     }
     
-    public function chacun($id) //fonction pour sélectionner un candidat spécifique
+    public function chacun($id) //fonction pour sélectionner un candidat
     {
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
