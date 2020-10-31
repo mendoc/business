@@ -6,10 +6,15 @@ class Gestionnaire extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
+		$this->load->library('session');
 	}
 
 	public function index()
 	{
+		if(!$this->session->userdata('id'))
+		{
+			redirect('gestionnaire/connexion');
+		}
 		afficher('back/gestionnaire/statistique');
 	}
 
@@ -31,13 +36,11 @@ class Gestionnaire extends CI_Controller {
 	public function connexion()
 	{
 		$this->load->helper('form');
-		$this->load->library('session');
 		$this->load->view('/back/gestionnaire/connexion_du_gestion');
 	}
 
 	public function traitement_connexion()
 	{
-		$this->load->library('session');
 		$this->load->model('gestionnaire_model');
 
 		$email = $this->input->post('email');
