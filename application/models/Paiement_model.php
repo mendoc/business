@@ -23,7 +23,7 @@ class Paiement_model extends CI_Model
     {
         $this->db->where('id_can', $id_can);
         $query = $this->db->get('paiement');
-        return $query->num_rows() == 1 ? true : false;
+        return $query->num_rows() >= 1 ? true : false;
     }
 
     public function tous()
@@ -32,12 +32,32 @@ class Paiement_model extends CI_Model
         return $query->result();
     }
 
+    // Les paiements d'un candidats specifique
+    // public function mes_paiements($id)
+    // {
+    //     $query = $this->db->get_where('eb_paiement', array('id_can' => $id));
+    // }
+
     // Recuperer un paiement(Ligne)
     // Renvoie false si le candidat n'a effectue aucun paiement
     public function recuperer($id)
     {
-        $query = $this->db->get_where('eb_paiement', array('id_can' => $id));
-        return !empty($query->row()) ? $query->row() : false;
+        $query = $this->db->get_where($this->table, array('id_can' => $id));
+        return !empty($query->result()) ? $query->result() : false;
+    }
+
+    public function recuperer_tout_le_montant($id)
+    {
+        $paiements = $this->db->get_where($this->table, array('id_can' => $id))->result();
+        $montant_total = 0;
+        if (!empty($paiements)) {
+            foreach ($paiements as $paiement)
+            {
+                $montant_total += (int)$paiement->montant;
+            }
+        }
+
+        return $montant_total;
     }
    
     public function modifier($paiement)
@@ -46,8 +66,9 @@ class Paiement_model extends CI_Model
         return $this->db->update($this->table, $paiement);
     }
 
+    // Inserer un paiement dans la base de donnees
     public function inserer($paiement)
     {
-        return $this->db->insert('mytable', $paiement);
+        return $this->db->insert($this->table, $paiement);
     }
 }

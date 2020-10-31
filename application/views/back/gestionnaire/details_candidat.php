@@ -73,42 +73,34 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Liste de demandes de retraits</h3>
+              <h3 class="card-title">Liste des paiements effectués</h3>
             </div>
 
             <div class="table-responsive">
               <table class="table card-table table-striped table-vcenter">
+                <thead>
+                  <tr>
+                    <th>Montant</th>
+                    <th>Motif</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
                 <tbody>
-                  <tr>
-                    <td>Ronald Bradley</td>
-                    <td>Initial commit</td>
-                    <td class="text-nowrap">May 6, 2018</td>
-
-                  </tr>
-                  <tr>
-                    <td>Russell Gibson</td>
-                    <td>Main structure</td>
-                    <td class="text-nowrap">April 22, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Beverly Armstrong</td>
-                    <td>Left sidebar adjustments</td>
-                    <td class="text-nowrap">April 15, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Bobby Knight</td>
-                    <td>Topbar dropdown style</td>
-                    <td class="text-nowrap">April 8, 2018</td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td>Sharon Wells</td>
-                    <td>Fixes #625</td>
-                    <td class="text-nowrap">April 9, 2018</td>
-                    <td> </td>
-                  </tr>
+                  <?php if (empty($paiements)) { ?>
+                      <tr>
+                          <td colspan="3" class="text-center h1">
+                              <span> Il n'y a rien paye </span>
+                          </td>
+                      </tr>
+                      <?php } else {
+                      foreach ($paiements as $paiement) : ?>
+                          <tr>
+                            <td><?=  number_format($paiement->montant, 0, ',', ' '); ?> F CFA</td>
+                            <td><?= $paiement->motif ?></td>
+                            <td class="text-nowrap"><?= $paiement->date ?></td>
+                          </tr>
+                  <?php endforeach;
+                  } ?>
                 </tbody>
               </table>
             </div>

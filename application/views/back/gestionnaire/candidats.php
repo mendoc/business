@@ -16,8 +16,8 @@
                             <th>Noms & prénoms</th>
                             <th>Horaires</th>
                             <th>Téléphone</th>
-                            <th>Domaine d'activité</th>
-                            <th>Statut</th>
+                            <th>Montant</th>
+                            <th>Reste a payer</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -37,14 +37,10 @@
                                         <?= $candidat->num_tel ?>
                                     </td>
                                     <td>
-                                        <?= $candidat->domaine_act ?>
+                                        <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
-                                    <td>
-                                        <?php if ($candidat->est_apprenant) { ?>
-                                            <span class="status-icon bg-success"></span> Payé
-                                        <?php } else {  ?>
-                                            <span class="status-icon bg-danger"></span> Non payé
-                                        <?php } ?>
+                                    <td class="<?= (155000 - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
+                                        <?= number_format(155000 - $candidat->montant, 0, ',', ' '); ?> F CFA
                                     </td>
                                     <td>
                                         <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
