@@ -135,17 +135,22 @@ class Gestionnaire extends CI_Controller
 		afficher("back/gestionnaire/transactions", $data);
 	}
 
+	// Vue detail d'un candidat
 	public function detail_candidat($id)
 	{
 		if (!est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 		$this->load->model('candidat_model');
-		$data['candidat'] = $this->candidat_model->recuperer($id);
-		// afficher(vue candidat);
-		var_dump($data['candidat']);
+		
+		// Recuperation du candidat 
+		$data = array(
+			"candidat" => $this->candidat_model->recuperer($id)
+		);
+		
+		afficher('back/gestionnaire/details_candidat', $data);
+		// var_dump($data['candidat']);
 	}
 
-	
 
 }

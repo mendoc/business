@@ -47,7 +47,7 @@
                                         <?php } ?>
                                     </td>
                                     <td>
-                                        <a class="icon" href="javascript:void(0)">
+                                        <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
                                             <i class="fe fe-edit"></i>
                                         </a>
                                     </td>

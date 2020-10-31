@@ -50,8 +50,7 @@ class Candidat_model extends CI_Model
 
     public function recuperer($id)
     {
-        $this->db->where($this->id, $id);
-        $query = $this->db->get($this->table);
-        return $query->result();
+        $query = $this->db->get_where($this->table, array($this->id => $id));
+        return $query->row();
     }
 }
