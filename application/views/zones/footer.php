@@ -143,7 +143,9 @@
       'gray-dark-lightest': '#ebebec'
     }
   };
-  require(['core']);
+
+  link = document.querySelector(`.nav-link[href="<?= base_url() ?>${location.pathname.slice(1)}"]`);
+  link.classList.add('active');
 </script>
 
 <!-- Votre JS ici -->
