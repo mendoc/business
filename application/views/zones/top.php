@@ -41,7 +41,7 @@
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
                                 <li class="nav-item">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link active"><i class="fa fa-bar-chart"></i> Statistiques</a>
+                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link"><i class="fa fa-bar-chart"></i> Statistiques</a>
                                 </li>
                                 <?php if (est_un_gestionnaire()) : ?>
                                     <li class="nav-item">
