@@ -16,40 +16,61 @@ class Candidat_model extends CI_Model
     public $horaire;
     public $id_res_part;
 
-    // Nom de la table
-    private $table = 'candidat';
-    
-    // Clé primaire de la table
-    private $id = 'id_can';
-
     public function __construct()
     {
         $this->load->database();
     }
 
-    public function tout()
+
+    public function tous_les_candidats() // fonction pour lister tous les candidats
     {
-        $query = $this->db->get($this->table);
+        $query = $this->db->get('eb_candidat');
         return $query->result();
     }
 
-    public function s_enregistrer()
+    public function ajouter_candidat($params) //fonction pour ajouter un candidat
     {
-        return $this->db->insert($this->table, $this);
+        $this->nom_prenom = $params['nom_prenom'];
+        $this->num_tel    = $params['num_tel'];
+        $this->num_what   = $params['num_what'];
+        $this->email      = $params['email'];
+        $this->sexe       = $params['sexe'];
+        $this->date_n     = $params['date_n'];
+        $this->domaine_act   = $params['domaine_act'];
+        $this->type_serv = $params['type_serv'];
+        $this->attentes = $params['attentes'];
+        $this->horaire = $params['horaire'];
+        $this->id_res_part = $params['id_res_part'];
+
+        return $this->db->insert('eb_candidat', $this);
     }
 
-    public function modifier($id)
+    public function supprimer_candidat($id) //fonction pour supprimer un candidat
     {
-        return $this->db->update($this->table, $this, array($this->id => $id));
+     
+        return $this->db->delete('eb_candidat', array('id_can' => $id));
     }
 
-    public function supprimer($id)
+    public function modifier_candidat($params) //fonction pour modifier un candidat
     {
-        return $this->db->delete($this->table, array($this->id => $id));
+        $this->nom_prenom = $params['nom_prenom'];
+        $this->num_tel    = $params['num_tel'];
+        $this->num_what   = $params['num_what'];
+        $this->email      = $params['email'];
+        $this->sexe       = $params['sexe'];
+        $this->date_n     = $params['date_n'];
+        $this->domaine_act   = $params['domaine_act'];
+        $this->type_serv = $params['type_serv'];
+        $this->attentes = $params['attentes'];
+        $this->horaire = $params['horaire'];
+        $this->id_res_part = $params['id_res_part'];
+
+        return $this->db->update('eb_candidat', $this, array('id' => $params['id']));
     }
-    
-    public function chacun($id) //fonction pour sélectionner un candidat
+
+    public function selectionner_candidat($id) // fonction pour récupérer un candidat spécifique
     {
-        $query = $this->db->get_where($this->table, array($this->id => $id));
-        return $query->row();
+        return $this->db->get_where('eb_candidat', array('id_can'=>$id));  
     }
+
+}
