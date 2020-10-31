@@ -3835,6 +3835,17 @@ input[type="button"].btn-block {
   border-radius: 1rem;
 }
 
+.block_details{
+  display: flex;
+  justify-content: space-between;
+}
+
+.details_centre{
+  display: Flex;
+  width: 100%;
+}
+
+
 .custom-range::-ms-fill-upper {
   margin-right: 15px;
   background-color: #dee2e6;
