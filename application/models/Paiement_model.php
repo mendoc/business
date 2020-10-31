@@ -19,7 +19,7 @@ class Paiement_model extends CI_Model
         return $query->num_rows() == 1 ? true : false;
     }
 
-    public function tous_paiements()
+    public function tous()
     {
         $query = $this->db->get('paiement');
         return $query->result();
