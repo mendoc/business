@@ -134,4 +134,17 @@ class Gestionnaire extends CI_Controller
 		//Affichage de la vue de listing de transactions
 		afficher("back/gestionnaire/transactions", $data);
 	}
+
+	public function detail_candidat($id)
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('candidat_model');
+		$data['candidat'] = $this->candidat_model->recuperer($id);
+		// afficher(vue candidat);
+	}
+
+	
+
 }

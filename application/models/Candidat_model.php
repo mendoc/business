@@ -47,4 +47,11 @@ class Candidat_model extends CI_Model
     {
         return $this->db->delete($this->table, array($this->id => $id));
     }
+
+    public function recuperer($id)
+    {
+        $this->db->where($this->id, $id);
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
 }
