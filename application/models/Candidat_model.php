@@ -53,4 +53,3 @@ class Candidat_model extends CI_Model
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
-}
