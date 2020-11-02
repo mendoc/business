@@ -27,6 +27,12 @@ class Retrait_model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->result();
     }
+    //Selectionner un retrait
+    public function un($id)
+    {
+        $query = $this->db->get($this->table, array($this->id => $id));
+        return $query->row();
+    }
 
     public function ajouter()
     {
