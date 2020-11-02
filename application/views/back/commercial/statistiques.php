@@ -85,20 +85,20 @@
                 </div>
             </div>
             <!-- ajout de la zone champ de saisi du retrait -->
-            <div style="width: 50%;" class="card-body s">
-                <form>
-                    <h1 class="page-title">Faite un retrait</h1>
+            <div style="width: 50%;" class="card-body">
+                <?= form_open('commercial/traitement_retrait') ?>
+                    <h1 class="page-title">Faites un retrait</h1>
                     <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Entrez le montant.</label>
-                                <input class="form-control" placeholder="montant" />
+                                <input class="form-control" name="montant" type="number" default="5000" min="5000" step="100" placeholder="montant"  required />
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label class="form-label">Entrez votre numero mobile money.</label>
-                                <input class="form-control" placeholder="numero mobile money" />
+                                <input class="form-control" name="numero" oninvalid="this.setCustomValidity('Saisissez un numero valide')" type="tel" pattern="^0(66|74|77|65|60|62)\d{6}" placeholder="numero mobile money" required />
                             </div>
 
                         </div>

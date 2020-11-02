@@ -15,6 +15,28 @@ class Gestionnaire extends CI_Controller
 			'nb_candidats' => $nb_candidats
 		);
 
+		$this->load->model('retrait_model');
+		$this->load->model('commercial_model');
+
+		// Recuperation des informations
+		$retraits = $this->retrait_model->tout();
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+
+		// traitement
+		foreach ($retraits as $retrait) {
+			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
+			$retrait->property = $commercial->nom_prenom;
+		}
+
+		$retraits = array_filter($retraits, function ($retrait) {
+			return empty($retrait->date_fin);
+		});
+
+		$data = array(
+			"retraits" => $retraits,
+			"email_utilisateur" => $gestionnaire->email_gest
+		);
+
 		afficher('back/gestionnaire/statistiques', $data);
 	}
 
@@ -124,7 +146,7 @@ class Gestionnaire extends CI_Controller
 		$succes = $gestionnaire->creer();
 
 		if ($succes) {
-			$this->session->set_flashdata('message', 'Compte gestionnqire créé avec succès');
+			$this->session->set_flashdata('message', 'Compte gestionnaire créé avec succès');
 
 			$message = "Bonjour " . $gestionnaire->nom_prenom . ", \n\nVotre compte gestionnaire a bien été créé.
             \n\nCi-dessous, les informations pour vous connecter.\n\nLien de connexion : " . site_url('gestionnaire') . " \nAdresse e-mail : " . $gestionnaire->email_gest . "\nMot de passe: " . $gestionnaire->mot_passe . "\n\nL'équipe Ecole 241 Business.";
@@ -135,6 +157,54 @@ class Gestionnaire extends CI_Controller
 			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
 		}
 		redirect('gestionnaire/gestionnaires');
+	}
+	
+	public function finaliser_un_retrait($id)
+	{
+		$this->load->model('retrait_model');
+
+		// recuperation des informations
+		$_retrait = $this->retrait_model->un($id);
+		$retrait = new Retrait_model();
+		$retrait->montant_retrait = $_retrait->montant_retrait;
+		$retrait->id_com = $_retrait->id_com;
+		$retrait->date_debut = $_retrait->date_debut;
+		$retrait->id_gest = $_retrait->id_gest;
+		$retrait->num_ret = $_retrait->num_ret;
+
+
+		// Finalisation du retrait
+		$retrait->date_fin = date('Y-m-d H:i:s');
+
+		if ($retrait->modifier($id)) {
+			redirect('gestionnaire');
+		}
+	}
+
+	public function prendre_un_retrait($id)
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$this->load->model('gestionnaire_model');
+		$this->load->model('retrait_model');
+
+		// Recuperation des informations 
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email'));
+		$_retrait = $this->retrait_model->un($id);
+		$retrait = new Retrait_model();
+		$retrait->montant_retrait = $_retrait->montant_retrait;
+		$retrait->id_com = $_retrait->id_com;
+		$retrait->num_ret = $_retrait->num_ret;
+
+		// modification des informations 2020-11-02 13:31:19
+		$retrait->id_gest = $gestionnaire->id_gest;
+		$retrait->date_debut = date('Y-m-d H:i:s');
+
+		$retrait->modifier($id);
+
+		redirect('gestionnaire');
 	}
 
 	public function ressources()
