@@ -164,13 +164,15 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		$gestionnaire = $this->gestionnaire->par_email($this->session->email);
+
 		$this->load->model('ressource_model');
 
 		$ressource = new Ressource_model();
 		$ressource->nom_res  = $this->input->post('nom');
 		$ressource->type_res = $this->input->post('type_res');
 		$ressource->id_them  = $this->input->post('id_them');
-		$ressource->id_gest  = $this->input->post('id_gest');
+		$ressource->id_gest  = $gestionnaire->id_gest;
 
 		//Affichage de la vue de listing des ressources
 		redirect('gestionnaire/ressources');
