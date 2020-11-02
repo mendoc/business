@@ -35,7 +35,7 @@ $config['base_url'] = (ENVIRONMENT !== 'production') ? DEV_URL : PROD_URL;
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
