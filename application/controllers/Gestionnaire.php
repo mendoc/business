@@ -106,6 +106,37 @@ class Gestionnaire extends CI_Controller
 		afficher("back/gestionnaire/gestionnaires", $data);
 	}
 
+	public function ajouter_gestionnaire()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// Générer un mot de passe
+		$mot_passe  = rand(1000, 9999);
+
+		$gestionnaire = new Gestionnaire_model();
+		$gestionnaire->nom_prenom = $this->input->post('nom');
+		$gestionnaire->email_gest = $this->input->post('email');
+		$gestionnaire->mot_passe  = $mot_passe;
+
+		//Récupération de tous les gestionnaires
+		$succes = $gestionnaire->creer();
+
+		if ($succes) {
+			$this->session->set_flashdata('message', 'Compte gestionnqire créé avec succès');
+
+			$message = "Bonjour " . $gestionnaire->nom_prenom . ", \n\nVotre compte gestionnaire a bien été créé.
+            \n\nCi-dessous, les informations pour vous connecter.\n\nLien de connexion : " . site_url('gestionnaire') . " \nAdresse e-mail : " . $gestionnaire->email_gest . "\nMot de passe: " . $gestionnaire->mot_passe . "\n\nL'équipe Ecole 241 Business.";
+
+			// On envoie un mail au gestionnaire
+			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message);
+		} else {
+			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
+		}
+		redirect('gestionnaire/gestionnaires');
+	}
+
 	public function ressources()
 	{
 		if (!est_connecte()) {
@@ -149,7 +180,7 @@ class Gestionnaire extends CI_Controller
 		}
 		$this->load->model('candidat_model');
 		$this->load->model('paiement_model');
-		
+
 		// Recuperation du candidat 
 		$data = array(
 			"candidat" => $this->candidat_model->recuperer($id),
@@ -158,7 +189,7 @@ class Gestionnaire extends CI_Controller
 
 		// Recuperation de l'id du gestionnaire pour le traitement et affichage dans le lien du formulaire
 
-		
+
 		afficher('back/gestionnaire/details_candidat', $data);
 	}
 
@@ -170,24 +201,21 @@ class Gestionnaire extends CI_Controller
 		}
 		$this->load->model('paiement_model');
 		$this->load->model('candidat_model');
-		
+
 		$montant = $this->input->post('montant');
 
 		// Creation du paiement 
 		$paiement = array(
 			'montant' => (int)$montant,
 			'motif' => $this->input->post('motif'),
-			'id_gest' => 1, 
+			'id_gest' => 1,
 			'id_can' => $id_can
 		);
 
 		if ($this->paiement_model->inserer($paiement)) {
 			$candidat = $this->candidat_model->recuperer($id_can);
-			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement',"Tout s'est bien passe" );
+			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
 			redirect('gestionnaire/detail_candidat/' . $id_can);
 		}
-
 	}
-
-
 }
