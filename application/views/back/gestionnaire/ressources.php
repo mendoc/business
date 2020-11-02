@@ -22,7 +22,6 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Thématique</th>
-                                <th>Lien</th>
                                 <th>Type</th>
                             </tr>
                         </thead>
@@ -30,9 +29,8 @@
                             <?php foreach ($ressources as $ressource) : ?>
                                 <tr>
                                     <td><a href="" class="text-inherit"><?= $ressource->nom_res; ?></a></td>
-                                    <td><?= 'Business Model' ?></td>
-                                    <td><?= $ressource->lien ?></td>
-                                    <td><?= 'Image' ?></td>
+                                    <td><?= $ressource->id_them; ?></td>
+                                    <td><?= $ressource->type_res; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

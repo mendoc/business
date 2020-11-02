@@ -27,6 +27,7 @@ class Gestionnaire extends CI_Controller
 	{
 		$this->session->unset_userdata('token_gest');
 		$this->session->unset_userdata('nom_gest');
+		$this->session->unset_userdata('email_gest');
 		redirect('gestionnaire/connexion');
 	}
 
@@ -44,6 +45,7 @@ class Gestionnaire extends CI_Controller
 		if ($gestionnaire) {
 			$this->session->set_userdata('token_gest', md5(time()));
 			$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
+			$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
 			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');
@@ -142,8 +144,9 @@ class Gestionnaire extends CI_Controller
 		}
 
 		//Récupération de toutes les ressources
-		//$tuples = $this->gestionnaire_model->tout();
-		$tuples = array();
+		$this->load->model('ressource_model');
+
+		$tuples = $this->ressource_model->tout();
 
 		$data = array(
 			"ressources" => $tuples
@@ -155,7 +158,16 @@ class Gestionnaire extends CI_Controller
 
 	public function nouvelle_ressource()
 	{
-		afficher("back/gestionnaire/nouvelle_ressource");
+		//Récupération de toutes les ressources
+		$this->load->model('thematique_model');
+
+		$tuples = $this->thematique_model->tout();
+
+		$data = array(
+			"thematiques" => $tuples
+		);
+
+		afficher("back/gestionnaire/nouvelle_ressource", $data);
 	}
 
 	public function traitement_nouvelle_ressource()
@@ -164,18 +176,27 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		$gestionnaire = $this->gestionnaire->par_email($this->session->email);
+		// var_dump($this->session);
+		// die;
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->email_gest);
 
 		$this->load->model('ressource_model');
 
 		$ressource = new Ressource_model();
-		$ressource->nom_res  = $this->input->post('nom');
+		$ressource->nom_res  = $this->input->post('nom_res');
 		$ressource->type_res = $this->input->post('type_res');
-		$ressource->id_them  = $this->input->post('id_them');
+		$ressource->id_them  = $this->input->post('thematique');
 		$ressource->id_gest  = $gestionnaire->id_gest;
 
-		//Affichage de la vue de listing des ressources
-		redirect('gestionnaire/ressources');
+		$succes = $ressource->inserer();
+
+		if ($succes) {
+			//Affichage de la vue de listing des ressources
+			redirect('gestionnaire/ressources');
+		} else {
+			// Retour au formulaire
+			redirect('gestionnaire/nouvelle_ressource');
+		}
 	}
 
 	public function transactions()

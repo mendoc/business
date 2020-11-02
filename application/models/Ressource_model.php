@@ -6,7 +6,6 @@ class Ressource_model extends CI_Model
     public $nom_res;
     public $lien;
     public $fichier;
-    public $date_res;
     public $type_res;
     public $id_them;
     public $id_gest;

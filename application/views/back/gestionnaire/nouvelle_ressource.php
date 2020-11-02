@@ -11,44 +11,44 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label">Nom de la ressource</label>
-                                    <input type="text" class="form-control" name="example-text-input" placeholder="Text..">
+                                    <input type="text" class="form-control" name="nom_res" placeholder="Nom de la ressource">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Thematique</label>
-                                    <select name="beast" id="select-beast" class="form-control custom-select">
-                                        <option value="1">Abstrait</option>
-                                        <option value="4">Réaliste</option>
-                                        <option value="3">Immaginaire</option>
+                                    <select name="thematique" id="select-beast" class="form-control custom-select">
+                                        <?php foreach ($thematiques as $thematique) : ?>
+                                            <option value="<?= $thematique->id_them ?>"><?= $thematique->titre ?></option>
+                                        <?php endforeach; ?>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Type de ressource</label>
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
-                                            <input type="radio" name="value" value="50" class="selectgroup-input" checked="">
+                                            <input type="radio" name="type_res" value="Image" class="selectgroup-input" checked="">
                                             <span class="selectgroup-button">Image</span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input type="radio" name="value" value="100" class="selectgroup-input">
-                                            <span class="selectgroup-button">Vidéos</span>
+                                            <input type="radio" name="type_res" value="Vidéo" class="selectgroup-input">
+                                            <span class="selectgroup-button">Vidéo</span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input type="radio" name="value" value="150" class="selectgroup-input">
+                                            <input type="radio" name="type_res" value="PDF" class="selectgroup-input">
                                             <span class="selectgroup-button">PDF</span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input type="radio" name="value" value="200" class="selectgroup-input">
-                                            <span class="selectgroup-button">Articles</span>
+                                            <input type="radio" name="type_res" value="Article" class="selectgroup-input">
+                                            <span class="selectgroup-button">Article</span>
                                         </label>
                                     </div>
                                     <div class="form-group">
                                         <div class="form-label">Ajouter un fichier</div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="example-file-input-custom">
+                                            <input type="file" class="custom-file-input" name="fichier_res">
                                             <label class="custom-file-label">Choisis un fichier</label>
                                         </div>
                                     </div>
-                                    <div class="card-footer text-right">
+                                    <div class="card-footer text-right mt-5">
                                         <div class="d-flex">
                                             <a href="javascript:void(0)" class="btn btn-link">Annuler</a>
                                             <button type="submit" class="btn btn-primary ml-auto">Créer la ressource</button>

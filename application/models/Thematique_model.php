@@ -20,7 +20,7 @@ class Thematique_model extends CI_Model
     }
 
     //lister toutes les thematiques
-    public function tous()
+    public function tout()
     {
         $query = $this->db->get($this->table);
         return $query->result();
