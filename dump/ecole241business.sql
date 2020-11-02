@@ -35,6 +35,7 @@ CREATE TABLE `eb_candidat` (
   `attentes` text,
   `horaire` varchar(10) NOT NULL,
   `id_res_part` int(11) DEFAULT NULL,
+  `type_cours` char(1) NOT NULL,
   PRIMARY KEY (`id_can`),
   UNIQUE KEY `email` (`email`),
   KEY `id_res_part` (`id_res_part`),
@@ -269,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-01 18:12:26
+-- Dump completed on 2020-11-02  9:35:56
