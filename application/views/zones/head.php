@@ -27,10 +27,11 @@
   </script>
   <!-- Dashboard Core -->
   <link href="<?= theme_url() ?>assets/css/dashboard.css" rel="stylesheet" />
+  <link href="<?= theme_url() ?>assets/css/traficpartage.css" rel="stylesheet" />
   <script src="<?= theme_url() ?>assets/js/dashboard.js"></script>
   <!-- c3.js Charts Plugin -->
-  <link href="<?= theme_url() ?>assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-  <script src="<?= theme_url() ?>assets/plugins/charts-c3/plugin.js"></script>
+  <link href="<?= theme_url() ?>assets/plugins/charts-c3/js/plugin.css" rel="stylesheet" />
+  <script src="<?= theme_url() ?>assets/plugins/charts-c3/js/plugin.js"></script>
   <!-- Input Mask Plugin -->
   <script src="<?= theme_url() ?>assets/plugins/input-mask/plugin.js"></script>
 </head>
