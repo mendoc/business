@@ -5,6 +5,8 @@ class Commercial extends CI_Controller
 {
     public function index()
     {
+        $this->load->helper('form');
+        
         if (est_connecte()) {
             afficher('back/commercial/statistiques');
         } else {
@@ -82,12 +84,35 @@ class Commercial extends CI_Controller
         if ($commercial) {
             $this->session->set_userdata('token', md5(time()));
             $this->session->set_userdata('nom', $commercial->nom_prenom);
+            $this->session->set_userdata('email_com', $commercial->email);
             redirect('commercial');
         } else {
             $this->session->set_flashdata('message', "Nom d'utilisateur ou mot de passe incorrect");
             $this->session->set_flashdata('nom_util', $nom_util);
             redirect('commercial/connexion');
         }
+    }
+
+    public function traitement_retrait()
+    {
+        $this->load->model('retrait_model');
+        $this->load->model('commercial_model');
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $montant = $this->input->post('montant');
+        $numero = $this->input->post('numero');
+
+        $retrait = new Retrait_model();
+        $retrait->montant_retrait = $montant;
+        $retrait->num_ret = $numero;
+        $retrait->id_com = $commercial->id_com;
+
+        if($retrait->ajouter())
+        {
+            redirect('commercial');
+        }
+
     }
 
     public function ressources()
