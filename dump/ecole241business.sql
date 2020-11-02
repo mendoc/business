@@ -220,6 +220,7 @@ CREATE TABLE `eb_retrait` (
   `date_debut` datetime DEFAULT NULL,
   `id_com` int(11) NOT NULL,
   `id_gest` int(11) NOT NULL,
+  `num_ret` varchar(20) NOT NULL,
   PRIMARY KEY (`id_ret`),
   KEY `id_com` (`id_com`),
   KEY `id_gest` (`id_gest`),
@@ -270,4 +271,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-02 10:44:57
+-- Dump completed on 2020-11-02 14:18:50
