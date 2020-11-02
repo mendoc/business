@@ -88,8 +88,8 @@
                 <tbody>
                   <?php if (empty($paiements)) { ?>
                       <tr>
-                          <td colspan="3" class="text-center h1">
-                              <span> Il n'y a rien paye </span>
+                          <td colspan="3" class="text-center">
+                              <span> Aucun paiement effectué </span>
                           </td>
                       </tr>
                       <?php } else {

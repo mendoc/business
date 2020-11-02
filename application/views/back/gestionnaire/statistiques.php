@@ -13,7 +13,7 @@
                             0%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h1 m-0"><?= isset($nb_candidats) ? $nb_candidats : 0 ?></div>
                         <div class="text-muted mb-4">Candidats
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             F CFA
                         </div>
                         <div class="h1 m-0">0</div>
-                        <div class="text-muted mb-4">Chiffre d'affaire total
+                        <div class="text-muted mb-4">Chiffre d'affaire
                         </div>
                     </div>
                 </div>

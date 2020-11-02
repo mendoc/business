@@ -9,7 +9,13 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		afficher('back/gestionnaire/statistiques');
+		$nb_candidats = count($this->candidat_model->tout());
+
+		$data = array(
+			'nb_candidats' => $nb_candidats
+		);
+
+		afficher('back/gestionnaire/statistiques', $data);
 	}
 
 	public function connexion()
