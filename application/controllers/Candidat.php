@@ -46,7 +46,7 @@ class Candidat extends CI_Controller
 
         // On le redirige en fonction du résultat de la requete
         if ($succes) {
-            $message = "Bonjour " . ($sexe == 'M' ? 'M.' : 'Mme.') . " " . $candidat->nom_prenom . ", \n\nNous avons bien reçu votre inscription au programme de formation Ecole 241 Business destiné aux commerçants et artisants.
+            $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $candidat->nom_prenom . ", \n\nNous avons bien reçu votre inscription au programme de formation Ecole 241 Business destiné aux commerçants et artisants.
             \n\nCi-dessous, les informations que vous avez fournies lors de votre enregistrement.\n\nMerci pour la confiance accordée, nous vous disons à bientôt.\n\n L'équipe Ecole 241 Business.";
 
             // On envoie un mail au candidat
