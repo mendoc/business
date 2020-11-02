@@ -8,6 +8,7 @@ class Retrait_model extends CI_Model
     public $date_fin;
     public $date_debut;
     public $id_com;
+    public $num_ret;
     public $id_gest;
 
 
