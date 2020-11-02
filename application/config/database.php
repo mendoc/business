@@ -75,12 +75,12 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => (ENVIRONMENT !== 'production') ? 'localhost' : '',
-	'username' => (ENVIRONMENT !== 'production') ? 'root'      : '',
-	'password' => (ENVIRONMENT !== 'production') ? ''          : '',
-	'database' => (ENVIRONMENT !== 'production') ? 'business'  : '',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '',
+	'database' => 'business',
 	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
+	'dbprefix' => 'eb_',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
 	'cache_on' => FALSE,
