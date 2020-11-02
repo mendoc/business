@@ -23,11 +23,11 @@ class Commercial extends CI_Controller
     }
 
     public function deconnexion()
-    {
-        $this->session->unset_userdata('token');
-        $this->session->unset_userdata('nom');
-        redirect('commercial/connexion');
-    }
+	{
+		$this->session->unset_userdata('token_com');
+		$this->session->unset_userdata('nom_com');
+		redirect('commercial/connexion');
+	}
 
     public function traitement_inscription()
     {
@@ -60,8 +60,8 @@ class Commercial extends CI_Controller
 
         //redirection en fonction du résultat de la requete
         if ($inscrit) {
-            $this->session->set_userdata('token', md5(time()));
-            $this->session->set_userdata('nom', $commercial->nom_prenom);
+            $this->session->set_userdata('token_com', md5(time()));
+            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             redirect('commercial');
         } else {
             redirect('commercial/inscription');

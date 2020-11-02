@@ -14,7 +14,7 @@
                             <i class="fe fe-chevron-up"></i>
                         </div>
                         <div class="h1 m-0">0</div>
-                        <div class="text-muted mb-4">Nombre de filleules
+                        <div class="text-muted mb-4">Nombre de visites
                         </div>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                             <i class="fe fe-chevron-up"></i>
                         </div>
                         <div class="h1 m-0">0</div>
-                        <div class="text-muted mb-4">Nombre de visites
+                        <div class="text-muted mb-4">Nombre d'affiliés
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@
                             <i class="fe fe-chevron-up"></i>
                         </div>
                         <div class="h1 m-0">0F</div>
-                        <div class="text-muted mb-4">La commissions
+                        <div class="text-muted mb-4">Commission
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                             <i class="fe fe-chevron-down"></i>
                         </div>
                         <div class="h1 m-0">0F</div>
-                        <div class="text-muted mb-4">Le solde
+                        <div class="text-muted mb-4">Solde
                         </div>
                     </div>
                 </div>
@@ -94,7 +94,6 @@
                                 <label class="form-label">Entrez le montant.</label>
                                 <input class="form-control" placeholder="montant" />
                             </div>
-
                         </div>
                         <div class="col">
                             <div class="form-group">
@@ -103,9 +102,9 @@
                             </div>
 
                         </div>
-
                         <div class="form-footer">
-                            <button class="btn btn-primary btn-block ">Valider</button>
+                            <input type="submit" class="form-control" value="Valider" />
+                            <button class="btn btn-primary btn-block "></button>
                         </div>
                 </form>
             </div>

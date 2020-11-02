@@ -15,7 +15,7 @@
                                 <a class="nav-link pr-0 leading-none">
                                     <span class="avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
                                     <span class="ml-2 d-none d-lg-block">
-                                        <span class="text-default"><?= $this->session->nom ?></span>
+                                        <span class="text-default"><?= est_un_gestionnaire() ? $this->session->nom_gest : $this->session->nom_com ?></span>
                                         <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
                                     </span>
                                 </a>

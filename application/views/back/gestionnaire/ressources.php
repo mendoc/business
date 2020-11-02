@@ -5,6 +5,7 @@
                <i class="fe fe-film"></i> Ressources
             </h1>
         </div>
+        <a href="<?= site_url('gestionnaire/nouvelle_ressource') ?>" class="btn btn-primary pull-right mb-5">Ajouter une ressource</a>
         <div class="card">
             <?php if (empty($ressources)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">

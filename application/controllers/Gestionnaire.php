@@ -25,9 +25,8 @@ class Gestionnaire extends CI_Controller
 
 	public function deconnexion()
 	{
-		$this->session->unset_userdata('token');
-		$this->session->unset_userdata('gestionnaire');
-		$this->session->unset_userdata('nom');
+		$this->session->unset_userdata('token_gest');
+		$this->session->unset_userdata('nom_gest');
 		redirect('gestionnaire/connexion');
 	}
 
@@ -43,9 +42,8 @@ class Gestionnaire extends CI_Controller
 		$gestionnaire = $this->gestionnaire_model->connexion($email, $mot_passe);
 
 		if ($gestionnaire) {
-			$this->session->set_userdata('token', md5(time()));
-			$this->session->set_userdata('gestionnaire', true);
-			$this->session->set_userdata('nom', $gestionnaire->nom_prenom);
+			$this->session->set_userdata('token_gest', md5(time()));
+			$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
 			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');
@@ -153,6 +151,29 @@ class Gestionnaire extends CI_Controller
 
 		//Affichage de la vue de listing des ressources
 		afficher("back/gestionnaire/ressources", $data);
+	}
+
+	public function nouvelle_ressource()
+	{
+		afficher("back/gestionnaire/nouvelle_ressource");
+	}
+
+	public function traitement_nouvelle_ressource()
+	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$this->load->model('ressource_model');
+
+		$ressource = new Ressource_model();
+		$ressource->nom_res  = $this->input->post('nom');
+		$ressource->type_res = $this->input->post('type_res');
+		$ressource->id_them  = $this->input->post('id_them');
+		$ressource->id_gest  = $this->input->post('id_gest');
+
+		//Affichage de la vue de listing des ressources
+		redirect('gestionnaire/ressources');
 	}
 
 	public function transactions()
