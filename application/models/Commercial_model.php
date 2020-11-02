@@ -51,4 +51,11 @@ class Commercial_model extends CI_Model
     {
         return $this->db->insert($this->table, $this);
     }
+
+
+    public function recuperer_un($id)
+    {
+        $query = $this->db->get_where($this->table, array($this->id => $id));
+        return $query->row();
+    }
 }
