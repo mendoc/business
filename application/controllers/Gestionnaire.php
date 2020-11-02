@@ -14,12 +14,12 @@ class Gestionnaire extends CI_Controller
 
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
-		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email'));
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
 
 		// traitement
 		foreach($retraits as $retrait)
 		{
-			$commercial = $this->commercial_model->recuperer_un($retrait->id_ret);
+			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
 		}
 
@@ -63,7 +63,7 @@ class Gestionnaire extends CI_Controller
 			$this->session->set_userdata('token', md5(time()));
 			$this->session->set_userdata('gestionnaire', true);
 			$this->session->set_userdata('nom', $gestionnaire->nom_prenom);
-			$this->session->set_userdata('email', $gestionnaire->email_gest);
+			$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
 			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');

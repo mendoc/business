@@ -112,9 +112,9 @@
                                 foreach ($retraits as $retrait) : ?>
                                     <tr>
                                         <td><?= $retrait->property ?></td>
-                                        <td><?= $retrait->numero ?></td>
+                                        <td><?= $retrait->num_ret ?></td>
                                         <td class="text-nowrap"><?= number_format($retrait->montant_retrait, 0, ',', ' '); ?> F CFA</td>
-                                        <?php if ($email_utilisateur == $this->session->userdata('email')) { ?>
+                                        <?php if ($email_utilisateur == $this->session->userdata('email') && !empty($retrait->id_gest)) { ?>
                                             <td class="w-1"> <a href="<?= site_url('gestionnaire/finaliser_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-success text-white"> je confirme </a></td>
                                         <?php } else { ?>
                                             <?php if ($retrait->id_gest) { ?>
