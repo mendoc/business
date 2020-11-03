@@ -224,8 +224,26 @@ class Gestionnaire extends CI_Controller
 		afficher("back/gestionnaire/ressources", $data);
 	}
 
+	public function supprimer_ressource($id)
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$this->load->model('ressource_model');
+
+		if ($this->ressource_model->supprimer($id)) {
+			$this->session->set_flashdata('message', 'Ressource supprime');
+			redirect('gestionnaire/ressources');
+		}
+	}
+
 	public function nouvelle_ressource()
 	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
 		//Récupération de toutes les ressources
 		$this->load->model('thematique_model');
 
