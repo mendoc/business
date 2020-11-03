@@ -7,7 +7,7 @@ class Commercial extends CI_Controller
     {
         $this->load->helper('form');
         
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/statistiques');
         } else {
             redirect('commercial/connexion');
@@ -21,13 +21,13 @@ class Commercial extends CI_Controller
 
     public function connexion()
     {
+		$this->session->sess_destroy();
         $this->load->view('front/commercial/connexion');
     }
 
     public function deconnexion()
 	{
-		$this->session->unset_userdata('token_com');
-		$this->session->unset_userdata('nom_com');
+		$this->session->sess_destroy();
 		redirect('commercial/connexion');
 	}
 
@@ -82,8 +82,8 @@ class Commercial extends CI_Controller
         $commercial = $this->commercial_model->connexion($nom_util, $mot_passe);
 
         if ($commercial) {
-            $this->session->set_userdata('token', md5(time()));
-            $this->session->set_userdata('nom', $commercial->nom_prenom);
+            $this->session->set_userdata('token_com', md5(time()));
+            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             $this->session->set_userdata('email_com', $commercial->email);
             redirect('commercial');
         } else {
@@ -117,7 +117,7 @@ class Commercial extends CI_Controller
 
     public function ressources()
     {
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/ressources');
         } else {
             redirect('commercial/connexion');
@@ -126,7 +126,7 @@ class Commercial extends CI_Controller
 
     public function partages()
     {
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/partages');
         } else {
             redirect('commercial/connexion');
@@ -135,10 +135,21 @@ class Commercial extends CI_Controller
 
     public function transactions()
     {
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/transactions');
         } else {
             redirect('commercial/connexion');
         }
     }
+
+    private function est_connecte()
+	{
+		$CI = &get_instance();
+
+		$CI->load->library('session');
+
+		$token_com = $CI->session->userdata('token_com');
+
+		return $token_com != null;
+	}
 }

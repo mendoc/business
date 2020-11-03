@@ -102,19 +102,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php if (empty($retraits)) { ?>
-                            <tr>
-                                <td colspan="4" class="text-center h1">
-                                    <span> Il n'y a pas encore de retrait demande </span>
-                                </td>
-                            </tr>
-                            <?php } else {
+                            <?php if (empty($retraits)) { ?>
+                                <tr>
+                                    <td colspan="4" class="text-center h1">
+                                        <span> Il n'y a pas encore de retrait demande </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
                                 foreach ($retraits as $retrait) : ?>
                                     <tr>
                                         <td><?= $retrait->property ?></td>
                                         <td><?= $retrait->num_ret ?></td>
                                         <td class="text-nowrap"><?= number_format($retrait->montant_retrait, 0, ',', ' '); ?> F CFA</td>
-                                        <?php if ($email_utilisateur == $this->session->userdata('email') && !empty($retrait->id_gest)) { ?>
+                                        <?php if ($email_utilisateur == $this->session->userdata('email_gest') && !empty($retrait->id_gest)) { ?>
                                             <td class="w-1"> <a href="<?= site_url('gestionnaire/finaliser_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-success text-white"> je confirme </a></td>
                                         <?php } else { ?>
                                             <?php if ($retrait->id_gest) { ?>
@@ -124,7 +124,7 @@
                                             <?php } ?>
                                         <?php } ?>
                                     </tr>
-                                <?php endforeach;
+                            <?php endforeach;
                             } ?>
                         </tbody>
                     </table>
@@ -135,7 +135,6 @@
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>
-
                 <div class="table-responsive">
                     <table class="table card-table table-striped table-vcenter">
                         <thead>
@@ -154,7 +153,6 @@
                                     Il y a 3 jours
                                 </td>
                             </tr>
-
                             <tr>
                                 <!-- <td><span class="avatar" style="background-image: url(./demo/faces/female/1.jpg)"></span></td> -->
                                 <td>Beverly Armstrong</td>

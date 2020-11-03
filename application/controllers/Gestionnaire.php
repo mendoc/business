@@ -5,10 +5,9 @@ class Gestionnaire extends CI_Controller
 {
 	public function index()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
-
 		$nb_candidats = count($this->candidat_model->tout());
 
 		$data = array(
@@ -42,14 +41,13 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
+		$this->session->sess_destroy();
 		$this->load->view('back/gestionnaire/connexion');
 	}
 
 	public function deconnexion()
 	{
-		$this->session->unset_userdata('token_gest');
-		$this->session->unset_userdata('nom_gest');
-		$this->session->unset_userdata('email_gest');
+		$this->session->sess_destroy();
 		redirect('gestionnaire/connexion');
 	}
 
@@ -78,7 +76,7 @@ class Gestionnaire extends CI_Controller
 
 	public function commerciaux()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -95,7 +93,7 @@ class Gestionnaire extends CI_Controller
 
 	public function candidats()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -113,7 +111,7 @@ class Gestionnaire extends CI_Controller
 
 	public function gestionnaires()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -130,7 +128,7 @@ class Gestionnaire extends CI_Controller
 
 	public function ajouter_gestionnaire()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -158,7 +156,7 @@ class Gestionnaire extends CI_Controller
 		}
 		redirect('gestionnaire/gestionnaires');
 	}
-	
+
 	public function finaliser_un_retrait($id)
 	{
 		$this->load->model('retrait_model');
@@ -183,7 +181,7 @@ class Gestionnaire extends CI_Controller
 
 	public function prendre_un_retrait($id)
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -191,7 +189,7 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('retrait_model');
 
 		// Recuperation des informations 
-		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email'));
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
 		$_retrait = $this->retrait_model->un($id);
 		$retrait = new Retrait_model();
 		$retrait->montant_retrait = $_retrait->montant_retrait;
@@ -209,7 +207,7 @@ class Gestionnaire extends CI_Controller
 
 	public function ressources()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -242,7 +240,7 @@ class Gestionnaire extends CI_Controller
 
 	public function traitement_nouvelle_ressource()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -271,7 +269,7 @@ class Gestionnaire extends CI_Controller
 
 	public function transactions()
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
@@ -289,7 +287,7 @@ class Gestionnaire extends CI_Controller
 	// Vue detail d'un candidat
 	public function detail_candidat($id)
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 		$this->load->model('candidat_model');
@@ -310,7 +308,7 @@ class Gestionnaire extends CI_Controller
 	// Vue pour confirmer une inscription ( ajouter le montant )
 	public function inscription_candidat($id_can)
 	{
-		if (!est_connecte()) {
+		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 		$this->load->model('paiement_model');
@@ -331,5 +329,16 @@ class Gestionnaire extends CI_Controller
 			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
 			redirect('gestionnaire/detail_candidat/' . $id_can);
 		}
+	}
+
+	private function est_connecte()
+	{
+		$CI = &get_instance();
+
+		$CI->load->library('session');
+
+		$token_gest = $CI->session->userdata('token_gest');
+
+		return $token_gest != null;
 	}
 }
