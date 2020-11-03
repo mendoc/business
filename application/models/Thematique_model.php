@@ -6,7 +6,6 @@ class Thematique_model extends CI_Model
 
     public $titre;
     public $description;
-    public $id_gest;
 
     // Nom de la table
     private $table = 'thematique';
@@ -39,7 +38,7 @@ class Thematique_model extends CI_Model
     }
 
     //ajouter thematique
-    public function ajouter()
+    public function creer()
     {
         return $this->db->insert($this->table, $this);
     }

@@ -29,7 +29,7 @@
                             <?php foreach ($ressources as $ressource) : ?>
                                 <tr>
                                     <td><a href="" class="text-inherit"><?= $ressource->nom_res; ?></a></td>
-                                    <td><?= $ressource->id_them; ?></td>
+                                    <td><?= $ressource->titre; ?></td>
                                     <td><?= $ressource->type_res; ?></td>
                                 </tr>
                             <?php endforeach; ?>

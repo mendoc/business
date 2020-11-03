@@ -24,7 +24,10 @@ class Ressource_model extends CI_Model
     //lister toutes les ressources 
     public function tout()
     {
-        $query = $this->db->get($this->table);
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->join('thematique', "thematique.id_them = {$this->table}.id_them");
+        $query = $this->db->get();
         return $query->result();
     }
 

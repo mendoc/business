@@ -190,11 +190,11 @@ class Gestionnaire extends CI_Controller
 
 		// Recuperation des informations 
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
-		$_retrait = $this->retrait_model->un($id);
-		$retrait = new Retrait_model();
+		$_retrait     = $this->retrait_model->un($id);
+		$retrait      = new Retrait_model();
 		$retrait->montant_retrait = $_retrait->montant_retrait;
-		$retrait->id_com = $_retrait->id_com;
-		$retrait->num_ret = $_retrait->num_ret;
+		$retrait->id_com          = $_retrait->id_com;
+		$retrait->num_ret         = $_retrait->num_ret;
 
 		// modification des informations 2020-11-02 13:31:19
 		$retrait->id_gest = $gestionnaire->id_gest;
@@ -244,8 +244,26 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		// var_dump($this->session);
-		// die;
+		$config['upload_path'] = './ressources/';
+		$config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|mp4';
+
+		$this->load->library('upload', $config);
+
+		$fichier = '';
+
+		if (!$this->upload->do_upload('fichier_res')) {
+			$error = array('error' => $this->upload->display_errors());
+
+			$this->session->set_flashdata('message', $error[0]);
+
+			if (empty($this->input->post('lien'))){
+				redirect('gestionnaire/nouvelle_ressource');
+			}
+		} else {
+			$data = array('upload_data' => $this->upload->data());
+			$fichier = $data['upload_data']['file_name'];
+		}
+
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->email_gest);
 
 		$this->load->model('ressource_model');
@@ -253,7 +271,9 @@ class Gestionnaire extends CI_Controller
 		$ressource = new Ressource_model();
 		$ressource->nom_res  = $this->input->post('nom_res');
 		$ressource->type_res = $this->input->post('type_res');
+		$ressource->lien     = $this->input->post('lien');
 		$ressource->id_them  = $this->input->post('thematique');
+		$ressource->fichier  = $fichier;
 		$ressource->id_gest  = $gestionnaire->id_gest;
 
 		$succes = $ressource->inserer();
@@ -329,6 +349,53 @@ class Gestionnaire extends CI_Controller
 			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
 			redirect('gestionnaire/detail_candidat/' . $id_can);
 		}
+	}
+
+	public function thematiques()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// On charge modele des thématiques
+		$this->load->model('thematique_model');
+
+		// Récupération de toutes les transactions
+		$tuples = $this->thematique_model->tout();
+
+		$data = array(
+			"thematiques" => $tuples
+		);
+
+		// Affichage de la vue de listing de transactions
+		afficher("back/gestionnaire/thematiques", $data);
+	}
+
+	public function traitement_nouvelle_thematique()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// On charge modèle des thématiques
+		$this->load->model('thematique_model');
+
+		// On crée le modèle
+		$thematique = new Thematique_model();
+
+		$thematique->titre = $this->input->post('titre');
+		$thematique->description = 'Thématique standard';
+
+		// Récupération de toutes les transactions
+		$succes = $thematique->creer();
+
+		// if ($succes) {
+
+		// } else {
+
+		// }
+
+		redirect('gestionnaire/thematiques');
 	}
 
 	private function est_connecte()

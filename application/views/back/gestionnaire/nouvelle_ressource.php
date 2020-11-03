@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-auto mx-auto col-lg-7">
-                <form action="<?= site_url('gestionnaire/traitement_nouvelle_ressource') ?>" method="post" class="card">
+                <form action="<?= site_url('gestionnaire/traitement_nouvelle_ressource') ?>" method="post" class="card" enctype="multipart/form-data">
                     <div class="card-header">
                         <h3 class="card-title">Créer une ressource</h3>
                     </div>
@@ -11,7 +11,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label class="form-label">Nom de la ressource</label>
-                                    <input type="text" class="form-control" name="nom_res" placeholder="Nom de la ressource">
+                                    <input type="text" class="form-control" name="nom_res" required placeholder="Nom de la ressource">
                                 </div>
                                 <div class="form-group">
                                     <label class="form-label">Thematique</label>
@@ -40,6 +40,10 @@
                                             <input type="radio" name="type_res" value="Article" class="selectgroup-input">
                                             <span class="selectgroup-button">Article</span>
                                         </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Lien de la ressource</label>
+                                        <input type="text" class="form-control" name="lien" placeholder="URL de la ressource">
                                     </div>
                                     <div class="form-group">
                                         <div class="form-label">Ajouter un fichier</div>
