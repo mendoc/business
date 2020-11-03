@@ -58,4 +58,24 @@ class Commercial_model extends CI_Model
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
+
+   
+    public function nombre_affilié($id) //fonction pour récupérer le nombre d'affilié d'un candidat
+    {
+        $sql = "SELECT COUNT * 
+        FROM eb_candidat 
+        WHERE id_res_part IS NOT NULL
+        AND eb_candidat.id_res_part 
+            IN (
+            SELECT id_res_part 
+            FROM eb_ressource_partage
+            WHERE id_com = ? 
+            AND eb_ressource_partage.id_cand
+                IN (
+                SELECT id_can
+                FROM eb_paiement 
+                GROUP BY id_cand 
+                HAVING SUM(montant) = 155000 ))";
+        return $this->db->query($sql, $id);
+    }
 }
