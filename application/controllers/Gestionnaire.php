@@ -287,21 +287,64 @@ class Gestionnaire extends CI_Controller
 		}
 	}
 
-	public function transactions()
+	public function transactions_candidats()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('paiement_model');
+
+
+		//Récupération de tous les transactions
+		if($paiements = $this->paiement_model->tous())
+		{
+			foreach($paiements as $paiement)
+			{
+				$candidat = $this->candidat_model->recuperer($paiement->id_can);
+				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($paiement->id_gest);
+				$paiement->nom_candidat = $candidat->nom_prenom;
+				$paiement->type = $candidat->type_cours;
+				$paiement->gestionnaire = $gestionnaire->nom_prenom;
+			}
+		}
+
+
+		$data = array(
+			"paiements" => $paiements 
+		);
+
+		//Affichage de la vue de listing de transactions
+		afficher("back/gestionnaire/transactions", $data);
+	}
+
+	public function transactions_commercial()
 	{
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
 
-		//Récupération de tous les transactions
-		$tuples = $this->gestionnaire_model->transactions();
+		$this->load->model('retrait_model');
 
-		$data = array(
-			"transactions" => $tuples
-		);
+		$_retraits = $this->retrait_model->tout();
 
-		//Affichage de la vue de listing de transactions
-		afficher("back/gestionnaire/transactions", $data);
+		$retraits = array_filter($_retraits, function($retrait){
+			return !empty($retrait->date_fin);
+		});
+
+		if (!empty($retraits)) {
+			foreach($retraits as $retrait)
+			{
+				$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
+				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($retrait->id_gest);
+				$retrait->nom_com = $commercial->nom_prenom;
+				$retrait->nom_gest = $gestionnaire->nom_prenom;
+			}
+		}
+
+		$data['retraits'] = $retraits;
+
+		// var_dump($retraits);
+		afficher('back/gestionnaire/transactions_commercial', $data);
 	}
 
 	// Vue detail d'un candidat
