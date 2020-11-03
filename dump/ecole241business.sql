@@ -98,7 +98,7 @@ CREATE TABLE `eb_gestionnaire` (
   `email_gest` varchar(40) NOT NULL,
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,6 +107,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
+INSERT INTO `eb_gestionnaire` VALUES (1,'1234','Richard OGOULA','roland@yopmial.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,4 +272,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-03 10:54:14
+-- Dump completed on 2020-11-03 16:17:49
