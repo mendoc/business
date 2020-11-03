@@ -59,7 +59,6 @@ class Commercial_model extends CI_Model
         return $query->row();
     }
 
-   
     public function nombre_affilié($id) //fonction pour récupérer le nombre d'affilié d'un candidat
     {
         $sql = "SELECT COUNT * 
@@ -72,10 +71,17 @@ class Commercial_model extends CI_Model
             WHERE id_com = ? 
             AND eb_ressource_partage.id_cand
                 IN (
-                SELECT id_can
+                SELECT id_canD'accord
                 FROM eb_paiement 
                 GROUP BY id_cand 
                 HAVING SUM(montant) = 155000 ))";
         return $this->db->query($sql, $id);
+    }
+  
+    //Recupérer un gestionnaire en fonction de son adresse e-mail
+    public function par_email($email)
+    {
+        $query = $this->db->get_where($this->table, array('email' => $email));
+        return $query->row();
     }
 }

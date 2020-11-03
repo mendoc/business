@@ -5,6 +5,7 @@
                <i class="fe fe-film"></i> Ressources
             </h1>
         </div>
+        <a href="<?= site_url('gestionnaire/nouvelle_ressource') ?>" class="btn btn-primary pull-right mb-5">Ajouter une ressource</a>
         <div class="card">
             <?php if (empty($ressources)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">
@@ -21,7 +22,6 @@
                             <tr>
                                 <th>Nom</th>
                                 <th>Thématique</th>
-                                <th>Lien</th>
                                 <th>Type</th>
                             </tr>
                         </thead>
@@ -29,9 +29,8 @@
                             <?php foreach ($ressources as $ressource) : ?>
                                 <tr>
                                     <td><a href="" class="text-inherit"><?= $ressource->nom_res; ?></a></td>
-                                    <td><?= 'Business Model' ?></td>
-                                    <td><?= $ressource->lien ?></td>
-                                    <td><?= 'Image' ?></td>
+                                    <td><?= $ressource->titre; ?></td>
+                                    <td><?= $ressource->type_res; ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

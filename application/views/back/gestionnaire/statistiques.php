@@ -13,7 +13,7 @@
                             0%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h1 m-0"><?= isset($nb_candidats) ? $nb_candidats : 0 ?></div>
                         <div class="text-muted mb-4">Candidats
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                             F CFA
                         </div>
                         <div class="h1 m-0">0</div>
-                        <div class="text-muted mb-4">Chiffre d'affaire total
+                        <div class="text-muted mb-4">Chiffre d'affaire
                         </div>
                     </div>
                 </div>
@@ -102,41 +102,30 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <!-- <td class="w-1"><span class="avatar" style="background-image: url(./demo/faces/male/9.jpg)"></span></td> -->
-                                <td>Ronald Bradley</td>
-                                <td>062 20 30 19</td>
-                                <td class="text-nowrap">25000f</td>
-                                <td class="w-1"> <button class="btn btn-sm btn-primary"> je prends</button></td>
-                            </tr>
-                            <tr>
-                                <!-- <td><span class="avatar">BM</span></td> -->
-                                <td>Russell Gibson</td>
-                                <td>077 20 30 19</td>
-                                <td class="text-nowrap">20000f</td>
-                                <td class="w-1"> <button class="btn btn-sm btn-primary"> je prends</button></td>
-                            </tr>
-                            <tr>
-                                <!-- <td><span class="avatar" style="background-image: url(./demo/faces/female/1.jpg)"></span></td> -->
-                                <td>Beverly Armstrong</td>
-                                <td>07 40 30 19</td>
-                                <td class="text-nowrap">15000f</td>
-                                <td class="w-1"> <button class="btn btn-sm btn-primary"> je prends</button></td>
-                            </tr>
-                            <tr>
-                                <!-- <td><span class="avatar" style="background-image: url(./demo/faces/male/4.jpg)"></span></td> -->
-                                <td>Bobby Knight</td>
-                                <td>06 25 89 30</td>
-                                <td class="text-nowrap">10000f</td>
-                                <td class="w-1"> <button class="btn btn-sm btn-primary"> je prends</button></td>
-                            </tr>
-                            <tr>
-
-                                <td>Sharon Wells</td>
-                                <td>02 74 36</td>
-                                <td class="text-nowrap">80000f</td>
-                                <td class="w-1"> <button class="btn btn-sm btn-primary"> je prends</button></td>
-                            </tr>
+                            <?php if (empty($retraits)) { ?>
+                                <tr>
+                                    <td colspan="4" class="text-center h1">
+                                        <span> Il n'y a pas encore de retrait demande </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($retraits as $retrait) : ?>
+                                    <tr>
+                                        <td><?= $retrait->property ?></td>
+                                        <td><?= $retrait->num_ret ?></td>
+                                        <td class="text-nowrap"><?= number_format($retrait->montant_retrait, 0, ',', ' '); ?> F CFA</td>
+                                        <?php if ($email_utilisateur == $this->session->userdata('email_gest') && !empty($retrait->id_gest)) { ?>
+                                            <td class="w-1"> <a href="<?= site_url('gestionnaire/finaliser_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-success text-white"> je confirme </a></td>
+                                        <?php } else { ?>
+                                            <?php if ($retrait->id_gest) { ?>
+                                                <td> en cours </td>
+                                            <?php } else { ?>
+                                                <td class="w-1"> <a href="<?= site_url('gestionnaire/prendre_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-primary text-white"> je prends</a></td>
+                                            <?php } ?>
+                                        <?php } ?>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -146,7 +135,6 @@
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>
-
                 <div class="table-responsive">
                     <table class="table card-table table-striped table-vcenter">
                         <thead>
@@ -165,7 +153,6 @@
                                     Il y a 3 jours
                                 </td>
                             </tr>
-
                             <tr>
                                 <!-- <td><span class="avatar" style="background-image: url(./demo/faces/female/1.jpg)"></span></td> -->
                                 <td>Beverly Armstrong</td>

@@ -18,8 +18,6 @@ body {
 /* ALL left  */
 
 .left {
-  overflow: hidden;
-  display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
@@ -31,11 +29,11 @@ body {
 }
 
 /* Logo ECOLE 241 BUSINESS  */
+div.logo {
+  text-align: center;
+}
 .logo > img {
-  position: relative;
-  width: 90px;
-  height: 60px;
-  display: flex;
+  height: 120px;
   justify-content: center;
   align-items: center;
   margin-bottom: 0.3em;
@@ -50,10 +48,12 @@ body {
   max-width: 80%;
   display: flex;
   flex-direction: column;
+  margin: auto;
+  padding-bottom: 80px;
 }
 
 .form-field {
-  height: 30px;
+  height: 50px;
   padding: 0 7px;
   border: 2px solid #ddd;
   border-radius: 4px;
@@ -75,7 +75,7 @@ input {
   border-radius: 3px;
 }
 .form > button {
-  padding: 7px 7px;
+  padding: 18px 7px;
   border: 0;
   background: #003366;
   border-radius: 3px;

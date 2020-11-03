@@ -1,56 +1,45 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Candidat_model extends CI_Model
+class Thematique_model extends CI_Model
 {
 
-    public $nom_prenom;
-    public $num_tel;
-    public $num_what;
-    public $email;
-    public $sexe;
-    public $date_n;
-    public $domaine_act;
-    public $type_serv;
-    public $attentes;
-    public $horaire;
-    public $id_res_part;
+    public $titre;
+    public $description;
 
     // Nom de la table
-    private $table = 'candidat';
+    private $table = 'thematique';
     
     // Clé primaire de la table
-    private $id = 'id_can';
-
+    private $id = 'id_them';
+    
     public function __construct()
     {
         $this->load->database();
     }
 
+    //lister toutes les thematiques
     public function tout()
     {
         $query = $this->db->get($this->table);
         return $query->result();
     }
 
-    public function s_enregistrer()
-    {
-        return $this->db->insert($this->table, $this);
-    }
-
+    //Modifier une thematique 
     public function modifier($id)
     {
         return $this->db->update($this->table, $this, array($this->id => $id));
     }
-
+    
+    //supprimer une thematique
     public function supprimer($id)
     {
         return $this->db->delete($this->table, array($this->id => $id));
     }
 
-    public function recuperer($id)
+    //ajouter thematique
+    public function creer()
     {
-        $query = $this->db->get_where($this->table, array($this->id => $id));
-        return $query->row();
+        return $this->db->insert($this->table, $this);
     }
 }

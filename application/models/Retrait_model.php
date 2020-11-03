@@ -1,26 +1,22 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Candidat_model extends CI_Model
+class Retrait_model extends CI_Model
 {
 
-    public $nom_prenom;
-    public $num_tel;
-    public $num_what;
-    public $email;
-    public $sexe;
-    public $date_n;
-    public $domaine_act;
-    public $type_serv;
-    public $attentes;
-    public $horaire;
-    public $id_res_part;
+    public $montant_retrait;
+    public $date_fin;
+    public $date_debut;
+    public $id_com;
+    public $num_ret;
+    public $id_gest;
+
 
     // Nom de la table
-    private $table = 'candidat';
+    private $table = 'retrait';
     
     // Clé primaire de la table
-    private $id = 'id_can';
+    private $id = 'id_ret';
 
     public function __construct()
     {
@@ -32,8 +28,14 @@ class Candidat_model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->result();
     }
+    //Selectionner un retrait
+    public function un($id)
+    {
+        $query = $this->db->get($this->table, array($this->id => $id));
+        return $query->row();
+    }
 
-    public function s_enregistrer()
+    public function ajouter()
     {
         return $this->db->insert($this->table, $this);
     }
@@ -46,11 +48,5 @@ class Candidat_model extends CI_Model
     public function supprimer($id)
     {
         return $this->db->delete($this->table, array($this->id => $id));
-    }
-
-    public function recuperer($id)
-    {
-        $query = $this->db->get_where($this->table, array($this->id => $id));
-        return $query->row();
     }
 }

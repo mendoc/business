@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `eb_candidat`;
 CREATE TABLE `eb_candidat` (
   `id_can` int(11) NOT NULL AUTO_INCREMENT,
   `nom_prenom` varchar(250) NOT NULL,
-  `num_tel` int(11) NOT NULL,
-  `num_what` int(11) DEFAULT NULL,
+  `num_tel` varchar(20) NOT NULL,
+  `num_what` varchar(20) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `sexe` varchar(1) NOT NULL,
   `date_n` date NOT NULL,
@@ -35,7 +35,9 @@ CREATE TABLE `eb_candidat` (
   `attentes` text,
   `horaire` varchar(10) NOT NULL,
   `id_res_part` int(11) DEFAULT NULL,
+  `type_cours` char(1) NOT NULL DEFAULT 'P',
   PRIMARY KEY (`id_can`),
+  UNIQUE KEY `email` (`email`),
   KEY `id_res_part` (`id_res_part`),
   CONSTRAINT `eb_candidat_ibfk_1` FOREIGN KEY (`id_res_part`) REFERENCES `eb_ressource_partage` (`id_res_part`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -60,14 +62,16 @@ DROP TABLE IF EXISTS `eb_commercial`;
 CREATE TABLE `eb_commercial` (
   `id_com` int(11) NOT NULL AUTO_INCREMENT,
   `nom_prenom` varchar(250) NOT NULL,
-  `num_tel` int(11) NOT NULL,
-  `num_what` int(11) DEFAULT NULL,
+  `num_tel` varchar(20) DEFAULT NULL,
+  `num_what` varchar(20) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `sexe` varchar(1) NOT NULL,
   `date_n` date NOT NULL,
   `nom_util` varchar(250) NOT NULL,
-  `mot_passe` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`id_com`)
+  `mot_passe` varchar(200) NOT NULL,
+  PRIMARY KEY (`id_com`),
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `nom_util` (`nom_util`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -89,10 +93,11 @@ DROP TABLE IF EXISTS `eb_gestionnaire`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `eb_gestionnaire` (
   `id_gest` int(11) NOT NULL AUTO_INCREMENT,
-  `mot_passe` varchar(40) DEFAULT NULL,
+  `mot_passe` varchar(200) NOT NULL,
   `nom_prenom` varchar(250) NOT NULL,
   `email_gest` varchar(40) NOT NULL,
-  PRIMARY KEY (`id_gest`)
+  PRIMARY KEY (`id_gest`),
+  UNIQUE KEY `email_gest` (`email_gest`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -146,11 +151,11 @@ DROP TABLE IF EXISTS `eb_ressource`;
 CREATE TABLE `eb_ressource` (
   `id_res` int(11) NOT NULL AUTO_INCREMENT,
   `nom_res` varchar(250) NOT NULL,
-  `lien` text NOT NULL,
-  `fichier` varchar(10) NOT NULL,
+  `lien` text,
+  `fichier` varchar(255) DEFAULT NULL,
   `date_res` datetime DEFAULT CURRENT_TIMESTAMP,
-  `type_res` varchar(10) NOT NULL,
-  `id_them` int(11) NOT NULL,
+  `type_res` varchar(15) DEFAULT NULL,
+  `id_them` int(11) DEFAULT NULL,
   `id_gest` int(11) NOT NULL,
   PRIMARY KEY (`id_res`),
   KEY `id_them` (`id_them`),
@@ -214,7 +219,8 @@ CREATE TABLE `eb_retrait` (
   `date_fin` datetime DEFAULT NULL,
   `date_debut` datetime DEFAULT NULL,
   `id_com` int(11) NOT NULL,
-  `id_gest` int(11) NOT NULL,
+  `id_gest` int(11) DEFAULT NULL,
+  `num_ret` varchar(20) NOT NULL,
   PRIMARY KEY (`id_ret`),
   KEY `id_com` (`id_com`),
   KEY `id_gest` (`id_gest`),
@@ -241,14 +247,9 @@ DROP TABLE IF EXISTS `eb_thematique`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `eb_thematique` (
   `id_them` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(25) NOT NULL,
-  `auteur` varchar(25) NOT NULL,
-  `type` varchar(15) NOT NULL,
-  `description` text NOT NULL,
-  `id_gest` int(11) NOT NULL,
-  PRIMARY KEY (`id_them`),
-  KEY `id_gest` (`id_gest`),
-  CONSTRAINT `eb_thematique_ibfk_1` FOREIGN KEY (`id_gest`) REFERENCES `eb_gestionnaire` (`id_gest`)
+  `titre` varchar(255) NOT NULL,
+  `description` text,
+  PRIMARY KEY (`id_them`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -270,4 +271,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-10-29 16:39:21
+-- Dump completed on 2020-11-03 10:54:14
