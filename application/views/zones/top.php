@@ -70,9 +70,19 @@
                                         <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
                                     </li>
                                 <?php endif; ?>
-                                <li class="nav-item  m-0 dropdown">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/transactions') : site_url('commercial/transactions') ?>" class="nav-link m-0"><i class="fa fa-money"></i> Transactions</a>
-                                </li>
+                                <?php if (est_un_gestionnaire()) : ?>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fa fa-money"></i> Transactions</a>
+                                        <div class="dropdown-menu dropdown-menu-arrow">
+                                            <a href="<?= site_url('gestionnaire/transactions_candidats') ?>" class="dropdown-item"><i class="fe fe-film"></i> Candidats</a>
+                                            <a href="<?= site_url('gestionnaire/transactions_commercial') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Commercials</a>
+                                        </div>
+                                    </li>
+                                <?php else : ?>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="<?= site_url('commercial/transactions') ?>" class="nav-link m-0"><i class="fa fa-money"></i> Transactions</a>
+                                    </li>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
