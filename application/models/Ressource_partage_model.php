@@ -8,7 +8,6 @@ class Ressource_partage_model extends CI_Model
     public $id_res;
     public $id_com;
 
-
     // Nom de la table
     private $table = 'ressource_partage';
     
@@ -20,6 +19,7 @@ class Ressource_partage_model extends CI_Model
         $this->load->database();
     }
 
+    //Selectionner tous les Ressource_partage
     public function tout()
     {
         $query = $this->db->get($this->table);
@@ -34,5 +34,12 @@ class Ressource_partage_model extends CI_Model
     public function supprimer($id)
     {
         return $this->db->delete($this->table, array($this->id => $id));
+    }
+    //Selectionner tous les Ressource_partage
+    
+    public function un($id)
+    {
+        $query = $this->db->get($this->table, array($this->id => $id));
+        return $query->result();
     }
 }
