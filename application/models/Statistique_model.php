@@ -40,7 +40,7 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql);
     }
 
-    public function nombre_apprenat_ligne() //Nbre de tous les apprenants en Ligne
+    public function nombre_apprenant_ligne() //Nbre de tous les apprenants en Ligne
     {
         $sql = " SELECT COUNT(eb_candidat.id_can)
         FROM eb_candidat
