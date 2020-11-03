@@ -15,7 +15,7 @@
                                 <a class="nav-link pr-0 leading-none">
                                     <span class="avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
                                     <span class="ml-2 d-none d-lg-block">
-                                        <span class="text-default"><?= $this->session->nom ?></span>
+                                        <span class="text-default"><?= est_un_gestionnaire() ? $this->session->nom_gest : $this->session->nom_com ?></span>
                                         <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
                                     </span>
                                 </a>
@@ -30,7 +30,7 @@
             <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 ml-auto">
+                        <div class="col-lg-3 ml-auto d-none">
                             <form class="input-icon my-3 my-lg-0">
                                 <input type="search" class="form-control header-search" placeholder="Rechercher" tabindex="1">
                                 <div class="input-icon-addon">
@@ -40,30 +40,38 @@
                         </div>
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                                <li class="nav-item">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link"><i class="fa fa-bar-chart"></i> Statistiques</a>
+                                <li class="nav-item m-0">
+                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link m-0 m-0"><i class="fa fa-bar-chart"></i> Statistiques</a>
                                 </li>
                                 <?php if (est_un_gestionnaire()) : ?>
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('gestionnaire/candidats') ?>" class="nav-link"><i class="fa fa-users"></i> Candidats</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('gestionnaire/commerciaux') ?>" class="nav-link"><i class="fa fa-users"></i> Commerciaux</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="<?= site_url('gestionnaire/gestionnaires') ?>" class="nav-link"><i class="fa fa-users"></i> Gestionnaires</a>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fe fe-users"></i> Comptes</a>
+                                        <div class="dropdown-menu dropdown-menu-arrow">
+                                            <a href="<?= site_url('gestionnaire/candidats') ?>" class="dropdown-item">Candidats</a>
+                                            <a href="<?= site_url('gestionnaire/commerciaux') ?>" class="dropdown-item">Commerciaux</a>
+                                            <a href="<?= site_url('gestionnaire/gestionnaires') ?>" class="dropdown-item">Gestionnaires</a>
+                                        </div>
                                     </li>
                                 <?php endif; ?>
-                                <li class="nav-item">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/ressources') : site_url('commercial/ressources') ?>" class="nav-link"><i class="fe fe-film"></i> Ressources</a>
-                                </li>
+                                <?php if (est_un_gestionnaire()) : ?>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fe fe-file"></i> Contenus</a>
+                                        <div class="dropdown-menu dropdown-menu-arrow">
+                                            <a href="<?= site_url('gestionnaire/ressources') ?>" class="dropdown-item"><i class="fe fe-film"></i> Ressources</a>
+                                            <a href="<?= site_url('gestionnaire/thematiques') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Thématiques</a>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
                                 <?php if (!est_un_gestionnaire()) : ?>
-                                    <li class="nav-item dropdown">
-                                        <a href="<?= site_url('commercial/partages') ?>" class="nav-link"><i class="fe fe-share-2"></i> Partages</a>
+                                    <li class="nav-item  m-0">
+                                        <a href="<?= site_url('commercial/ressources') ?>" class="nav-link m-0"><i class="fe fe-film"></i> Ressources</a>
+                                    </li>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
                                     </li>
                                 <?php endif; ?>
-                                <li class="nav-item dropdown">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/transactions') : site_url('commercial/transactions') ?>" class="nav-link"><i class="fa fa-money"></i> Transactions</a>
+                                <li class="nav-item  m-0 dropdown">
+                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/transactions') : site_url('commercial/transactions') ?>" class="nav-link m-0"><i class="fa fa-money"></i> Transactions</a>
                                 </li>
                             </ul>
                         </div>

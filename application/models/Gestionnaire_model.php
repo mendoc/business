@@ -61,4 +61,11 @@ class Gestionnaire_model extends CI_Model
         $query = $this->db->get_where($this->table, array('email_gest' => $email, 'mot_passe' => $mot_passe));
         return $query->row();
     }
+
+    //Recupérer un gestionnaire en fonction de son adresse e-mail
+    public function par_email($email)
+    {
+        $query = $this->db->get_where($this->table, array('email_gest' => $email));
+        return $query->row();
+    }
 }

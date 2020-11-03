@@ -144,8 +144,8 @@
     }
   };
 
-  link = document.querySelector(`.nav-link[href="<?= base_url() ?>${location.pathname.slice(1)}"]`);
-  link.classList.add('active');
+  link = document.querySelector(`.nav-link[href="${location.href}"]`);
+  if (link) link.classList.add('active');
 </script>
 
 <!-- Votre JS ici -->

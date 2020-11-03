@@ -58,4 +58,11 @@ class Commercial_model extends CI_Model
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
+
+    //Recupérer un gestionnaire en fonction de son adresse e-mail
+    public function par_email($email)
+    {
+        $query = $this->db->get_where($this->table, array('email' => $email));
+        return $query->row();
+    }
 }

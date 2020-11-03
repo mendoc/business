@@ -5,7 +5,9 @@ class Commercial extends CI_Controller
 {
     public function index()
     {
-        if (est_connecte()) {
+        $this->load->helper('form');
+
+        if ($this->est_connecte()) {
             afficher('back/commercial/statistiques');
         } else {
             redirect('commercial/connexion');
@@ -19,13 +21,13 @@ class Commercial extends CI_Controller
 
     public function connexion()
     {
+        $this->session->sess_destroy();
         $this->load->view('front/commercial/connexion');
     }
 
     public function deconnexion()
     {
-        $this->session->unset_userdata('token');
-        $this->session->unset_userdata('nom');
+        $this->session->sess_destroy();
         redirect('commercial/connexion');
     }
 
@@ -60,8 +62,8 @@ class Commercial extends CI_Controller
 
         //redirection en fonction du résultat de la requete
         if ($inscrit) {
-            $this->session->set_userdata('token', md5(time()));
-            $this->session->set_userdata('nom', $commercial->nom_prenom);
+            $this->session->set_userdata('token_com', md5(time()));
+            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             redirect('commercial');
         } else {
             redirect('commercial/inscription');
@@ -80,8 +82,9 @@ class Commercial extends CI_Controller
         $commercial = $this->commercial_model->connexion($nom_util, $mot_passe);
 
         if ($commercial) {
-            $this->session->set_userdata('token', md5(time()));
-            $this->session->set_userdata('nom', $commercial->nom_prenom);
+            $this->session->set_userdata('token_com', md5(time()));
+            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
+            $this->session->set_userdata('email_com', $commercial->email);
             redirect('commercial');
         } else {
             $this->session->set_flashdata('message', "Nom d'utilisateur ou mot de passe incorrect");
@@ -90,18 +93,60 @@ class Commercial extends CI_Controller
         }
     }
 
+    public function traitement_retrait()
+    {
+        $this->load->model('retrait_model');
+        $this->load->model('commercial_model');
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $montant = $this->input->post('montant');
+        $numero = $this->input->post('numero');
+
+        $retrait = new Retrait_model();
+        $retrait->montant_retrait = $montant;
+        $retrait->num_ret = $numero;
+        $retrait->id_com = $commercial->id_com;
+
+        if ($retrait->ajouter()) {
+            redirect('commercial');
+        }
+    }
+
     public function ressources()
     {
-        if (est_connecte()) {
-            afficher('back/commercial/ressources');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        //Récupération de toutes les ressources
+        $this->load->model('ressource_model');
+
+        $tuples = $this->ressource_model->tout();
+
+        $images = array();
+        $videos = array();
+        $documents = array();
+
+        foreach ($tuples as $tuple) {
+            if ($tuple->type_res == 'Image') array_push($images, $tuple);
+            else if ($tuple->type_res == 'Vidéo') array_push($videos, $tuple);
+            else if ($tuple->type_res == 'Document') array_push($documents, $tuple);
+        }
+
+        $data = array(
+            "images"    => $images,
+            "documents" => $documents,
+            "videos"    => $videos
+        );
+
+        //Affichage de la vue de listing des ressources
+        afficher("back/commercial/ressources", $data);
     }
 
     public function partages()
     {
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/partages');
         } else {
             redirect('commercial/connexion');
@@ -110,10 +155,21 @@ class Commercial extends CI_Controller
 
     public function transactions()
     {
-        if (est_connecte()) {
+        if ($this->est_connecte()) {
             afficher('back/commercial/transactions');
         } else {
             redirect('commercial/connexion');
         }
+    }
+
+    private function est_connecte()
+    {
+        $CI = &get_instance();
+
+        $CI->load->library('session');
+
+        $token_com = $CI->session->userdata('token_com');
+
+        return $token_com != null;
     }
 }
