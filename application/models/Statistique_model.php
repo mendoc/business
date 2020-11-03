@@ -49,6 +49,8 @@ class Statistique_model extends CI_Model
         WHERE type_cours =\"L\"
         GROUP BY eb_paiement.id_can 
         HAVING SUM(montant) = 90000";
+
+        return $this->db->query($sql);
     }
 
     public function nombre_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
@@ -79,4 +81,4 @@ class Statistique_model extends CI_Model
 
         return $this->db->query($sql);
     }
-} 
+}
