@@ -81,4 +81,42 @@ class Statistique_model extends CI_Model
 
         return $this->db->query($sql);
     }
+
+    public function affilies_com_presentiel($id) //Les affiliés d'un commercial en présentiel
+{
+    $sql = "SELECT * 
+    FROM eb_candidat 
+    WHERE id_res_part IS NOT NULL
+    AND eb_candidat.id_res_part 
+    IN( SELECT id_res_part 
+    FROM eb_ressource_partage
+    WHERE id_com = ?)
+    AND id_can
+    IN ( SELECT id_can
+    FROM eb_paiement 
+    GROUP BY id_can 
+    HAVING SUM(montant) = 155000)";
+
+    return $this->db->query($sql, array($id));
+}
+
+    public function affilies_com_ligne($id) //Les affiliés d'un commercial en ligne
+{
+    $sql = "SELECT * 
+    FROM eb_candidat 
+    WHERE id_res_part IS NOT NULL
+    AND eb_candidat.id_res_part 
+    IN( SELECT id_res_part 
+    FROM eb_ressource_partage
+    WHERE id_com = ?)
+    AND id_can
+    IN ( SELECT id_can
+    FROM eb_paiement 
+    GROUP BY id_can 
+    HAVING SUM(montant) = 90000
+    )";
+
+    return $this->db->query($sql, array($id));
+}
+
 }
