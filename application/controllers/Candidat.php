@@ -93,7 +93,7 @@ class Candidat extends CI_Controller
         $this->load->view('front/candidat/inscription');
     }
 
-    /* la fonction qui réupere les donnees du formulaire
+    /* la fonction qui réupere les données du formulaire
     public function traitement_enregistrement()
     {
         
