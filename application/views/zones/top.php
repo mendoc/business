@@ -40,12 +40,12 @@
                         </div>
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
-                                <li class="nav-item">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link"><i class="fa fa-bar-chart"></i> Statistiques</a>
+                                <li class="nav-item m-0">
+                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>" class="nav-link m-0 m-0"><i class="fa fa-bar-chart"></i> Statistiques</a>
                                 </li>
                                 <?php if (est_un_gestionnaire()) : ?>
-                                    <li class="nav-item dropdown">
-                                        <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-users"></i> Comptes</a>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fe fe-users"></i> Comptes</a>
                                         <div class="dropdown-menu dropdown-menu-arrow">
                                             <a href="<?= site_url('gestionnaire/candidats') ?>" class="dropdown-item">Candidats</a>
                                             <a href="<?= site_url('gestionnaire/commerciaux') ?>" class="dropdown-item">Commerciaux</a>
@@ -53,22 +53,26 @@
                                         </div>
                                     </li>
                                 <?php endif; ?>
-                                <li class="nav-item dropdown">
-                                    <a href="javascript:void(0)" class="nav-link" data-toggle="dropdown"><i class="fe fe-file"></i> Contenus</a>
-                                    <div class="dropdown-menu dropdown-menu-arrow">
-                                        <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/ressources') : site_url('commercial/ressources') ?>" class="dropdown-item"><i class="fe fe-film"></i> Ressources</a>
-                                <?php if (est_un_gestionnaire()) : ?><a href="<?= site_url('gestionnaire/thematiques') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Thématiques</a><?php endif; ?>
-                                    </div>
-                                </li>
-                                <?php if (!est_un_gestionnaire()) : ?>
-                                    <li class="nav-item dropdown">
-                                        <a href="<?= site_url('commercial/partages') ?>" class="nav-link"><i class="fe fe-share-2"></i> Partages</a>
+                                <?php if (est_un_gestionnaire()) : ?>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fe fe-file"></i> Contenus</a>
+                                        <div class="dropdown-menu dropdown-menu-arrow">
+                                            <a href="<?= site_url('gestionnaire/ressources') ?>" class="dropdown-item"><i class="fe fe-film"></i> Ressources</a>
+                                            <a href="<?= site_url('gestionnaire/thematiques') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Thématiques</a>
+                                        </div>
                                     </li>
                                 <?php endif; ?>
-                                <li class="nav-item dropdown">
-                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/transactions') : site_url('commercial/transactions') ?>" class="nav-link"><i class="fa fa-money"></i> Transactions</a>
+                                <?php if (!est_un_gestionnaire()) : ?>
+                                    <li class="nav-item  m-0">
+                                        <a href="<?= site_url('commercial/ressources') ?>" class="nav-link m-0"><i class="fe fe-film"></i> Ressources</a>
+                                    </li>
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
+                                    </li>
+                                <?php endif; ?>
+                                <li class="nav-item  m-0 dropdown">
+                                    <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/transactions') : site_url('commercial/transactions') ?>" class="nav-link m-0"><i class="fa fa-money"></i> Transactions</a>
                                 </li>
-
                             </ul>
                         </div>
                     </div>

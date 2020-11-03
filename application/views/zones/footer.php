@@ -145,7 +145,7 @@
   };
 
   link = document.querySelector(`.nav-link[href="${location.href}"]`);
-  link.classList.add('active');
+  if (link) link.classList.add('active');
 </script>
 
 <!-- Votre JS ici -->

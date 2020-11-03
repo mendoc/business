@@ -254,7 +254,7 @@ class Gestionnaire extends CI_Controller
 		if (!$this->upload->do_upload('fichier_res')) {
 			$error = array('error' => $this->upload->display_errors());
 
-			$this->session->set_flashdata('message', $error[0]);
+			$this->session->set_flashdata('message', $error['error']);
 
 			if (empty($this->input->post('lien'))){
 				redirect('gestionnaire/nouvelle_ressource');

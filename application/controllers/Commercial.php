@@ -6,7 +6,7 @@ class Commercial extends CI_Controller
     public function index()
     {
         $this->load->helper('form');
-        
+
         if ($this->est_connecte()) {
             afficher('back/commercial/statistiques');
         } else {
@@ -21,15 +21,15 @@ class Commercial extends CI_Controller
 
     public function connexion()
     {
-		$this->session->sess_destroy();
+        $this->session->sess_destroy();
         $this->load->view('front/commercial/connexion');
     }
 
     public function deconnexion()
-	{
-		$this->session->sess_destroy();
-		redirect('commercial/connexion');
-	}
+    {
+        $this->session->sess_destroy();
+        redirect('commercial/connexion');
+    }
 
     public function traitement_inscription()
     {
@@ -108,20 +108,40 @@ class Commercial extends CI_Controller
         $retrait->num_ret = $numero;
         $retrait->id_com = $commercial->id_com;
 
-        if($retrait->ajouter())
-        {
+        if ($retrait->ajouter()) {
             redirect('commercial');
         }
-
     }
 
     public function ressources()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/ressources');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        //Récupération de toutes les ressources
+        $this->load->model('ressource_model');
+
+        $tuples = $this->ressource_model->tout();
+
+        $images = array();
+        $videos = array();
+        $documents = array();
+
+        foreach ($tuples as $tuple) {
+            if ($tuple->type_res == 'Image') array_push($images, $tuple);
+            else if ($tuple->type_res == 'Vidéo') array_push($videos, $tuple);
+            else if ($tuple->type_res == 'Document') array_push($documents, $tuple);
+        }
+
+        $data = array(
+            "images"    => $images,
+            "documents" => $documents,
+            "videos"    => $videos
+        );
+
+        //Affichage de la vue de listing des ressources
+        afficher("back/commercial/ressources", $data);
     }
 
     public function partages()
@@ -143,13 +163,13 @@ class Commercial extends CI_Controller
     }
 
     private function est_connecte()
-	{
-		$CI = &get_instance();
+    {
+        $CI = &get_instance();
 
-		$CI->load->library('session');
+        $CI->load->library('session');
 
-		$token_com = $CI->session->userdata('token_com');
+        $token_com = $CI->session->userdata('token_com');
 
-		return $token_com != null;
-	}
+        return $token_com != null;
+    }
 }

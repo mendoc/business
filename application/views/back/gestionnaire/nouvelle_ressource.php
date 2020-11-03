@@ -2,6 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-auto mx-auto col-lg-7">
+                <?php if ($this->session->flashdata('message')) : ?>
+                    <div class="alert alert-info">
+                        <?= $this->session->flashdata('message'); ?>
+                    </div>
+                <?php endif; ?>
                 <form action="<?= site_url('gestionnaire/traitement_nouvelle_ressource') ?>" method="post" class="card" enctype="multipart/form-data">
                     <div class="card-header">
                         <h3 class="card-title">Créer une ressource</h3>
@@ -33,8 +38,8 @@
                                             <span class="selectgroup-button">Vidéo</span>
                                         </label>
                                         <label class="selectgroup-item">
-                                            <input type="radio" name="type_res" value="PDF" class="selectgroup-input">
-                                            <span class="selectgroup-button">PDF</span>
+                                            <input type="radio" name="type_res" value="Document" class="selectgroup-input">
+                                            <span class="selectgroup-button">Document</span>
                                         </label>
                                         <label class="selectgroup-item">
                                             <input type="radio" name="type_res" value="Article" class="selectgroup-input">
