@@ -66,6 +66,25 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql);
     }
 
+    public function nombre_candidat_ligne_ressource($id) //Nbre de tous les candidats en ligne par ressourece
+    {
+        $sql = "SELECT COUNT(id_can)
+        FROM eb_candidat
+        WHERE type_cours = \"L\" AND id_res_part = ?";
+
+        return $this->db->query($sql, array($id));
+    }
+
+    public function nombre_candidat_presentiel_ressource($id) // Nbre de tous les candidats en presentiel par ressource
+    {
+        $sql = "SELECT COUNT(id_can)
+        FROM eb_candidat
+        WHERE type_cours = \"P\" AND id_res_part = ?";
+
+        return $this->db->query($sql, array($id));
+    }
+
+
     public function nombre_app_ligne_ressource($id) //Nbre de tous les apprenants en Ligne par ressource
     {
         $sql = " SELECT COUNT(eb_candidat.id_can)
