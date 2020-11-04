@@ -14,7 +14,7 @@ class Retrait_model extends CI_Model
 
     // Nom de la table
     private $table = 'retrait';
-    
+
     // Clé primaire de la table
     private $id = 'id_ret';
 
@@ -32,6 +32,13 @@ class Retrait_model extends CI_Model
     public function un($id)
     {
         $query = $this->db->get($this->table, array($this->id => $id));
+        return $query->row();
+    }
+
+    public function total_retrait()
+    {
+        $this->db->select_sum('montant_retrait');
+        $query = $this->db->get($this->table);
         return $query->row();
     }
 

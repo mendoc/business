@@ -19,7 +19,7 @@
                 <img src="<?= theme_url() ?>assets/images/formulaires/Ebusiness.png" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <div class="header">
-                <h2 class="animation a1">Formulaire du candidat</h2>
+                <h2 class="animation a1">Enregistrement du candidat</h2>
             </div>
             <!--===*** Start of Form ***===-->
             <form class="form" action="<?= site_url('candidat/traitement_enregistrement') ?>" method="POST">

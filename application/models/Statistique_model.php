@@ -42,7 +42,7 @@ class Statistique_model extends CI_Model
 
     public function nombre_apprenant_ligne() //Nbre de tous les apprenants en Ligne
     {
-        $sql = " SELECT COUNT(eb_candidat.id_can)
+        $sql = "SELECT COUNT(eb_candidat.id_can)
         FROM eb_candidat
         INNER JOIN eb_paiement
         ON eb_candidat.id_can = eb_paiement.id_can
@@ -55,23 +55,23 @@ class Statistique_model extends CI_Model
 
     public function nombre_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
     {
-        $sql = "  SELECT COUNT(eb_candidat.id_can)
+        $sql = "SELECT COUNT(eb_candidat.id_can) as nb_apprenants_presentiel
         FROM eb_candidat
         INNER JOIN eb_paiement
         ON eb_candidat.id_can = eb_paiement.id_can
-        WHERE type_cours =\"L\"
+        WHERE type_cours =\"P\"
         GROUP BY eb_paiement.id_can 
         HAVING SUM(montant) = 155000";
 
-        return $this->db->query($sql);
+        return $this->db->query($sql)->row();
     }
 
     public function nombre_commerciaux() // Nbre de tous les commerciaux
     {
-        $sql = "SELECT COUNT(id_com)
+        $sql = "SELECT COUNT(id_com) as nombre_commerciaux
         FROM eb_commercial";
 
-        return $this->db->query($sql);
+        return $this->db->query($sql)->row();
     }
 
     public function somme_retraits() //somme de tous les retraits
@@ -83,8 +83,8 @@ class Statistique_model extends CI_Model
     }
 
     public function affilies_com_presentiel($id) //Les affiliés d'un commercial en présentiel
-{
-    $sql = "SELECT * 
+    {
+        $sql = "SELECT * 
     FROM eb_candidat 
     WHERE id_res_part IS NOT NULL
     AND eb_candidat.id_res_part 
@@ -97,12 +97,12 @@ class Statistique_model extends CI_Model
     GROUP BY id_can 
     HAVING SUM(montant) = 155000)";
 
-    return $this->db->query($sql, array($id));
-}
+        return $this->db->query($sql, array($id));
+    }
 
     public function affilies_com_ligne($id) //Les affiliés d'un commercial en ligne
-{
-    $sql = "SELECT * 
+    {
+        $sql = "SELECT * 
     FROM eb_candidat 
     WHERE id_res_part IS NOT NULL
     AND eb_candidat.id_res_part 
@@ -116,7 +116,6 @@ class Statistique_model extends CI_Model
     HAVING SUM(montant) = 90000
     )";
 
-    return $this->db->query($sql, array($id));
-}
-
+        return $this->db->query($sql, array($id));
+    }
 }

@@ -20,11 +20,11 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('front/landing/accueil');
 	}
 
-	public function lumiere()
+	public function commercial()
 	{
-		afficher('back/commercial/statistiques');
+		$this->load->view('front/landing/commercial');
 	}
 }
