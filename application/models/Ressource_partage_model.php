@@ -10,7 +10,7 @@ class Ressource_partage_model extends CI_Model
 
     // Nom de la table
     private $table = 'ressource_partage';
-    
+
     // Clé primaire de la table
     private $id = 'id_res_part';
 
@@ -26,6 +26,11 @@ class Ressource_partage_model extends CI_Model
         return $query->result();
     }
 
+    public function creer()
+    {
+        return $this->db->insert($this->table, $this);
+    }
+
     public function modifier($id)
     {
         return $this->db->update($this->table, $this, array($this->id => $id));
@@ -36,7 +41,7 @@ class Ressource_partage_model extends CI_Model
         return $this->db->delete($this->table, array($this->id => $id));
     }
     //Selectionner tous les Ressource_partage
-    
+
     public function un($id)
     {
         $query = $this->db->get($this->table, array($this->id => $id));

@@ -122,7 +122,9 @@ class Commercial extends CI_Controller
         //Récupération de toutes les ressources
         $this->load->model('ressource_model');
 
-        $tuples = $this->ressource_model->tout();
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $tuples = $this->ressource_model->par_commercial($commercial->id_com);
 
         $images = array();
         $videos = array();
@@ -137,29 +139,56 @@ class Commercial extends CI_Controller
         $data = array(
             "images"    => $images,
             "documents" => $documents,
-            "videos"    => $videos
+            "videos"    => $videos,
+            "id_com"    => $commercial->id_com,
         );
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
     }
 
+    public function generer_lien()
+    {
+        $this->load->model('ressource_partage_model');
+
+        $id_res = $this->input->post('id_res');
+        $id_com = $this->input->post('id_com');
+
+        // Génération du lien
+        $lien_gen = sha1($id_res . '-' . $id_com);
+
+        $ressource = new Ressource_partage_model();
+        $ressource->id_res = $id_res;
+        $ressource->id_com = $id_com;
+        $ressource->nbr_visite = 0;
+        $ressource->lien_gen = $lien_gen;
+        
+        $succes = $ressource->creer();
+
+        $reponse = array(
+            'succes' => $succes,
+            'ressource' => $lien_gen,
+        );
+
+        echo json_encode($reponse);
+    }
+
     public function partages()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/partages');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        afficher('back/commercial/partages');
     }
 
     public function transactions()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/transactions');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        afficher('back/commercial/transactions');
     }
 
     private function est_connecte()
