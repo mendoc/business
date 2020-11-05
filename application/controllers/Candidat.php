@@ -24,6 +24,7 @@ class Candidat extends CI_Controller
         $domaine_act = $this->input->post('domaine');
         $type_serv   = $this->input->post('service');
         $attentes    = $this->input->post('attentes');
+        $hash        = $this->input->post('hash');
 
         // On valide les informations
 
@@ -41,11 +42,22 @@ class Candidat extends CI_Controller
         $candidat->attentes    = $attentes;
         $candidat->horaire     = $horaire;
 
+        if (isset($hash) and !empty($hash)) {
+            $this->load->model('ressource_partage_model');
+
+            $ressource = $this->ressource_partage_model->par_hash($hash);
+            if ($ressource) {
+                $candidat->id_res_part = $ressource->id_res_part;
+            }
+        }
+
         // On enregistre le candidat dans la base de données
         $succes = $candidat->s_enregistrer();
 
         // On le redirige en fonction du résultat de la requete
         if ($succes) {
+
+            $this->session->unset_userdata('hash');
 
             // On charge la vue du mail
             $message = $this->load->view('email/candidat/enregistrement', '', TRUE);

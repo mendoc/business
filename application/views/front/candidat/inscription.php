@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Enregistrement candidat - Ecole 241 Business</title>
-    
+
     <link rel="stylesheet" type="text/css" href="<?= theme_url() ?>assets/css/formulaire_candidat.css">
 </head>
 
@@ -23,6 +23,10 @@
             </div>
             <!--===*** Start of Form ***===-->
             <form class="form" action="<?= site_url('candidat/traitement_enregistrement') ?>" method="POST">
+                <?php if (isset($this->session->hash)) : ?>
+                    <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
+                <?php endif; ?>
+
                 <input type="nom" name="nom" class="form-field animation a3" placeholder="Nom Ex. SAMBA" required>
                 <input type="prenom" name="prenom" class="form-field animation a3" placeholder="Prenom Ex. Pascal" required>
 

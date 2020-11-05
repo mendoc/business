@@ -59,4 +59,10 @@ class Ressource_partage_model extends CI_Model
             return FALSE;
         }
     }
+
+    public function par_hash($hash)
+    {
+        $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
+        return $query->row();
+    }
 }
