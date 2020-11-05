@@ -24,6 +24,14 @@ class Ressource_partage_model extends CI_Model
     {
         $query = $this->db->get($this->table);
         return $query->result();
+    } 
+    
+    public function pour_commercial($id_com)
+    {
+        $this->db->select('*');
+        $this->db->join('ressource', "ressource.id_res = {$this->table}.id_res");
+        $query = $this->db->get($this->table, array('id_com' => $id_com));
+        return $query->result();
     }
 
     public function creer()

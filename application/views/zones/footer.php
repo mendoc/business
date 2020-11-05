@@ -151,7 +151,7 @@
 <!-- Votre JS ici -->
 <script>
     (function() {
-        let id_com = <?= $id_com ?>;
+        let id_com = <?= isset($id_com) ? $id_com : 0 ?>;
         let btns = document.querySelectorAll('button.action');
         btns.forEach(btn => {
             btn.addEventListener('click', e => {
@@ -176,7 +176,7 @@
                     copierLien(btn.dataset.lien);
                     btn.textContent = 'Lien copié';
                     setTimeout(() => {
-                        btn.textContent = 'Copier le lien';
+                        btn.innerHTML = '<i class="fe fe-copy"></i> Copier le lien';
                     }, 3000)
                 }
             })

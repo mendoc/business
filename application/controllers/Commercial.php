@@ -233,7 +233,18 @@ class Commercial extends CI_Controller
             redirect('commercial/connexion');
         }
 
-        afficher('back/commercial/partages');
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+        
+        $this->load->model('ressource_partage_model');
+        
+        $partages = $this->ressource_partage_model->pour_commercial($commercial->id_com);
+
+        $data = array(
+            'id_com' => $commercial->id_com,
+            'partages' => $partages,
+        );
+
+        afficher('back/commercial/partages', $data);
     }
 
     public function transactions()
