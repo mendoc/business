@@ -27,4 +27,24 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('front/landing/commercial');
 	}
+
+	public function partage($hash)
+	{
+
+		if (isset($hash)) {
+			$this->session->set_userdata('hash', $hash);
+			
+			// Récupération de la ressource partagée
+			$this->load->model('ressource_partage_model');
+			
+			// Incrémmentation du nombre de visites
+			$this->ressource_partage_model->incrementer_visite($hash);
+		}
+		
+		//var_dump($hash);
+		//die;
+		//$this->load->view('front/landing/accueil');
+
+		redirect('');
+	}
 }

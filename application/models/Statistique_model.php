@@ -9,16 +9,35 @@ class Statistique_model extends CI_Model
         $this->load->database();
     }
 
+    public function visites_par_commercial($id)
+    {
+        $sql = "SELECT
+                    SUM(`nbr_visite`) AS nb_visites_com
+                FROM
+                    `eb_ressource_partage`
+                WHERE
+                    `id_com` = ?";
+        
+        return $this->db->query($sql, array($id))->row();
+    }
+
     public function candidats_par_commercial($id)
     {
-        $sql = "SELECT COUNT(id_can)
-        FROM eb_candidat 
-        WHERE id_res_part IS NOT NULL
-        AND eb_candidat.id_res_part IN (
-        SELECT id_res_part 
-        FROM eb_ressource_partage
-        WHERE id_com = ?;))";
-        return $this->db->query($sql, array($id));
+        $sql = "SELECT
+                    COUNT(id_can) AS nb_candidats_com
+                FROM
+                    eb_candidat
+                WHERE
+                    id_res_part IS NOT NULL AND id_res_part IN(
+                    SELECT
+                    id_res_part
+                    FROM
+                    eb_ressource_partage
+                    WHERE
+                    id_com = ?
+                )";
+        
+        return $this->db->query($sql, array($id))->row();
     }
 
 

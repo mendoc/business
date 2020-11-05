@@ -13,7 +13,7 @@
                             0%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h1 m-0"><?= isset($nb_visites_com) ? $nb_visites_com : 0 ?></div>
                         <div class="text-muted mb-4">Visites
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             0%
                             <i class="fe fe-chevron-down"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h1 m-0"><?= isset($nb_candidats_com) ? $nb_candidats_com : 0 ?></div>
                         <div class="text-muted mb-4">Inscrits
                         </div>
                     </div>

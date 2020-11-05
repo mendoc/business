@@ -5,13 +5,33 @@ class Commercial extends CI_Controller
 {
     public function index()
     {
-        $this->load->helper('form');
-
-        if ($this->est_connecte()) {
-            afficher('back/commercial/statistiques');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $this->load->helper('form');
+
+        $this->load->model('statistique_model');
+
+        // Nombre de visites du commercial
+        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
+        $nb_visites_com = $result->nb_visites_com;
+        
+        // Nombre de candidats du commercial
+        $result = $this->statistique_model->candidats_par_commercial($commercial->id_com);
+        $nb_candidats_com = $result->nb_candidats_com;
+        
+        $data = array(
+            'nb_visites_com' => $nb_visites_com,
+            'nb_candidats_com' => $nb_candidats_com,
+        );
+        
+        //var_dump($data);
+        //die;
+
+        afficher('back/commercial/statistiques', $data);
     }
 
     public function inscription()
@@ -162,7 +182,7 @@ class Commercial extends CI_Controller
         $ressource->id_com = $id_com;
         $ressource->nbr_visite = 0;
         $ressource->lien_gen = $lien_gen;
-        
+
         $succes = $ressource->creer();
 
         $reponse = array(

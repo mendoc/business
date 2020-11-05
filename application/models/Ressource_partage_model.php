@@ -47,4 +47,16 @@ class Ressource_partage_model extends CI_Model
         $query = $this->db->get($this->table, array($this->id => $id));
         return $query->result();
     }
+
+    public function incrementer_visite($hash)
+    {
+        $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
+        $ressource = $query->row();
+
+        if ($ressource) {
+            return $this->db->update($this->table, array('nbr_visite' => $ressource->nbr_visite + 1), array($this->id => $ressource->id_res_part));
+        } else {
+            return FALSE;
+        }
+    }
 }
