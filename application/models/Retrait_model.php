@@ -33,6 +33,13 @@ class Retrait_model extends CI_Model
     {
         $query = $this->db->get($this->table, array($this->id => $id));
         return $query->row();
+    } 
+
+    public function pour_commercial($id_com)
+    {
+        $this->db->select_sum('montant_retrait');
+        $query = $this->db->get($this->table, array('id_com' => $id_com));
+        return $query->row();
     }
 
     public function total_retrait()

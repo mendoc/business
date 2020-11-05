@@ -21,14 +21,33 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql, array($id))->row();
     }
 
-    public function candidats_par_commercial($id)
+    public function candidats_com_presentiel($id)
     {
         $sql = "SELECT
-                    COUNT(id_can) AS nb_candidats_com
+                    COUNT(id_can) AS nb_candidats_com_presentiel
                 FROM
                     eb_candidat
                 WHERE
-                    id_res_part IS NOT NULL AND id_res_part IN(
+                    type_cours = 'P' AND id_res_part IS NOT NULL AND id_res_part IN(
+                    SELECT
+                    id_res_part
+                    FROM
+                    eb_ressource_partage
+                    WHERE
+                    id_com = ?
+                )";
+        
+        return $this->db->query($sql, array($id))->row();
+    }
+
+    public function candidats_com_ligne($id)
+    {
+        $sql = "SELECT
+                    COUNT(id_can) AS nb_candidats_com_ligne
+                FROM
+                    eb_candidat
+                WHERE
+                    type_cours = 'L' AND id_res_part IS NOT NULL AND id_res_part IN(
                     SELECT
                     id_res_part
                     FROM
@@ -67,9 +86,9 @@ class Statistique_model extends CI_Model
         ON eb_candidat.id_can = eb_paiement.id_can
         WHERE type_cours =\"L\"
         GROUP BY eb_paiement.id_can 
-        HAVING SUM(montant) = 90000";
+        HAVING SUM(montant) = ?";
 
-        return $this->db->query($sql);
+        return $this->db->query($sql, [PRIX_EN_LIGNE]);
     }
 
     public function nombre_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
@@ -80,9 +99,9 @@ class Statistique_model extends CI_Model
         ON eb_candidat.id_can = eb_paiement.id_can
         WHERE type_cours =\"P\"
         GROUP BY eb_paiement.id_can 
-        HAVING SUM(montant) = 155000";
+        HAVING SUM(montant) = ?";
 
-        return $this->db->query($sql)->row();
+        return $this->db->query($sql, [PRIX_PRESENTIEL])->row();
     }
 
     public function nombre_commerciaux() // Nbre de tous les commerciaux
@@ -103,38 +122,57 @@ class Statistique_model extends CI_Model
 
     public function affilies_com_presentiel($id) //Les affiliés d'un commercial en présentiel
     {
-        $sql = "SELECT * 
-    FROM eb_candidat 
-    WHERE id_res_part IS NOT NULL
-    AND eb_candidat.id_res_part 
-    IN( SELECT id_res_part 
-    FROM eb_ressource_partage
-    WHERE id_com = ?)
-    AND id_can
-    IN ( SELECT id_can
-    FROM eb_paiement 
-    GROUP BY id_can 
-    HAVING SUM(montant) = 155000)";
+        $sql = "SELECT
+                    COUNT(id_can) AS nb_affilies_com_presentiel
+                FROM
+                    eb_candidat
+                WHERE
+                    type_cours = 'P' AND id_res_part IS NOT NULL AND eb_candidat.id_res_part IN(
+                    SELECT
+                    id_res_part
+                    FROM
+                    eb_ressource_partage
+                    WHERE
+                    id_com = ?
+                ) AND id_can IN(
+                SELECT
+                    id_can
+                FROM
+                    eb_paiement
+                GROUP BY
+                    id_can
+                HAVING
+                    SUM(montant) = ?
+                )";
 
-        return $this->db->query($sql, array($id));
+        return $this->db->query($sql, array($id, PRIX_PRESENTIEL))->row();
     }
 
     public function affilies_com_ligne($id) //Les affiliés d'un commercial en ligne
     {
-        $sql = "SELECT * 
-    FROM eb_candidat 
-    WHERE id_res_part IS NOT NULL
-    AND eb_candidat.id_res_part 
-    IN( SELECT id_res_part 
-    FROM eb_ressource_partage
-    WHERE id_com = ?)
-    AND id_can
-    IN ( SELECT id_can
-    FROM eb_paiement 
-    GROUP BY id_can 
-    HAVING SUM(montant) = 90000
-    )";
+        $sql = "SELECT
+                    COUNT(id_can) AS nb_affilies_com_ligne
+                FROM
+                    eb_candidat
+                WHERE
+                    type_cours = 'L' AND id_res_part IS NOT NULL AND eb_candidat.id_res_part IN(
+                    SELECT
+                    id_res_part
+                    FROM
+                    eb_ressource_partage
+                    WHERE
+                    id_com = ?
+                ) AND id_can IN(
+                SELECT
+                    id_can
+                FROM
+                    eb_paiement
+                GROUP BY
+                    id_can
+                HAVING
+                    SUM(montant) = ?
+                )";
 
-        return $this->db->query($sql, array($id));
+        return $this->db->query($sql, array($id, PRIX_EN_LIGNE))->row();
     }
 }

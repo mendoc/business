@@ -14,18 +14,52 @@ class Commercial extends CI_Controller
         $this->load->helper('form');
 
         $this->load->model('statistique_model');
+        $this->load->model('retrait_model');
 
         // Nombre de visites du commercial
         $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
         $nb_visites_com = $result->nb_visites_com;
         
-        // Nombre de candidats du commercial
-        $result = $this->statistique_model->candidats_par_commercial($commercial->id_com);
-        $nb_candidats_com = $result->nb_candidats_com;
+        // Nombre de candidats en présentiel du commercial
+        $result = $this->statistique_model->candidats_com_presentiel($commercial->id_com);
+        $nb_candidats_com_presentiel = $result->nb_candidats_com_presentiel;
+
+        // Nombre de candidats en ligne du commercial
+        $result = $this->statistique_model->candidats_com_ligne($commercial->id_com);
+        $nb_candidats_com_ligne = $result->nb_candidats_com_ligne;
+
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
         
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+        
+        // Bonus du commercial
+        $bonus = 0;
+        
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        $retrait = $result->montant_retrait;
+ 
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
         $data = array(
             'nb_visites_com' => $nb_visites_com,
-            'nb_candidats_com' => $nb_candidats_com,
+            'nb_candidats_com_presentiel' => $nb_candidats_com_presentiel,
+            'nb_candidats_com_ligne' => $nb_candidats_com_ligne,
+            'nb_affilies_com_presentiel' => $nb_affilies_com_presentiel,
+            'nb_affilies_com_ligne' => $nb_affilies_com_ligne,
+            'commission' => $commission,
+            'retrait' => $retrait,
+            'solde' => $solde,
+            'bonus' => $bonus,
         );
         
         //var_dump($data);
