@@ -107,7 +107,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'1234','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (3,'1234','Richard OGOULA','richard@yopmail.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,6 +125,8 @@ CREATE TABLE `eb_paiement` (
   `motif` text,
   `id_gest` int(11) NOT NULL,
   `id_can` int(11) NOT NULL,
+  `num_trans` varchar(20) DEFAULT NULL,
+  `moyen_paie` varchar(30) NOT NULL,
   PRIMARY KEY (`id_paie`),
   KEY `id_gest` (`id_gest`),
   KEY `id_can` (`id_can`),
@@ -186,7 +188,7 @@ CREATE TABLE `eb_ressource_partage` (
   `id_res_part` int(11) NOT NULL AUTO_INCREMENT,
   `date_part` datetime DEFAULT CURRENT_TIMESTAMP,
   `lien_gen` text,
-  `nbr_visite` int(11) DEFAULT NULL,
+  `nbr_visite` int(11) DEFAULT '0',
   `id_res` int(11) NOT NULL,
   `id_com` int(11) NOT NULL,
   PRIMARY KEY (`id_res`,`id_com`),
@@ -272,4 +274,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-03 17:38:25
+-- Dump completed on 2020-11-05 10:43:03
