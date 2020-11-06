@@ -10,7 +10,7 @@ class Ressource_partage_model extends CI_Model
 
     // Nom de la table
     private $table = 'ressource_partage';
-    
+
     // Clé primaire de la table
     private $id = 'id_res_part';
 
@@ -26,6 +26,11 @@ class Ressource_partage_model extends CI_Model
         return $query->result();
     }
 
+    public function creer()
+    {
+        return $this->db->insert($this->table, $this);
+    }
+
     public function modifier($id)
     {
         return $this->db->update($this->table, $this, array($this->id => $id));
@@ -36,7 +41,7 @@ class Ressource_partage_model extends CI_Model
         return $this->db->delete($this->table, array($this->id => $id));
     }
     //Selectionner tous les Ressource_partage
-    
+
     public function un($id)
     {
         $query = $this->db->get($this->table, array($this->id => $id));
@@ -47,4 +52,23 @@ class Ressource_partage_model extends CI_Model
     {
         return $this->db->get_where($this->table, array('id_res' => $id_res))->num_rows();
     }
+
+    public function incrementer_visite($hash)
+    {
+        $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
+        $ressource = $query->row();
+
+        if ($ressource) {
+            return $this->db->update($this->table, array('nbr_visite' => $ressource->nbr_visite + 1), array($this->id => $ressource->id_res_part));
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function par_hash($hash)
+    {
+        $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
+        return $query->row();
+    }
+
 }

@@ -5,13 +5,67 @@ class Commercial extends CI_Controller
 {
     public function index()
     {
-        $this->load->helper('form');
-
-        if ($this->est_connecte()) {
-            afficher('back/commercial/statistiques');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $this->load->helper('form');
+
+        $this->load->model('statistique_model');
+        $this->load->model('retrait_model');
+
+        // Nombre de visites du commercial
+        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
+        $nb_visites_com = $result->nb_visites_com;
+        
+        // Nombre de candidats en présentiel du commercial
+        $result = $this->statistique_model->candidats_com_presentiel($commercial->id_com);
+        $nb_candidats_com_presentiel = $result->nb_candidats_com_presentiel;
+
+        // Nombre de candidats en ligne du commercial
+        $result = $this->statistique_model->candidats_com_ligne($commercial->id_com);
+        $nb_candidats_com_ligne = $result->nb_candidats_com_ligne;
+
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+        
+        // Bonus du commercial
+        $bonus = 0;
+        
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        $retrait = $result->montant_retrait;
+ 
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
+        $data = array(
+            'nb_visites_com' => $nb_visites_com,
+            'nb_candidats_com_presentiel' => $nb_candidats_com_presentiel,
+            'nb_candidats_com_ligne' => $nb_candidats_com_ligne,
+            'nb_affilies_com_presentiel' => $nb_affilies_com_presentiel,
+            'nb_affilies_com_ligne' => $nb_affilies_com_ligne,
+            'commission' => $commission,
+            'retrait' => $retrait,
+            'solde' => $solde,
+            'bonus' => $bonus,
+        );
+        
+        //var_dump($data);
+        //die;
+
+        afficher('back/commercial/statistiques', $data);
     }
 
     public function inscription()
@@ -122,7 +176,9 @@ class Commercial extends CI_Controller
         //Récupération de toutes les ressources
         $this->load->model('ressource_model');
 
-        $tuples = $this->ressource_model->tout();
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $tuples = $this->ressource_model->par_commercial($commercial->id_com);
 
         $images = array();
         $videos = array();
@@ -137,29 +193,56 @@ class Commercial extends CI_Controller
         $data = array(
             "images"    => $images,
             "documents" => $documents,
-            "videos"    => $videos
+            "videos"    => $videos,
+            "id_com"    => $commercial->id_com,
         );
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
     }
 
+    public function generer_lien()
+    {
+        $this->load->model('ressource_partage_model');
+
+        $id_res = $this->input->post('id_res');
+        $id_com = $this->input->post('id_com');
+
+        // Génération du lien
+        $lien_gen = sha1($id_res . '-' . $id_com);
+
+        $ressource = new Ressource_partage_model();
+        $ressource->id_res = $id_res;
+        $ressource->id_com = $id_com;
+        $ressource->nbr_visite = 0;
+        $ressource->lien_gen = $lien_gen;
+
+        $succes = $ressource->creer();
+
+        $reponse = array(
+            'succes' => $succes,
+            'ressource' => $lien_gen,
+        );
+
+        echo json_encode($reponse);
+    }
+
     public function partages()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/partages');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        afficher('back/commercial/partages');
     }
 
     public function transactions()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/transactions');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        afficher('back/commercial/transactions');
     }
 
     private function est_connecte()

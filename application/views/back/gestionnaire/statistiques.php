@@ -13,7 +13,7 @@
                             0%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0"><?= isset($nb_candidats) ? $nb_candidats : 0 ?></div>
+                        <div class="h3 m-0"><?= isset($nb_candidats) ? $nb_candidats : 0 ?></div>
                         <div class="text-muted mb-4">Candidats
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                             0%
                             <i class="fe fe-chevron-down"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h3 m-0">0</div>
                         <div class="text-muted mb-4">Apprenants
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             0%
                             <i class="fe fe-chevron-up"></i>
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h3 m-0"><?= isset($nombre_commerciaux) ? $nombre_commerciaux : 0 ?></div>
                         <div class="text-muted mb-4">Commerciaux
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                         <div class="text-right text-green">
                             F CFA
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h3 m-0"><?= isset($chiffre_affaire) ? number_format($chiffre_affaire, 0, '', ' ') : 0 ?></div>
                         <div class="text-muted mb-4">Chiffre d'affaire
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="text-right text-red">
                             F CFA
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h3 m-0"><?= isset($total_retrait) ? number_format($total_retrait, 0, '', ' ') : 0 ?></div>
                         <div class="text-muted mb-4">Total des retraits
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                         <div class="text-right text-red">
                             F CFA
                         </div>
-                        <div class="h1 m-0">0</div>
+                        <div class="h3 m-0"><?= (isset($chiffre_affaire) ? number_format((int)($chiffre_affaire) - (int)($total_retrait), 0, '', ' ') : 0) ?></div>
                         <div class="text-muted mb-4">Solde
                         </div>
                     </div>

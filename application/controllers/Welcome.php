@@ -20,11 +20,31 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$this->load->view('front/landing/accueil');
 	}
 
-	public function lumiere()
+	public function commercial()
 	{
-		afficher('back/commercial/statistiques');
+		$this->load->view('front/landing/commercial');
+	}
+
+	public function partage($hash)
+	{
+
+		if (isset($hash)) {
+			$this->session->set_userdata('hash', $hash);
+			
+			// Récupération de la ressource partagée
+			$this->load->model('ressource_partage_model');
+			
+			// Incrémmentation du nombre de visites
+			$this->ressource_partage_model->incrementer_visite($hash);
+		}
+		
+		//var_dump($hash);
+		//die;
+		//$this->load->view('front/landing/accueil');
+
+		redirect('');
 	}
 }

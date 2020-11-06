@@ -16,12 +16,29 @@ class Gestionnaire extends CI_Controller
 
 		$this->load->model('retrait_model');
 		$this->load->model('commercial_model');
+		$this->load->model('statistique_model');
+		$this->load->model('paiement_model');
+
+		// Recuperation des stats
+		$result = $this->statistique_model->nombre_commerciaux();
+		$nombre_commerciaux = $result->nombre_commerciaux;
+
+		$result = $this->statistique_model->nombre_apprenant_presentiel();
+		//$nb_apprenants_presentiel = $result->nb_apprenants_presentiel;
+		//var_dump($result);
+		//die;
+
+		$result = $this->paiement_model->chiffre_affaire();
+		$chiffre_affaire = $result->montant;
+
+		$result = $this->retrait_model->total_retrait();
+		$total_retrait = $result->montant_retrait;
 
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
 
-		// traitement
+		// traitement																																																																																																																														
 		foreach ($retraits as $retrait) {
 			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
@@ -33,8 +50,15 @@ class Gestionnaire extends CI_Controller
 
 		$data = array(
 			"retraits" => $retraits,
-			"email_utilisateur" => $gestionnaire->email_gest
-		);
+			"email_utilisateur" => $gestionnaire->email_gest,
+			"nb_candidats" => $nb_candidats,
+			"nombre_commerciaux" => $nombre_commerciaux,
+			"chiffre_affaire" => (int)($chiffre_affaire),
+			"total_retrait" => (int)$total_retrait,
+																																																																																																																																);
+
+		//var_dump($nb_apprenants_presentiel);
+		//die;
 
 		afficher('back/gestionnaire/statistiques', $data);
 	}
@@ -146,8 +170,13 @@ class Gestionnaire extends CI_Controller
 		if ($succes) {
 			$this->session->set_flashdata('message', 'Compte gestionnaire créé avec succès');
 
-			$message = "Bonjour " . $gestionnaire->nom_prenom . ", \n\nVotre compte gestionnaire a bien été créé.
-            \n\nCi-dessous, les informations pour vous connecter.\n\nLien de connexion : " . site_url('gestionnaire') . " \nAdresse e-mail : " . $gestionnaire->email_gest . "\nMot de passe: " . $gestionnaire->mot_passe . "\n\nL'équipe Ecole 241 Business.";
+			// On charge la vue du mail
+			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
+
+			$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
+			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $gestionnaire->mot_passe);
+
+			$message = str_replace($cles, $valeurs, $message);
 
 			// On envoie un mail au gestionnaire
 			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message);
@@ -302,7 +331,7 @@ class Gestionnaire extends CI_Controller
 
 			$this->session->set_flashdata('message', $error['error']);
 
-			if (empty($this->input->post('lien'))){
+			if (empty($this->input->post('lien'))) {
 				redirect('gestionnaire/nouvelle_ressource');
 			}
 		} else {
@@ -342,10 +371,8 @@ class Gestionnaire extends CI_Controller
 
 
 		//Récupération de tous les transactions
-		if($paiements = $this->paiement_model->tous())
-		{
-			foreach($paiements as $paiement)
-			{
+		if ($paiements = $this->paiement_model->tous()) {
+			foreach ($paiements as $paiement) {
 				$candidat = $this->candidat_model->recuperer($paiement->id_can);
 				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($paiement->id_gest);
 				$paiement->nom_candidat = $candidat->nom_prenom;
@@ -356,7 +383,7 @@ class Gestionnaire extends CI_Controller
 
 
 		$data = array(
-			"paiements" => $paiements 
+			"paiements" => $paiements
 		);
 
 		//Affichage de la vue de listing de transactions
@@ -373,13 +400,12 @@ class Gestionnaire extends CI_Controller
 
 		$_retraits = $this->retrait_model->tout();
 
-		$retraits = array_filter($_retraits, function($retrait){
+		$retraits = array_filter($_retraits, function ($retrait) {
 			return !empty($retrait->date_fin);
 		});
 
 		if (!empty($retraits)) {
-			foreach($retraits as $retrait)
-			{
+			foreach ($retraits as $retrait) {
 				$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($retrait->id_gest);
 				$retrait->nom_com = $commercial->nom_prenom;
