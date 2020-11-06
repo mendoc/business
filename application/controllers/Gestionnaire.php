@@ -256,6 +256,34 @@ class Gestionnaire extends CI_Controller
 		afficher("back/gestionnaire/nouvelle_ressource", $data);
 	}
 
+	public function detail_ressource($id)
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$this->load->model('ressource_model');
+		$this->load->model('ressource_partage_model');
+		$this->load->model('thematique_model');
+
+		$ressource = $this->ressource_model->recuperer($id);
+
+		$thematique = $this->thematique_model->recuperer($ressource->id_them);
+		$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($ressource->id_gest);
+
+		$ressource->thematique = $thematique->titre;
+		$ressource->gest = $gestionnaire->nom_prenom;
+
+		$ressource->num_partage = $this->ressource_partage_model->par_res($ressource->id_res);
+		$ressource->nbr_visite = 3;
+
+
+		$data['ressource'] = $ressource;
+
+		// var_dump($ressource);
+		afficher('back/gestionnaire/detail_ressource', $data);
+	}
+
 	public function traitement_nouvelle_ressource()
 	{
 		if (!$this->est_connecte()) {

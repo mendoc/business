@@ -31,6 +31,12 @@ class Ressource_model extends CI_Model
         return $query->result();
     }
 
+    // Recuperer une ressource
+    public function recuperer($id)
+    {
+        return $this->db->get($this->table, array($this->id => $id))->row();
+    }
+
     //Ajouter ressource
     public function inserer()
     {

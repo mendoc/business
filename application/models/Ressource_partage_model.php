@@ -42,4 +42,9 @@ class Ressource_partage_model extends CI_Model
         $query = $this->db->get($this->table, array($this->id => $id));
         return $query->result();
     }
+
+    public function par_res($id_res)
+    {
+        return $this->db->get_where($this->table, array('id_res' => $id_res))->num_rows();
+    }
 }
