@@ -48,6 +48,11 @@ class Ressource_partage_model extends CI_Model
         return $query->result();
     }
 
+    public function par_res($id_res)
+    {
+        return $this->db->get_where($this->table, array('id_res' => $id_res))->num_rows();
+    }
+
     public function incrementer_visite($hash)
     {
         $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
@@ -65,4 +70,5 @@ class Ressource_partage_model extends CI_Model
         $query = $this->db->get_where($this->table, array('lien_gen' => $hash));
         return $query->row();
     }
+
 }
