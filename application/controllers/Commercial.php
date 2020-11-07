@@ -253,7 +253,18 @@ class Commercial extends CI_Controller
             redirect('commercial/connexion');
         }
 
-        afficher('back/commercial/transactions');
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $this->load->model('retrait_model');
+        
+        $retraits = $this->retrait_model->liste_pour_commercial($commercial->id_com);
+
+        $data = array(
+            'id_com' => $commercial->id_com,
+            'retraits' => $retraits,
+        );
+
+        afficher('back/commercial/transactions', $data);
     }
 
     private function est_connecte()

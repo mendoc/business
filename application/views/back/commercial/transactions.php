@@ -6,50 +6,85 @@
             </h1>
         </div>
         <div class="card">
-            <?php if (empty($candidats)) : ?>
+            <?php if (empty($retraits)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">
                     <p class="page-title"> Aucune transaction pour le moment. </p>
                     <p>Ici sera affiché l'historique de vos gains et de vos retraits.</p>
                 </div>
             <?php else : ?>
                 <div class="card-header">
-                    <h3 class="card-title">Historique de vos transactions</h3>
+                    <h3 class="card-title">Mes retraits</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                             <tr>
-                                <th>Noms & prénoms</th>
-                                <th>Horaires</th>
-                                <th>Téléphone</th>
-                                <th>Domaine d'activité</th>
-                                <th>Statut</th>
-                                <th></th>
-                                <th></th>
+                                <th>Demandé le</th>
+                                <th>Traité le</th>
+                                <th>Montant</th>
+                                <th>Numéro</th>
+                                <th>Gestionnaire</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($candidats as $candidat) : ?>
+                            <?php foreach ($retraits as $retrait) : ?>
                                 <tr>
-                                    <td><a href="" class="text-inherit"><?= $candidat->nom_prenom; ?></a></td>
-                                    <td><?= $candidat->horaire ?></td>
                                     <td>
-                                        <?= $candidat->num_tel ?>
+                                       <?= date_format(date_create($retrait->date_ret), " d M à H:i"); ?>
                                     </td>
                                     <td>
-                                        <?= $candidat->domaine_act ?>
+                                       <?= date_format(date_create($retrait->date_fin), " d M à H:i"); ?>
                                     </td>
                                     <td>
-                                        <?php if ($candidat->est_apprenant) { ?>
-                                            <span class="status-icon bg-success"></span> Payé
-                                        <?php } else {  ?>
-                                            <span class="status-icon bg-danger"></span> Non payé
-                                        <?php } ?>
+                                        <?= number_format($retrait->montant_retrait, 0, '', ' '); ?> F CFA
                                     </td>
                                     <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
+                                       0<?= number_format($retrait->num_ret, 0, '', ' '); ?>
+                                    </td>
+                                    <td>
+                                        <?= $retrait->nom_prenom                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php endif; ?>
+        </div>
+        <div class="card">
+            <?php if (empty($gains)) : ?>
+                <div class="text-center display-5 p-5 col-12 mx-auto">
+                    <p class="page-title"> Aucun gain pour le moment. </p>
+                    <p>Ici sera affiché l'historique de vos gains.</p>
+                </div>
+            <?php else : ?>
+                <div class="card-header">
+                    <h3 class="card-title">Mes gains</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Montant</th>
+                                <th>Numéro</th>
+                                <th>Gestionnaire</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($gains as $retrait) : ?>
+                                <tr>
+                                    <td>
+                                        <?= date_format(date_create($retrait->date_ret), " d M à H:i"); ?>
+                                    </td>
+                                    <td>
+                                        <?= $retrait->montant_retrait; ?>
+                                    </td>
+                                    <td>
+                                        <?= $retrait->num_ret ?>
+                                    </td>
+                                    <td>
+                                        <?= $retrait->id_gest                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

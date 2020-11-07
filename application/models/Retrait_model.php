@@ -42,6 +42,14 @@ class Retrait_model extends CI_Model
         return $query->row();
     }
 
+    public function liste_pour_commercial($id_com)
+    {
+        $this->db->join('gestionnaire', "gestionnaire.id_gest = {$this->table}.id_gest");
+        $this->db->where('id_com', $id_com);
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+
     public function total_retrait()
     {
         $this->db->select_sum('montant_retrait');
