@@ -26,7 +26,7 @@
                             0%
                             <i class="fe fe-chevron-down"></i>
                         </div>
-                        <div class="h3 m-0">0</div>
+                        <div class="h3 m-0"><?= isset($nb_apprenants) ? $nb_apprenants : 0 ?></div>
                         <div class="text-muted mb-4">Apprenants
                         </div>
                     </div>
@@ -145,31 +145,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <!-- <td class="w-1"><span class="avatar" style="background-image: url(./demo/faces/male/9.jpg)"></span></td> -->
-                                <td>Ronald Bradley</td>
-                                <td class="text-nowrap">25 000 F</td>
-                                <td class="" colspan="2">
-                                    Il y a 3 jours
-                                </td>
-                            </tr>
-                            <tr>
-                                <!-- <td><span class="avatar" style="background-image: url(./demo/faces/female/1.jpg)"></span></td> -->
-                                <td>Beverly Armstrong</td>
-                                <td class="text-nowrap">15 000 F</td>
-                                <td class=""> Il y a 1 semaine</td>
-                            </tr>
-                            <tr>
-                                <!-- <td><span class="avatar" style="background-image: url(./demo/faces/male/4.jpg)"></span></td> -->
-                                <td>Bobby Knight</td>
-                                <td class="text-nowrap">10 000 F</td>
-                                <td class=""> 06 octobre 2020 </td>
-                            </tr>
-                            <tr>
-                                <td>Sharon Wells</td>
-                                <td class="text-nowrap">80 000 F</td>
-                                <td class=""> Il y 20 min</td>
-                            </tr>
+                        <?php if (empty($paiements)) { ?>
+                                <tr>
+                                    <td colspan="3" class="text-center h1">
+                                        <span> Il n'y a pas encore de retrait demande </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($paiements as $paiement) : ?>
+                                    <tr>
+                                        <td><?= $paiement->nom_candidat ?></td>
+                                        <td class="text-nowrap"><?= number_format($paiement->montant, 0, '', ' ') ?> F CFA</td>
+                                        <td class="" colspan="2">
+                                            <?php 
+                                                $date = date_diff(date_create($paiement->date), date_create())->format('%d');
+                                                echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
+                                            ?>
+                                        </td>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
+
                         </tbody>
                     </table>
                 </div>

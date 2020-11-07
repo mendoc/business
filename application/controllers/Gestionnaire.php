@@ -8,57 +8,70 @@ class Gestionnaire extends CI_Controller
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
-		$nb_candidats = count($this->candidat_model->tout());
 
-		$data = array(
-			'nb_candidats' => $nb_candidats
-		);
-
+		
 		$this->load->model('retrait_model');
 		$this->load->model('commercial_model');
 		$this->load->model('statistique_model');
 		$this->load->model('paiement_model');
-
+		
+		
 		// Recuperation des stats
 		$result = $this->statistique_model->nombre_commerciaux();
 		$nombre_commerciaux = $result->nombre_commerciaux;
-
+		
 		$result = $this->statistique_model->nombre_apprenant_presentiel();
-		//$nb_apprenants_presentiel = $result->nb_apprenants_presentiel;
-		//var_dump($result);
-		//die;
-
+		
 		$result = $this->paiement_model->chiffre_affaire();
 		$chiffre_affaire = $result->montant;
-
+		
 		$result = $this->retrait_model->total_retrait();
 		$total_retrait = $result->montant_retrait;
-
+		
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
-
+		
 		// traitement																																																																																																																														
 		foreach ($retraits as $retrait) {
 			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
 		}
-
+		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
 		});
+		
+		// Traitement des informations du candidats
+		$candidats = $this->candidat_model->tout();
+		$nb_candidats = count($candidats);
+		$nb_apprenants = 0;
+		foreach($candidats as $candidat)
+		{
+			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			if ($montant_candidat == 155000) {
+				$nb_apprenants++;
+			}
+		}
+
+		// traitements des paiements du candidat
+		$paiements = $this->paiement_model->tous();
+		foreach ($paiements as $paiement)
+		{
+			$nom_candidat = $this->candidat_model->recuperer($paiement->id_can)->nom_prenom;
+			$paiement->nom_candidat = $nom_candidat;
+		}
 
 		$data = array(
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
-			"nb_candidats" => $nb_candidats,
+			"nb_candidats" => ($nb_candidats - $nb_apprenants),
+			"nb_apprenants" => $nb_apprenants,
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
 			"total_retrait" => (int)$total_retrait,
-																																																																																																																																);
-
-		//var_dump($nb_apprenants_presentiel);
-		//die;
+			"paiements" => $paiements
+		);
 
 		afficher('back/gestionnaire/statistiques', $data);
 	}
@@ -232,6 +245,7 @@ class Gestionnaire extends CI_Controller
 		$retrait->modifier($id);
 
 		redirect('gestionnaire');
+		// var_dump($_retrait);
 	}
 
 	public function ressources()
