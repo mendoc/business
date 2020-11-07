@@ -128,19 +128,19 @@
                 <?= form_open('commercial/traitement_retrait') ?>
                 <h1 class="page-title">Faites un retrait</h1>
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label class="form-label">Entrez le montant</label>
                             <input class="form-control" name="montant" type="number" default="5000" min="5000" step="100" placeholder="montant" required />
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label class="form-label">Entrez votre numero mobile money</label>
                             <input class="form-control" name="numero" oninvalid="this.setCustomValidity('Saisissez un numero valide')" type="tel" pattern="^0(66|74|77|65|60|62)\d{6}" placeholder="numero mobile money" required />
                         </div>
                     </div>
-                    <div class="col-2">
+                    <div class="col-lg-3 col-md-4 col-sm-3">
                         <div class="form-group">
                             <label class="form-label">&nbsp;</label>
                             <input type="submit" class="form-control bg-primary text-white cursor-pointer" value="Valider" />
