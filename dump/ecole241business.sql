@@ -34,12 +34,11 @@ CREATE TABLE `eb_candidat` (
   `type_serv` text,
   `attentes` text,
   `horaire` varchar(10) NOT NULL,
-  `id_res_part` int(11) DEFAULT NULL,
   `type_cours` char(1) NOT NULL DEFAULT 'P',
+  `id_com` int(11) DEFAULT NULL,
+  `date_enrg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_can`),
-  UNIQUE KEY `email` (`email`),
-  KEY `id_res_part` (`id_res_part`),
-  CONSTRAINT `eb_candidat_ibfk_1` FOREIGN KEY (`id_res_part`) REFERENCES `eb_ressource_partage` (`id_res_part`)
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -69,6 +68,8 @@ CREATE TABLE `eb_commercial` (
   `date_n` date NOT NULL,
   `nom_util` varchar(250) NOT NULL,
   `mot_passe` varchar(200) NOT NULL,
+  `hash` text,
+  `nbr_visite` int(11) DEFAULT '0',
   PRIMARY KEY (`id_com`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nom_util` (`nom_util`)
@@ -107,7 +108,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'1234','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (3,'1234','Richard OGOULA','richard@yopmail.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,6 +128,7 @@ CREATE TABLE `eb_paiement` (
   `id_can` int(11) NOT NULL,
   `num_trans` varchar(20) DEFAULT NULL,
   `moyen_paie` varchar(30) NOT NULL,
+  `justificatif` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id_paie`),
   KEY `id_gest` (`id_gest`),
   KEY `id_can` (`id_can`),
@@ -158,12 +160,9 @@ CREATE TABLE `eb_ressource` (
   `fichier` varchar(255) DEFAULT NULL,
   `date_res` datetime DEFAULT CURRENT_TIMESTAMP,
   `type_res` varchar(15) DEFAULT NULL,
-  `id_them` int(11) DEFAULT NULL,
   `id_gest` int(11) NOT NULL,
   PRIMARY KEY (`id_res`),
-  KEY `id_them` (`id_them`),
   KEY `id_gest` (`id_gest`),
-  CONSTRAINT `eb_ressource_ibfk_1` FOREIGN KEY (`id_them`) REFERENCES `eb_thematique` (`id_them`),
   CONSTRAINT `eb_ressource_ibfk_2` FOREIGN KEY (`id_gest`) REFERENCES `eb_gestionnaire` (`id_gest`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -175,37 +174,6 @@ CREATE TABLE `eb_ressource` (
 LOCK TABLES `eb_ressource` WRITE;
 /*!40000 ALTER TABLE `eb_ressource` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eb_ressource` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `eb_ressource_partage`
---
-
-DROP TABLE IF EXISTS `eb_ressource_partage`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eb_ressource_partage` (
-  `id_res_part` int(11) NOT NULL AUTO_INCREMENT,
-  `date_part` datetime DEFAULT CURRENT_TIMESTAMP,
-  `lien_gen` text,
-  `nbr_visite` int(11) DEFAULT '0',
-  `id_res` int(11) NOT NULL,
-  `id_com` int(11) NOT NULL,
-  PRIMARY KEY (`id_res`,`id_com`),
-  KEY `id_com` (`id_com`),
-  KEY `id_res_part` (`id_res_part`),
-  CONSTRAINT `eb_ressource_partage_ibfk_1` FOREIGN KEY (`id_res`) REFERENCES `eb_ressource` (`id_res`),
-  CONSTRAINT `eb_ressource_partage_ibfk_2` FOREIGN KEY (`id_com`) REFERENCES `eb_commercial` (`id_com`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eb_ressource_partage`
---
-
-LOCK TABLES `eb_ressource_partage` WRITE;
-/*!40000 ALTER TABLE `eb_ressource_partage` DISABLE KEYS */;
-/*!40000 ALTER TABLE `eb_ressource_partage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -224,6 +192,7 @@ CREATE TABLE `eb_retrait` (
   `id_com` int(11) NOT NULL,
   `id_gest` int(11) DEFAULT NULL,
   `num_ret` varchar(20) NOT NULL,
+  `justificatif` varchar(250) DEFAULT NULL,
   PRIMARY KEY (`id_ret`),
   KEY `id_com` (`id_com`),
   KEY `id_gest` (`id_gest`),
@@ -240,30 +209,6 @@ LOCK TABLES `eb_retrait` WRITE;
 /*!40000 ALTER TABLE `eb_retrait` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eb_retrait` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `eb_thematique`
---
-
-DROP TABLE IF EXISTS `eb_thematique`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `eb_thematique` (
-  `id_them` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(255) NOT NULL,
-  `description` text,
-  PRIMARY KEY (`id_them`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eb_thematique`
---
-
-LOCK TABLES `eb_thematique` WRITE;
-/*!40000 ALTER TABLE `eb_thematique` DISABLE KEYS */;
-/*!40000 ALTER TABLE `eb_thematique` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -274,4 +219,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-05 10:43:03
+-- Dump completed on 2020-11-09  0:13:39
