@@ -14,7 +14,7 @@ class Retrait_model extends CI_Model
 
     // Nom de la table
     private $table = 'retrait';
-    
+
     // Clé primaire de la table
     private $id = 'id_ret';
 
@@ -31,7 +31,29 @@ class Retrait_model extends CI_Model
     //Selectionner un retrait
     public function un($id)
     {
-        $query = $this->db->get($this->table, array($this->id => $id));
+        $query = $this->db->get_where($this->table, array($this->id => $id));
+        return $query->row();
+    } 
+
+    public function pour_commercial($id_com)
+    {
+        $this->db->select_sum('montant_retrait');
+        $query = $this->db->get_where($this->table, array('id_com' => $id_com));
+        return $query->row();
+    }
+
+    public function liste_pour_commercial($id_com)
+    {
+        $this->db->join('gestionnaire', "gestionnaire.id_gest = {$this->table}.id_gest");
+        $this->db->where('id_com', $id_com);
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+
+    public function total_retrait()
+    {
+        $this->db->select_sum('montant_retrait');
+        $query = $this->db->get($this->table);
         return $query->row();
     }
 

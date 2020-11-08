@@ -12,6 +12,7 @@ class Commercial_model extends CI_Model
     public $date_n;
     public $nom_util;
     public $mot_passe;
+    public $hash;
 
     // Nom de la table
     private $table = 'commercial';
@@ -83,5 +84,28 @@ class Commercial_model extends CI_Model
     {
         $query = $this->db->get_where($this->table, array('email' => $email));
         return $query->row();
+    }
+    
+    public function par_hash($hash)
+    {
+        $query = $this->db->get_where($this->table, array('hash' => $hash));
+        return $query->row();
+    }
+
+    public function save_hash($hash, $id)
+    {
+        return $this->db->update($this->table, array('hash' => $hash), array($this->id => $id));
+    }
+
+    public function incrementer_visite($hash)
+    {
+        $query = $this->db->get_where($this->table, array('hash' => $hash));
+        $commercial = $query->row();
+
+        if ($commercial) {
+            return $this->db->update($this->table, array('nbr_visite' => $commercial->nbr_visite + 1), array($this->id => $commercial->id_com));
+        } else {
+            return FALSE;
+        }
     }
 }

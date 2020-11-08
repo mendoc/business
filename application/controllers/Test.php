@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Test extends CI_Controller {
+class Test extends CI_Controller
+{
 
 	/**
 	 * Page de test pour vos travaux
@@ -12,11 +13,13 @@ class Test extends CI_Controller {
 	public function index()
 	{
 		// On charge le modele
-		$this->load->model('candidat');
+		$message = $this->load->view('email/candidat/enregistrement', '', TRUE);
 
-		// On recupere les enregistrements
-		$tuples = $this->candidat->tous_les_candidats();
+		$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
+		$valeurs = array('Dimitri ONGOUA', site_url('gestionnaire'), 'ongouadimitri5@gmail.com', '7842');
 
-		var_dump($tuples);
+		$message = str_replace($cles, $valeurs, $message);
+
+		echo $message;
 	}
 }

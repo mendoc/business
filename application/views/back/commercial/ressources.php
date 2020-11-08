@@ -31,7 +31,15 @@
                                     <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
                                 </div>
                             </div>
+                            <?php if (isset($image->lien_gen)) : ?>
+                                <button data-lien="<?= site_url('partage/') . $image->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                            <?php else : ?>
+                                <button data-ressource="<?= $image->id_res ?>" class="btn btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                <button class="btn btn-primary rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                <button class="btn btn-outline-success mt-2 action copier d-none">Copier le lien</button>
+                            <?php endif; ?>
                         </div>
+
                     </div>
                 <?php endforeach; ?>
             <?php endif; ?>
@@ -68,6 +76,13 @@
                                     <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
                                 </div>
                             </div>
+                            <?php if (isset($video->lien_gen)) : ?>
+                                <button data-lien="<?= site_url('partage/') . $video->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                            <?php else : ?>
+                                <button data-ressource="<?= $video->id_res ?>" class="btn btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                <button class="btn btn-primary rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                <button class="btn btn-outline-success mt-2 action copier d-none">Copier le lien</button>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -93,15 +108,22 @@
                             <a href="javascript:void(0)" class="my-3">
                                 <img height="80px" src="https://www.crossroadsfund.org/sites/default/files/document%20icon.png" alt="Photo by Nathan Guerrero" class="rounded">
                             </a>
-                            <div class="d-flex align-items-center p-2">
+                            <div class="d-flex flex-column p-2">
                                 <div>
                                     <div><?= $document->nom_res ?></div>
                                     <small class="d-block text-muted">Publié le <?= date_format(date_create($document->date_res), " d M à H:i"); ?></small>
                                 </div>
-                                <div class="ml-auto text-muted">
-                                    <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
+                                <div class="">
+                                    <?php if (isset($document->lien_gen)) : ?>
+                                        <button data-lien="<?= site_url('partage/') . $document->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                                    <?php else : ?>
+                                        <button data-ressource="<?= $document->id_res ?>" class="btn btn-sm btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                        <button class="btn btn-primary btn-sm rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                        <button class="btn btn-outline-success btn-sm mt-2 action copier d-none">Copier le lien</button>
+                                    <?php endif; ?>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 <?php endforeach; ?>
