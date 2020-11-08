@@ -9,12 +9,24 @@ class Statistique_model extends CI_Model
         $this->load->database();
     }
 
-    public function visites_par_commercial($id)
+    public function visites_par_commercial_old($id)
     {
         $sql = "SELECT
                     SUM(`nbr_visite`) AS nb_visites_com
                 FROM
                     `eb_ressource_partage`
+                WHERE
+                    `id_com` = ?";
+        
+        return $this->db->query($sql, array($id))->row();
+    }
+
+    public function visites_par_commercial($id)
+    {
+        $sql = "SELECT
+                    nbr_visite AS nb_visites_com
+                FROM
+                    `eb_commercial`
                 WHERE
                     `id_com` = ?";
         

@@ -11,14 +11,21 @@ class Commercial extends CI_Controller
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
+        if (!$commercial) {
+            redirect('commercial/connexion');
+        }
+
         $this->load->helper('form');
 
         $this->load->model('statistique_model');
         $this->load->model('retrait_model');
 
-        // Nombre de visites du commercial
         $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
-        $nb_visites_com = $result->nb_visites_com;
+        // Nombre de visites du commercial
+        //var_dump($result);
+        //die;
+        if ($result) $nb_visites_com = $result->nb_visites_com;
+        else $nb_visites_com = 0;
         
         // Nombre de candidats en présentiel du commercial
         $result = $this->statistique_model->candidats_com_presentiel($commercial->id_com);
@@ -61,9 +68,6 @@ class Commercial extends CI_Controller
             'solde' => $solde,
             'bonus' => $bonus,
         );
-        
-        //var_dump($data);
-        //die;
 
         afficher('back/commercial/statistiques', $data);
     }
@@ -110,6 +114,7 @@ class Commercial extends CI_Controller
         $commercial->date_n     = $date_n;
         $commercial->nom_util   = $nom_util;
         $commercial->mot_passe  = $mot_passe;
+        $commercial->hash       = sha1(time());
 
         // insertion des informations
         $inscrit = $commercial->creer();
@@ -118,6 +123,7 @@ class Commercial extends CI_Controller
         if ($inscrit) {
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
+            $this->session->set_userdata('email_com', $commercial->email);
             redirect('commercial');
         } else {
             redirect('commercial/inscription');
@@ -136,9 +142,17 @@ class Commercial extends CI_Controller
         $commercial = $this->commercial_model->connexion($nom_util, $mot_passe);
 
         if ($commercial) {
+
+            if (!$commercial->hash) {
+                $hash = sha1($commercial->id_com);
+                $commercial->hash = $hash;
+                $this->commercial_model->save_hash($hash, $commercial->id_com);
+            }
+
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             $this->session->set_userdata('email_com', $commercial->email);
+            $this->session->set_userdata('hash', $commercial->hash);
             redirect('commercial');
         } else {
             $this->session->set_flashdata('message', "Nom d'utilisateur ou mot de passe incorrect");

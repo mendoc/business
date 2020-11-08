@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -30,17 +31,19 @@ class Welcome extends CI_Controller {
 
 	public function partage($hash)
 	{
-
 		if (isset($hash)) {
 			$this->session->set_userdata('hash', $hash);
-			
+
 			// Récupération de la ressource partagée
-			$this->load->model('ressource_partage_model');
-			
+			$this->load->model('commercial_model');
+
 			// Incrémmentation du nombre de visites
-			$this->ressource_partage_model->incrementer_visite($hash);
+			$this->commercial_model->incrementer_visite($hash);
+
+			//var_dump($this->session);
+			//die;
 		}
-		
+
 		//var_dump($hash);
 		//die;
 		//$this->load->view('front/landing/accueil');

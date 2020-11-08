@@ -174,9 +174,10 @@
                     });
                 } else if (btn.classList.contains('copier')) {
                     copierLien(btn.dataset.lien);
+                    let ancienText = btn.innerHTML;
                     btn.textContent = 'Lien copié';
                     setTimeout(() => {
-                        btn.innerHTML = '<i class="fe fe-copy"></i> Copier le lien';
+                        btn.innerHTML = ancienText;
                     }, 3000)
                 }
             })

@@ -43,11 +43,11 @@ class Candidat extends CI_Controller
         $candidat->horaire     = $horaire;
 
         if (isset($hash) and !empty($hash)) {
-            $this->load->model('ressource_partage_model');
+            $this->load->model('commercial_model');
 
-            $ressource = $this->ressource_partage_model->par_hash($hash);
-            if ($ressource) {
-                $candidat->id_res_part = $ressource->id_res_part;
+            $commercial = $this->commercial_model->par_hash($hash);
+            if ($commercial) {
+                $candidat->id_com = $commercial->id_com;
             }
         }
 
