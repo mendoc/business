@@ -31,6 +31,40 @@ class Ressource_model extends CI_Model
         return $query->result();
     }
 
+    // Recuperer une ressource
+    public function recuperer($id)
+    {
+        return $this->db->get($this->table, array($this->id => $id))->row();
+    }
+    //lister toutes les ressources 
+    public function par_commercial($id_com)
+    {
+        $sql = "SELECT
+                    `eb_ressource`.`id_res`,`nom_res`,`lien`,`fichier`,`date_res`,`type_res`, `lien_gen`
+                FROM
+                    `eb_ressource`
+                INNER JOIN
+                    `eb_ressource_partage` ON `eb_ressource_partage`.`id_res` = `eb_ressource`.`id_res`
+                WHERE
+                    `id_com` = ?
+                UNION
+                SELECT
+                    `id_res`,`nom_res`,`lien`,`fichier`,`date_res`,`type_res`, NULL
+                FROM
+                    `eb_ressource`
+                WHERE
+                    `id_res` NOT IN(
+                    SELECT
+                    `id_res`
+                    FROM
+                    `eb_ressource_partage`
+                    WHERE
+                    `id_com` = ?
+                );";
+
+        return $this->db->query($sql, [$id_com, $id_com])->result();
+    }
+
     //Ajouter ressource
     public function inserer()
     {

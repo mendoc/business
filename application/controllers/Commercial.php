@@ -5,13 +5,71 @@ class Commercial extends CI_Controller
 {
     public function index()
     {
-        $this->load->helper('form');
-
-        if ($this->est_connecte()) {
-            afficher('back/commercial/statistiques');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        if (!$commercial) {
+            redirect('commercial/connexion');
+        }
+
+        $this->load->helper('form');
+
+        $this->load->model('statistique_model');
+        $this->load->model('retrait_model');
+
+        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
+        // Nombre de visites du commercial
+        //var_dump($result);
+        //die;
+        if ($result) $nb_visites_com = $result->nb_visites_com;
+        else $nb_visites_com = 0;
+        
+        // Nombre de candidats en présentiel du commercial
+        $result = $this->statistique_model->candidats_com_presentiel($commercial->id_com);
+        $nb_candidats_com_presentiel = $result->nb_candidats_com_presentiel;
+
+        // Nombre de candidats en ligne du commercial
+        $result = $this->statistique_model->candidats_com_ligne($commercial->id_com);
+        $nb_candidats_com_ligne = $result->nb_candidats_com_ligne;
+
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+        
+        // Bonus du commercial
+        $bonus = 0;
+        
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        $retrait = $result->montant_retrait;
+ 
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
+        $data = array(
+            'nb_visites_com' => $nb_visites_com,
+            'nb_candidats_com_presentiel' => $nb_candidats_com_presentiel,
+            'nb_candidats_com_ligne' => $nb_candidats_com_ligne,
+            'nb_affilies_com_presentiel' => $nb_affilies_com_presentiel,
+            'nb_affilies_com_ligne' => $nb_affilies_com_ligne,
+            'commission' => $commission,
+            'retrait' => $retrait,
+            'solde' => $solde,
+            'bonus' => $bonus,
+        );
+
+        afficher('back/commercial/statistiques', $data);
     }
 
     public function inscription()
@@ -56,6 +114,7 @@ class Commercial extends CI_Controller
         $commercial->date_n     = $date_n;
         $commercial->nom_util   = $nom_util;
         $commercial->mot_passe  = $mot_passe;
+        $commercial->hash       = sha1(time());
 
         // insertion des informations
         $inscrit = $commercial->creer();
@@ -64,6 +123,7 @@ class Commercial extends CI_Controller
         if ($inscrit) {
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
+            $this->session->set_userdata('email_com', $commercial->email);
             redirect('commercial');
         } else {
             redirect('commercial/inscription');
@@ -82,9 +142,17 @@ class Commercial extends CI_Controller
         $commercial = $this->commercial_model->connexion($nom_util, $mot_passe);
 
         if ($commercial) {
+
+            if (!$commercial->hash) {
+                $hash = sha1($commercial->id_com);
+                $commercial->hash = $hash;
+                $this->commercial_model->save_hash($hash, $commercial->id_com);
+            }
+
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             $this->session->set_userdata('email_com', $commercial->email);
+            $this->session->set_userdata('hash', $commercial->hash);
             redirect('commercial');
         } else {
             $this->session->set_flashdata('message', "Nom d'utilisateur ou mot de passe incorrect");
@@ -122,7 +190,9 @@ class Commercial extends CI_Controller
         //Récupération de toutes les ressources
         $this->load->model('ressource_model');
 
-        $tuples = $this->ressource_model->tout();
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $tuples = $this->ressource_model->par_commercial($commercial->id_com);
 
         $images = array();
         $videos = array();
@@ -137,29 +207,78 @@ class Commercial extends CI_Controller
         $data = array(
             "images"    => $images,
             "documents" => $documents,
-            "videos"    => $videos
+            "videos"    => $videos,
+            "id_com"    => $commercial->id_com,
         );
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
     }
 
+    public function generer_lien()
+    {
+        $this->load->model('ressource_partage_model');
+
+        $id_res = $this->input->post('id_res');
+        $id_com = $this->input->post('id_com');
+
+        // Génération du lien
+        $lien_gen = sha1($id_res . '-' . $id_com);
+
+        $ressource = new Ressource_partage_model();
+        $ressource->id_res = $id_res;
+        $ressource->id_com = $id_com;
+        $ressource->nbr_visite = 0;
+        $ressource->lien_gen = $lien_gen;
+
+        $succes = $ressource->creer();
+
+        $reponse = array(
+            'succes' => $succes,
+            'ressource' => $lien_gen,
+        );
+
+        echo json_encode($reponse);
+    }
+
     public function partages()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/partages');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+        
+        $this->load->model('ressource_partage_model');
+        
+        $partages = $this->ressource_partage_model->pour_commercial($commercial->id_com);
+
+        $data = array(
+            'id_com' => $commercial->id_com,
+            'partages' => $partages,
+        );
+
+        afficher('back/commercial/partages', $data);
     }
 
     public function transactions()
     {
-        if ($this->est_connecte()) {
-            afficher('back/commercial/transactions');
-        } else {
+        if (!$this->est_connecte()) {
             redirect('commercial/connexion');
         }
+
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        $this->load->model('retrait_model');
+        
+        $retraits = $this->retrait_model->liste_pour_commercial($commercial->id_com);
+
+        $data = array(
+            'id_com' => $commercial->id_com,
+            'retraits' => $retraits,
+        );
+
+        afficher('back/commercial/transactions', $data);
     }
 
     private function est_connecte()

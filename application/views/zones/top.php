@@ -30,13 +30,16 @@
             <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-lg-3 ml-auto d-none">
-                            <form class="input-icon my-3 my-lg-0">
+                        <div class="col-lg-3 ml-auto">
+                            <form class="input-icon my-3 my-lg-0 d-none">
                                 <input type="search" class="form-control header-search" placeholder="Rechercher" tabindex="1">
                                 <div class="input-icon-addon">
                                     <i class="fe fe-search"></i>
                                 </div>
                             </form>
+                            <?php if (!est_un_gestionnaire()) : ?>
+                                <button data-lien="<?= $this->session->hash ? site_url('partage/') . $this->session->hash : "" ?>" class="btn btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
+                            <?php endif; ?>
                         </div>
                         <div class="col-lg order-lg-first">
                             <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
