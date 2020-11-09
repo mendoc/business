@@ -13,11 +13,7 @@ class Statistique_model extends CI_Model
     {
         $sql = "SELECT COUNT(id_can)
         FROM eb_candidat 
-        WHERE id_res_part IS NOT NULL
-        AND eb_candidat.id_res_part IN (
-        SELECT id_res_part 
-        FROM eb_ressource_partage
-        WHERE id_com = ?;))";
+        WHERE id_com = ?";
         return $this->db->query($sql, array($id));
     }
 
@@ -84,33 +80,6 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql, array($id));
     }
 
-
-    public function nombre_app_ligne_ressource($id) //Nbre de tous les apprenants en Ligne par ressource
-    {
-        $sql = " SELECT COUNT(eb_candidat.id_can)
-        FROM eb_candidat
-        INNER JOIN eb_paiement
-        ON eb_candidat.id_can = eb_paiement.id_can
-        WHERE type_cours =\"L\" AND id_res_part = ?
-        GROUP BY eb_paiement.id_can 
-        HAVING SUM(montant) = 90000";
-
-        return $this->db->query($sql, $id);
-    }
-
-    public function nombre_app_presentiel_ressource($id) //Nbre de tous les apprenants en presentiel par ressource
-    {
-        $sql = "  SELECT COUNT(eb_candidat.id_can)
-        FROM eb_candidat
-        INNER JOIN eb_paiement
-        ON eb_candidat.id_can = eb_paiement.id_can
-        WHERE type_cours =\"P\" AND id_res_part = ?
-        GROUP BY eb_paiement.id_can 
-        HAVING SUM(montant) = 155000";
-
-        return $this->db->query($sql, $id);
-    }
-
     public function nombre_commerciaux() // Nbre de tous les commerciaux
     {
         $sql = "SELECT COUNT(id_com)
@@ -131,11 +100,7 @@ class Statistique_model extends CI_Model
     {
         $sql = "SELECT * 
     FROM eb_candidat 
-    WHERE id_res_part IS NOT NULL
-    AND eb_candidat.id_res_part 
-    IN( SELECT id_res_part 
-    FROM eb_ressource_partage
-    WHERE id_com = ?)
+    WHERE id_com = ?
     AND id_can
     IN ( SELECT id_can
     FROM eb_paiement 
@@ -149,11 +114,7 @@ class Statistique_model extends CI_Model
     {
         $sql = "SELECT * 
         FROM eb_candidat 
-        WHERE id_res_part IS NOT NULL
-        AND eb_candidat.id_res_part 
-        IN( SELECT id_res_part 
-        FROM eb_ressource_partage
-        WHERE id_com = ?)
+        WHERE id_com = ?
         AND id_can
         IN ( SELECT id_can
         FROM eb_paiement 
