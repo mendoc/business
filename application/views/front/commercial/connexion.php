@@ -14,15 +14,13 @@
 
             <form action="<?= site_url('commercial/traitement_connexion') ?>" method='post'>
                 <img src="<?= theme_url() ?>assets/images/blue.png" alt="Image de fond" width="150px">
-                <h1 class="h1">Connexion</h1>
+                <h1 class="h1">Rénitialiser le  mot de passe</h1>
                 <?php if ($this->session->flashdata('message')) : ?>
                     <p style="padding: 5px 10px; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message'); ?></p>
                 <?php endif; ?>
-                <input type="text" placeholder="Nom d'utilisateur" name="nom_util" required value="<?= $this->session->flashdata('nom_util'); ?>"/>
-                <input type="password" placeholder="Mot de passe" name="mot_passe" required />
-                <a href="#">Mot de passe oublié ?</a>
-                <button type="submit">SE CONNECTER</button>
-                <a href="<?= site_url('commercial/inscription') ?>">Créer un compte commercial</a>
+                <input type="text" placeholder="Adresse e-mail" name="nom_util" required value="<?= $this->session->flashdata('nom_util'); ?>"/>
+                <button type="submit">Réinitialiser</button>
+                <a href="<?= site_url('commercial/inscription') ?>">Se connecter ?</a>
             </form>
         </div>
         <div class="overlay-container">
@@ -33,8 +31,8 @@
                 <button class="ghost" id="signIn">Sign In</button> -->
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Bienvenue!</h1>
-                    <p>Entrez vos informations personnelles pour vous connecter à votre tableau de bord.</p>
+                    <h1>Mot de passe oublié!</h1>
+                    <p>Entrez votre adresse e-mail pour réinitialiser votre mot de passe.</p>
                     <!-- <button class="ghost" id="signUp">SE CONNECTER</button> -->
                 </div>
             </div>
