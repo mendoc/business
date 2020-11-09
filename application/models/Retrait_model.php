@@ -10,6 +10,8 @@ class Retrait_model extends CI_Model
     public $id_com;
     public $num_ret;
     public $id_gest;
+    public $justificatif;
+
 
 
     // Nom de la table
