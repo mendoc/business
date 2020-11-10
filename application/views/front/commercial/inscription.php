@@ -2,12 +2,25 @@
 <html lang="fr">
 
 <head>
-	<title>ECOLE 241 BUSINESS</title>
+	<title>Inscription commercial - Ecole 241 Business</title>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="icon" type="image/png" href="<?= theme_url() ?> images/icons/favicon.ico" />
 	<link rel="stylesheet" type="text/css" href="<?= theme_url() ?>assets/css/main.css" />
 	<!--===============================================================================================-->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', 'G-4D8CEC5J5T');
+	</script>
 </head>
 
 <body>
@@ -23,13 +36,13 @@
 			</div>
 			<!--===*** Start of Form ***===-->
 			<form class="form" action="<?= site_url('commercial/traitement_inscription') ?>" method='post'>
-				<input type="text" name="nom" class="form-field animation a3" placeholder="Nom Ex. BIVINGOU" required/>
+				<input type="text" name="nom" class="form-field animation a3" placeholder="Nom Ex. BIVINGOU" required />
 				<input type="text" name="prenom" class="form-field animation a3" placeholder="Prenom Ex. Pascale" />
 
 				<fieldset class="animation a3">
 					<label for="name">Votre sexe</label>
-					<input type="radio" name="sexe" value="H" checked required/><label for="homme">H</label>
-					<input type="radio" name="sexe" value="F" required/><label for="femme">F</label>
+					<input type="radio" name="sexe" value="H" checked required /><label for="homme">H</label>
+					<input type="radio" name="sexe" value="F" required /><label for="femme">F</label>
 				</fieldset>
 
 				<fieldset class="animation a3">
@@ -44,13 +57,13 @@
 
 				<input type="text" name="nom_util" required class="form-field animation a3" placeholder="Nom utilisateur Ex. Maviogha" />
 
-				<input type="password" name="mot_passe"  required class="form-field animation a4" placeholder="Votre mot de passe" />
+				<input type="password" name="mot_passe" required class="form-field animation a4" placeholder="Votre mot de passe" />
 
 				<input type="password" name="confirm_pass" required class="form-field animation a4" placeholder="Confirmez votre mot de passe" />
 
 				<button type='submit' class="animation a6">S'inscrire</button>
 
-			 <p class="animation a3">Si vous avez un compte, alors vous pouvez vous connecter <a href="<?= site_url('commercial/connexion') ?>">ici</a></p>
+				<p class="animation a3">Si vous avez un compte, alors vous pouvez vous connecter <a href="<?= site_url('commercial/connexion') ?>">ici</a></p>
 			</form>
 			<!--===*** End of Form ***===-->
 		</div>

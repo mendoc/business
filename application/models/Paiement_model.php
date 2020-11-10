@@ -6,7 +6,7 @@ class Paiement_model extends CI_Model
 
     // Nom de la table
     private $table = 'paiement';
-    
+
     // Clé primaire de la table
     private $id = 'id_paie';
 
@@ -32,6 +32,15 @@ class Paiement_model extends CI_Model
         return $query->result();
     }
 
+    public function chiffre_affaire()
+    {
+        $query = $this->db->get('paiement');
+        
+        $this->db->select_sum('montant');
+        $query = $this->db->get('paiement');
+        return $query->row();
+    }
+
     // Les paiements d'un candidats specifique
     // public function mes_paiements($id)
     // {
@@ -51,15 +60,14 @@ class Paiement_model extends CI_Model
         $paiements = $this->db->get_where($this->table, array('id_can' => $id))->result();
         $montant_total = 0;
         if (!empty($paiements)) {
-            foreach ($paiements as $paiement)
-            {
+            foreach ($paiements as $paiement) {
                 $montant_total += (int)$paiement->montant;
             }
         }
 
         return $montant_total;
     }
-   
+
     public function modifier($paiement)
     {
         $this->db->where('id_paie', $paiement->id_paie);

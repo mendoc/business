@@ -5,7 +5,15 @@ class Deconnexion extends CI_Controller {
 
 	public function index()
 	{
+		if (!est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		
+		$gest = est_un_gestionnaire();
+
 		$this->session->unset_userdata('token');
-        redirect('/');
+		$this->session->unset_userdata('gestionnaire');
+		$this->session->unset_userdata('nom');
+		redirect('gestionnaire/connexion');
 	}
 }

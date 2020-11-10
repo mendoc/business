@@ -7,6 +7,19 @@
     <title>Enregistrement candidat - Ecole 241 Business</title>
 
     <link rel="stylesheet" type="text/css" href="<?= theme_url() ?>assets/css/formulaire_candidat.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4D8CEC5J5T');
+    </script>
 </head>
 
 <body>
@@ -19,11 +32,20 @@
                 <img src="<?= theme_url() ?>assets/images/formulaires/Ebusiness.png" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <div class="header">
-                <h2 class="animation a1">Formulaire du candidat</h2>
+                <h2 class="animation a1">Enregistrement du candidat</h2>
             </div>
             <!--===*** Start of Form ***===-->
 
             <form class="form" action="<?= site_url('candidat/traitement_enregistrement') ?>" method="POST">
+<<<<<<< HEAD
+=======
+                <?php if (isset($this->session->hash)) : ?>
+                    <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
+                <?php endif; ?>
+
+                <input type="nom" name="nom" class="form-field animation a3" placeholder="Nom Ex. SAMBA" required>
+                <input type="prenom" name="prenom" class="form-field animation a3" placeholder="Prenom Ex. Pascal" required>
+>>>>>>> 46c56cab0b3e77f7298592344079989710e387d3
 
 
                 <input type="nom" name="nom" value='<?= set_value('nom')?>' class="form-field animation a3"

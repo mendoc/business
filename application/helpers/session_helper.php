@@ -7,9 +7,11 @@ function est_connecte()
 
     $CI->load->library('session');
 
-    $token = $CI->session->userdata('token');
+    $token_gest = $CI->session->userdata('token_gest');
 
-    return $token != null;
+    $token_com = $CI->session->userdata('token_com');
+
+    return $token_gest != null OR $token_com != null;
 }
 
 function est_un_gestionnaire()
@@ -18,5 +20,5 @@ function est_un_gestionnaire()
 
     $CI->load->library('session');
 
-    return $CI->session->userdata('gestionnaire') != null;
+    return $CI->session->userdata('token_gest') != null;
 }

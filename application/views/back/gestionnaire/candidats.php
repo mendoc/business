@@ -14,9 +14,9 @@
                     <thead>
                         <tr>
                             <th>Noms & prénoms</th>
-                            <th>Horaires</th>
+                            <th>Commercial</th>
                             <th>Téléphone</th>
-                            <th>Montant</th>
+                            <th>Payé</th>
                             <th>Reste a payer</th>
                             <th></th>
                         </tr>
@@ -32,7 +32,7 @@
                             foreach ($candidats as $candidat) : ?>
                                 <tr>
                                     <td><span><?= $candidat->nom_prenom; ?></span></td>
-                                    <td><a href="invoice.html" class="text-inherit"><?= $candidat->horaire ?></a></td>
+                                    <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
                                     <td>
                                         <?= $candidat->num_tel ?>
                                     </td>

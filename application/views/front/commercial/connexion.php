@@ -5,7 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/connexion_commercial.css">
-    <title>Formulaire</title>
+    <title>Connexion commercial - Ecole 241 Business</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4D8CEC5J5T');
+    </script>
 </head>
 
 <body>
@@ -18,7 +31,7 @@
                 <?php if ($this->session->flashdata('message')) : ?>
                     <p style="padding: 5px 10px; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message'); ?></p>
                 <?php endif; ?>
-                <input type="text" placeholder="Nom d'utilisateur" name="nom_util" required value="<?= $this->session->flashdata('nom_util'); ?>"/>
+                <input type="text" placeholder="Nom d'utilisateur" name="nom_util" required value="<?= $this->session->flashdata('nom_util'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="mot_passe" required />
                 <a href="#">Mot de passe oublié ?</a>
                 <button type="submit">SE CONNECTER</button>
