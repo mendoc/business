@@ -7,6 +7,18 @@
     <title>Confirmation de l'enregistrement - Ecole 241 Business</title>
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/message_inscription.css">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-4D8CEC5J5T');
+    </script>
 </head>
 
 <body>

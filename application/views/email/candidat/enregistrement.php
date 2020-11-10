@@ -385,7 +385,7 @@
             <h1 class="title">Inscription enregistrée</h1>
             <!-----<a class="confirm-account" href="#">Confirmez votre inscription</a>----->
             <p class="first-text">Bonjour {GENRE} {NOM}</p>
-            <p class="second-text">Nous avons bien recu votre inscription au programme de formation Ecole 241 Business destiné aux commerçants et artisants.</p>
+            <p class="second-text">Nous avons bien recu votre inscription au programme de formation Ecole 241 Business destiné aux commerçants et artisans.</p>
             <p class="third-text">Ci-dessous, les informations que vous avez fournies lors de votre enregistrement.</p>
 
 
@@ -435,7 +435,7 @@
                 </tbody>
             </table>
 
-            <p>Vous êtes attendu dans les locaux de Ogooue Labs pour compléter votre dossier finaliser votre paiement.</p>
+            <p>Vous êtes attendu dans les locaux de Ogooué Labs pour compléter votre dossier et finaliser votre paiement.</p>
             <p class="name-team">Merci pour la confiance accordée, nous vous disons à bientôt</p>
             <p class="name-team team-2">L'équipe Ecole 241 Business.</p>
         </div>

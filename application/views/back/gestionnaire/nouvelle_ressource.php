@@ -19,14 +19,6 @@
                                     <input type="text" class="form-control" name="nom_res" required placeholder="Nom de la ressource">
                                 </div>
                                 <div class="form-group">
-                                    <label class="form-label">Thematique</label>
-                                    <select name="thematique" id="select-beast" class="form-control custom-select">
-                                        <?php foreach ($thematiques as $thematique) : ?>
-                                            <option value="<?= $thematique->id_them ?>"><?= $thematique->titre ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
                                     <label class="form-label">Type de ressource</label>
                                     <div class="selectgroup w-100">
                                         <label class="selectgroup-item">
@@ -46,7 +38,7 @@
                                             <span class="selectgroup-button">Article</span>
                                         </label>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group d-none">
                                         <label class="form-label">Lien de la ressource</label>
                                         <input type="text" class="form-control" name="lien" placeholder="URL de la ressource">
                                     </div>
