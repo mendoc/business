@@ -17,7 +17,7 @@ class Statistique_model extends CI_Model
                     `eb_ressource_partage`
                 WHERE
                     `id_com` = ?";
-        
+
         return $this->db->query($sql, array($id))->row();
     }
 
@@ -29,7 +29,7 @@ class Statistique_model extends CI_Model
                     `eb_commercial`
                 WHERE
                     `id_com` = ?";
-        
+
         return $this->db->query($sql, array($id))->row();
     }
 
@@ -40,16 +40,11 @@ class Statistique_model extends CI_Model
                 FROM
                     eb_candidat
                 WHERE
-                    type_cours = 'P' AND id_res_part IS NOT NULL AND id_res_part IN(
-                    SELECT
-                    id_res_part
-                    FROM
-                    eb_ressource_partage
-                    WHERE
-                    id_com = ?
-                )";
-        
-        return $this->db->query($sql, array($id))->row();
+                    id_com = ? AND type_cours = 'P'";
+
+        $result = $this->db->query($sql, array($id));
+
+        return ($result ? $result->row() : FALSE);
     }
 
     public function candidats_com_ligne($id)
@@ -59,16 +54,11 @@ class Statistique_model extends CI_Model
                 FROM
                     eb_candidat
                 WHERE
-                    type_cours = 'L' AND id_res_part IS NOT NULL AND id_res_part IN(
-                    SELECT
-                    id_res_part
-                    FROM
-                    eb_ressource_partage
-                    WHERE
-                    id_com = ?
-                )";
-        
-        return $this->db->query($sql, array($id))->row();
+                    id_com = ? AND type_cours = 'L'";
+
+        $result = $this->db->query($sql, array($id));
+
+        return ($result ? $result->row() : FALSE);
     }
 
 
@@ -139,25 +129,20 @@ class Statistique_model extends CI_Model
                 FROM
                     eb_candidat
                 WHERE
-                    type_cours = 'P' AND id_res_part IS NOT NULL AND eb_candidat.id_res_part IN(
+                    id_com = ? AND id_can IN(
                     SELECT
-                    id_res_part
+                    id_can
                     FROM
-                    eb_ressource_partage
-                    WHERE
-                    id_com = ?
-                ) AND id_can IN(
-                SELECT
-                    id_can
-                FROM
                     eb_paiement
-                GROUP BY
+                    GROUP BY
                     id_can
-                HAVING
+                    HAVING
                     SUM(montant) = ?
                 )";
 
-        return $this->db->query($sql, array($id, PRIX_PRESENTIEL))->row();
+        $result = $this->db->query($sql, array($id, PRIX_PRESENTIEL));
+
+        return ($result ? $result->row() : FALSE);
     }
 
     public function affilies_com_ligne($id) //Les affiliés d'un commercial en ligne
@@ -167,24 +152,18 @@ class Statistique_model extends CI_Model
                 FROM
                     eb_candidat
                 WHERE
-                    type_cours = 'L' AND id_res_part IS NOT NULL AND eb_candidat.id_res_part IN(
+                    id_com = ? AND id_can IN(
                     SELECT
-                    id_res_part
+                    id_can
                     FROM
-                    eb_ressource_partage
-                    WHERE
-                    id_com = ?
-                ) AND id_can IN(
-                SELECT
-                    id_can
-                FROM
                     eb_paiement
-                GROUP BY
+                    GROUP BY
                     id_can
-                HAVING
+                    HAVING
                     SUM(montant) = ?
-                )";
+                    )";
+        $result = $this->db->query($sql, array($id, PRIX_EN_LIGNE));
 
-        return $this->db->query($sql, array($id, PRIX_EN_LIGNE))->row();
+        return ($result ? $result->row() : FALSE);
     }
 }

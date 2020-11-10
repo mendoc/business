@@ -13,6 +13,7 @@ class Commercial_model extends CI_Model
     public $nom_util;
     public $mot_passe;
     public $hash;
+    public $raccourci;
 
     // Nom de la table
     private $table = 'commercial';
@@ -92,9 +93,9 @@ class Commercial_model extends CI_Model
         return $query->row();
     }
 
-    public function save_hash($hash, $id)
+    public function save_infos($params, $id)
     {
-        return $this->db->update($this->table, array('hash' => $hash), array($this->id => $id));
+        return $this->db->update($this->table, $params, array($this->id => $id));
     }
 
     public function incrementer_visite($hash)

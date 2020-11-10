@@ -141,6 +141,10 @@ class Gestionnaire extends CI_Controller
 		// On boucle sur tous les candidats et on verifie s'ils ont payé 
 		foreach ($data['candidats'] as $candidat) {
 			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			if ($candidat->id_com) {
+				$commercial = $this->commercial_model->recuperer_un($candidat->id_com);
+				$candidat->nom_com = $commercial->nom_prenom;
+			}
 		}
 
 		afficher('back/gestionnaire/candidats', $data);
@@ -276,7 +280,7 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('ressource_model');
 
 		if ($this->ressource_model->supprimer($id)) {
-			$this->session->set_flashdata('message', 'Ressource supprime');
+			$this->session->set_flashdata('message', 'Ressource supprimée');
 			redirect('gestionnaire/ressources');
 		}
 	}
@@ -361,7 +365,6 @@ class Gestionnaire extends CI_Controller
 		$ressource->nom_res  = $this->input->post('nom_res');
 		$ressource->type_res = $this->input->post('type_res');
 		$ressource->lien     = $this->input->post('lien');
-		$ressource->id_them  = $this->input->post('thematique');
 		$ressource->fichier  = $fichier;
 		$ressource->id_gest  = $gestionnaire->id_gest;
 

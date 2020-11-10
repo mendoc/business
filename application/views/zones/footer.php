@@ -1,11 +1,39 @@
 </div>
+<?php if (!est_un_gestionnaire()) : ?>
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="<?= site_url('commercial') ?>">Statistiques</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-center">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="<?= site_url('commercial/transactions') ?>">Transactions</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-4 text-center">
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="<?= site_url('commercial/ressources') ?>">Ressources</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
 <footer class="footer">
     <div class="container">
         <div class="row align-items-center flex-row-reverse">
             <div class="col-auto ml-lg-auto">
                 <div class="row align-items-center">
                     <div class="col-auto">
-                        <a href="mailto:contact@ecole241.org" class="btn btn-outline-danger btn-sm">Signaler un problème</a>
+                        <a href="mailto:contact@ecole241.org" class="btn d-none btn-outline-danger btn-sm">Signaler un problème</a>
+                        <a href="<?= site_url('commercial/deconnexion') ?>" class="btn btn-outline-danger btn-sm">Déconnexion</a>
                     </div>
                 </div>
             </div>

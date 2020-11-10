@@ -63,7 +63,7 @@ class Candidat extends CI_Controller
             $message = $this->load->view('email/candidat/enregistrement', '', TRUE);
 
             $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{HEURE}', '{DOMAINE}', '{SERVICE}', '{ATTENNTES}');
-            $valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+            $valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
 
             $message = str_replace($cles, $valeurs, $message);
 
@@ -73,6 +73,7 @@ class Candidat extends CI_Controller
 
             $headers  = "MIME-Version: 1.0\r\n";
             $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 
             // On envoie un mail au candidat
             mail($candidat->email, 'Ecole 241 Business - Inscription', $message, $headers);
@@ -81,6 +82,41 @@ class Candidat extends CI_Controller
         } else {
             redirect('candidat');
         }
+    }
+
+    function mailing()
+    {
+        $candidat = new Candidat_model();
+
+        $candidat->nom_prenom  = "ONGOUA Dimitri";
+        $candidat->num_tel     = "074213803";
+        $candidat->num_what    = "";
+        $candidat->email       = "ongouadimitri5@gmail.com";
+        $candidat->sexe        = "H";
+        $candidat->date_n      = "22/03/1995";
+        $candidat->domaine_act = "Aucun";
+        $candidat->type_serv   = "Manioc";
+        $candidat->attentes    = "Cool";
+        $candidat->horaire     = "Matin";
+
+        // On charge la vue du mail
+        $message = $this->load->view('email/candidat/enregistrement', '', TRUE);
+
+        $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{HEURE}', '{DOMAINE}', '{SERVICE}', '{ATTENNTES}');
+        $valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+
+        $message = str_replace($cles, $valeurs, $message);
+
+        // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+        //$headers[] = 'MIME-Version: 1.0';
+        //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+        $headers  = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+        $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+        // On envoie un mail au candidat
+        mail($candidat->email, 'Ecole 241 Business - Inscription', $message, $headers);
     }
 
     public function inscription_reussi()

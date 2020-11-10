@@ -26,34 +26,39 @@ class Commercial extends CI_Controller
         //die;
         if ($result) $nb_visites_com = $result->nb_visites_com;
         else $nb_visites_com = 0;
-        
+
         // Nombre de candidats en présentiel du commercial
         $result = $this->statistique_model->candidats_com_presentiel($commercial->id_com);
-        $nb_candidats_com_presentiel = $result->nb_candidats_com_presentiel;
+        if ($result) $nb_candidats_com_presentiel = $result->nb_candidats_com_presentiel;
+        else $nb_candidats_com_presentiel = 0;
 
         // Nombre de candidats en ligne du commercial
         $result = $this->statistique_model->candidats_com_ligne($commercial->id_com);
-        $nb_candidats_com_ligne = $result->nb_candidats_com_ligne;
+        if ($result) $nb_candidats_com_ligne = $result->nb_candidats_com_ligne;
+        else $nb_candidats_com_ligne = 0;
 
         // Nombre d'affiliés en présentiel du commercial
         $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
-        $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
-        
+        if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        else $nb_affilies_com_presentiel = 0;
+
         // Nombre d'affiliés en ligne du commercial
         $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
-        $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+        if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+        else $nb_affilies_com_ligne = 0;
 
         // Commission du commercial
         $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
         $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
-        
+
         // Bonus du commercial
         $bonus = 0;
-        
+
         // Retrait du commercial
         $result = $this->retrait_model->pour_commercial($commercial->id_com);
-        $retrait = $result->montant_retrait;
- 
+        if ($result) $retrait = $result->montant_retrait;
+        else $retrait = 0;
+
         // Solde du commercial
         $solde = $commission - $retrait;
 
@@ -104,6 +109,11 @@ class Commercial extends CI_Controller
 
         // On valide les informations
 
+        // On raccourcit le lien
+        $this->load->helper('bitly');
+        $hash = sha1(time());
+        $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+
         // On crée l'objet pour la requete
         $commercial = new Commercial_model();
         $commercial->nom_prenom = $nom_prenom;
@@ -114,7 +124,8 @@ class Commercial extends CI_Controller
         $commercial->date_n     = $date_n;
         $commercial->nom_util   = $nom_util;
         $commercial->mot_passe  = $mot_passe;
-        $commercial->hash       = sha1(time());
+        $commercial->hash       = $hash;
+        $commercial->raccourci  = $raccourci;
 
         // insertion des informations
         $inscrit = $commercial->creer();
@@ -124,6 +135,8 @@ class Commercial extends CI_Controller
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             $this->session->set_userdata('email_com', $commercial->email);
+            $this->session->set_userdata('hash', $commercial->hash);
+            $this->session->set_userdata('raccourci', $commercial->raccourci);
             redirect('commercial');
         } else {
             redirect('commercial/inscription');
@@ -143,16 +156,41 @@ class Commercial extends CI_Controller
 
         if ($commercial) {
 
+            $this->load->helper('bitly');
+
             if (!$commercial->hash) {
                 $hash = sha1($commercial->id_com);
                 $commercial->hash = $hash;
-                $this->commercial_model->save_hash($hash, $commercial->id_com);
+
+                // On génère le raccourci
+                $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+
+                $params = array(
+                    'hash' => $hash,
+                    'raccourci' => $raccourci
+                );
+
+                $this->commercial_model->save_infos($params, $commercial->id_com);
+            } else {
+                if (!$commercial->raccourci) {
+                    // On génère le raccourci
+                    $raccourci = raccourcir_lien(site_url('partage/') . $commercial->hash);
+
+                    $params = array(
+                        'raccourci' => $raccourci
+                    );
+
+                    $this->commercial_model->save_infos($params, $commercial->id_com);
+                }
             }
+            //var_dump($commercial);
+            //die;
 
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
             $this->session->set_userdata('email_com', $commercial->email);
             $this->session->set_userdata('hash', $commercial->hash);
+            $this->session->set_userdata('raccourci', $commercial->raccourci);
             redirect('commercial');
         } else {
             $this->session->set_flashdata('message', "Nom d'utilisateur ou mot de passe incorrect");
@@ -248,9 +286,9 @@ class Commercial extends CI_Controller
         }
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
-        
+
         $this->load->model('ressource_partage_model');
-        
+
         $partages = $this->ressource_partage_model->pour_commercial($commercial->id_com);
 
         $data = array(
@@ -270,7 +308,7 @@ class Commercial extends CI_Controller
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
         $this->load->model('retrait_model');
-        
+
         $retraits = $this->retrait_model->liste_pour_commercial($commercial->id_com);
 
         $data = array(

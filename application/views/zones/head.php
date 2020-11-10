@@ -33,4 +33,17 @@
   <script src="<?= theme_url() ?>assets/plugins/charts-c3/plugin.js"></script>
   <!-- Input Mask Plugin -->
   <script src="<?= theme_url() ?>assets/plugins/input-mask/plugin.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'G-4D8CEC5J5T');
+  </script>
 </head>

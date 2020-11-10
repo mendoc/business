@@ -7,7 +7,6 @@ class Ressource_model extends CI_Model
     public $lien;
     public $fichier;
     public $type_res;
-    public $id_them;
     public $id_gest;
 
     // Nom de la table
@@ -26,7 +25,6 @@ class Ressource_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from($this->table);
-        $this->db->join('thematique', "thematique.id_them = {$this->table}.id_them");
         $query = $this->db->get();
         return $query->result();
     }

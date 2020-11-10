@@ -27,7 +27,6 @@
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Thématique</th>
                                 <th>Type</th>
                                 <th></th>
                             </tr>
@@ -35,13 +34,12 @@
                         <tbody>
                             <?php foreach ($ressources as $ressource) : ?>
                                 <tr>
-                                    <td><a href="" class="text-inherit"><?= $ressource->nom_res; ?></a></td>
-                                    <td><?= $ressource->titre; ?></td>
+                                    <td><?= $ressource->nom_res; ?></td>
                                     <td><?= $ressource->type_res; ?></td>
                                     <td>
                                         <div class="dropdown">
                                             <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                                                <i class="fe fe-more-horizontal" aria-hidden="true"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                                 <a class="dropdown-item text-danger" href="<?= site_url('gestionnaire/supprimer_ressource/' . $ressource->id_res) ?>"> 
