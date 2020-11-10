@@ -108,7 +108,7 @@ class Commercial extends CI_Controller
         $mot_passe   = $this->input->post('mot_passe');
 
         // On valide les informations
-
+     
         // On raccourcit le lien
         $this->load->helper('bitly');
         $hash = sha1(time());
@@ -251,32 +251,6 @@ class Commercial extends CI_Controller
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
-    }
-
-    public function generer_lien()
-    {
-        $this->load->model('ressource_partage_model');
-
-        $id_res = $this->input->post('id_res');
-        $id_com = $this->input->post('id_com');
-
-        // Génération du lien
-        $lien_gen = sha1($id_res . '-' . $id_com);
-
-        $ressource = new Ressource_partage_model();
-        $ressource->id_res = $id_res;
-        $ressource->id_com = $id_com;
-        $ressource->nbr_visite = 0;
-        $ressource->lien_gen = $lien_gen;
-
-        $succes = $ressource->creer();
-
-        $reponse = array(
-            'succes' => $succes,
-            'ressource' => $lien_gen,
-        );
-
-        echo json_encode($reponse);
     }
 
     public function partages()

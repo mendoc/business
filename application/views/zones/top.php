@@ -66,7 +66,7 @@
                                     <li class="nav-item  m-0">
                                         <a href="<?= site_url('commercial/ressources') ?>" class="nav-link m-0"><i class="fe fe-film"></i> Ressources</a>
                                     </li>
-                                    <li class="nav-item  m-0 dropdown">
+                                    <li class=" d-none nav-item  m-0 dropdown">
                                         <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
                                     </li>
                                 <?php endif; ?>
