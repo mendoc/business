@@ -57,17 +57,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 col-sm-12">
 
                 <form class="mb-4" action="<?= site_url('gestionnaire/inscription_candidat/' . $candidat->id_can); ?>" method="POST">
                     <div class="form-row">
-                        <div class="col">
-                            <input type="number" name="montant" min="5000" class="form-control" placeholder="Montant">
+                        <div class="col-lg-6 mb-4">
+                            <input type="number" name="montant" min="5000" class="form-control" placeholder="Montant" required>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-6">
                             <input type="text" name="motif" class="form-control" placeholder="Motif">
                         </div>
-                        <button type="submit" class="btn btn-primary">valider</button>
+                        <div class="col-lg-6 mb-4">
+                            <select class="custom-select" name="moyen_paiement" required>
+                                <option value="presentiel" selected>En Cash</option>
+                                <option value="mobile_money">Mobile money</option>
+                                <option value="cheque">Cheque</option>
+                                <option value="virement">Virement Bancaire</option>
+                                <option value="carte_bancaire">Carte Bancaire</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="text" name="num_trans" class="form-control" placeholder="Numero de la Transaction">
+                        </div>
+                        <button type="submit" class="btn btn-primary col-lg-4">valider</button>
                     </div>
                 </form>
 

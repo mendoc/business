@@ -473,8 +473,12 @@ class Gestionnaire extends CI_Controller
 			'montant' => (int)$montant,
 			'motif' => $this->input->post('motif'),
 			'id_gest' => 1,
-			'id_can' => $id_can
+			'id_can' => $id_can,
+			'justificatif' => $this->input->post('justificatif'),
+			'moyen_paie' => $this->input->post('moyen_paiement'),
+			'num_trans' => $this->input->post('num_trans')
 		);
+
 
 		if ($this->paiement_model->inserer($paiement)) {
 			$candidat = $this->candidat_model->recuperer($id_can);
