@@ -98,6 +98,11 @@ class Commercial_model extends CI_Model
         return $this->db->update($this->table, $params, array($this->id => $id));
     }
 
+    public function modifier_mot_de_passe($id, $mot_de_passe)
+    {
+        return $this->db->update($this->table, array($this->id =>$id, 'mot_passe' => $mot_de_passe));
+    }
+
     public function incrementer_visite($hash)
     {
         $query = $this->db->get_where($this->table, array('hash' => $hash));
