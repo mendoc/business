@@ -179,7 +179,7 @@ class Gestionnaire extends CI_Controller
 		$gestionnaire = new Gestionnaire_model();
 		$gestionnaire->nom_prenom = $this->input->post('nom');
 		$gestionnaire->email_gest = $this->input->post('email');
-		$gestionnaire->mot_passe  = $mot_passe;
+		$gestionnaire->mot_passe  = password_hash($mot_passe, PASSWORD_BCRYPT);
 
 		//Récupération de tous les gestionnaires
 		$succes = $gestionnaire->creer();
@@ -191,7 +191,7 @@ class Gestionnaire extends CI_Controller
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
 			$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
-			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $gestionnaire->mot_passe);
+			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
