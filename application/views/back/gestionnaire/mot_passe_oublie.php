@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/mot_passe_oubli_gest.css">
-    <title>Formulaire</title>
+    <title>Mot de passe oublié gestionnaire Ecole241Bussiness </title>
 </head>
 
 <body>
