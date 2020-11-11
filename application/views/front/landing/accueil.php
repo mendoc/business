@@ -19,6 +19,8 @@
     <link rel="canonical" href="<?= theme_url() ?>images/logoecole241.png" />
     <link rel="icon" href="<?= theme_url() ?>favicon.png" />
     <link rel="stylesheet" href="<?= theme_url() ?>css/css-j5m8fgybln8l-02421f1add241e66ca488626436901d8b680dae7.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
+   
     <style tyle="text/css">
         body {
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -304,7 +306,6 @@
             --color-link: rgba(255, 255, 255, 1);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
@@ -390,7 +391,7 @@
             <div class="ft__half">
                 <div class="ft__wrapper" style="max-width: 570px;">
                     <div class="ft__content">
-                        <h1 class="hero__title color-1 weight-title-h font-title">Apprenez &agrave; vous servir du digital pour faire cro&icirc;tre <br> votre activite.</h1>
+                        <h1 class="hero__title color-1 weight-title-h font-title">Apprenez &agrave; vous servir du digital pour faire cro&icirc;tre <br> votre activité.</h1>
                         <p class="hero__subtitle weight-text">Inscrivez-vous &agrave; l'Ecole 241 Business et apprenez comment &eacute;tendre votre activit&eacute; commerciale ou artisanale en ligne.</p>
                         <div class="ctas">
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
@@ -554,7 +555,7 @@
                             <div target="">
                                 <div class="media"><img src="<?= theme_url() ?>images/troisième.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/t7jqsrnl.png?w=800&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                                 <div class="gallery__meta">
-                                    <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;"><span class="fois">4X</span> de chance que votre entreprise ou votre activité grandissent plus vite</h3>
+                                    <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;"><span class="fois">4X</span> Plus de chance que votre entreprise ou votre activité grandissent plus vite</h3>
 
                                 </div>
                             </div>

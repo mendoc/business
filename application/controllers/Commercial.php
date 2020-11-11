@@ -191,8 +191,6 @@ class Commercial extends CI_Controller
                     $this->commercial_model->save_infos($params, $commercial->id_com);
                 }
             }
-            //var_dump($commercial);
-            //die;
 
             $this->session->set_userdata('token_com', md5(time()));
             $this->session->set_userdata('nom_com', $commercial->nom_prenom);
@@ -261,32 +259,6 @@ class Commercial extends CI_Controller
         afficher("back/commercial/ressources", $data);
     }
 
-    public function generer_lien()
-    {
-        $this->load->model('ressource_partage_model');
-
-        $id_res = $this->input->post('id_res');
-        $id_com = $this->input->post('id_com');
-
-        // Génération du lien
-        $lien_gen = sha1($id_res . '-' . $id_com);
-
-        $ressource = new Ressource_partage_model();
-        $ressource->id_res = $id_res;
-        $ressource->id_com = $id_com;
-        $ressource->nbr_visite = 0;
-        $ressource->lien_gen = $lien_gen;
-
-        $succes = $ressource->creer();
-
-        $reponse = array(
-            'succes' => $succes,
-            'ressource' => $lien_gen,
-        );
-
-        echo json_encode($reponse);
-    }
-
     public function partages()
     {
         if (!$this->est_connecte()) {
@@ -336,5 +308,40 @@ class Commercial extends CI_Controller
         $token_com = $CI->session->userdata('token_com');
 
         return $token_com != null;
+    }
+
+    public function reinitialiser_mot_de_passe()
+    {
+        $this->load->view('back/commercial/mot_de_passe_oublie');
+    }
+
+    public function traitement_mot_de_passe()
+    {
+        $email = $this->input->post('email');
+        if ($commercial = $this->commercial_model->par_email($email)) {
+
+            $nouveau_mot_passe = rand(1000, 9999);
+
+            if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe)) {
+
+                $headers  = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+                $message = "Il est maintenant possible de vous connecter via $nouveau_mot_passe";
+
+                mail($commercial->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+
+                $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
+                $this->session->set_flashdata('email-com', $commercial->nom_util);
+
+                redirect('commercial/connexion');
+            } else {
+                echo 'Bien';
+            }
+        } else {
+            $this->session->set_flashdata('message-error', "Votre email n'existe pas");
+            redirect('commercial/reinitialiser_mot_de_passe');
+        }
     }
 }

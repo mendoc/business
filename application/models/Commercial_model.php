@@ -79,14 +79,14 @@ class Commercial_model extends CI_Model
                 HAVING SUM(montant) = 155000 ))";
         return $this->db->query($sql, $id);
     }
-  
+
     //Recupérer un gestionnaire en fonction de son adresse e-mail
     public function par_email($email)
     {
         $query = $this->db->get_where($this->table, array('email' => $email));
         return $query->row();
     }
-    
+
     public function par_hash($hash)
     {
         $query = $this->db->get_where($this->table, array('hash' => $hash));
@@ -96,6 +96,11 @@ class Commercial_model extends CI_Model
     public function save_infos($params, $id)
     {
         return $this->db->update($this->table, $params, array($this->id => $id));
+    }
+
+    public function modifier_mot_de_passe($id, $mot_de_passe)
+    {
+        return $this->db->update($this->table, array('mot_passe' => $mot_de_passe), array($this->id => $id));
     }
 
     public function incrementer_visite($hash)
