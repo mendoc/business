@@ -32,9 +32,9 @@ class Commercial_model extends CI_Model
         return $query->result();
     }
 
-    public function connexion($nom_util, $mot_passe)
+    public function connexion($email, $mot_passe)
     {
-        $query = $this->db->get_where($this->table, array('nom_util' => $nom_util, 'mot_passe' => $mot_passe));
+        $query = $this->db->get_where($this->table, array('email' => $email, 'mot_passe' => $mot_passe));
 
         return $query->row();
     }
@@ -61,25 +61,64 @@ class Commercial_model extends CI_Model
         return $query->row();
     }
 
-    public function nombre_affilié($id) //fonction pour récupérer le nombre d'affilié d'un candidat
+    public function nombre_affilie_ligne($id) //fonction pour récupérer le nombre d'affilié d'un commercial en ligne
     {
-        $sql = "SELECT COUNT * 
+        $sql = "SELECT COUNT(*) 
         FROM eb_candidat 
-        WHERE id_res_part IS NOT NULL
-        AND eb_candidat.id_res_part 
-            IN (
-            SELECT id_res_part 
-            FROM eb_ressource_partage
-            WHERE id_com = ? 
-            AND eb_ressource_partage.id_cand
-                IN (
-                SELECT id_canD'accord
-                FROM eb_paiement 
-                GROUP BY id_cand 
-                HAVING SUM(montant) = 155000 ))";
+        WHERE id_com = ?
+        AND id_can 
+        AND type_cours = \"L\"
+        AND IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = PRIX_EN_LIGNE)";
         return $this->db->query($sql, $id);
     }
 
+    public function nombre_affilie_presentiel($id) //fonction pour récupérer le nombre d'affilié d'un commercial en présentiel
+    {
+        $sql = "SELECT COUNT(*) 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND id_can
+        AND type_cours = \"P\"
+        AND IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = PRIX_PRESENTIEL)";
+        return $this->db->query($sql, $id);
+    }
+
+    public function nombre_inscrit_ligne_com($id) //fonction pour récupérer le nombre d'affilié d'un commercial en ligne
+    {
+        $sql = "SELECT COUNT(*) 
+        FROM eb_candidat 
+        WHERE type_cours = \"L\"
+        AND id_com = ?";
+        return $this->db->query($sql, $id);
+    }
+
+    public function nombre_inscrit_presentiel($id) //fonction pour récupérer le nombre d'affilié d'un commercial en présentiel
+    {
+        $sql = "SELECT COUNT(*) 
+        FROM eb_candidat 
+        WHERE type_cours = \"P\"
+        AND id_com = ?";
+        return $this->db->query($sql, $id);
+    }
+
+
+    public function dernier_paiement_commercial($id)
+    {
+        $sql = "SELECT nom_prenom, montant, date 
+        FROM eb_candidat 
+        INNER JOIN eb_paiement
+        ON eb_candidat.id_can = eb_paiement.id_can
+        WHERE id_com = ?
+        ORDER BY date DESC";
+
+        return $this->db->query($sql, array($id));
+    }
     //Recupérer un gestionnaire en fonction de son adresse e-mail
     public function par_email($email)
     {
