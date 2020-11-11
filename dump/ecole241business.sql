@@ -70,6 +70,8 @@ CREATE TABLE `eb_commercial` (
   `mot_passe` varchar(200) NOT NULL,
   `hash` text,
   `nbr_visite` int(11) DEFAULT '0',
+  `date_enreg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `raccourci` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_com`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nom_util` (`nom_util`)
@@ -108,7 +110,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'1234','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (3,'1234','Richard OGOULA','richard@yopmail.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -219,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09  0:13:39
+-- Dump completed on 2020-11-11 17:06:57
