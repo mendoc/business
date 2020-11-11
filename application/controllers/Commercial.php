@@ -139,7 +139,10 @@ class Commercial extends CI_Controller
             $this->session->set_userdata('raccourci', $commercial->raccourci);
             // On envoie d'un mail au candidat
             $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
-            $headers = "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+            
+            $headers  = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
             // On envoie d'un mail au candidat
             mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
             redirect('commercial');
