@@ -75,5 +75,31 @@ class Gestionnaire_model extends CI_Model
         return $query->row();
     }
 
+    //fonction pour récupérer  détail du nombre d'affilié d'un commercial en ligne
+    public function nombre_affilie_ligne($id) 
+    {
+        $sql = "SELECT * 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND id_can
+        IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = 90000)";
+        return $this->db->query($sql, $id);
+    }
 
+    //fonction pour récupérer  détail du nombre d'affilié d'un commercial en presentiel
+    public function nombre_affilie_presentiel($id) 
+    {
+        $sql = "SELECT * 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND id_can
+        IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = 155000)";
+        return $this->db->query($sql, $id);
+    }
 }
