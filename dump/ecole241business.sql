@@ -101,7 +101,7 @@ CREATE TABLE `eb_gestionnaire` (
   `email_gest` varchar(40) NOT NULL,
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
