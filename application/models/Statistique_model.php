@@ -165,24 +165,24 @@ class Statistique_model extends CI_Model
                     GROUP BY eb_candidat.id_com 
                     ORDER BY nb_candidat DESC";
         
-            return $this->db->query($sql)->row();
+            return $this->db->query($sql)->result();
         }
     }
 
-    public function nombre_viste_commercial(){
+    public function nombre_visite_commercial(){
         {
             $sql = "SELECT `nom_prenom`, `nbr_visite`
                     FROM
                     eb_commercial ORDER BY `nbr_visite` DESC";
         
         
-            return $this->db->query($sql)->row();
+            return $this->db->query($sql)->result();
         }
     }
 
     public function nombre_viste_total(){
         {
-            $sql = "SELECT SUM(`nbr_visite`) 
+            $sql = "SELECT SUM(`nbr_visite`)  AS nbr_visite
                      FROM  `eb_commercial`";
         
             return $this->db->query($sql)->row();

@@ -31,12 +31,17 @@ class Gestionnaire extends CI_Controller
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+		$commerciaux = $this->commercial_model->tout();
 		
 		// traitement																																																																																																																														
 		foreach ($retraits as $retrait) {
 			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
 		}
+
+		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
+		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,15);
+		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 15);
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
@@ -70,7 +75,10 @@ class Gestionnaire extends CI_Controller
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
 			"total_retrait" => (int)$total_retrait,
-			"paiements" => $paiements
+			"paiements" => $paiements,
+			"visites_total" => $commerciaux_visite->nbr_visite,
+			"commerciaux" => $commerciaux,
+			"best_commerciaux" => $commerciaux_candidats
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
