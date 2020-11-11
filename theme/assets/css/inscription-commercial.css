@@ -38,10 +38,74 @@ body {
     margin: 30px auto;
 }
 
+
+/* --===============***date de naissance selectionnée ***================--*/
+
+.selection {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 1px solid #a0b3b0;
+    background: #ffffff;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #6d6c6c;
+    cursor: pointer;
+    font-size: 0.98em;
+    width: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.choix {
+    margin-top: 2px;
+    position: relative;
+    display: flex;
+    height: 2em;
+    width: 30%;
+    line-height: 3;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+.choix::after {
+    content: '\25BC';
+    position: absolute;
+    top: -7px;
+    right: 0;
+    padding: 0 0.30em;
+    background: #e1e2e2;
+    color: #003366;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.choix:hover::after {
+    color: #1b4c7e;
+}
+
+.groupe-champ-de-saisie {
+    width: 100%;
+    margin: 5px 0;
+}
+
 @media screen and (max-width: 475px) {
     .gauche {
         height: 130vh;
-        margin-bottom: 4em;
+        margin: 5px auto !important;
+        padding: 0!important;
+    }
+    form {
+        padding: 13px;
     }
 }
 
@@ -67,16 +131,16 @@ form {
 
 @media screen and (max-width: 360px) {
     form {
-        max-width: 280px;
+        /* max-width: 280px */
     }
 }
+
 
 /* @media screen and (min-width: 361px) and (max-width: 375px) {    
     form {
        
     }
 } */
-
 
 @media screen and (min-width: 402px) and (max-width: 411px) {
     form {
@@ -89,14 +153,12 @@ form {
         margin: 150px auto;
         padding: 40px;
     }
-
-        input,
-    textarea{
+    input,
+    textarea {
         padding: 20px;
         font-size: 2em;
     }
-
-    .select::after{
+    .select::after {
         top: 7px;
     }
 }
@@ -116,24 +178,25 @@ form {
     }
 }
 
-
-
 @media screen and (min-width: 361px) and (max-width: 375px) {
     .logo>img {
         width: 7em;
         height: 4em;
     }
 }
+
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .logo>img {
         margin-top: -2em;
     }
-    .droite{
+    .droite {
         display: none;
     }
 }
 
+
 /* Le titre du formulaire  */
+
 h1 {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
@@ -142,6 +205,7 @@ h1 {
     margin: 0 0 20px;
     font-size: 23px;
 }
+
 @media screen and (max-width: 475px) {
     h1 {
         margin: 0 0 20px;
@@ -149,18 +213,20 @@ h1 {
     }
 }
 
+
 /* Le container des input  */
+
 .groupe-champ-de-saisie:after {
     content: "";
     display: table;
     clear: both;
 }
+
 .groupe-champ-de-saisie>div {
     float: left;
     width: 48%;
     margin-right: 4%;
 }
-
 
 @media screen and (max-width: 475px) {
     .groupe-champ-de-saisie>div {
@@ -168,17 +234,22 @@ h1 {
         width: 100%;
     }
 }
+
 .groupe-champ-de-saisie>div:last-child {
     margin: 0;
 }
 
+
 /* Les champs de saisie  */
+
 .les-champs {
     position: relative;
     margin-bottom: 7px;
 }
 
+
 /* Tous les label  */
+
 label {
     position: absolute;
     transform: translateY(6px);
@@ -188,47 +259,56 @@ label {
     -webkit-backface-visibility: hidden;
     font-size: 13px;
 }
+
 label .etoile {
     position: relative;
     float: left;
     margin: 2px;
     color: #ff0000;
 }
+
 label .etoile-mail {
     position: relative;
     color: #ff0000;
     float: left;
 }
+
 label.active {
     transform: translateY(50px);
     left: 2px;
     font-size: 14px;
 }
+
 label.active .etoile {
     opacity: 0;
 }
+
 label.highlight {
     color: #fff;
 }
 
+
 /* Tous les champs de saisie  */
+
 .input {
     font-size: 14px;
     color: #6d6c6c;
     height: 30%;
     padding: 9px;
 }
+
 @media screen and (max-width: 475px) {
     .input {
-        font-size: 13px;
-        margin-top: 1px;
+        font-size: 16px;
+        margin-top: 6px;
         margin-bottom: 6px;
+        padding: 15px 10px;
     }
-    
     textarea .textarea {
         height: 1%;
     }
 }
+
 input,
 textarea {
     font-size: 20px;
@@ -242,18 +322,18 @@ textarea {
     color: #6d6c6c;
     border-radius: 5px 5px 5px 5px;
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    font-family: 'Montserrat', sans-serif;
 }
+
 @media screen and (max-width: 768px) {
     input,
     textarea {
         font-size: 16px;
     }
-
-    .droite{
+    .droite {
         display: none;
     }
-
-    .select::after{
+    .select::after {
         top: -7px !important;
     }
 }
@@ -263,12 +343,15 @@ textarea:focus {
     outline: 0;
     border-color: #003366;
 }
+
 textarea {
     border: 2px solid #a0b3b0;
     resize: vertical;
 }
 
+
 /* Tous les Select  */
+
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -284,11 +367,13 @@ select {
     color: #6d6c6c;
     cursor: pointer;
     font-size: 1em;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
+
 select::-ms-expand {
     display: none;
 }
+
 .select {
     position: relative;
     display: flex;
@@ -297,10 +382,12 @@ select::-ms-expand {
     overflow: hidden;
     border-radius: .25em;
 }
+
 .type-de-formation {
     width: 20em;
     margin-bottom: 6px;
 }
+
 @media screen and (max-width: 475px) {
     .select {
         width: 100%;
@@ -308,6 +395,7 @@ select::-ms-expand {
         height: 1.80em;
     }
 }
+
 .select::after {
     content: '\25BC';
     position: absolute;
@@ -320,11 +408,14 @@ select::-ms-expand {
     pointer-events: none;
     transition: .25s all ease;
 }
+
 .select:hover::after {
     color: #1b4c7e;
 }
 
+
 /* Bouton d'enregistrement  */
+
 .bouton {
     border: 0;
     outline: none;
@@ -341,6 +432,7 @@ select::-ms-expand {
     display: block;
     width: 100%;
 }
+
 @media screen and (max-width: 475px) {
     .bouton {
         padding: 15px 0;
@@ -349,10 +441,12 @@ select::-ms-expand {
         margin-top: 20px;
     }
 }
+
 .bouton:hover,
 .bouton:focus {
     background: #1b4c7e;
 }
+
 .tacbox {
     display: block;
     padding: 1em;
@@ -362,7 +456,26 @@ select::-ms-expand {
     max-width: 800px;
 }
 
+
+/* @media screen and (max-width: 320px) {
+    .formulaire {
+        height: 100%;
+        box-sizing: border-box;
+    }
+    .input {
+        height: 2.3em;
+    }
+    .select {
+        height: .7em;
+    }
+    .bouton {
+        margin-top: 0 !important;
+    }
+} */
+
+
 /* À droite  */
+
 .droite {
     /* flex: 1; */
     background-color: black;
@@ -375,7 +488,9 @@ select::-ms-expand {
     width: 50vw;
 }
 
+
 /* =====*** Toutes les animations : Animation-delays **===== */
+
 .animation {
     animation-name: move;
     animation-duration: 0.4s;
@@ -383,37 +498,41 @@ select::-ms-expand {
     animation-delay: 2s;
 }
 
+
 /*****
   a1 a2  a3
   ***** */
+
 .a1 {
     animation-delay: 2s;
 }
+
 .a2 {
     animation-delay: 2.1s;
 }
+
 .a3 {
     animation-delay: 2.2s;
 }
+
 @keyframes move {
     0% {
         opacity: 0;
         visibility: hidden;
         transform: translateY(-40px);
     }
-    
     100% {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
     }
 }
+
 @keyframes left {
     0% {
         opacity: 0;
         width: 0;
     }
-    
     100% {
         opacity: 1;
         padding: 20px 40px;

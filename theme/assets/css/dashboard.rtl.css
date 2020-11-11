@@ -3148,6 +3148,17 @@ input[type="button"].btn-block {
   border-top: 1px solid #e9ecef;
 }
 
+/* ------------- pour les besoins de détails du candidat */
+
+.block_details{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
 .dropdown-item {
   display: block;
   width: 100%;

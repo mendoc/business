@@ -12,11 +12,12 @@ class Test extends CI_Controller {
 	public function index()
 	{
 		// On charge le modele
-		$this->load->model('candidat');
+		
+		$message = $this->load->view('front/commercial/inscription-commercial');
 
 		// On recupere les enregistrements
-		$tuples = $this->candidat->tous_les_candidats();
+		// $tuples = $this->candidat->tous_les_candidats();
 
-		var_dump($tuples);
+		// var_dump($tuples);
 	}
 }
