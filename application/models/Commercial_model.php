@@ -34,9 +34,16 @@ class Commercial_model extends CI_Model
 
     public function connexion($nom_util, $mot_passe)
     {
-        $query = $this->db->get_where($this->table, array('nom_util' => $nom_util, 'mot_passe' => $mot_passe));
-
-        return $query->row();
+        
+        $query = $this->db->get_where($this->table, array('nom_util' => $nom_util));
+        if ($commercial = $query->row()) {
+            if (password_verify($mot_passe, $commercial->mot_passe)) {
+                return $commercial;
+            } else {
+                return false;
+            }
+        }
+        // return $query->row();
     }
 
     public function supprimer($id)

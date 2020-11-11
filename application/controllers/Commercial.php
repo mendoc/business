@@ -105,7 +105,7 @@ class Commercial extends CI_Controller
         $sexe        = $this->input->post('sexe');
         $date_n      = $this->input->post('date_n');
         $nom_util    = $this->input->post('nom_util');
-        $mot_passe   = $this->input->post('mot_passe');
+        $mot_passe   = password_hash($this->input->post('mot_passe'), PASSWORD_BCRYPT);
 
         // On valide les informations
 
@@ -311,10 +311,11 @@ class Commercial extends CI_Controller
     {
         $email = $this->input->post('email');
         if ($commercial = $this->commercial_model->par_email($email)) {
-
+            
             $nouveau_mot_passe = rand(1000, 9999);
+            $hash_mot_passe = password_hash($nouveau_mot_passe, PASSWORD_BCRYPT);
 
-            if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe)) {
+            if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $hash_mot_passe)) {
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
