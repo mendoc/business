@@ -544,4 +544,42 @@ class Gestionnaire extends CI_Controller
 
 		return $token_gest != null;
 	}
+
+	public function hashing_com()
+	{
+		$commerciaux = $this->commercial_model->tout();
+		
+		echo 'Pour les commerciaux <br />';
+		foreach($commerciaux as $commercial)
+		{
+			$commercial->mot_passe = password_hash($commercial->mot_passe, PASSWORD_BCRYPT);
+			if ($this->commercial_model->save_infos($commercial, $commercial->id_com)) {
+				echo 'Mot de passe mis a jour pour ' . $commercial->nom_prenom . '<br />';
+			}
+		}
+		
+	}
+
+	public function hashing_gest()
+	{
+		// Recuperation des gestionnaires
+		$gestionnaires = $this->gestionnaire_model->tout();
+
+		// Hashing des mots de passe 
+		foreach($gestionnaires as $gestionnaire)
+		{
+			$gestionnaire->mot_passe = password_hash($gestionnaire->mot_passe, PASSWORD_BCRYPT);
+			
+			$_gestionnaire = new Gestionnaire_model();
+
+			$_gestionnaire->nom_prenom = $gestionnaire->nom_prenom;
+			$_gestionnaire->email_gest = $gestionnaire->email_gest;
+			$_gestionnaire->mot_passe = $gestionnaire->mot_passe;
+
+			if ($_gestionnaire->modifier_gestionnaire($gestionnaire->id_gest)) {
+				echo 'Mot de passe mis a jour pour ' . $gestionnaire->nom_prenom;
+			}
+
+		}
+	}
 }
