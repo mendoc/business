@@ -95,24 +95,6 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql, [PRIX_PRESENTIEL])->row();
     }
 
-    public function nombre_candidat_ligne_ressource($id) //Nbre de tous les candidats en ligne par ressourece
-    {
-        $sql = "SELECT COUNT(id_can)
-        FROM eb_candidat
-        WHERE type_cours = \"L\" AND id_res_part = ?";
-
-        return $this->db->query($sql, array($id));
-    }
-
-    public function nombre_candidat_presentiel_ressource($id) // Nbre de tous les candidats en presentiel par ressource
-    {
-        $sql = "SELECT COUNT(id_can)
-        FROM eb_candidat
-        WHERE type_cours = \"P\" AND id_res_part = ?";
-
-        return $this->db->query($sql, array($id));
-    }
-
     public function nombre_commerciaux() // Nbre de tous les commerciaux
     {
         $sql = "SELECT COUNT(id_com) as nombre_commerciaux
@@ -177,11 +159,11 @@ class Statistique_model extends CI_Model
     public function nombre_candidat_commercial(){
         {
             $sql = "SELECT
-                        eb_commercial.nom_prenom, COUNT(eb_candidat.id_com)
+                        eb_commercial.nom_prenom, COUNT(eb_candidat.id_com) AS nb_candidat
                     FROM
                     `eb_commercial` INNER JOIN eb_candidat ON eb_candidat.id_com = eb_commercial.id_com
                     GROUP BY eb_candidat.id_com 
-                    ORDER BY COUNT(eb_candidat.id_com) DESC";
+                    ORDER BY nb_candidat DESC";
         
             return $this->db->query($sql)->row();
         }
@@ -200,9 +182,8 @@ class Statistique_model extends CI_Model
 
     public function nombre_viste_total(){
         {
-            $sql = "SELECT
-                        SELECT SUM(`nbr_visite`) AS 'Nombre de visite'
-                        FROM (SELECT `nbr_visite` FROM `eb_commercial`) AS Nbre_visite";
+            $sql = "SELECT SUM(`nbr_visite`) 
+                     FROM  `eb_commercial`";
         
             return $this->db->query($sql)->row();
         }
