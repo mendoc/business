@@ -31,12 +31,17 @@ class Gestionnaire extends CI_Controller
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+		$commerciaux = $this->commercial_model->tout();
 		
 		// traitement																																																																																																																														
 		foreach ($retraits as $retrait) {
 			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
 		}
+
+		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
+		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,15);
+		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 15);
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
@@ -70,7 +75,10 @@ class Gestionnaire extends CI_Controller
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
 			"total_retrait" => (int)$total_retrait,
-			"paiements" => $paiements
+			"paiements" => $paiements,
+			"visites_total" => $commerciaux_visite->nbr_visite,
+			"commerciaux" => $commerciaux,
+			"best_commerciaux" => $commerciaux_candidats
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
@@ -543,5 +551,43 @@ class Gestionnaire extends CI_Controller
 		$token_gest = $CI->session->userdata('token_gest');
 
 		return $token_gest != null;
+	}
+
+	public function hashing_com()
+	{
+		$commerciaux = $this->commercial_model->tout();
+		
+		echo 'Pour les commerciaux <br />';
+		foreach($commerciaux as $commercial)
+		{
+			$commercial->mot_passe = password_hash($commercial->mot_passe, PASSWORD_BCRYPT);
+			if ($this->commercial_model->save_infos($commercial, $commercial->id_com)) {
+				echo 'Mot de passe mis a jour pour ' . $commercial->nom_prenom . '<br />';
+			}
+		}
+		
+	}
+
+	public function hashing_gest()
+	{
+		// Recuperation des gestionnaires
+		$gestionnaires = $this->gestionnaire_model->tout();
+
+		// Hashing des mots de passe 
+		foreach($gestionnaires as $gestionnaire)
+		{
+			$gestionnaire->mot_passe = password_hash($gestionnaire->mot_passe, PASSWORD_BCRYPT);
+			
+			$_gestionnaire = new Gestionnaire_model();
+
+			$_gestionnaire->nom_prenom = $gestionnaire->nom_prenom;
+			$_gestionnaire->email_gest = $gestionnaire->email_gest;
+			$_gestionnaire->mot_passe = $gestionnaire->mot_passe;
+
+			if ($_gestionnaire->modifier_gestionnaire($gestionnaire->id_gest)) {
+				echo 'Mot de passe mis a jour pour ' . $gestionnaire->nom_prenom;
+			}
+
+		}
 	}
 }
