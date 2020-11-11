@@ -108,7 +108,7 @@ class Commercial extends CI_Controller
         $mot_passe   = $this->input->post('mot_passe');
 
         // On valide les informations
-     
+
         // On raccourcit le lien
         $this->load->helper('bitly');
         $hash = sha1(time());
@@ -311,22 +311,29 @@ class Commercial extends CI_Controller
     {
         $email = $this->input->post('email');
         if ($commercial = $this->commercial_model->par_email($email)) {
-            
+
             $nouveau_mot_passe = rand(1000, 9999);
-        
-            if($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe))
-            {
+
+            if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe)) {
+
+                $headers  = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
                 $message = "Il est maintenant possible de vous connecter via $nouveau_mot_passe";
-                mail($commercial->email,  'Ecole 241 Business - Nouveau mot de passe', $message);
+
+                mail($commercial->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+
                 $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
-                $this->session->set_flashdata('email-com', $commercial->email);
+                $this->session->set_flashdata('email-com', $commercial->nom_util);
+
                 redirect('commercial/connexion');
+            } else {
+                echo 'Bien';
             }
         } else {
             $this->session->set_flashdata('message-error', "Votre email n'existe pas");
             redirect('commercial/reinitialiser_mot_de_passe');
         }
-        
-        
     }
 }

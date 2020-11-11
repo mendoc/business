@@ -5,13 +5,6 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>Devenir Commercial</title>
-    <meta name="description" content="Deviens commercial pour le compte de l'Ecole 241 Business et fais-toi de l'argent gr&acirc;ce &agrave; tes aptitudes en communication." />
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
-    <link rel="canonical" href="https://ecole-241-business.landen.co/devenir-commercial" />
-
-
-    <link rel="icon" href="<?= theme_url() ?>favicons/defaults-favicon.ico" />
-    <link rel="stylesheet" href="<?= theme_url() ?>css/css-j5m8fgybln8l-02421f1add241e66ca488626436901d8b680dae7.css" />
 
     <meta name="description" content="Deviens commercial pour le compte de l'Ecole 241 Business et fais-toi de l'argent gr&acirc;ce &agrave; tes aptitudes en communication." />
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
@@ -23,9 +16,10 @@
     <meta name="og:url" content="https://business.ecole241.org/index.php/partage/7b52009b64fd0a2a49e6d8a939753077792b0554" />
     <meta name="og:site_name" content="Ecole 241 Business">
     <meta name="og:description" content="Ecole 241 Business est une école de formation pour les commer&ccedil;ants et artisans aux m&eacute;tiers du num&eacute;rique..">
-    <link rel="canonical" href="<?= theme_url() ?>images/logoecole241.png" />
+
     <link rel="icon" href="<?= theme_url() ?>favicon.png" />
     <link rel="stylesheet" href="<?= theme_url() ?>css/css-j5m8fgybln8l-02421f1add241e66ca488626436901d8b680dae7.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
 
     <style tyle="text/css">
         body {
@@ -187,7 +181,6 @@
             --color-link: rgba(255, 255, 255, 1);
         }
     </style>
-    <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
@@ -207,7 +200,7 @@
     <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
-                <a id="headerLogo" href="ecole-241-business-accueil.html" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
+                <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
@@ -222,11 +215,15 @@
                     </a>
                 </div>
                 <div class="header__navCtas">
-                    <a href="<?= site_url('commercial') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
+                    <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         Je me lance
                         <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.6 7H1a1 1 0 1 1 0-2h8.6L7 2.4A1 1 0 0 1 8.4 1l4.3 4.2c.2.3.3.5.3.8 0 .3-.1.5-.3.7L8.4 11A1 1 0 1 1 7 9.5L9.6 7z" fill="rgba(255, 255, 255, 1)"></path>
                         </svg>
+                    </a>
+
+                    <a href="<?= site_url('commercial') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 51, 51, 1); border: 1px solid  rgba(255, 51, 51, 1);">
+                        Se connecter
                     </a>
                 </div>
             </nav>
@@ -234,10 +231,10 @@
         </div>
         <nav id="headerDrawer" class="headerMenu col-dark-sec">
             <div id="headerDrawerBackdrop" class="headerMenu__backdrop"></div>
-            <div class="headerMenu__wrapper" style="background-color: #ffffff;">
+            <div class="headerMenu__wrapper" style=": #ffffff;">
                 <ul class="headerMenu__links">
                     <li>
-                        <a href="<?= site_url('commercial') ?>" class="drawerLink col-dark">
+                        <a href="<?= site_url('commercial/inscription') ?>" class="drawerLink col-dark">
                             S'inscrire
                             <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.557 7H1a1 1 0 1 1 0-2h8.586L7.007 2.421a1 1 0 0 1 1.414-1.414l4.243 4.243c.203.202.3.47.292.736a.997.997 0 0 1-.292.735L8.42 10.964A1 1 0 1 1 7.007 9.55L9.557 7z" fill="currentColor"></path>
@@ -245,8 +242,8 @@
                         </a>
                     </li>
                     <li>
-                        <a href="devenir-commercial.html" class="drawerLink">
-                            Devenir commercial
+                        <a href="<?= site_url('commercial') ?>" class="drawerLink">
+                            Se connecter
                             <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.557 7H1a1 1 0 1 1 0-2h8.586L7.007 2.421a1 1 0 0 1 1.414-1.414l4.243 4.243c.203.202.3.47.292.736a.997.997 0 0 1-.292.735L8.42 10.964A1 1 0 1 1 7.007 9.55L9.557 7z" fill="currentColor"></path>
                             </svg>
@@ -262,13 +259,14 @@
             <div class="ft__half">
                 <div class="ft__wrapper" style="max-width: 570px;">
                     <div class="ft__content">
-                        <h1 class="color-1 weight-title-h font-title section__title left noMargin">Devenez commercial pour l'Ecole 241 Business</h1>
+                        <h1 class="color-1 weight-title-h font-title section__title left noMargin">Devenez commercial
+                            pour l'Ecole 241 Business</h1>
                         <p class="weight-text section__subtitle left noMargin">
                             Et gagnez une commission pour chaque personne qui s'inscrit grâce à vous.
                         </p>
                     </div>
                     <div class="ctas">
-                        <a href="<?= site_url('commercial') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
+                        <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                             Je me lance
                             <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M9.6 7H1a1 1 0 1 1 0-2h8.6L7 2.4A1 1 0 0 1 8.4 1l4.3 4.2c.2.3.3.5.3.8 0 .3-.1.5-.3.7L8.4 11A1 1 0 1 1 7 9.5L9.6 7z" fill="rgba(255, 255, 255, 1)"></path>
@@ -287,23 +285,27 @@
     <div id="titles" class="section section--titles section--center section--iw9mp97jzb" style="background-color: rgba(0, 51, 102, 1); padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(255, 255, 255, 1);">
         <div class="divider divider--curve divider--back">
             <svg viewbox="0 0 1695 72" preserveaspectratio="none">
-                <path d="M0 0c282.5 45 565 67.5 847.5 67.5S1412.5 45 1695 0v72H0V0z" fill="#fff" fill-rule="evenodd"></path>
+                <path d="M0 0c282.5 45 565 67.5 847.5 67.5S1412.5 45 1695 0v72H0V0z" fill="#fff" fill-rule="evenodd">
+                </path>
             </svg>
         </div>
         <div class="wr">
-            <h4 class="color-1 weight-title-h font-title section__title center standalone">Gagnez de l&rsquo;argent sans bouger de chez vous en devenant commercial.</h4>
+            <h4 class="color-1 weight-title-h font-title section__title center standalone">Gagnez de l&rsquo;argent sans
+                bouger de chez vous en devenant commercial.</h4>
         </div>
     </div>
     <div id="gallery" class="section section--gallery section--center dark section--hh6bb5mr538" style="background-color: #fff; padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px;">
         <div class="wr">
-            <h2 class="color-1 weight-title-h font-title section__title center standalone">LES AVANTAGES D'ETRE UN COMMERCIAL POUR L'ECOLE 241 BUSINESS <p style="font-size: 24px;"> VOUS BENEFICIEREZ DE... </p>
+            <h2 class="color-1 weight-title-h font-title section__title center standalone">LES AVANTAGES D'ETRE UN
+                COMMERCIAL POUR L'ECOLE 241 BUSINESS <p style="font-size: 24px;"> VOUS BENEFICIEREZ DE... </p>
             </h2>
             <div class="gallery" style="margin: 0 -15px -30px; margin-top: 0 -15px -30px; margin-bottom: 0 -15px -30px;">
                 <div class="galleryItem" style="width: calc(33.33% - 30px); margin: 0 15px 30px; border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); margin-top: 0 15px 30px; margin-bottom: 0 15px 30px;">
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-c8asf0bf.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/c8asf0bf.png?w=800&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">10% de commissions</h3>
+                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">10% de
+                                commissions</h3>
                             <div class="gallery__description" style="text-align: center;">Sur chaque apprenant .</div>
                         </div>
                     </div>
@@ -312,8 +314,10 @@
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-oaa6kvq3.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/oaa6kvq3.png?w=800&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Bonus de 20.000 Fcfa</h3>
-                            <div class="gallery__description" style="text-align: center;">Après avoir atteint 10 affiliés.</div>
+                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Bonus de
+                                20.000 Fcfa</h3>
+                            <div class="gallery__description" style="text-align: center;">Après avoir atteint 10
+                                affiliés.</div>
                         </div>
                     </div>
                 </div>
@@ -321,8 +325,10 @@
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-t7jqsrnl.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/t7jqsrnl.png?w=800&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Formation acc&eacute;l&eacute;r&eacute;e</h3>
-                            <div class="gallery__description" style="text-align: center;">Une formation spécifique pour les commerciaux.</div>
+                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Formation
+                                acc&eacute;l&eacute;r&eacute;e</h3>
+                            <div class="gallery__description" style="text-align: center;">Une formation spécifique pour
+                                les commerciaux.</div>
                         </div>
                     </div>
                 </div>
@@ -331,14 +337,17 @@
     </div>
     <div id="gallery" class="section section--gallery section--center dark section--2c8bgs11don" style="background-color: #003366; padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px;">
         <div class="wr">
-            <h2 class="color-1 weight-title-h font-title section__title center standalone" style="color: #ffffff;">COMMENT SUIVRE SON ACTIVITE ET SE FAIRE PAYER ?</h2>
+            <h2 class="color-1 weight-title-h font-title section__title center standalone" style="color: #ffffff;">
+                COMMENT SUIVRE SON ACTIVITE ET SE FAIRE PAYER ?</h2>
             <div class="gallery" style="margin: 0 -15px -30px; margin-top: 0 -15px -30px; margin-bottom: 0 -15px -30px;">
                 <div class="galleryItem" style="width: calc(50% - 30px); margin: 0 15px 30px; border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); margin-top: 0 15px 30px; margin-bottom: 0 15px 30px;">
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-g65p53rd.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/g65p53rd.png?w=1200&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Tableau de bord personnalis&eacute;</h3>
-                            <div class="gallery__description" style="text-align: center;">Suivi des inscriptions et des paiements.</div>
+                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Tableau de
+                                bord personnalis&eacute;</h3>
+                            <div class="gallery__description" style="text-align: center;">Suivi des inscriptions et des
+                                paiements.</div>
                         </div>
                     </div>
                 </div>
@@ -346,8 +355,10 @@
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-acsp3mbj.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/acsp3mbj.png?w=1200&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Modes de retraits</h3>
-                            <div class="gallery__description" style="text-align: center;">Des retraits cash ou mobile money par semaine.</div>
+                            <h3 class="color-1 weight-text" style="font-weight: bold; text-align: center;">Modes de
+                                retraits</h3>
+                            <div class="gallery__description" style="text-align: center;">Des retraits cash ou mobile
+                                money par semaine.</div>
                         </div>
                     </div>
                 </div>
@@ -361,10 +372,11 @@
                     <div class="ft__content">
                         <h2 class="hero__title color-1 weight-title-h font-title">OU SE FAIRE PAYER ?</h2>
                         <p class="hero__subtitle weight-text">
-                            Rendez-vous à l&rsquo;&eacute;cole 241, située à l'Ancienne Sobraga, en face d'Irtec. Venez retirer votre <br> argent, sans frais supplémentaires.
+                            Rendez-vous à l&rsquo;&eacute;cole 241, située à l'Ancienne Sobraga, en face d'Irtec. Venez
+                            retirer votre <br> argent, sans frais supplémentaires.
                         </p>
                         <div class="ctas">
-                            <a href="ecole-241-business.landen.html" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
+                            <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                                 Je me lance
                                 <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9.6 7H1a1 1 0 1 1 0-2h8.6L7 2.4A1 1 0 0 1 8.4 1l4.3 4.2c.2.3.3.5.3.8 0 .3-.1.5-.3.7L8.4 11A1 1 0 1 1 7 9.5L9.6 7z" fill="rgba(255, 255, 255, 1)"></path>
@@ -385,7 +397,7 @@
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span> <br>
                     <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
-                    <nav class="footer__linkRow"><a href="devenir-commercial.html">Programme d'affiliation</a><a href="<?= site_url('commercial') ?>">S'inscrire</a></nav>
+                    <nav class="footer__linkRow"><a href="<?= site_url('commercial/inscription') ?>">Programme d'affiliation</a><a href="<?= site_url('commercial/inscription') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
                     <li>
@@ -407,13 +419,15 @@
         </div>
     </footer>
     <div style="position: relative;">
-        <a href="https://www.ecole241.org/?utm_source=litebadge" class="footerBadge footerBadge--production">Réalisé par <span>Ecole 241</span></a>
+        <a href="https://www.ecole241.org/?utm_source=litebadge" class="footerBadge footerBadge--production">Réalisé par
+            <span>Ecole 241</span></a>
     </div>
     <script>
         !(function() {
             function e() {
                 var e;
-                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d.classList.remove("header--withDrawer"),
+                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d
+                    .classList.remove("header--withDrawer"),
                     r && ((e = d.getBoundingClientRect().height), r.setAttribute("style", "height:" + e + "px"));
             }
 
@@ -467,11 +481,14 @@
             function s(e) {
                 "#" === e.charAt(0) && (e = e.substr(1));
                 for (var t, n, o = String(e), r = o.length, a = -1, i = "", c = o.charCodeAt(0); ++a < r;) {
-                    if (0 === (t = o.charCodeAt(a))) throw new InvalidCharacterError("Invalid character: the input contains U+0000.");
+                    if (0 === (t = o.charCodeAt(a))) throw new InvalidCharacterError(
+                        "Invalid character: the input contains U+0000.");
                     i +=
-                        (1 <= t && t <= 31) || 127 == t || (0 === a && 48 <= t && t <= 57) || (1 === a && 48 <= t && t <= 57 && 45 === c) ?
+                        (1 <= t && t <= 31) || 127 == t || (0 === a && 48 <= t && t <= 57) || (1 === a && 48 <= t &&
+                            t <= 57 && 45 === c) ?
                         "\\" + t.toString(16) + " " :
-                        128 <= t || 45 === t || 95 === t || (48 <= t && t <= 57) || (65 <= t && t <= 90) || (97 <= t && t <= 122) ?
+                        128 <= t || 45 === t || 95 === t || (48 <= t && t <= 57) || (65 <= t && t <= 90) || (97 <= t &&
+                            t <= 122) ?
                         o.charAt(a) :
                         "\\" + o.charAt(a);
                 }
@@ -484,7 +501,9 @@
             }
 
             function w() {
-                return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body.offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document.documentElement.clientHeight);
+                return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.body
+                    .offsetHeight, document.documentElement.offsetHeight, document.body.clientHeight, document
+                    .documentElement.clientHeight);
             }
 
             function L(e) {
@@ -554,8 +573,10 @@
                                 if (e.offsetParent)
                                     for (;
                                         (r += e.offsetTop), (e = e.offsetParent););
-                                return (r = Math.max(r - t - n, 0)), o && (r = Math.min(r, w() - I.innerHeight)), r;
-                            })(o, E, parseInt("function" == typeof g.offset ? g.offset(i, c) : g.offset, 10), g.clip)),
+                                return (r = Math.max(r - t - n, 0)), o && (r = Math.min(r, w() - I
+                                    .innerHeight)), r;
+                            })(o, E, parseInt("function" == typeof g.offset ? g.offset(i, c) : g.offset, 10), g
+                                .clip)),
                         (d = l - s),
                         (m = w()),
                         (h = function(e, t) {
@@ -569,7 +590,9 @@
                                     (o = t),
                                     (r = y),
                                     0 === (n = i) && document.body.focus(),
-                                    r || (n.focus(), document.activeElement !== n && (n.setAttribute("tabindex", "-1"), n.focus(), (n.style.outline = "none")), I.scrollTo(0, o)),
+                                    r || (n.focus(), document.activeElement !== n && (n.setAttribute(
+                                        "tabindex", "-1"), n.focus(), (n.style.outline =
+                                        "none")), I.scrollTo(0, o)),
                                     A("scrollStop", g, i, c),
                                     !(b = u = null)
                                 );
@@ -583,16 +606,20 @@
                                 ((n = r = 1 < r ? 1 : r),
                                     "easeInQuad" === (t = g).easing && (o = n * n),
                                     "easeOutQuad" === t.easing && (o = n * (2 - n)),
-                                    "easeInOutQuad" === t.easing && (o = n < 0.5 ? 2 * n * n : (4 - 2 * n) * n - 1),
+                                    "easeInOutQuad" === t.easing && (o = n < 0.5 ? 2 * n * n : (4 - 2 * n) *
+                                        n - 1),
                                     "easeInCubic" === t.easing && (o = n * n * n),
                                     "easeOutCubic" === t.easing && (o = --n * n * n + 1),
-                                    "easeInOutCubic" === t.easing && (o = n < 0.5 ? 4 * n * n * n : (n - 1) * (2 * n - 2) * (2 * n - 2) + 1),
+                                    "easeInOutCubic" === t.easing && (o = n < 0.5 ? 4 * n * n * n : (n -
+                                        1) * (2 * n - 2) * (2 * n - 2) + 1),
                                     "easeInQuart" === t.easing && (o = n * n * n * n),
                                     "easeOutQuart" === t.easing && (o = 1 - --n * n * n * n),
-                                    "easeInOutQuart" === t.easing && (o = n < 0.5 ? 8 * n * n * n * n : 1 - 8 * --n * n * n * n),
+                                    "easeInOutQuart" === t.easing && (o = n < 0.5 ? 8 * n * n * n * n : 1 -
+                                        8 * --n * n * n * n),
                                     "easeInQuint" === t.easing && (o = n * n * n * n * n),
                                     "easeOutQuint" === t.easing && (o = 1 + --n * n * n * n * n),
-                                    "easeInOutQuint" === t.easing && (o = n < 0.5 ? 16 * n * n * n * n * n : 1 + 16 * --n * n * n * n * n),
+                                    "easeInOutQuint" === t.easing && (o = n < 0.5 ? 16 * n * n * n * n * n :
+                                        1 + 16 * --n * n * n * n * n),
                                     t.customEasing && (o = t.customEasing(n)),
                                     o || n)),
                             I.scrollTo(0, Math.floor(a)),
@@ -612,7 +639,8 @@
 
                 function n(e) {
                     var t, n;
-                    !(("matchMedia" in I && I.matchMedia("(prefers-reduced-motion)").matches) || 0 !== e.button || e.metaKey || e.ctrlKey) &&
+                    !(("matchMedia" in I && I.matchMedia("(prefers-reduced-motion)").matches) || 0 !== e.button || e
+                        .metaKey || e.ctrlKey) &&
                     "closest" in e.target &&
                         (r = e.target.closest(o)) &&
                         "a" === r.tagName.toLowerCase() &&
@@ -621,7 +649,9 @@
                         r.pathname === I.location.pathname &&
                         /#/.test(r.href) &&
                         ((t = s(c(r.hash))),
-                            (n = (n = v.topOnEmptyHash && "#" === t ? document.documentElement : document.querySelector(t)) || "#top" !== t ? n : document.documentElement) && (e.preventDefault(), O.animateScroll(n, r)));
+                            (n = (n = v.topOnEmptyHash && "#" === t ? document.documentElement : document
+                                .querySelector(t)) || "#top" !== t ? n : document.documentElement) && (e
+                                .preventDefault(), O.animateScroll(n, r)));
                 }
 
                 function a(e) {
@@ -640,15 +670,20 @@
                     t =
                         t ||
                         setTimeout(function() {
+
+
                             (t = null), (E = L(S));
                         }, 66);
                 }
                 return (
                     (O.destroy = function() {
-                        v && (document.removeEventListener("click", n, !1), I.removeEventListener("resize", i, !1), I.removeEventListener("popstate", a, !1), O.cancelScroll(), (b = t = E = S = r = v = null));
+                        v && (document.removeEventListener("click", n, !1), I.removeEventListener("resize",
+                            i, !1), I.removeEventListener("popstate", a, !1), O.cancelScroll(), (b =
+                            t = E = S = r = v = null));
                     }),
                     (O.init = function(e) {
-                        if (!("querySelector" in document && "addEventListener" in I && "requestAnimationFrame" in I && "closest" in I.Element.prototype))
+                        if (!("querySelector" in document && "addEventListener" in I &&
+                                "requestAnimationFrame" in I && "closest" in I.Element.prototype))
                             throw "Smooth Scroll: This browser does not support the required JavaScript methods and browser APIs.";
                         O.destroy(),
                             (v = C(H, e || {})),
@@ -667,7 +702,8 @@
     <script data-version="1.2.3">
         !(function() {
             var e = 0;
-            document.getElementsByClassName("header--fixed").length && (e = document.getElementsByClassName("header--fixed")[0].clientHeight), new window.SmoothScroll('a[href*="#"]', {
+            document.getElementsByClassName("header--fixed").length && (e = document.getElementsByClassName(
+                "header--fixed")[0].clientHeight), new window.SmoothScroll('a[href*="#"]', {
                 offset: e
             });
         })(),
@@ -687,7 +723,8 @@
                 });
             });
             var t = new XMLHttpRequest();
-            t.open("POST", "/api/view", !0), t.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8"), t.send(JSON.stringify({
+            t.open("POST", "/api/view", !0), t.setRequestHeader("Content-Type",
+                "application/x-www-form-urlencoded; charset=UTF-8"), t.send(JSON.stringify({
                 referrer: document.referrer,
                 path: window.location.pathname
             }));
