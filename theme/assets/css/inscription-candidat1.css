@@ -22,7 +22,6 @@ body {
 .container {
     display: flex;
     height: 100vh;
-    /* width: 100vw; */
     justify-content: space-between;
 }
 
@@ -39,22 +38,83 @@ body {
 .gauche {
     overflow: hidden;
     flex-wrap: wrap;
-    /* justify-content: center;
-    align-items: center; */
     animation-name: left;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-delay: 1s;
     margin: 0 auto;
-    /* display: flex;
-    height: 100vh; */
 }
+
+
+/* --===============***date de naissance selectionnée ***================--*/
+
+.selection{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 1px solid #a0b3b0;
+    background: #ffffff;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #6d6c6c;
+    cursor: pointer;
+    font-size: 0.98em;
+    width: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.choix {
+    margin-top: 2px;
+    position: relative;
+    display: flex;
+    height: 2em;
+    width: 30%;
+    line-height: 3;
+    overflow: hidden;
+    border-radius: .25em;
+}
+
+.choix::after {
+    content: '\25BC';
+    position: absolute;
+    top: -7px;
+    right: 0;
+    padding: 0 0.30em;
+    background: #e1e2e2;
+    color: #003366;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.choix:hover::after {
+    color: #1b4c7e;
+}
+
+.groupe-champ-de-saisie{
+    width: 100%;
+    margin: 5px 0;
+}
+
 
 @media screen and (max-width: 475px) {
     .gauche {
         height: 130vh;
-        margin-bottom: 4em;
+        padding: 0!important;
+        /* margin-bottom: 4em; */
     }
+
+    
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -69,7 +129,7 @@ body {
 form {
     background: #ffffffe6;
     padding: 20px;
-    max-width: 700px;
+    width: 700px;
     border-radius: 5px 5px 5px 5px;
     box-shadow: 0 4px 10px 4px rgba(19, 35, 47, .3);
     border-top: 11px solid #003366;
@@ -77,21 +137,17 @@ form {
 }
 
 @media screen and (max-width: 360px) {
-    form {
-        max-width: 280px;
+    .formulaire{
+        height: 100%;
     }
 }
 
 
-/* @media screen and (min-width: 361px) and (max-width: 375px) {
-    form {
-       
-    }
-} */
-
 @media screen and (min-width: 402px) and (max-width: 411px) {
+    
     form {
-        margin-top: 15px;
+        width: 100%;
+        padding: 40px 20px !important;
     }
 }
 
@@ -244,23 +300,63 @@ label.highlight {
     color: #6d6c6c;
     margin-top: 2px;
     height: 30%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media screen and (max-width: 475px) {
     .input {
-        font-size: 13px;
-        margin-top: 1px;
-        margin-bottom: 6px;
+        font-size: 16px;
+        margin-bottom: 8px;
+        padding: 16px;
     }
+
     textarea .textarea {
         height: 1%;
     }
+
+    /* .form{
+        height: 100%;
+    } */
+    form{
+        padding: 20px;
+    }
+    h1{
+        font-size: 1.3em;
+    }
+
+    .formulaire{
+        height: 100%;
+        box-sizing: border-box;
+    }
+
+
+
 }
+
+@media screen and (max-width: 320px){
+    .formulaire{
+        height: 230%;
+        box-sizing: border-box;
+        margin-top: -30em;
+    }
+
+    .input{
+        height: 2.3em;
+    }
+    .select{
+        height: .7em;
+    }
+    .bouton{
+        margin-top: 0 !important;
+    }
+
+} 
+
+
 
 input,
 textarea {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.99em;
     display: block;
     width: 100%;
@@ -317,7 +413,7 @@ select {
     color: #6d6c6c;
     cursor: pointer;
     font-size: 0.98em;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 select::-ms-expand {
@@ -343,14 +439,15 @@ select::-ms-expand {
     .select {
         width: 100%;
         margin-bottom: 7px;
-        height: 1.80em;
+        height: 3em;
     }
 }
 
 .select::after {
     content: '\25BC';
     position: absolute;
-    top: -5px;
+    height: 5em;
+    top: -7px;
     right: 0;
     padding: 0 0.30em;
     background: #e1e2e2;
@@ -382,7 +479,7 @@ select::-ms-expand {
     -webkit-appearance: none;
     display: block;
     width: 100%;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
 @media screen and (max-width: 475px) {
