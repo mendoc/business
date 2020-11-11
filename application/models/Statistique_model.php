@@ -9,17 +9,6 @@ class Statistique_model extends CI_Model
         $this->load->database();
     }
 
-    public function visites_par_commercial_old($id)
-    {
-        $sql = "SELECT
-                    SUM(`nbr_visite`) AS nb_visites_com
-                FROM
-                    `eb_ressource_partage`
-                WHERE
-                    `id_com` = ?";
-
-        return $this->db->query($sql, array($id))->row();
-    }
 
     public function visites_par_commercial($id)
     {
@@ -106,6 +95,24 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql, [PRIX_PRESENTIEL])->row();
     }
 
+    public function nombre_candidat_ligne_ressource($id) //Nbre de tous les candidats en ligne par ressourece
+    {
+        $sql = "SELECT COUNT(id_can)
+        FROM eb_candidat
+        WHERE type_cours = \"L\" AND id_res_part = ?";
+
+        return $this->db->query($sql, array($id));
+    }
+
+    public function nombre_candidat_presentiel_ressource($id) // Nbre de tous les candidats en presentiel par ressource
+    {
+        $sql = "SELECT COUNT(id_can)
+        FROM eb_candidat
+        WHERE type_cours = \"P\" AND id_res_part = ?";
+
+        return $this->db->query($sql, array($id));
+    }
+
     public function nombre_commerciaux() // Nbre de tous les commerciaux
     {
         $sql = "SELECT COUNT(id_com) as nombre_commerciaux
@@ -165,5 +172,51 @@ class Statistique_model extends CI_Model
         $result = $this->db->query($sql, array($id, PRIX_EN_LIGNE));
 
         return ($result ? $result->row() : FALSE);
+    }
+
+    public function nombre_candidat_commercial(){
+        {
+            $sql = "SELECT
+                        eb_commercial.nom_prenom, COUNT(eb_candidat.id_com)
+                    FROM
+                    `eb_commercial` INNER JOIN eb_candidat ON eb_candidat.id_com = eb_commercial.id_com
+                    GROUP BY eb_candidat.id_com 
+                    ORDER BY COUNT(eb_candidat.id_com) DESC";
+        
+            return $this->db->query($sql)->row();
+        }
+    }
+
+    public function nombre_viste_commercial(){
+        {
+            $sql = "SELECT `nom_prenom`, `nbr_visite`
+                    FROM
+                    eb_commercial ORDER BY `nbr_visite` DESC";
+        
+        
+            return $this->db->query($sql)->row();
+        }
+    }
+
+    public function nombre_viste_total(){
+        {
+            $sql = "SELECT
+                        SELECT SUM(`nbr_visite`) AS 'Nombre de visite'
+                        FROM (SELECT `nbr_visite` FROM `eb_commercial`) AS Nbre_visite";
+        
+            return $this->db->query($sql)->row();
+        }
+    }
+
+    public function listing_paiement()
+    {
+        $sql = "SELECT nom_prenom, montant, date 
+        FROM eb_candidat
+        INNER JOIN eb_paiement
+        ON eb_candidat.id_can = eb_paiement.id_can
+        ORDER BY date DESC
+        LIMIT 5";
+
+        return $this->db->query($sql);
     }
 }
