@@ -86,8 +86,12 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
-		$this->session->sess_destroy();
-		$this->load->view('back/gestionnaire/connexion');
+		if (est_connecte()) {
+			redirect('gestionnaire');
+		} else {
+			$this->session->sess_destroy();
+			$this->load->view('back/gestionnaire/connexion');
+		}
 	}
 
 	public function deconnexion()
@@ -108,9 +112,15 @@ class Gestionnaire extends CI_Controller
 		$gestionnaire = $this->gestionnaire_model->connexion($email, $mot_passe);
 
 		if ($gestionnaire) {
-			$this->session->set_userdata('token_gest', md5(time()));
-			$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
-			$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
+			if ($this->input->post('souvenir')) {
+				$this->session->set_tempdata('token_gest', md5(time()), 2678400);
+				$this->session->set_tempdata('nom_gest', $gestionnaire->nom_prenom, 2678400);
+				$this->session->set_tempdata('email_gest', $gestionnaire->email_gest, 2678400);
+			} else {
+				$this->session->set_userdata('token_gest', md5(time()));
+				$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
+				$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
+			}
 			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');
