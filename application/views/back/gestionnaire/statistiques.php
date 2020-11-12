@@ -245,6 +245,38 @@
                     </table>
                 </div>
             </div>
+            <div class="card col-6">
+                <div class="card-header">
+                    <h3 class="card-title">Nombre d'inscrit par jour </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-striped table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($inscrits_jour)) { ?>
+                                <tr>
+                                    <td colspan="2" class="text-center h1">
+                                        <span> RAS </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($inscrits_jour as $inscrit) : ?>
+                                    <tr>
+                                        <td class="text-nowrap"><?= $inscrit->jour ?></td>
+                                        <td class=""><?= $inscrit->nombre_inscrits ?></td>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             
         </div>

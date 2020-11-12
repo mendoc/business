@@ -67,6 +67,9 @@ class Gestionnaire extends CI_Controller
 			$paiement->nom_candidat = $nom_candidat;
 		}
 
+		$inscrit_par_jour = array_slice($this->statistique_model->nb_inscrit_jour(), 0, 15);
+
+		
 		$data = array(
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
@@ -78,7 +81,8 @@ class Gestionnaire extends CI_Controller
 			"paiements" => $paiements,
 			"visites_total" => $commerciaux_visite->nbr_visite,
 			"commerciaux" => $commerciaux,
-			"best_commerciaux" => $commerciaux_candidats
+			"best_commerciaux" => $commerciaux_candidats,
+			"inscrits_jour" => $inscrit_par_jour
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
