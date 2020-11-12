@@ -197,4 +197,38 @@ class Statistique_model extends CI_Model
 
         return $this->db->query($sql);
     }
+
+    public function nb_inscrit_jour()
+    {
+        $sql = " SELECT DATE(date_enrg) AS `Jour`, COUNT(*) AS `Nombre d'inscrits`
+            FROM eb_candidat
+            GROUP BY `Jour`
+            ORDER BY `Jour` DESC";
+
+        return $this->db->query($sql)->result();
+    }
+
+    public function nb_affilie_jour_ligne()
+    {
+        $sql = "SELECT DATE(date) AS 'Jour' ,COUNT(eb_paiement.id_can)
+        FROM eb_paiement  
+        INNER JOIN eb_candidat ON eb_candidat.id_can = eb_paiement.id_can 
+        WHERE type_cours = 'L' 
+        GROUP BY 'Jour'
+        HAVING SUM(montant) =  PRIX_EN_LIGNE";
+
+        return $this->db->query($sql)->result();
+    }
+
+    public function nb_affilie_jour_presentiel()
+    {
+        $sql = "SELECT DATE(date) AS 'Jour' ,COUNT(eb_paiement.id_can)
+        FROM eb_paiement  
+        INNER JOIN eb_candidat ON eb_candidat.id_can = eb_paiement.id_can 
+        WHERE type_cours = 'P' 
+        GROUP BY 'Jour'
+        HAVING SUM(montant) =  PRIX_PRESENTIEL";
+
+        return $this->db->query($sql)->result();
+    }
 }
