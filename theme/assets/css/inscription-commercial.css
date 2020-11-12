@@ -35,11 +35,16 @@ body {
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-delay: 1s;
-    margin: 30px auto;
+    margin: 0 auto;
 }
 
 
 /* --===============***date de naissance selectionnée ***================--*/
+
+form a.btn-retour {
+    color: #003366;
+    font-size: 1em;
+}
 
 .selection {
     -webkit-appearance: none;
