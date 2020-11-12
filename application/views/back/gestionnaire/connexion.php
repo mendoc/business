@@ -41,7 +41,7 @@
                 
                 <div class="souvenir">
                     <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
-                    <input type="checkbox" name="" id="souvenir" class="check-btn">
+                    <input type="checkbox" name="souvenir" id="souvenir" class="check-btn" checked>
                 </div>
 
                 <a href="#">Mot de passe oublié ?</a>
