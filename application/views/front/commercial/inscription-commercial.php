@@ -8,6 +8,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?= theme_url() ?>favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-commercial.css">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];​
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());​
+        gtag('config', 'G-4D8CEC5J5T');
+    </script>
 </head>
 
 <body>
@@ -44,7 +54,7 @@
 
                             <!--==** Date de naissance **== -->
 
-                             <div class="les-champs">
+                            <div class="les-champs">
                                 <div class="input-group">
                                     <!--** ========= Les jours du mois : 31 jours max ============ **-->
                                     <div class="choix">
