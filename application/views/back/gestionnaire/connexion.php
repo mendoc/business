@@ -11,6 +11,7 @@
         body {
             background-image: url(<?= theme_url() ?>assets/images/fond-connexion-gest.jpg);
         }
+
     </style>
     <!-- Hotjar Tracking Code for https://business.ecole241.org -->
     <script>
@@ -37,6 +38,12 @@
                 <?php endif; ?>
                 <input type="email" placeholder="Adresse e-mail" name="email" required value="<?= $this->session->flashdata('email'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="password" required />
+                
+                <div class="souvenir">
+                    <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
+                    <input type="checkbox" name="" id="souvenir" class="check-btn">
+                </div>
+
                 <a href="#">Mot de passe oublié ?</a>
                 <button type="submit">SE CONNECTER</button>
             </form>
