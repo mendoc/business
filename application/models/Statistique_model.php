@@ -200,7 +200,7 @@ class Statistique_model extends CI_Model
 
     public function nb_inscrit_jour()
     {
-        $sql = " SELECT DATE(date_enrg) AS `Jour`, COUNT(*) AS `Nombre d'inscrits`
+        $sql = " SELECT DATE(date_enrg) AS `jour`, COUNT(*) AS `nombre_inscrits`
             FROM eb_candidat
             GROUP BY `Jour`
             ORDER BY `Jour` DESC";
