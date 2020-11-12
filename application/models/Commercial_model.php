@@ -153,4 +153,26 @@ class Commercial_model extends CI_Model
             return FALSE;
         }
     }
+
+    public function classement()
+    {
+        $sql = "SELECT
+                    `nom_prenom`,
+                    `nbr_visite`,
+                    `com`.`nb_candidats`
+                FROM
+                    `eb_commercial`
+                LEFT JOIN (
+                    SELECT `eb_commercial`.`id_com`,
+                        COUNT(eb_candidat.id_com) AS nb_candidats
+                    FROM
+                        `eb_commercial`
+                    INNER JOIN eb_candidat ON eb_candidat.id_com = eb_commercial.id_com
+                    GROUP BY
+                        eb_candidat.id_com
+                ) AS com ON `eb_commercial`.`id_com` = com.`id_com`
+                ORDER BY `com`.`nb_candidats` DESC, `nbr_visite` DESC;";
+
+        return $this->db->query($sql)->result();
+    }
 }

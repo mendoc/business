@@ -42,7 +42,7 @@
                                        0<?= number_format($retrait->num_ret, 0, '', ' '); ?>
                                     </td>
                                     <td>
-                                        <?= $retrait->nom_prenom                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>
+                                        <?= $retrait->nom_prenom ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

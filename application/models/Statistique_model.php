@@ -156,37 +156,34 @@ class Statistique_model extends CI_Model
         return ($result ? $result->row() : FALSE);
     }
 
-    public function nombre_candidat_commercial(){
-        {
-            $sql = "SELECT
+    public function nombre_candidat_commercial()
+    {
+        $sql = "SELECT
                         eb_commercial.nom_prenom, COUNT(eb_candidat.id_com) AS nb_candidat
                     FROM
                     `eb_commercial` INNER JOIN eb_candidat ON eb_candidat.id_com = eb_commercial.id_com
                     GROUP BY eb_candidat.id_com 
                     ORDER BY nb_candidat DESC";
-        
-            return $this->db->query($sql)->result();
-        }
+
+        return $this->db->query($sql)->result();
     }
 
-    public function nombre_visite_commercial(){
-        {
-            $sql = "SELECT `nom_prenom`, `nbr_visite`
+    public function nombre_visite_commercial()
+    {
+        $sql = "SELECT `nom_prenom`, `nbr_visite`
                     FROM
                     eb_commercial ORDER BY `nbr_visite` DESC";
-        
-        
-            return $this->db->query($sql)->result();
-        }
+
+
+        return $this->db->query($sql)->result();
     }
 
-    public function nombre_viste_total(){
-        {
-            $sql = "SELECT SUM(`nbr_visite`)  AS nbr_visite
+    public function nombre_viste_total()
+    {
+        $sql = "SELECT SUM(`nbr_visite`)  AS nbr_visite
                      FROM  `eb_commercial`";
-        
-            return $this->db->query($sql)->row();
-        }
+
+        return $this->db->query($sql)->row();
     }
 
     public function listing_paiement()
