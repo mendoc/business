@@ -6,7 +6,7 @@ class Candidat extends CI_Controller
     //La fonction qui affiche la vue candidat
     public function index()
     {
-        $this->load->view('front/candidat/inscription');
+        $this->load->view('front/candidat/inscription_candidat');
     }
 
     // la fonction qui réupere les donnees du formulaire
@@ -16,7 +16,7 @@ class Candidat extends CI_Controller
         $nom         = $this->input->post('nom');
         $prenom      = $this->input->post('prenom');
         $sexe        = $this->input->post('sexe');
-        $date_n      = $this->input->post('date');
+        $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
         $email       = $this->input->post('email');
         $num_tel     = $this->input->post('telephone');
         $num_what    = $this->input->post('num_what');
@@ -24,6 +24,7 @@ class Candidat extends CI_Controller
         $domaine_act = $this->input->post('domaine');
         $type_serv   = $this->input->post('service');
         $attentes    = $this->input->post('attentes');
+        $type_cours  = $this->input->post('type_cours');
         $hash        = $this->input->post('hash');
 
         // On valide les informations
@@ -40,6 +41,7 @@ class Candidat extends CI_Controller
         $candidat->domaine_act = $domaine_act;
         $candidat->type_serv   = $type_serv;
         $candidat->attentes    = $attentes;
+        $candidat->type_cours  = $type_cours;
         $candidat->horaire     = $horaire;
 
         if (isset($hash) and !empty($hash)) {

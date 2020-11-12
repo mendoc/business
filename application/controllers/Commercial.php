@@ -154,7 +154,7 @@ class Commercial extends CI_Controller
     public function traitement_connexion()
     {
         //récupération des données
-        $nom_util   = $this->input->post('nom_util');
+        $nom_util   = $this->input->post('email');
         $mot_passe  = $this->input->post('mot_passe');
 
         // Validation des données
