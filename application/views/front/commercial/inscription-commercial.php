@@ -8,6 +8,8 @@
     <link rel="shortcut icon" type="image/x-icon" href="<?= theme_url() ?>favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-commercial.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= theme_url() ?>assets/css/font-awesome.min.css">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
     <script>
@@ -30,6 +32,7 @@
                     <div id="inscris-toi">
 
                         <form action="/" method="post">
+                            <a class="btn-retour" href="<?= site_url('/')?>"><i class="fa fa-arrow-left" aria-hidden="true"></i> </a>
                             <div class="logo">
                                 <img src="<?= theme_url() ?>/assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
                             </div>
