@@ -37,17 +37,20 @@
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="text" name="nom" placeholder="Nom" class="input" required autofocus />
+                            <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
+                            <?= form_error('nom') ?>
                         </div>
 
                         <div class="les-champs">
-                            <input type="text" name="prenom" placeholder="Prénom" class="input" required autofocus />
+                            <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
+                            <?= form_error('prenom') ?>
                         </div>
                     </div>
                     <!--===*** Adresse mail ***===-->
                     <div class="les-champs">
                         <label><span class="etoile-mail">*</span></label>
-                        <input type="email" name="email" placeholder="Adresse mail" class="input" required autofocus />
+                        <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
+                        <?= form_error('email') ?>
                     </div>
 
 
@@ -198,12 +201,14 @@
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="telephone" placeholder="N° de téléphone" class="input" required autofocus />
+                            <input type="tel" name="telephone" value="<?= set_value('telephone') ?>" placeholder="N° de téléphone" class="input" required autofocus />
+                            <?= form_error('telephone') ?>
                         </div>
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="num_what" placeholder="N° WhatsApp" class="input" required autofocus />
+                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" required autofocus />
+                            <?= form_error('num_what')?>
                         </div>
                     </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
