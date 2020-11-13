@@ -96,7 +96,7 @@
             Retraits et paiements
         </h2>
         <div class="col-lg-12 row">
-            <div class="card col-6">
+            <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Dernières demandes de retraits</h3>
                 </div>
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="card col-5 ml-5">
+            <div class="card col-lg-5 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>
@@ -181,7 +181,7 @@
                 </div>
             </div>
 
-            <div class="card col-6">
+            <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Trafic des commerciaux</h3>
                 </div>
@@ -213,7 +213,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-5 ml-5">
+            <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Performance des commerciaux </h3>
                 </div>
@@ -245,7 +245,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-6">
+            <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Nombre d'inscrit par jour </h3>
                 </div>

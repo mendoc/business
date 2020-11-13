@@ -22,7 +22,7 @@
                                 </span>
                             </a>
                         </div>
-                        <a class="header-toggler d-none d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                        <a class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>
                         </a>
                     </div>
