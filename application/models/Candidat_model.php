@@ -14,11 +14,10 @@ class Candidat_model extends CI_Model
     public $type_serv;
     public $attentes;
     public $horaire;
-    public $id_res_part;
 
     // Nom de la table
     private $table = 'candidat';
-    
+
     // Clé primaire de la table
     private $id = 'id_can';
 

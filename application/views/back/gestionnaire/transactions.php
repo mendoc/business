@@ -6,7 +6,7 @@
             </h1>
         </div>
         <div class="card">
-            <?php if (empty($candidats)) : ?>
+            <?php if (empty($paiements)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">
                     <p class="page-title"> Aucune transaction pour le moment. </p>
                     <p>Ici s'afficheront toutes les transactions financières de la plateforme.</p>
@@ -19,38 +19,21 @@
                     <table class="table card-table table-vcenter text-nowrap">
                         <thead>
                             <tr>
-                                <th>Noms & prénoms</th>
-                                <th>Horaires</th>
-                                <th>Téléphone</th>
-                                <th>Domaine d'activité</th>
-                                <th>Statut</th>
-                                <th></th>
-                                <th></th>
+                                <th>Nom du candidat</th>
+                                <th>Type de cours</th>
+                                <th>montant paye</th>
+                                <th>montant restant</th>
+                                <th>nom du gestionnaire</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($candidats as $candidat) : ?>
+                            <?php foreach ($paiements as $paiement) : ?>
                                 <tr>
-                                    <td><a href="" class="text-inherit"><?= $candidat->nom_prenom; ?></a></td>
-                                    <td><?= $candidat->horaire ?></td>
-                                    <td>
-                                        <?= $candidat->num_tel ?>
-                                    </td>
-                                    <td>
-                                        <?= $candidat->domaine_act ?>
-                                    </td>
-                                    <td>
-                                        <?php if ($candidat->est_apprenant) { ?>
-                                            <span class="status-icon bg-success"></span> Payé
-                                        <?php } else {  ?>
-                                            <span class="status-icon bg-danger"></span> Non payé
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
+                                    <td><?= $paiement->nom_candidat ?></td>
+                                    <td><?= ($paiement->type == 'P') ? 'En presentiel' : 'En ligne' ?></td>
+                                    <td><?= number_format($paiement->montant, 0, ',', ' ') ?> F CFA</td>
+                                    <td><?= number_format(150000 - $paiement->montant, 0,',',' ') ?> F CFA</td>
+                                    <td><?= $paiement->gestionnaire ?></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
