@@ -58,7 +58,9 @@
 
             <table style="width: 100%;
                 border-collapse: collapse;
-                margin: 40px auto;">
+                margin: 40px auto;
+                font-family: 'Montserrat', sans-serif;""
+                >
 
                 <tbody>
                     <tr style="background: #ccc;">
@@ -179,7 +181,7 @@
         background-color: #003366;
         text-align: center;
         justify-content: center;
-        padding: 5px 0;" class="container need-help">
+        padding: 5px 10px;" class="container need-help">
             <div class="sec-2">
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
         font-weight: bold;">Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>
