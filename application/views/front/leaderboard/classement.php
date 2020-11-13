@@ -49,6 +49,7 @@
                     <th class="c-table__head-cell">Commercial</th>
                     <th class="c-table__head-cell">Visites</th>
                     <th class="c-table__head-cell u-text--right">Candidats</th>
+                    <th class="c-table__head-cell u-text--right">% Conv.</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,7 +63,10 @@
                         </td>
                         <td class="c-table__cell c-table__cell--count"><small><?= $commercial->nbr_visite ?></small></td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <strong><?= $commercial->nb_candidats ? $commercial->nb_candidats : 0 ?></strong>
+                            <strong><?= $commercial->nb_candidats ?></strong>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <span><?= number_format(($commercial->nb_candidats / $commercial->nbr_visite) * 100, 1,",", " " )  ?> %</span>
                         </td>
                     </tr>
                 <?php endforeach; ?>

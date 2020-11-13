@@ -9,6 +9,10 @@ class Leaderboard extends CI_Controller
 
         if (!$coms) $coms = array();
 
+        foreach ($coms as $commercial){
+
+           $commercial->nb_candidats = $commercial->nb_candidats ? $commercial->nb_candidats : 0;
+        }
         $data = array(
             'commerciaux' => $coms
         );
