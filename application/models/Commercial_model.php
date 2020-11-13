@@ -171,7 +171,7 @@ class Commercial_model extends CI_Model
                     GROUP BY
                         eb_candidat.id_com
                 ) AS com ON `eb_commercial`.`id_com` = com.`id_com`
-                ORDER BY `com`.`nb_candidats` DESC, `nbr_visite` DESC;";
+                ORDER BY `com`.`nb_candidats` DESC, `nbr_visite` ASC;";
 
         return $this->db->query($sql)->result();
     }
