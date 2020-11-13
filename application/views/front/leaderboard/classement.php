@@ -66,7 +66,8 @@
                             <strong><?= $commercial->nb_candidats ?></strong>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <span><?= number_format(($commercial->nb_candidats / $commercial->nbr_visite) * 100, 1,",", " " )  ?> %</span>
+                            <span><?=
+                                    number_format(($commercial->nb_candidats / ($commercial->nbr_visite == 0 ? 1 : $commercial->nbr_visite )) * 100, 1,",", " " )  ?> %</span>
                         </td>
                     </tr>
                 <?php endforeach; ?>
