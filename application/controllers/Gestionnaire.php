@@ -479,6 +479,45 @@ class Gestionnaire extends CI_Controller
 		afficher('back/gestionnaire/details_candidat', $data);
 	}
 
+	// Vue detail d'un commercial
+	public function detail_commercial($id)
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// Chargement des models
+		$this->load->model('statistique_model');
+		$this->load->model('retrait_model');
+
+		if($commercial = $this->commercial_model->recuperer_un($id)){
+			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
+			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
+			$result_candidats_ligne = $this->statistique_model->candidats_com_ligne($id);
+			$result_candidats_presentiel = $this->statistique_model->candidats_com_presentiel($id);
+			$result_visites = $this->statistique_model->visites_par_commercial($id);
+
+			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
+
+			// var_dump($mes_retraits);
+			// die;
+			$data = [
+				"commercial" => $commercial,
+				"result_aff_ligne" => $result_aff_ligne,
+				"result_aff_presentiel" => $result_aff_presentiel,
+				"inscrits_ligne" => $result_candidats_ligne,
+				"inscrits_presentiel" => $result_candidats_presentiel
+			];
+
+			afficher('back/gestionnaire/details_commercial', $data);
+
+		} else {
+			echo '404';
+		}
+
+
+	}
+
 	// Vue pour confirmer une inscription ( ajouter le montant )
 	public function inscription_candidat($id_can)
 	{
