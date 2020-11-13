@@ -1,217 +1,133 @@
 <div class="my-3 my-md-5">
+    <div class="container h-auto">
+        <div class="page-header">
+            <h1 class="page-title border-bottom">
+                Images
+            </h1>
+        </div>
+        <div class="row row-cards">
+            <?php if (!isset($images) or count($images) == 0) : ?>
+                <div class="text-center display-5 p-5 col-12 mx-auto">
+                    <p class="page-title"> Aucune image publiée pour le moment</p>
+                    <p>Toutes les images à partager s'afficheront ici.</p>
+                </div>
+            <?php else : ?>
+                <?php foreach ($images as $image) : ?>
+                    <div class="col-sm-6 col-md-3">
+                        <div class="card p-3">
+                            <a href="javascript:void(0)" class="mb-3">
+                                <?php if ($image->type_res == 'Image') : ?>
+                                    <img src="<?= base_url() ?>ressources/<?= $image->fichier ?>" alt="Photo by Nathan Guerrero" class="rounded">
+                                <?php else : ?>
+                                    <img src="<?= theme_url() ?>demo/photos/grant-ritchie-338179-500.jpg" alt="Photo by Nathan Guerrero" class="rounded">
+                                <?php endif; ?>
+                            </a>
+                            <div class="d-flex align-items-center p-2">
+                                <div>
+                                    <div><?= $image->nom_res ?></div>
+                                    <small class="d-block text-muted">Publié le <?= date_format(date_create($image->date_res), " d M à H:i"); ?></small>
+                                </div>
+                                <div class="ml-auto text-muted">
+                                    <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
+                                </div>
+                            </div>
+                            <?php if (isset($image->lien_gen)) : ?>
+                                <button data-lien="<?= site_url('partage/') . $image->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                            <?php else : ?>
+                                <button data-ressource="<?= $image->id_res ?>" class="btn btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                <button class="btn btn-primary rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                <button class="btn btn-outline-success mt-2 action copier d-none">Copier le lien</button>
+                            <?php endif; ?>
+                        </div>
+
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
     <div class="container">
         <div class="page-header">
-            <h1 class="page-title">
+            <h1 class="page-title border-bottom">
                 Vidéos
             </h1>
-
-            <div class="row row-cards">
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/grant-ritchie-338179-500.jpg" alt="Photo by Nathan Guerrero" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-                            <div class="avatar avatar-md mr-3" style="background-image: url(demo/faces/male/41.jpg)"></div>
-                            <div>
-                                <div>Nathan Guerrero</div>
-                                <small class="d-block text-muted">12 days ago</small>
+        </div>
+        <div class="row row-cards">
+            <?php if (!isset($videos) or count($videos) == 0) : ?>
+                <div class="text-center display-5 p-5 col-12 mx-auto">
+                    <p class="page-title"> Aucune vidéo publiée pour le moment</p>
+                    <p>Toutes les vidéos à partager s'afficheront ici.</p>
+                </div>
+            <?php else : ?>
+                <?php foreach ($videos as $video) : ?>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card p-3">
+                            <i class="fe fe-feplay"></i>
+                            <a href="javascript:void(0)" class="mb-3">
+                                <div class="embed-responsive embed-responsive-16by9 rounded">
+                                    <iframe width="420" height="315" src="<?= $video->lien ?>"></iframe>
+                                </div>
+                            </a>
+                            <div class="d-flex align-items-center p-2">
+                                <div>
+                                    <div><?= $video->nom_res ?></div>
+                                    <small class="d-block text-muted">Publié le <?= $video->date_res ?></small>
+                                </div>
+                                <div class="ml-auto text-muted">
+                                    <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
+                                </div>
                             </div>
-                            <div class="ml-auto text-muted">
-                                <!-- <a href="javascript:void(0)" class="icon"><i class="fe fe-eye mr-1"></i> 112</a> -->
-                                <!-- <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-heart mr-1"></i> 42</a> -->
-                            </div>
+                            <?php if (isset($video->lien_gen)) : ?>
+                                <button data-lien="<?= site_url('partage/') . $video->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                            <?php else : ?>
+                                <button data-ressource="<?= $video->id_res ?>" class="btn btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                <button class="btn btn-primary rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                <button class="btn btn-outline-success mt-2 action copier d-none">Copier le lien</button>
+                            <?php endif; ?>
                         </div>
                     </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title border-bottom">
+                Documents
+            </h1>
+        </div>
+        <div class="row row-cards">
+            <?php if (!isset($documents) or count($documents) == 0) : ?>
+                <div class="text-center display-5 p-5 col-12 mx-auto">
+                    <p class="page-title"> Aucun document publié pour le moment</p>
+                    <p>Tous les documents à partager s'afficheront ici.</p>
                 </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/ilnur-kalimullin-218996-500.jpg" alt="Photo by Alice Mason" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-                            <!-- <div class="avatar avatar-md mr-3" style="background-image: url(demo/faces/female/1.jpg)"></div> -->
-                            <div>
-                                <div>Alice Mason</div>
-                                <small class="d-block text-muted">12 days ago</small>
+            <?php else : ?>
+                <?php foreach ($documents as $document) : ?>
+                    <div class="ml-3">
+                        <div class="card p-3 flex-row">
+                            <a href="javascript:void(0)" class="my-3">
+                                <img height="80px" src="https://www.crossroadsfund.org/sites/default/files/document%20icon.png" alt="Photo by Nathan Guerrero" class="rounded">
+                            </a>
+                            <div class="d-flex flex-column p-2">
+                                <div>
+                                    <div><?= $document->nom_res ?></div>
+                                    <small class="d-block text-muted">Publié le <?= date_format(date_create($document->date_res), " d M à H:i"); ?></small>
+                                </div>
+                                <div class="">
+                                    <?php if (isset($document->lien_gen)) : ?>
+                                        <button data-lien="<?= site_url('partage/') . $document->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
+                                    <?php else : ?>
+                                        <button data-ressource="<?= $document->id_res ?>" class="btn btn-sm btn-outline-primary mt-2 action generer">Gérérer le lien</button>
+                                        <button class="btn btn-primary btn-sm rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
+                                        <button class="btn btn-outline-success btn-sm mt-2 action copier d-none">Copier le lien</button>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <div class="ml-auto text-muted">
 
-                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/jakob-owens-224352-500.jpg" alt="Photo by Rose Bradley" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-                            <!-- <div class="avatar avatar-md mr-3" style="background-image: url(demo/faces/female/18.jpg)"></div> -->
-                            <div>
-                                <div>Rose Bradley</div>
-                                <small class="d-block text-muted">4 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/jeremy-bishop-330225-500.jpg" alt="Photo by Peter Richards" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Peter Richards</div>
-                                <small class="d-block text-muted">18 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/jonatan-pie-226191-500.jpg" alt="Photo by Wayne Holland" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-                            <!-- <div class="avatar avatar-md mr-3" style="background-image: url(demo/faces/male/26.jpg)"></div> -->
-                            <div>
-                                <div>Wayne Holland</div>
-                                <small class="d-block text-muted">16 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/josh-calabrese-66153-500.jpg" alt="Photo by Michelle Ross" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Michelle Ross</div>
-                                <small class="d-block text-muted">4 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/joshua-earle-157231-500.jpg" alt="Photo by Debra Beck" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Debra Beck</div>
-                                <small class="d-block text-muted">6 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/mahkeo-222765-500.jpg" alt="Photo by Phillip Peters" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Phillip Peters</div>
-                                <small class="d-block text-muted">17 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/matt-barrett-339981-500.jpg" alt="Photo by Jack Ruiz" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Jack Ruiz</div>
-                                <small class="d-block text-muted">15 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/nathan-anderson-297460-500.jpg" alt="Photo by Ronald Bradley" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Ronald Bradley</div>
-                                <small class="d-block text-muted">11 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/nathan-anderson-316188-500.jpg" alt="Photo by Kathleen Harper" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Kathleen Harper</div>
-                                <small class="d-block text-muted">16 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4">
-                    <div class="card p-3">
-                        <a href="javascript:void(0)" class="mb-3">
-                            <img src="<?= theme_url() ?>demo/photos/nathan-dumlao-287713-500.jpg" alt="Photo by Bobby Knight" class="rounded">
-                        </a>
-                        <div class="d-flex align-items-center px-2">
-
-                            <div>
-                                <div>Bobby Knight</div>
-                                <small class="d-block text-muted">6 days ago</small>
-                            </div>
-                            <div class="ml-auto text-muted">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 </div>

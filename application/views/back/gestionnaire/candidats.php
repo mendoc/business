@@ -7,17 +7,17 @@
         </div>
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Liste des candidats inscrits</h3>
+                <h3 class="card-title">Liste des candidats inscrits (<?= isset($candidats) ? count($candidats) : 0 ?>) </h3>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
                     <thead>
                         <tr>
                             <th>Noms & prénoms</th>
-                            <th>Horaires</th>
+                            <th>Commercial</th>
                             <th>Téléphone</th>
-                            <th>Domaine d'activité</th>
-                            <th>Statut</th>
+                            <th>Payé</th>
+                            <th>Reste a payer</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -32,22 +32,18 @@
                             foreach ($candidats as $candidat) : ?>
                                 <tr>
                                     <td><span><?= $candidat->nom_prenom; ?></span></td>
-                                    <td><a href="invoice.html" class="text-inherit"><?= $candidat->horaire ?></a></td>
+                                    <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
                                     <td>
                                         <?= $candidat->num_tel ?>
                                     </td>
                                     <td>
-                                        <?= $candidat->domaine_act ?>
+                                        <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
+                                    </td>
+                                    <td class="<?= (155000 - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
+                                        <?= number_format(155000 - $candidat->montant, 0, ',', ' '); ?> F CFA
                                     </td>
                                     <td>
-                                        <?php if ($candidat->est_apprenant) { ?>
-                                            <span class="status-icon bg-success"></span> Payé
-                                        <?php } else {  ?>
-                                            <span class="status-icon bg-danger"></span> Non payé
-                                        <?php } ?>
-                                    </td>
-                                    <td>
-                                        <a class="icon" href="javascript:void(0)">
+                                        <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
                                             <i class="fe fe-edit"></i>
                                         </a>
                                     </td>

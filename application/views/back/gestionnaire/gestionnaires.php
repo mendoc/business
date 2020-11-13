@@ -5,6 +5,19 @@
                 <i class="fa fa-users"></i> Gestionnaires
             </h1>
         </div>
+        <form class="mb-4" action="<?= site_url('gestionnaire/ajouter_gestionnaire'); ?>" method="POST">
+            <div class="form-row">
+                <div class="col">
+                    <input type="text" name="nom" class="form-control" required placeholder="Nom et prénom du gestionnaire">
+                </div>
+                <div class="col">
+                    <input type="email" name="email" class="form-control" required placeholder="Son adresse e-mail">
+                </div>
+                <div class="col-2">
+                    <input type="submit" class="form-control text-white bg-primary" value="valider">
+                </div>
+            </div>
+        </form>
         <div class="card">
             <?php if (empty($gestionnaires)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">

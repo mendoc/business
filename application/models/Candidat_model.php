@@ -14,11 +14,10 @@ class Candidat_model extends CI_Model
     public $type_serv;
     public $attentes;
     public $horaire;
-    public $id_res_part;
 
     // Nom de la table
     private $table = 'candidat';
-    
+
     // Clé primaire de la table
     private $id = 'id_can';
 
@@ -46,5 +45,11 @@ class Candidat_model extends CI_Model
     public function supprimer($id)
     {
         return $this->db->delete($this->table, array($this->id => $id));
+    }
+
+    public function recuperer($id)
+    {
+        $query = $this->db->get_where($this->table, array($this->id => $id));
+        return $query->row();
     }
 }
