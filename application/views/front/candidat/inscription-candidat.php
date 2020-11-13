@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ECOLE 241 BUSINESS </title>
+    <title>Formulaire candidat - Ecole 241 Business</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-candidat1.css">
     <script>
