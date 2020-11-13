@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="card col-lg-5 col-sm-12">
+            <div class="card col-lg-5 offset-lg-1 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>
@@ -213,7 +213,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-lg-6 col-sm-12">
+            <div class="card col-lg-5 offset-lg-1 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Performance des commerciaux </h3>
                 </div>
