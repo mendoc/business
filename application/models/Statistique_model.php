@@ -156,37 +156,34 @@ class Statistique_model extends CI_Model
         return ($result ? $result->row() : FALSE);
     }
 
-    public function nombre_candidat_commercial(){
-        {
-            $sql = "SELECT
+    public function nombre_candidat_commercial()
+    {
+        $sql = "SELECT
                         eb_commercial.nom_prenom, COUNT(eb_candidat.id_com) AS nb_candidat
                     FROM
                     `eb_commercial` INNER JOIN eb_candidat ON eb_candidat.id_com = eb_commercial.id_com
                     GROUP BY eb_candidat.id_com 
                     ORDER BY nb_candidat DESC";
-        
-            return $this->db->query($sql)->row();
-        }
+
+        return $this->db->query($sql)->result();
     }
 
-    public function nombre_viste_commercial(){
-        {
-            $sql = "SELECT `nom_prenom`, `nbr_visite`
+    public function nombre_visite_commercial()
+    {
+        $sql = "SELECT `nom_prenom`, `nbr_visite`
                     FROM
                     eb_commercial ORDER BY `nbr_visite` DESC";
-        
-        
-            return $this->db->query($sql)->row();
-        }
+
+
+        return $this->db->query($sql)->result();
     }
 
-    public function nombre_viste_total(){
-        {
-            $sql = "SELECT SUM(`nbr_visite`) 
+    public function nombre_viste_total()
+    {
+        $sql = "SELECT SUM(`nbr_visite`)  AS nbr_visite
                      FROM  `eb_commercial`";
-        
-            return $this->db->query($sql)->row();
-        }
+
+        return $this->db->query($sql)->row();
     }
 
     public function listing_paiement()
@@ -199,5 +196,39 @@ class Statistique_model extends CI_Model
         LIMIT 5";
 
         return $this->db->query($sql);
+    }
+
+    public function nb_inscrit_jour()
+    {
+        $sql = " SELECT DATE(date_enrg) AS `jour`, COUNT(*) AS `nombre_inscrits`
+            FROM eb_candidat
+            GROUP BY `Jour`
+            ORDER BY `Jour` DESC";
+
+        return $this->db->query($sql)->result();
+    }
+
+    public function nb_affilie_jour_ligne()
+    {
+        $sql = "SELECT DATE(date) AS 'Jour' ,COUNT(eb_paiement.id_can)
+        FROM eb_paiement  
+        INNER JOIN eb_candidat ON eb_candidat.id_can = eb_paiement.id_can 
+        WHERE type_cours = 'L' 
+        GROUP BY 'Jour'
+        HAVING SUM(montant) =  PRIX_EN_LIGNE";
+
+        return $this->db->query($sql)->result();
+    }
+
+    public function nb_affilie_jour_presentiel()
+    {
+        $sql = "SELECT DATE(date) AS 'Jour' ,COUNT(eb_paiement.id_can)
+        FROM eb_paiement  
+        INNER JOIN eb_candidat ON eb_candidat.id_can = eb_paiement.id_can 
+        WHERE type_cours = 'P' 
+        GROUP BY 'Jour'
+        HAVING SUM(montant) =  PRIX_PRESENTIEL";
+
+        return $this->db->query($sql)->result();
     }
 }

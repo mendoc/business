@@ -9,6 +9,16 @@
             <div class="col-6 col-sm-4 col-lg-2">
                 <div class="card">
                     <div class="card-body p-3 text-center">
+                        <div class="h3 mb-2"><?= isset($visites_total) ? $visites_total: 0 ?></div>
+                        <div class="text-muted mb-4">
+                            Visites des commerciaux
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
                         <div class="text-right text-green">
                             0%
                             <i class="fe fe-chevron-up"></i>
@@ -86,7 +96,7 @@
             Retraits et paiements
         </h2>
         <div class="col-lg-12 row">
-            <div class="card col-6">
+            <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Dernières demandes de retraits</h3>
                 </div>
@@ -131,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="card col-5 ml-5">
+            <div class="card col-lg-5 offset-lg-1 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>
@@ -170,6 +180,105 @@
                     </table>
                 </div>
             </div>
+
+            <div class="card col-lg-6 col-sm-12">
+                <div class="card-header">
+                    <h3 class="card-title">Trafic des commerciaux</h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-striped table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Nom Complet</th>
+                                <th>visite</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($commerciaux)) { ?>
+                                <tr>
+                                    <td colspan="2" class="text-center h1">
+                                        <span> Rien a Signaler </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($commerciaux as $commercial) : ?>
+                                    <tr>
+                                        <td class="text-nowrap"><?= $commercial->nom_prenom ?></td>
+                                        <td><?= $commercial->nbr_visite ?></td>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card col-lg-5 offset-lg-1 col-sm-12">
+                <div class="card-header">
+                    <h3 class="card-title">Performance des commerciaux </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-striped table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Nom Complet</th>
+                                <th>Nb. Candidat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($best_commerciaux)) { ?>
+                                <tr>
+                                    <td colspan="2" class="text-center h1">
+                                        <span> Aucune Performance </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($best_commerciaux as $commercial) : ?>
+                                    <tr>
+                                        <td class="text-nowrap"><?= $commercial->nom_prenom ?></td>
+                                        <td class="text-right"><?= $commercial->nb_candidat ?></td>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card col-lg-6 col-sm-12">
+                <div class="card-header">
+                    <h3 class="card-title">Nombre d'inscrit par jour </h3>
+                </div>
+                <div class="table-responsive">
+                    <table class="table card-table table-striped table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if (empty($inscrits_jour)) { ?>
+                                <tr>
+                                    <td colspan="2" class="text-center h1">
+                                        <span> RAS </span>
+                                    </td>
+                                </tr>
+                                <?php } else {
+                                foreach ($inscrits_jour as $inscrit) : ?>
+                                    <tr>
+                                        <td class="text-nowrap"><?= $inscrit->jour ?></td>
+                                        <td class=""><?= $inscrit->nombre_inscrits ?></td>
+                                    </tr>
+                            <?php endforeach;
+                            } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 </div>

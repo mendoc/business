@@ -31,12 +31,17 @@ class Gestionnaire extends CI_Controller
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+		$commerciaux = $this->commercial_model->tout();
 		
 		// traitement																																																																																																																														
 		foreach ($retraits as $retrait) {
 			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
 			$retrait->property = $commercial->nom_prenom;
 		}
+
+		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
+		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,15);
+		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 15);
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
@@ -62,6 +67,9 @@ class Gestionnaire extends CI_Controller
 			$paiement->nom_candidat = $nom_candidat;
 		}
 
+		$inscrit_par_jour = array_slice($this->statistique_model->nb_inscrit_jour(), 0, 15);
+
+		
 		$data = array(
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
@@ -70,7 +78,11 @@ class Gestionnaire extends CI_Controller
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
 			"total_retrait" => (int)$total_retrait,
-			"paiements" => $paiements
+			"paiements" => $paiements,
+			"visites_total" => $commerciaux_visite->nbr_visite,
+			"commerciaux" => $commerciaux,
+			"best_commerciaux" => $commerciaux_candidats,
+			"inscrits_jour" => $inscrit_par_jour
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
@@ -78,8 +90,12 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
-		$this->session->sess_destroy();
-		$this->load->view('back/gestionnaire/connexion');
+		if (est_connecte()) {
+			redirect('gestionnaire');
+		} else {
+			$this->session->sess_destroy();
+			$this->load->view('back/gestionnaire/connexion');
+		}
 	}
 
 	public function deconnexion()
@@ -100,9 +116,15 @@ class Gestionnaire extends CI_Controller
 		$gestionnaire = $this->gestionnaire_model->connexion($email, $mot_passe);
 
 		if ($gestionnaire) {
-			$this->session->set_userdata('token_gest', md5(time()));
-			$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
-			$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
+			if ($this->input->post('souvenir')) {
+				$this->session->set_tempdata('token_gest', md5(time()), 2678400);
+				$this->session->set_tempdata('nom_gest', $gestionnaire->nom_prenom, 2678400);
+				$this->session->set_tempdata('email_gest', $gestionnaire->email_gest, 2678400);
+			} else {
+				$this->session->set_userdata('token_gest', md5(time()));
+				$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
+				$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
+			}
 			redirect('gestionnaire');
 		} else {
 			$this->session->set_flashdata('message', 'Adresse e-mail ou mot de passe incorrect');

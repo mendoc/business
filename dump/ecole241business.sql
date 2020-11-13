@@ -70,6 +70,8 @@ CREATE TABLE `eb_commercial` (
   `mot_passe` varchar(200) NOT NULL,
   `hash` text,
   `nbr_visite` int(11) DEFAULT '0',
+  `date_enreg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `raccourci` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id_com`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nom_util` (`nom_util`)
@@ -99,7 +101,7 @@ CREATE TABLE `eb_gestionnaire` (
   `email_gest` varchar(40) NOT NULL,
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,4 +221,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-09  0:13:39
+-- Dump completed on 2020-11-11 17:06:57
