@@ -157,7 +157,7 @@ class Commercial extends CI_Controller
             $commercial->email      = $email;
             $commercial->sexe       = $sexe;
             $commercial->date_n     = $date_n;
-            $commercial->nom_util   = $nom_util;
+            $commercial->nom_util   = 'will';
             $commercial->mot_passe  = $mot_passe;
             $commercial->hash       = $hash;
             $commercial->raccourci  = $raccourci;
