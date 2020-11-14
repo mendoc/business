@@ -16,6 +16,7 @@
                             <th>Noms & prénoms</th>
                             <th>Commercial</th>
                             <th>Téléphone</th>
+                            <th>Statut</th>
                             <th>Payé</th>
                             <th>Reste a payer</th>
                             <th></th>
@@ -36,6 +37,7 @@
                                     <td>
                                         <?= $candidat->num_tel ?>
                                     </td>
+                                    <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
                                     <td>
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
