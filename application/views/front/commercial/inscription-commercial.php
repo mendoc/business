@@ -54,8 +54,8 @@
                                     <div class="select">
                                         <select name="sexe" id="format">
                                             <option selected disabled>Sexe</option>
-                                            <option value="Homme">Homme</option>
-                                            <option value="Femme">Femme</option>
+                                            <option value="H">Homme</option>
+                                            <option value="F">Femme</option>
                                         </select>
                                     </div>
                                 </div>

@@ -140,7 +140,7 @@ class Commercial extends CI_Controller
             $email       = $this->input->post('email');
             $sexe        = $this->input->post('sexe');
             $date_n      = $this->input->post('date_n');
-            $nom_util    = $this->input->post('nom_util');
+            //$nom_util    = $this->input->post('nom_util');
             $mot_passe   = $this->input->post('mot_passe');
 
 
@@ -157,7 +157,7 @@ class Commercial extends CI_Controller
             $commercial->email      = $email;
             $commercial->sexe       = $sexe;
             $commercial->date_n     = $date_n;
-            $commercial->nom_util   = 'will';
+            //$commercial->nom_util   = 'will';
             $commercial->mot_passe  = $mot_passe;
             $commercial->hash       = $hash;
             $commercial->raccourci  = $raccourci;
