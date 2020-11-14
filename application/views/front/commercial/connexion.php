@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/connexion_commercial.css">
     <title>Connexion commercial - Ecole 241 Business</title>
+    <style>
+        body{
+            background-image: url("<?= theme_url() ?>assets/images/back.jpg");
+        }
+
+
+    </style>
+
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
