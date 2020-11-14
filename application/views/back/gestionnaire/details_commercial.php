@@ -60,7 +60,7 @@
                   <td>Affiliés en ligne</td>
                   <td class="text-right">
                     <span class="badge badge-success">
-                      <?= isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0 ?>
+                      <?= $nb_aff_ligne ?>
                     </span>
                   </td>
                 </tr>
@@ -68,26 +68,32 @@
                   <td> Affiliés en presentiel</td>
                   <td class="text-right">
                     <span class="badge badge-success">
-                      <?= isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0 ?>
+                      <?= $nb_aff_presentiel ?>
                     </span>
                   </td>
                 </tr>
                 <tr>
                   <td>Total total affiliés</td>
                   <td class="text-right">
-                    <span class="badge  badge-success">45</span>
+                    <span class="badge  badge-success">
+                      <?= ($nb_aff_ligne + $nb_aff_presentiel) ?>
+                    </span>
                   </td>
                 </tr>
                 <tr>
-                  <td> retrait</td>
+                  <td> Retrait </td>
                   <td class="text-right">
-                    <span class="badge  badge-danger">0</span>
+                    <span class="badge badge-danger">
+                      <?= number_format($montant_retrait, 0, '', ' ') ?> F CFA
+                    </span>
                   </td>
                 </tr>
                 <tr>
-                  <td>solde</td>
+                  <td>Solde</td>
                   <td class="text-right">
-                    <span class="badge badge-danger">0</span>
+                    <span class="badge badge-danger">
+                      
+                    </span>
                   </td>
                 </tr>
                 
@@ -155,7 +161,7 @@
       <table class="table card-table table-striped table-vcenter">
           <thead>
               <tr>
-                  <th>Nom</th>
+                  <th>Nom du Ges.</th>
                   <th>Montant</th>
                   <th>Date</th>
               </tr>

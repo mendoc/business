@@ -498,15 +498,19 @@ class Gestionnaire extends CI_Controller
 			$result_visites = $this->statistique_model->visites_par_commercial($id);
 
 			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
+			$somme_retrait = $this->retrait_model->pour_commercial($id);
 
 			// var_dump($mes_retraits);
 			// die;
+
+			
 			$data = [
 				"commercial" => $commercial,
-				"result_aff_ligne" => $result_aff_ligne,
-				"result_aff_presentiel" => $result_aff_presentiel,
+				"nb_aff_ligne" => isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0,
+				"nb_aff_presentiel" => isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0,
 				"inscrits_ligne" => $result_candidats_ligne,
-				"inscrits_presentiel" => $result_candidats_presentiel
+				"inscrits_presentiel" => $result_candidats_presentiel,
+				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0
 			];
 
 			afficher('back/gestionnaire/details_commercial', $data);
