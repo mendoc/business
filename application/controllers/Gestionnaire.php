@@ -54,8 +54,15 @@ class Gestionnaire extends CI_Controller
 		foreach($candidats as $candidat)
 		{
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
-			if ($montant_candidat == 155000) {
-				$nb_apprenants++;
+
+			if ($candidat->type_cours == 'P') {
+				if ($montant_candidat > 0) {
+					$nb_apprenants++;
+				}
+			} else {
+				if($montant_candidat == PRIX_EN_LIGNE){
+					$nb_apprenants++;
+				} 
 			}
 		}
 
@@ -483,6 +490,49 @@ class Gestionnaire extends CI_Controller
 
 		
 		afficher('back/gestionnaire/details_candidat', $data);
+	}
+
+	// Vue detail d'un commercial
+	public function detail_commercial($id)
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// Chargement des models
+		$this->load->model('statistique_model');
+		$this->load->model('retrait_model');
+
+		if($commercial = $this->commercial_model->recuperer_un($id)){
+			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
+			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
+			$result_candidats_ligne = $this->statistique_model->candidats_com_ligne($id);
+			$result_candidats_presentiel = $this->statistique_model->candidats_com_presentiel($id);
+			$result_visites = $this->statistique_model->visites_par_commercial($id);
+
+			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
+			$somme_retrait = $this->retrait_model->pour_commercial($id);
+
+			// var_dump($mes_retraits);
+			// die;
+
+			
+			$data = [
+				"commercial" => $commercial,
+				"nb_aff_ligne" => isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0,
+				"nb_aff_presentiel" => isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0,
+				"inscrits_ligne" => $result_candidats_ligne,
+				"inscrits_presentiel" => $result_candidats_presentiel,
+				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0
+			];
+
+			afficher('back/gestionnaire/details_commercial', $data);
+
+		} else {
+			echo '404';
+		}
+
+
 	}
 
 	// Vue pour confirmer une inscription ( ajouter le montant )

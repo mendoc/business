@@ -192,7 +192,6 @@
                                 <div class="les-champs">
                                     <div class="select">
                                         <select name="sexe" id="format">
-                                            <!-- <option selected disabled>Sexe</option> -->
                                             <option selected disabled value="H">Homme</option>
                                             <option value="F">Femme</option>
                                         </select>
