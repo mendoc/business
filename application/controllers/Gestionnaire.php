@@ -49,11 +49,15 @@ class Gestionnaire extends CI_Controller
 		
 		// Traitement des informations du candidats
 		$candidats = $this->candidat_model->tout();
+
 		$nb_candidats = count($candidats);
+
 		$nb_apprenants = 0;
+
 		foreach($candidats as $candidat)
 		{
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+
 			if ($candidat->type_cours == 'P') {
 				if ($montant_candidat > 0) {
 					$nb_apprenants++;
@@ -65,8 +69,8 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		// traitements des paiements du candidat
 		$paiements = $this->paiement_model->tous();
+
 		foreach ($paiements as $paiement)
 		{
 			$nom_candidat = $this->candidat_model->recuperer($paiement->id_can)->nom_prenom;
@@ -96,6 +100,7 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
+
 		if (est_connecte()) {
 			redirect('gestionnaire');
 		} else {
@@ -198,6 +203,7 @@ class Gestionnaire extends CI_Controller
 
 	public function ajouter_gestionnaire()
 	{
+<<<<<<< HEAD
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
@@ -230,11 +236,19 @@ class Gestionnaire extends CI_Controller
 			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
 		}
 		redirect('gestionnaire/gestionnaires');
+=======
+		$this->load->helper('form');
+		$this->load->view('/back/gestionnaire/connexion_du_gestion');
+>>>>>>> 74da67f413546048c3a1d1ccf887d15300c53fc5
 	}
 
 	public function finaliser_un_retrait($id)
 	{
+<<<<<<< HEAD
 		$this->load->model('retrait_model');
+=======
+		$this->load->model('gestionnaire_model');
+>>>>>>> 74da67f413546048c3a1d1ccf887d15300c53fc5
 
 		// recuperation des informations
 		$_retrait = $this->retrait_model->un($id);
