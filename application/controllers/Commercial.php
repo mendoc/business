@@ -79,7 +79,7 @@ class Commercial extends CI_Controller
 
     public function inscription()
     {
-        $this->load->view('front/commercial/inscription');
+        $this->load->view('front/commercial/inscription-commercial');
     }
 
     public function connexion()
@@ -96,59 +96,96 @@ class Commercial extends CI_Controller
 
     public function traitement_inscription()
     {
-        // récupération des données
-        $nom_complet = $this->input->post('nom') . ' ' . $this->input->post('prenom');
-        $nom_prenom  = $nom_complet;
-        $num_tel     = $this->input->post('num_tel');
-        $num_what    = $this->input->post('num_what');
-        $email       = $this->input->post('email');
-        $sexe        = $this->input->post('sexe');
-        $date_n      = $this->input->post('date_n');
-        $nom_util    = $this->input->post('nom_util');
-        $mot_passe   = $this->input->post('mot_passe');
-
         // On valide les informations
+        $this->form_validation->set_rules('nom', 'Nom', 'required', array(
+            'required' => 'Le champ %s est obligatoire'
+        ));
+        $this->form_validation->set_rules('prenom', 'Prénom', 'required', array(
+            'required' => 'Le champ %s est obligatoire'
+        ));
 
-        // On raccourcit le lien
-        $this->load->helper('bitly');
-        $hash = sha1(time());
-        $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_commercial.email]|required|valid_emails|regex_match[#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#]', array(
+            'required' => 'Le champ %s est obligatoire',
+            'valid_emails' => 'Le champ %s n\'est pas valide',
+            'regex_match' => 'Le champ %s n\'est pas valide',
+            'is_unique' => '%s existe déja'
+        ));
 
-        // On crée l'objet pour la requete
-        $commercial = new Commercial_model();
-        $commercial->nom_prenom = $nom_prenom;
-        $commercial->num_tel    = $num_tel;
-        $commercial->num_what   = $num_what;
-        $commercial->email      = $email;
-        $commercial->sexe       = $sexe;
-        $commercial->date_n     = $date_n;
-        $commercial->nom_util   = $nom_util;
-        $commercial->mot_passe  = $mot_passe;
-        $commercial->hash       = $hash;
-        $commercial->raccourci  = $raccourci;
+        $this->form_validation->set_rules('num_tel', 'telephone', 'required|regex_match[/^0(62|74|77|65|66|11)\d{6}$/]', array(
+            'required' => 'Le champ %s est obligatoire',
+            'regex_match' => 'Le format du %s n\'est pas valide'
+        ));
+        $this->form_validation->set_rules('num_what', 'numero-whatsapp', 'required|regex_match[/^0(62|74|77|65|66)\d{6}$/]', array(
+            'required' => 'Le champ %s est obligatoire',
+            'regex_match' => 'Le format du %s n\'est pas valide'
+        ));
+        $this->form_validation->set_rules('mot_passe', 'Mot de Passe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+        $this->form_validation->set_rules('sexe', 'Sexe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+        $this->form_validation->set_rules('cmdp', 'Confirmation Mot de Passe', 'required|matches[mot_passe]', array(
+            'required' => 'Le champ %s est obligatoire',
+            'matches' => 'Le champ %s ne correspond pas au Mot de Passe '
+        ));
 
-        // insertion des informations
-        $inscrit = $commercial->creer();
+        // si condition ok !
+        if ($this->form_validation->run() == true) {
+            // récupération des données
+            $nom_complet = $this->input->post('nom') . ' ' . $this->input->post('prenom');
+            $nom_prenom  = $nom_complet;
+            $num_tel     = $this->input->post('num_tel');
+            $num_what    = $this->input->post('num_what');
+            $email       = $this->input->post('email');
+            $sexe        = $this->input->post('sexe');
+            $date_n      = $this->input->post('date_n');
+            //$nom_util    = $this->input->post('nom_util');
+            $mot_passe   = $this->input->post('mot_passe');
 
-        //redirection en fonction du résultat de la requete
-        if ($inscrit) {
-            $this->session->set_userdata('token_com', md5(time()));
-            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
-            $this->session->set_userdata('email_com', $commercial->email);
-            $this->session->set_userdata('hash', $commercial->hash);
-            $this->session->set_userdata('raccourci', $commercial->raccourci);
-            // On envoie d'un mail au candidat
-            $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
-            
-            $headers  = "MIME-Version: 1.0\r\n";
-            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
-            // On envoie d'un mail au candidat
-            mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
-            redirect('commercial');
-        } else {
-            redirect('commercial/inscription');
+
+            // On raccourcit le lien
+            $this->load->helper('bitly');
+            $hash = sha1(time());
+            $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+
+            // On crée l'objet pour la requete
+            $commercial = new Commercial_model();
+            $commercial->nom_prenom = $nom_prenom;
+            $commercial->num_tel    = $num_tel;
+            $commercial->num_what   = $num_what;
+            $commercial->email      = $email;
+            $commercial->sexe       = $sexe;
+            $commercial->date_n     = $date_n;
+            //$commercial->nom_util   = 'will';
+            $commercial->mot_passe  = $mot_passe;
+            $commercial->hash       = $hash;
+            $commercial->raccourci  = $raccourci;
+
+            // insertion des informations
+            $inscrit = $commercial->creer();
+
+            //redirection en fonction du résultat de la requete
+            if ($inscrit) {
+                $this->session->set_userdata('token_com', md5(time()));
+                $this->session->set_userdata('nom_com', $commercial->nom_prenom);
+                $this->session->set_userdata('email_com', $commercial->email);
+                $this->session->set_userdata('hash', $commercial->hash);
+                $this->session->set_userdata('raccourci', $commercial->raccourci);
+                // On envoie d'un mail au candidat
+                $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+
+                $headers  = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+                // On envoie d'un mail au candidat
+                mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
+                redirect('commercial');
+            } else {
+                redirect('commercial/inscription');
+            }
         }
+        $this->load->view('front/commercial/inscription-commercial');
     }
 
     public function traitement_connexion()

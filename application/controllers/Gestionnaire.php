@@ -163,6 +163,7 @@ class Gestionnaire extends CI_Controller
 		// On boucle sur tous les candidats et on verifie s'ils ont payé 
 		foreach ($data['candidats'] as $candidat) {
 			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			$candidat->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE ;
 			if ($candidat->id_com) {
 				$commercial = $this->commercial_model->recuperer_un($candidat->id_com);
 				$candidat->nom_com = $commercial->nom_prenom;
@@ -467,15 +468,20 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('candidat_model');
 		$this->load->model('paiement_model');
 
+		$candidat = $this->candidat_model->recuperer($id);
+		$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id);
+		$max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
+
+		$est_apprenant = $max_montant == $montant_candidat ;
+
 		// Recuperation du candidat 
 		$data = array(
 			"candidat" => $this->candidat_model->recuperer($id),
-			"paiements" => $this->paiement_model->recuperer($id)
+			"paiements" => $this->paiement_model->recuperer($id),
+			"est_apprenant" => $est_apprenant
 		);
 
-		// Recuperation de l'id du gestionnaire pour le traitement et affichage dans le lien du formulaire
-
-
+		
 		afficher('back/gestionnaire/details_candidat', $data);
 	}
 
@@ -487,26 +493,40 @@ class Gestionnaire extends CI_Controller
 		}
 		$this->load->model('paiement_model');
 		$this->load->model('candidat_model');
+		$email_gest = $this->session->userdata('email_gest');
+		$gestionnaire = $this->gestionnaire_model->par_email($email_gest);
 
 		$montant = $this->input->post('montant');
 
-		// Creation du paiement 
-		$paiement = array(
-			'montant' => (int)$montant,
-			'motif' => $this->input->post('motif'),
-			'id_gest' => 1,
-			'id_can' => $id_can,
-			'justificatif' => $this->input->post('justificatif'),
-			'moyen_paie' => $this->input->post('moyen_paiement'),
-			'num_trans' => $this->input->post('num_trans')
-		);
+		// Recuperation des informations pour le traitement
+		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id_can);
+			$max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 
+			if ($montant_candidat == $max_montant) {
+				redirect('gestionnaire/detail_candidat/' . $id_can);
+			} else {
+				// Creation du paiement 
+				$paiement = array(
+					'montant' => (int)$montant,
+					'motif' => $this->input->post('motif'),
+					'id_gest' => $gestionnaire->id_gest,
+					'id_can' => $id_can,
+					'justificatif' => $this->input->post('justificatif'),
+					'moyen_paie' => $this->input->post('moyen_paiement'),
+					'num_trans' => $this->input->post('num_trans')
+				);
 
-		if ($this->paiement_model->inserer($paiement)) {
-			$candidat = $this->candidat_model->recuperer($id_can);
-			mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
-			redirect('gestionnaire/detail_candidat/' . $id_can);
+				// Si l'insertion se passe bien 
+				if ($this->paiement_model->inserer($paiement)) {
+					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
+					redirect('gestionnaire/detail_candidat/' . $id_can);
+				}
+				
+			}
+			
 		}
+
 	}
 
 	public function thematiques()

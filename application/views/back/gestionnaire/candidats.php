@@ -16,6 +16,7 @@
                             <th>Noms & prénoms</th>
                             <th>Commercial</th>
                             <th>Téléphone</th>
+                            <th>Statut</th>
                             <th>Payé</th>
                             <th>Reste a payer</th>
                             <th></th>
@@ -36,11 +37,12 @@
                                     <td>
                                         <?= $candidat->num_tel ?>
                                     </td>
+                                    <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
                                     <td>
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
-                                    <td class="<?= (155000 - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
-                                        <?= number_format(155000 - $candidat->montant, 0, ',', ' '); ?> F CFA
+                                    <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
+                                        <?= number_format($candidat->max_montant - $candidat->montant, 0, ',', ' '); ?> F CFA
                                     </td>
                                     <td>
                                         <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
