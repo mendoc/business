@@ -54,8 +54,14 @@ class Gestionnaire extends CI_Controller
 		foreach($candidats as $candidat)
 		{
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
-			if ($montant_candidat == 155000) {
-				$nb_apprenants++;
+			if ($candidat->type_cours == 'P') {
+				if ($montant_candidat > 0) {
+					$nb_apprenants++;
+				}
+			} else {
+				if($montant_candidat == PRIX_EN_LIGNE){
+					$nb_apprenants++;
+				} 
 			}
 		}
 
