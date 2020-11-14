@@ -11,6 +11,7 @@
 
 
 <body style="background-color: #f4f4f4;
+            margin: 0;
             font-size: 10px;
             line-height: 1.3;
             font-family: 'Montserrat', sans-serif;">
@@ -55,9 +56,11 @@
             margin-bottom: 20px; font-size: 1.2rem;" class="third-text">Ci-dessous, les informations que vous avez fournies lors de votre enregistrement.</p>
 
 
-            <table style="width: 560px;
+            <table style="width: 100%;
                 border-collapse: collapse;
-                margin: 40px auto;">
+                margin: 40px auto;
+                font-family: 'Montserrat', sans-serif;""
+                >
 
                 <tbody>
                     <tr style="background: #ccc;">
@@ -173,12 +176,12 @@
     </main>
 
 
-    <footer class="container footer-right" style="background-color: #ff0000;">
+    <footer class="container footer-right" style="background-color: #ff0000; max-width: 750px; margin: 0 auto">
         <section style="top: -50px;
         background-color: #003366;
         text-align: center;
         justify-content: center;
-        padding: 5px 0;" class="container need-help">
+        padding: 5px 10px;" class="container need-help">
             <div class="sec-2">
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
         font-weight: bold;">Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>

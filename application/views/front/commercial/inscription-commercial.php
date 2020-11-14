@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ECOLE 241 BUSINESS </title>
+    <title>Formulaire commercial - ECOLE 241 BUSINESS </title>
     <!-- <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="." />  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +19,7 @@
                 <div class="formulaire-content">
                     <div id="inscris-toi">
 
-                        <form action="/" method="post">
+                        <form action="<?= site_url('commercial/traitement_inscription') ?>" method="post">
                             <div class="logo">
                                 <img src="<?= theme_url() ?>/assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
                             </div>
@@ -29,31 +29,34 @@
 
                                 <div class="les-champs">
                                     <label><span class="etoile">*</span></label>
-                                    <input type="text" name="nom" placeholder="Nom" class="input" required autofocus />
+                                    <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
+                                    <?= form_error('nom') ?>
                                 </div>
 
                                 <div class="les-champs">
-                                    <input type="text" name="prenom" placeholder="Prénom" class="input" required autofocus />
+                                    <input type="text" name="prenom" <?= set_value('prenom') ?> placeholder="Prénom" class="input" required autofocus />
+                                    <?= form_error('prenom') ?>
                                 </div>
                             </div>
                             <!--===*** Adresse mail ***===-->
                             <div class="les-champs">
                                 <label><span class="etoile-mail">*</span></label>
-                                <input type="email" placeholder="Adresse mail" class="input" required autofocus />
+                                <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
+                                <?= form_error('email') ?>
                             </div>
                             <!--===*** Date de naissance et choix du sexe ***===-->
                             <div class="groupe-champ-de-saisie">
                                 <div class="les-champs">
-                                    <input type="date" class="input" required autofocus />
+                                    <input type="date" name="date_n" class="input" required autofocus />
                                 </div>
 
                                 <div class="les-champs">
                                     <div class="select">
-                                        <select name="format" id="format">
-                                          <option selected disabled>Sexe</option>
-                                          <option value="Homme">Homme</option>
-                                          <option value="Femme">Femme</option>
-                                       </select>
+                                        <select name="sexe" id="format">
+                                            <option selected disabled>Sexe</option>
+                                            <option value="H">Homme</option>
+                                            <option value="F">Femme</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -61,12 +64,14 @@
                             <div class="groupe-champ-de-saisie">
                                 <div class="les-champs">
                                     <label><span class="etoile">*</span></label>
-                                    <input type="tel" name="téléphone" placeholder="N° de téléphone" class="input" required autofocus />
+                                    <input type="tel" name="num_tel" value="<?= set_value('num_tel') ?>" placeholder="N° de téléphone" class="input" required autofocus />
+                                    <?= form_error('num_tel') ?>
                                 </div>
 
                                 <div class="les-champs">
                                     <label><span class="etoile">*</span></label>
-                                    <input type="tel" name="whatsApp" placeholder="N° WhatsApp" class="input" required autofocus />
+                                    <input type="tel" name="num_what" <?= set_value('num_what') ?> placeholder="N° WhatsApp" class="input" required autofocus />
+                                    <?= form_error('num_what') ?>
                                 </div>
                             </div>
 
@@ -79,14 +84,16 @@
                             <!-- ====*** les mots de passe ****=== -->
                             <div class="les-champs">
                                 <label><span class="etoile-mail">*</span></label>
-                                <input type="password" placeholder="Votre de passe" class="input" required autofocus />
+                                <input type="password" name="mot_passe" placeholder="Votre de passe" class="input" required autofocus />
+                                <?= form_error('mot_passe') ?>
                             </div>
 
                             <div class="les-champs">
                                 <label><span class="etoile-mail">*</span></label>
-                                <input type="password" placeholder="Confirmer votre mot de passe" class="input" required autofocus />
+                                <input type="password" name="cmdp" placeholder="Confirmer votre mot de passe" class="input" required autofocus />
+                                <?= form_error('cmdp') ?>
                             </div>
-     
+
                             <!--===*** Confirmation de l'enregistrer des champs ***===-->
                             <button type="submit" class="bouton bouton-block">S'enregistrer</button>
                             <p class="animation a3">Si vous avez un compte, alors vous pouvez vous connecter <a href="<?= site_url('commercial/connexion') ?>">ici</a></p>

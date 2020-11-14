@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Ecole 241 Business</title>
+    <title>Ecole 241 Business - Landing Candidat</title>
     <meta name="description" content="Ecole de formation pour les commer&ccedil;ants et artisans aux m&eacute;tiers du num&eacute;rique." />
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
 
@@ -77,6 +77,10 @@
         @media only screen and (max-width: 750px) {
             body {
                 --title-scale: 0.7;
+            }
+
+            .header__navCtas{
+                display: none;
             }
 
             /* #headerMenuButton{

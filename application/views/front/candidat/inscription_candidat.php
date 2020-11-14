@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ECOLE 241 BUSINESS </title>
+    <title>Formulaire candidat - Ecole 241 Business</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-candidat1.css">
 
@@ -16,6 +16,17 @@
         }
         gtag('js', new Date());​
         gtag('config', 'G-4D8CEC5J5T');
+    </script>
+
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2094197,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
 </head>
 
@@ -37,17 +48,20 @@
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="text" name="nom" placeholder="Nom" class="input" required autofocus />
+                            <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
+                            <?= form_error('nom') ?>
                         </div>
 
                         <div class="les-champs">
-                            <input type="text" name="prenom" placeholder="Prénom" class="input" required autofocus />
+                            <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
+                            <?= form_error('prenom') ?>
                         </div>
                     </div>
                     <!--===*** Adresse mail ***===-->
                     <div class="les-champs">
                         <label><span class="etoile-mail">*</span></label>
-                        <input type="email" name="email" placeholder="Adresse mail" class="input" required autofocus />
+                        <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
+                        <?= form_error('email') ?>
                     </div>
 
 
@@ -198,12 +212,14 @@
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="telephone" placeholder="N° de téléphone" class="input" required autofocus />
+                            <input type="tel" name="telephone" value="<?= set_value('telephone') ?>" placeholder="N° de téléphone" class="input" required autofocus />
+                            <?= form_error('telephone') ?>
                         </div>
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="num_what" placeholder="N° WhatsApp" class="input" required autofocus />
+                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" required autofocus />
+                            <?= form_error('num_what')?>
                         </div>
                     </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
