@@ -39,7 +39,7 @@ CREATE TABLE `eb_candidat` (
   `date_enrg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_can`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +48,7 @@ CREATE TABLE `eb_candidat` (
 
 LOCK TABLES `eb_candidat` WRITE;
 /*!40000 ALTER TABLE `eb_candidat` DISABLE KEYS */;
+INSERT INTO `eb_candidat` VALUES (1,'MAX Marc','070000000','070000000','marc@gmail.com','H','2020-11-10','commerce','vente','jknjonl','matin','L',1,'2020-11-13 00:00:00'),(2,'MAX jean','070000000','070000000','jean@gmail.com','H','2020-11-10','artisana','vente','jknjonl','soir','L',3,'2020-11-13 00:00:00');
 /*!40000 ALTER TABLE `eb_candidat` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +67,7 @@ CREATE TABLE `eb_commercial` (
   `email` varchar(50) NOT NULL,
   `sexe` varchar(1) NOT NULL,
   `date_n` date NOT NULL,
-  `nom_util` varchar(250) NOT NULL,
+  `nom_util` varchar(250) DEFAULT NULL,
   `mot_passe` varchar(200) NOT NULL,
   `hash` text,
   `nbr_visite` int(11) DEFAULT '0',
@@ -75,7 +76,7 @@ CREATE TABLE `eb_commercial` (
   PRIMARY KEY (`id_com`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nom_util` (`nom_util`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,6 +85,7 @@ CREATE TABLE `eb_commercial` (
 
 LOCK TABLES `eb_commercial` WRITE;
 /*!40000 ALTER TABLE `eb_commercial` DISABLE KEYS */;
+INSERT INTO `eb_commercial` VALUES (1,'BAMENOU edwige','077777777','077777777','bamenouedwige@gmail.com','F','2020-11-12','edwige','edwige','jknjonl',12,'2020-11-13 00:00:00',''),(2,'EKOMY Cécilia','070000000','070000000','cece@gmail.com','F','2020-11-13','cece','cece','jknjonl',12,'2020-11-13 00:00:00',NULL),(3,'BIVIGOU Jessi','070000000','070000000','jessi@gmail.com','H','2020-11-10','jessi','jessi','jknjonl',23,'2020-11-13 00:00:00',NULL),(4,'VIGOU essi','070000000','070000000','essi@gmail.com','F','2020-11-09','essi','essi','jknjonl',0,'2020-11-13 00:00:00',NULL);
 /*!40000 ALTER TABLE `eb_commercial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +112,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'1234','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (1,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com'),(2,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Edwige','bamenouedwige@gmail.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,7 +168,7 @@ CREATE TABLE `eb_ressource` (
   PRIMARY KEY (`id_res`),
   KEY `id_gest` (`id_gest`),
   CONSTRAINT `eb_ressource_ibfk_2` FOREIGN KEY (`id_gest`) REFERENCES `eb_gestionnaire` (`id_gest`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,6 +177,7 @@ CREATE TABLE `eb_ressource` (
 
 LOCK TABLES `eb_ressource` WRITE;
 /*!40000 ALTER TABLE `eb_ressource` DISABLE KEYS */;
+INSERT INTO `eb_ressource` VALUES (1,'Affiche 1','','WhatsApp_Image_2020-11-12_at_10_55_18.jpeg','2020-11-14 14:11:25','Image',3),(2,'Affiche 2','','WhatsApp_Image_2020-11-14_at_11_28_51.jpeg','2020-11-14 14:13:41','Image',3),(3,'Affiche 3','','WhatsApp_Image_2020-11-13_at_12_19_33.jpeg','2020-11-14 14:14:06','Image',3);
 /*!40000 ALTER TABLE `eb_ressource` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,4 +224,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-11 17:06:57
+-- Dump completed on 2020-11-14 15:56:11
