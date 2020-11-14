@@ -79,6 +79,10 @@
                 --title-scale: 0.7;
             }
 
+            .header__navCtas{
+                display: none;
+            }
+
             /* #headerMenuButton{
                     display: block;
                 }
