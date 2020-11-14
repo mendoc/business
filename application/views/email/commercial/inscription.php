@@ -115,6 +115,8 @@ font-family: 'Montserrat', sans-serif;
                 <p style="font-size: 1rem; margin: 1px; "><a style="font-size: 10px;text-decoration: none; color: var(--main-text-color); " href="/ ">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
 
             </div>
+
+            
         </section>
     </footer>
     <!--# fin du container #--->
