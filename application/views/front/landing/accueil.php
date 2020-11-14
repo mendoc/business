@@ -73,14 +73,28 @@
             }
         }
 
+        @media only screen and (max-width: 648px){
+
+            .header__navCtas{
+                margin-left: 0;
+            }
+            
+        }
+
+        @media only screen and (max-width: 600px){
+            
+            .header__navCtas {
+                    display: none;
+                }
+        }
 
         @media only screen and (max-width: 750px) {
             body {
                 --title-scale: 0.7;
             }
 
-            .header__navCtas{
-                display: none;
+            .cacher{
+                display: none !important;
             }
 
             /* #headerMenuButton{
@@ -88,7 +102,7 @@
                 }
                 .header__navCtas {
                     display: none;
-                   
+                  
                 }
                 .header--withDrawer #headerMenuButton {
                     display: block;
@@ -119,6 +133,11 @@
             #headerMenuButton {
                 display: block;
             }
+
+            .header__navCtas {
+                    display: none;
+                }
+        }
 
             div.galleryItem {
                 width: 90% !important;
@@ -345,24 +364,24 @@
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                <div class="header__navCtas" style="margin-right: 20%;">
+                <div class="header__navCtas header-ajust" style="margin-right: 20%;">
                     <!-- Icône pour Linkedin dans le header -->
-                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary" style="color: #ffffff;">
+                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
                     </a>
                     <!-- Icône pour Facebook dans le header -->
-                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary" style="color: #ffffff;">
+                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
                     </a>
                 </div>
                 <div class="header__navCtas">
-                    <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
+                    <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn-ajust" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         S'inscrire
                         <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.6 7H1a1 1 0 1 1 0-2h8.6L7 2.4A1 1 0 0 1 8.4 1l4.3 4.2c.2.3.3.5.3.8 0 .3-.1.5-.3.7L8.4 11A1 1 0 1 1 7 9.5L9.6 7z" fill="rgba(255, 255, 255, 1)"></path>
                         </svg>
                     </a>
-                    <a href="<?= site_url('welcome/commercial') ?>" class="btn btn--c btn--secondary" style="color: rgba(255, 51, 51, 1);">
+                    <a href="<?= site_url('welcome/commercial') ?>" class="btn btn--c btn--secondary btn-ajust" style="color: rgba(255, 51, 51, 1);">
                         Devenir commercial
                         <svg width="13" height="12" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.6 7H1a1 1 0 1 1 0-2h8.6L7 2.4A1 1 0 0 1 8.4 1l4.3 4.2c.2.3.3.5.3.8 0 .3-.1.5-.3.7L8.4 11A1 1 0 1 1 7 9.5L9.6 7z" fill="rgba(255, 51, 51, 1)"></path>
@@ -375,7 +394,7 @@
         <nav id="headerDrawer" class="headerMenu col-dark-sec">
             <div id="headerDrawerBackdrop" class="headerMenu__backdrop"></div>
             <div class="headerMenu__wrapper" style="background-color: #ffffff;">
-                <ul class="headerMenu__links">
+                <ul class="headerMenu__links ">
                     <li>
                         <a href="<?= site_url('candidat') ?>" class="drawerLink col-dark">
                             S'inscrire
