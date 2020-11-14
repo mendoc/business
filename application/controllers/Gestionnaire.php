@@ -163,6 +163,7 @@ class Gestionnaire extends CI_Controller
 		// On boucle sur tous les candidats et on verifie s'ils ont payé 
 		foreach ($data['candidats'] as $candidat) {
 			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			$candidat->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE ;
 			if ($candidat->id_com) {
 				$commercial = $this->commercial_model->recuperer_un($candidat->id_com);
 				$candidat->nom_com = $commercial->nom_prenom;
