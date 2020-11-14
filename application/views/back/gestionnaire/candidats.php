@@ -29,7 +29,9 @@
                                 </td>
                             </tr>
                             <?php } else {
-                            foreach ($candidats as $candidat) : ?>
+                            foreach ($candidats as $candidat) : 
+                                $max_paiement = $candidat->type_cours == 'P' ? 155000 : 85000 ;
+                            ?>
                                 <tr>
                                     <td><span><?= $candidat->nom_prenom; ?></span></td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
@@ -39,8 +41,8 @@
                                     <td>
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
-                                    <td class="<?= (155000 - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
-                                        <?= number_format(155000 - $candidat->montant, 0, ',', ' '); ?> F CFA
+                                    <td class="<?= ($max_paiement - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
+                                        <?= number_format($max_paiement - $candidat->montant, 0, ',', ' '); ?> F CFA
                                     </td>
                                     <td>
                                         <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
