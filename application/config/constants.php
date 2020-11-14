@@ -87,3 +87,13 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 defined('DEV_URL') OR define('DEV_URL', "http://localhost/business"); // L'url lorsque nous sommes en local
 defined('PROD_URL') OR define('PROD_URL', "https://business.ecole241.org"); // L'url lorsque nous sommes en ligne
+
+/* Constantes des prix */
+defined('FRAIS_DOSSIER')      OR define('FRAIS_DOSSIER', 5000);
+defined('COUT_PRESENTIEL')    OR define('COUT_PRESENTIEL', 150000);
+defined('COUT_EN_LIGNE')      OR define('COUT_EN_LIGNE', 85000);
+defined('PRIX_PRESENTIEL')    OR define('PRIX_PRESENTIEL', FRAIS_DOSSIER + COUT_PRESENTIEL);
+defined('PRIX_EN_LIGNE')      OR define('PRIX_EN_LIGNE', FRAIS_DOSSIER + COUT_EN_LIGNE);
+
+defined('POURCENTAGE_PRES')   OR define('POURCENTAGE_PRE', 0.1);
+defined('POURCENTAGE_LIGNE')  OR define('POURCENTAGE_LIGNE', 0.1);
