@@ -73,4 +73,13 @@ class Retrait_model extends CI_Model
     {
         return $this->db->delete($this->table, array($this->id => $id));
     }
+    //Les retraits d'un commercial
+    public function retraits_commercial($id){
+
+        $sql =" SELECT * 
+                FROM eb_retrait
+                WHERE id_com = ?
+                AND date_fin IS NOT NULL; ";
+        return $this->db->query($sql, array($id));
+    }
 }
