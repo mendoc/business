@@ -1,7 +1,7 @@
 <div class="contes container">
     
   <main class="conte3 ">
-    <div class="my-3 my-md-5">
+       <div class="my-3 my-md-5">
         <div class="details_centre">
             <div class="card">
                   <div class="card-header">
@@ -99,8 +99,8 @@
                 
               </table>
             </div>
-          </div>
-          </div>         
+        </div>
+      </div>         
     </div>
   </main>
   <div class="card-row-5 my-md-5  my-3 conte2" >

@@ -503,11 +503,15 @@ class Gestionnaire extends CI_Controller
 			$result_candidats_presentiel = $this->statistique_model->candidats_com_presentiel($id);
 			$result_visites = $this->statistique_model->visites_par_commercial($id);
 
-			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
+			$mes_retraits = $this->retrait_model->retraits_commercial($id);
 			$somme_retrait = $this->retrait_model->pour_commercial($id);
+			$mes_paiements = array_filter( $this->retrait_model->liste_pour_commercial($id), function ($paiement){
+				return $paiement->date_fin != null;
+			});
 
-			// var_dump($mes_retraits);
-			// die;
+			// var_dump($mes_paiements);
+			// var_dump($somme_retrait);
+			die;
 
 			
 			$data = [
