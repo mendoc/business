@@ -10,7 +10,7 @@ class Commercial_model extends CI_Model
     public $email;
     public $sexe;
     public $date_n;
-    public $nom_util;
+    //public $nom_util;
     public $mot_passe;
     public $hash;
     public $raccourci;
