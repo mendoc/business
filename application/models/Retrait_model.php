@@ -55,7 +55,7 @@ class Retrait_model extends CI_Model
     public function total_retrait()
     {
         $this->db->select_sum('montant_retrait');
-        $query = $this->db->get($this->table);
+        $query = $this->db->get_where($this->table, 'date_fin !=', null);
         return $query->row();
     }
 
