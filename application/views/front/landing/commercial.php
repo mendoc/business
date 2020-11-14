@@ -30,10 +30,43 @@
         }
 
 
+        @media only screen and (max-width: 648px){
+
+            .header__navCtas{
+                margin-left: -20px;
+            }
+            
+        }
+
+        @media only screen and (max-width: 846px){
+
+            .header__navCtas{
+                margin-left: -20px;
+            }
+            
+        }
+
+        @media screen and (max-width:600px) {
+            #headerMenuButton {
+                display: block;
+            }
+
+            .header__navCtas {
+                    display: none;
+                }
+
+            div.galleryItem {
+                width: 90% !important;
+            }
+        }
+
 
         @media only screen and (max-width: 750px) {
             body {
                 --title-scale: 0.7;
+            }
+            .cacher{
+                display: none !important;
             }
         }
 
@@ -216,11 +249,11 @@
                 <!-- Icônes des réseaux sociaux -->
                 <div class="header__navCtas" style="margin-right: 35%;">
                     <!-- Icône pour Linkedin dans le header -->
-                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary" style="color: #ffffff;">
+                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary  cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
                     </a>
                     <!-- Icône pour Facebook dans le header -->
-                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary" style="color: #ffffff;">
+                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary  cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
                     </a>
                 </div>
@@ -241,7 +274,7 @@
         </div>
         <nav id="headerDrawer" class="headerMenu col-dark-sec">
             <div id="headerDrawerBackdrop" class="headerMenu__backdrop"></div>
-            <div class="headerMenu__wrapper" style=": #ffffff;">
+            <div class="headerMenu__wrapper" style="color: #ffffff;">
                 <ul class="headerMenu__links">
                     <li>
                         <a href="<?= site_url('commercial/inscription') ?>" class="drawerLink col-dark">
