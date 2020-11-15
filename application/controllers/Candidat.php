@@ -22,12 +22,12 @@ class Candidat extends CI_Controller
             'alpha' => 'Le champ %s est invalide'
         ));
 
-        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_emails|regex_match[#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#]', array(
+        /*$this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_emails|regex_match[#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#]', array(
             'required' => 'Le champ %s est obligatoire',
             'valid_emails' => 'Le champ %s n\'est pas valide',
             'regex_match' => 'Le champ %s n\'est pas valide',
             'is_unique' => '%s existe déja'
-        ));
+        ));*/
         
         $this->form_validation->set_rules('sexe', 'Sexe', 'required', array(
             'required' => 'Le champ %s est obligatoire',
