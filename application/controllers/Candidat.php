@@ -33,14 +33,14 @@ class Candidat extends CI_Controller
             'required' => 'Le champ %s est obligatoire',
             
         ));
-        $this->form_validation->set_rules('telephone', 'telephone', 'required|regex_match[/^0(62|74|77|65|66|11)\d{6}$/]', array(
-            'required' => 'Le champ %s est obligatoire',
-            'regex_match' => 'Le format du %s n\'est pas valide'
-        ));
-        $this->form_validation->set_rules('num_what', 'numero-whatsapp', 'required|regex_match[/^0(62|74|77|65|66)\d{6}$/]', array(
-            'required' => 'Le champ %s est obligatoire',
-            'regex_match' => 'Le format du %s n\'est pas valide'
-        ));
+        // $this->form_validation->set_rules('telephone', 'telephone', 'required|regex_match[/^0(62|74|77|65|66|11)\d{6}$/]', array(
+        //     'required' => 'Le champ %s est obligatoire',
+        //     'regex_match' => 'Le format du %s n\'est pas valide'
+        // ));
+        // $this->form_validation->set_rules('num_what', 'numero-whatsapp', 'required|regex_match[/^0(62|74|77|65|66)\d{6}$/]', array(
+        //     'required' => 'Le champ %s est obligatoire',
+        //     'regex_match' => 'Le format du %s n\'est pas valide'
+        // ));
             //Si validation ok
         if ($this->form_validation->run() == true) {
             // On récupère les infos du formulaire
