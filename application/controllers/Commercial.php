@@ -177,21 +177,34 @@ class Commercial extends CI_Controller
                 $this->session->set_userdata('hash', $commercial->hash);
                 $this->session->set_userdata('raccourci', $commercial->raccourci);
                 // On envoie d'un mail au candidat
-                $message =  ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/inscription', '', TRUE);
+
+                $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{mot_passe}');
+                $valeurs = array(($commercial->sexe == 'F' ? 'Mme' : 'M.'), $commercial->nom_prenom, $commercial->sexe, $commercial->date_n, $commercial->email, $commercial->num_tel, $commercial->num_what, $commercial->mot_passe);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
                 // On envoie d'un mail au candidat
-                mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
+                mail($commercial->email, 'Ecole 241 Business - Inscription', $message, $headers);
+                // On redirige vers le tableau de bord
                 redirect('commercial');
             } else {
                 redirect('commercial/inscription');
             }
         }
+        // On charge la vue inscription_candidat
         $this->load->view('front/commercial/inscription-commercial');
     }
-
+    
     public function traitement_connexion()
     {
         //récupération des données
