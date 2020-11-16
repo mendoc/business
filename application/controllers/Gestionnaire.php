@@ -98,6 +98,7 @@ class Gestionnaire extends CI_Controller
 	public function connexion()
 	{
 		if (est_connecte()) {
+			$this->session->sess_destroy();
 			redirect('gestionnaire');
 		} else {
 			$this->session->sess_destroy();
