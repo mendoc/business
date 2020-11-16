@@ -140,7 +140,7 @@
         }
 
             div.galleryItem {
-                width: 90% !important;
+                width: 30%;
             }
         }
 
@@ -364,16 +364,16 @@
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                <div class="header__navCtas header-ajust" style="margin-right: 20%;">
-                    <!-- Icône pour Linkedin dans le header -->
+                <!-- <div class="" style="margin-right: 20%;">
+                    
                     <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
                     </a>
-                    <!-- Icône pour Facebook dans le header -->
+                  
                     <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
                     </a>
-                </div>
+                </div> -->
                 <div class="header__navCtas">
                     <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn-ajust" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         S'inscrire
@@ -516,6 +516,85 @@
     <div id="titles" class="section section--titles section--center dark section--bnseerbnkgr" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 30px; padding-top: 20px; --pdx-min-height: 0px; --wr-max: 1200px; font-size: 14px; color: rgba(255, 51, 51, 1);">
         <div class="wr">
             <h2 class="color-1 weight-title-h font-title section__title center standalone">FORMATION EN PRESENTIEL A PARTIR DU 23 NOVEMBRE 2020</h2>
+        </div>
+    </div>
+
+    <div id="pricing" class="section section--pricing section--center dark section--d5z3ivwxnzp" style="padding-bottom: 84px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 0, 0, 1);">
+        <div class="sectionBackdropWrapper" style="background-image: url(https://cdn.landen.coundefined?w=1300&amp;h=800&amp;q=50&amp;fit=crop);">
+            <div class="overlay" style="background-color: rgba(255, 255, 255, 1);"></div>
+        </div>
+        <div class="divider divider--slantedOne divider--back">
+            <svg viewbox="0 0 1694 131" preserveaspectratio="none">
+                <path d="M.8 125.6v5H1694V.6z" fill="rgba(255, 255, 255, 1)" fill-rule="evenodd"></path>
+            </svg>
+        </div>
+        <div class="wr">
+            <h2 class="color-1 weight-title-h font-title section__title center">CO&Ucirc;T DES FORMATIONS</h2>
+            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">5.000 Fcfa*</b></p>
+            <div class="pricing">
+                <div id="pricingTiers_r8yywwkwjhg" class="pricingTiers active-a">
+                    <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
+                        <div class="pricingTier">
+                            <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
+                            <p class="pricingTier__description">Soit en cours du matin ou de l'apr&egrave;s-midi &agrave; la fabrique Ecole 241.</p>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">150.000F</span></div>
+                            <ul class="pricingTier__features">
+                                <li class="color-1">
+                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
+                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>1 mois de formation avec des experts du num&eacute;rique.</span>
+                                </li>
+                                <li class="color-1">
+                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
+                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
+                                </li>
+                            </ul>
+                            <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
+                        </div>
+                    </div>
+                    <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
+                        <div class="pricingTier">
+                            <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
+                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business.</p>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">85.000F</span></div>
+                            <ul class="pricingTier__features">
+                                <li class="color-1">
+                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
+                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>1 mois de formation avec des outils num&eacute;riques de pointe.</span>
+                                </li>
+                                <li class="color-1">
+                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
+                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
+                                </li>
+                            </ul>
+                            <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Section pour expliquer le pourquoi -->
@@ -829,84 +908,7 @@
             </div>
         </div>
     </div>
-    <div id="pricing" class="section section--pricing section--center dark section--d5z3ivwxnzp" style="padding-bottom: 84px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 0, 0, 1);">
-        <div class="sectionBackdropWrapper" style="background-image: url(https://cdn.landen.coundefined?w=1300&amp;h=800&amp;q=50&amp;fit=crop);">
-            <div class="overlay" style="background-color: rgba(255, 255, 255, 1);"></div>
-        </div>
-        <div class="divider divider--slantedOne divider--back">
-            <svg viewbox="0 0 1694 131" preserveaspectratio="none">
-                <path d="M.8 125.6v5H1694V.6z" fill="rgba(255, 255, 255, 1)" fill-rule="evenodd"></path>
-            </svg>
-        </div>
-        <div class="wr">
-            <h2 class="color-1 weight-title-h font-title section__title center">CO&Ucirc;T DES FORMATIONS</h2>
-            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">5.000 Fcfa*</b></p>
-            <div class="pricing">
-                <div id="pricingTiers_r8yywwkwjhg" class="pricingTiers active-a">
-                    <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
-                        <div class="pricingTier">
-                            <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
-                            <p class="pricingTier__description">Soit en cours du matin ou de l'apr&egrave;s-midi &agrave; la fabrique Ecole 241.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">150.000F</span></div>
-                            <ul class="pricingTier__features">
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>1 mois de formation avec des experts du num&eacute;rique.</span>
-                                </li>
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
-                                </li>
-                            </ul>
-                            <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
-                        </div>
-                    </div>
-                    <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
-                        <div class="pricingTier">
-                            <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
-                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">85.000F</span></div>
-                            <ul class="pricingTier__features">
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>1 mois de formation avec des outils num&eacute;riques de pointe.</span>
-                                </li>
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
-                                </li>
-                            </ul>
-                            <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <div id="media" class="section section--grid section--center dark section--ke37xk5u43g" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr">
@@ -1037,7 +1039,7 @@
         !(function() {
             function e() {
                 var e;
-                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d.classList.remove("header--withDrawer"),
+                window.innerWidth < 600 ? d.classList.add("header--withDrawer") : d.classList.remove("header--withDrawer"),
                     r && ((e = d.getBoundingClientRect().height), r.setAttribute("style", "height:" + e + "px"));
             }
 

@@ -247,16 +247,7 @@
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                <div class="header__navCtas" style="margin-right: 35%;">
-                    <!-- Icône pour Linkedin dans le header -->
-                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary  cacher" style="color: #ffffff;">
-                        <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
-                    </a>
-                    <!-- Icône pour Facebook dans le header -->
-                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary  cacher" style="color: #ffffff;">
-                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
-                    </a>
-                </div>
+                
                 <div class="header__navCtas">
                     <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         Je me lance
@@ -469,7 +460,7 @@
         !(function() {
             function e() {
                 var e;
-                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d
+                window.innerWidth < 600 ? d.classList.add("header--withDrawer") : d
                     .classList.remove("header--withDrawer"),
                     r && ((e = d.getBoundingClientRect().height), r.setAttribute("style", "height:" + e + "px"));
             }

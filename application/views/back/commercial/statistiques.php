@@ -147,6 +147,9 @@
                         </div>
                     </div>
                     </form>
+                    <?php if ($this->session->flashdata('message')) : ?>
+                        <p style="padding:0 12px;text-align:center;font-size:1.2em; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message'); ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
