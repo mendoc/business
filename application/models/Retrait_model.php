@@ -40,6 +40,7 @@ class Retrait_model extends CI_Model
     public function pour_commercial($id_com)
     {
         $this->db->select_sum('montant_retrait');
+        $this->db->where('date_fin !=', NULL);
         $query = $this->db->get_where($this->table, array('id_com' => $id_com));
         return $query->row();
     }
@@ -50,8 +51,9 @@ class Retrait_model extends CI_Model
         $this->db->where('id_com', $id_com);
         $query = $this->db->get($this->table);
         return $query->result();
-    }
+    } 
 
+    //Lister les retraits traités
     public function total_retrait()
     {
         $this->db->select_sum('montant_retrait');
@@ -80,6 +82,7 @@ class Retrait_model extends CI_Model
                 FROM eb_retrait
                 WHERE id_com = ?
                 AND date_fin IS NOT NULL; ";
-        return $this->db->query($sql, array($id));
+       return $this->db->query($sql, array($id))->result();
+       
     }
 }
