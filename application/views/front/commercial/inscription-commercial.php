@@ -30,12 +30,14 @@
                                 <div class="les-champs">
                                     <label><span class="etoile">*</span></label>
                                     <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
-                                    <?= form_error('nom') ?>
+                                    <div class="erreur">
+                                        <?= form_error('nom') ?>
+
+                                    </div>
                                 </div>
 
                                 <div class="les-champs">
                                     <input type="text" name="prenom" <?= set_value('prenom') ?> placeholder="Prénom" class="input" autofocus />
-                                    <?= form_error('prenom') ?>
                                 </div>
                             </div>
                             <!--===*** Adresse mail ***===-->
@@ -92,6 +94,10 @@
                                             <!--** Total = 31 **-->
                                         </select>
                                     </div>
+                                    <div class="erreur">
+                                        <?= form_error('jour') ?>
+
+                                    </div>
                                     <!--** ========= Les mois de l'année : 12 mois ============ **-->
                                     <div class="choix">
                                         <select name="mois" id="format" class="selection">
@@ -109,6 +115,10 @@
                                             <option value="Novembre">Novembre</option>
                                             <option value="Décembre">Décembre</option>
                                         </select>
+                                    </div>
+                                    <div class="erreur">
+
+                                        <?= form_error('mois') ?>
                                     </div>
                                     <!--** ========= Les années : de 1960 à 2020 ============ **-->
                                     <div class="choix">
@@ -183,18 +193,27 @@
                                             <option>2020</option>
                                         </select>
                                     </div>
+                                    <div class="erreur">
+                                        <?= form_error('annee') ?>
+
+                                    </div>
                                 </div>
                             </div>
 
 
                             <div class="groupe-champ-de-saisie">
-                                
+
                                 <div class="les-champs">
                                     <div class="select">
                                         <select name="sexe" id="format">
-                                            <option selected disabled value="H">Homme</option>
+                                            <option selected disabled>Sexe</option>
                                             <option value="F">Femme</option>
+                                            <option value="H">Homme</option>
                                         </select>
+                                    </div>
+                                    <div class="erreur">
+                                        <?= form_error('sexe') ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -204,27 +223,24 @@
                                     <label><span class="etoile">*</span></label>
                                     <input type="tel" name="num_tel" value="<?= set_value('num_tel') ?>" placeholder="N° de téléphone" class="input" required autofocus />
                                     <div class="erreur">
-                                     <?= form_error('num_tel') ?>
+                                        <?= form_error('num_tel') ?>
                                     </div>
                                 </div>
 
                                 <div class="les-champs">
                                     <!-- <label><span class="etoile">*</span></label> -->
                                     <input type="tel" name="num_what" <?= set_value('num_what') ?> placeholder="N° WhatsApp" class="input" autofocus />
-                                    <div class="erreur">
-                                     <?= form_error('num_what') ?>   
-                                    </div>
                                 </div>
                             </div>
 
-                
+
 
                             <!-- ====*** les mots de passe ****=== -->
                             <div class="les-champs">
                                 <label><span class="etoile-mail">*</span></label>
                                 <input type="password" name="mot_passe" placeholder="Votre mot de passe" class="input" required autofocus />
                                 <div class="erreur">
-                                 <?= form_error('mot_passe') ?>
+                                    <?= form_error('mot_passe') ?>
                                 </div>
                             </div>
 
