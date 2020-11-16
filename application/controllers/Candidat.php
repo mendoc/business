@@ -15,43 +15,24 @@ class Candidat extends CI_Controller
         // On valide les informations
         $this->form_validation->set_rules('nom', 'Nom', 'required', array(
             'required' => 'Le champ %s est obligatoire',
-            'alpha' => 'Le champ %s est invalide'
         ));
-        $this->form_validation->set_rules('prenom', 'Prénom', array(
-            
-        ));
+       
 
-        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_emails|regex_match[#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#]', array(
+        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
-            'valid_emails' => 'Le champ %s n\'est pas valide',
-            'regex_match' => 'Le champ %s n\'est pas valide',
+            'valid_email' => 'Le champ %s n\'est pas valide',
             'is_unique' => 'Cet %s éxiste déja'
         ));
 
         $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
             'required' => 'Veuillez choisir votre %s',
-
         ));
-        $this->form_validation->set_rules('telephone', 'telephone', 'required|numeric', array(
+
+        $this->form_validation->set_rules('telephone', 'telephone', 'required', array(
             'required' => 'Le champ %s est obligatoire',
-            'numeric' => 'Le champ %s n\'est pas valide'
         ));
-        $this->form_validation->set_rules('num_what', 'numero-whatsapp', 'required|numeric', array(
-            'required' => 'Le champ %s est obligatoire',
-            'numeric' => 'Le champ %s n\'est pas valide'
-        ));
-        $this->form_validation->set_rules('domaine', 'votre activité', 'required', array(
-            'required' => 'Veuillez choisir %s',
-            
-        ));
-        $this->form_validation->set_rules('horaire', 'horaire', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
 
-        ));
-        $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-
-        ));
+   
         $this->form_validation->set_rules('jour', 'jour de naissance', 'required', array(
             'required' => 'Veuillez choisir votre %s',
 

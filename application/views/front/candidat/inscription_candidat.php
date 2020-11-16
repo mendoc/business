@@ -18,7 +18,7 @@
         gtag('config', 'G-4D8CEC5J5T');
     </script>
 
-    <!-- <script>
+     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:2094197,hjsv:6};
@@ -27,7 +27,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script> -->
+    </script> 
 </head>
 
 <body>
@@ -222,7 +222,7 @@
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" required autofocus />
+                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" autofocus />
                             <?= form_error('num_what') ?>
                         </div>
                     </div>
@@ -279,7 +279,7 @@
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
                         <label><span class="etoile"></span></label>
-                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" required autofocus><?= set_value('attentes') ?></textarea>
+                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" autofocus><?= set_value('attentes') ?></textarea>
                     </div>
                     <!--===*** Confirmation de l'enregistrer des champs ***===-->
                     <button type="submit" class="bouton bouton-block">S'enregistrer</button>
