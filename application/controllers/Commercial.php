@@ -100,31 +100,37 @@ class Commercial extends CI_Controller
         $this->form_validation->set_rules('nom', 'Nom', 'required', array(
             'required' => 'Le champ %s est obligatoire'
         ));
-        $this->form_validation->set_rules('prenom', 'Prénom', 'required', array(
-            'required' => 'Le champ %s est obligatoire'
-        ));
 
-        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_commercial.email]|required|valid_emails|regex_match[#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#]', array(
+        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_commercial.email]|required|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
-            'valid_emails' => 'Le champ %s n\'est pas valide',
-            'regex_match' => 'Le champ %s n\'est pas valide',
+            'valid_email' => 'Le champ %s n\'est pas valide',
             'is_unique' => '%s existe déja'
         ));
 
-        $this->form_validation->set_rules('num_tel', 'telephone', 'required|regex_match[/^0(62|74|77|65|66|11)\d{6}$/]', array(
-            'required' => 'Le champ %s est obligatoire',
-            'regex_match' => 'Le format du %s n\'est pas valide'
-        ));
-        $this->form_validation->set_rules('num_what', 'numero-whatsapp', 'required|regex_match[/^0(62|74|77|65|66)\d{6}$/]', array(
-            'required' => 'Le champ %s est obligatoire',
-            'regex_match' => 'Le format du %s n\'est pas valide'
-        ));
-        $this->form_validation->set_rules('mot_passe', 'Mot de Passe', 'required', array(
+        $this->form_validation->set_rules('jour', 'jour', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
-        $this->form_validation->set_rules('sexe', 'Sexe', 'required', array(
+
+        $this->form_validation->set_rules('mois', 'mois', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
+
+        $this->form_validation->set_rules('annee', 'année', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
+        $this->form_validation->set_rules('num_tel', 'telephone', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+      
+        $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
+        $this->form_validation->set_rules('mot_passe', 'mot de passe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
         $this->form_validation->set_rules('cmdp', 'Confirmation Mot de Passe', 'required|matches[mot_passe]', array(
             'required' => 'Le champ %s est obligatoire',
             'matches' => 'Le champ %s ne correspond pas au Mot de Passe '
@@ -139,7 +145,7 @@ class Commercial extends CI_Controller
             $num_what    = $this->input->post('num_what');
             $email       = $this->input->post('email');
             $sexe        = $this->input->post('sexe');
-            $date_n      = $this->input->post('date_n');
+            $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
             //$nom_util    = $this->input->post('nom_util');
             $mot_passe   = $this->input->post('mot_passe');
 
@@ -173,7 +179,7 @@ class Commercial extends CI_Controller
                 $this->session->set_userdata('hash', $commercial->hash);
                 $this->session->set_userdata('raccourci', $commercial->raccourci);
                 // On envoie d'un mail au candidat
-                $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+                $message =  ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
