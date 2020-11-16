@@ -51,8 +51,9 @@ class Retrait_model extends CI_Model
         $this->db->where('id_com', $id_com);
         $query = $this->db->get($this->table);
         return $query->result();
-    }
+    } 
 
+    //Lister les retraits traités
     public function total_retrait()
     {
         $this->db->select_sum('montant_retrait');
