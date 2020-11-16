@@ -57,7 +57,7 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-light">Voir les détails</button>
+                                        <a href="<?= site_url('gestionnaire/detail_commercial/' . $commercial->id_com) ?>" class="btn btn-sm btn-light">Voir les détails</a>
                                     </td>
                                 </tr>
                         <?php endforeach;
