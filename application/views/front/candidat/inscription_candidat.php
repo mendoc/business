@@ -18,7 +18,7 @@
         gtag('config', 'G-4D8CEC5J5T');
     </script>
 
-    <script>
+     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:2094197,hjsv:6};
@@ -27,7 +27,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    </script> 
 </head>
 
 <body>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="les-champs">
-                            <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
+                            <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" autofocus />
                             <?= form_error('prenom') ?>
                         </div>
                     </div>
@@ -108,6 +108,7 @@
                                     <option>31</option>
                                 </select>
                             </div>
+                            <?= form_error('jour') ?>
                             <!--** ========= Les mois de l'année : 12 mois ============ **-->
                             <div class="choix">
                                 <select name="mois" class="selection">
@@ -126,6 +127,7 @@
                                     <option value="12">Décembre</option>
                                 </select>
                             </div>
+                            <?= form_error('mois') ?>
                             <!--** ========= Les années : de 1960 à 2020 ============ **-->
                             <div class="choix">
                                 <select name="annee" class="selection">
@@ -193,6 +195,7 @@
                                     <option>2020</option>
                                 </select>
                             </div>
+                            <?= form_error('annee') ?>
                         </div>
                     </div>
 
@@ -206,6 +209,7 @@
                                     <option value="F">Femme</option>
                                 </select>
                             </div>
+                            <?= form_error('sexe') ?>
                         </div>
                     </div>
                     <!--===*** Numéro de téléphone ***===-->
@@ -218,8 +222,8 @@
 
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
-                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" required autofocus />
-                            <?= form_error('num_what')?>
+                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" autofocus />
+                            <?= form_error('num_what') ?>
                         </div>
                     </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
@@ -245,7 +249,9 @@
                                     <option value="Services">Services aux entreprises</option>
                                 </select>
                             </div>
+                            <?= form_error('domaine') ?>
                         </div>
+
                         <div class="les-champs">
                             <div class="select">
                                 <select name="horaire">
@@ -254,6 +260,7 @@
                                     <option>Après-midi</option>
                                 </select>
                             </div>
+                            <?= form_error('horaire') ?>
                         </div>
                     </div>
                     <!--===*** Type de formation ***===-->
@@ -266,12 +273,13 @@
                                     <option value="L">En ligne</option>
                                 </select>
                             </div>
+                            <?= form_error('type_cours') ?>
                         </div>
                     </div>
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
                         <label><span class="etoile"></span></label>
-                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" required autofocus></textarea>
+                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" autofocus><?= set_value('attentes') ?></textarea>
                     </div>
                     <!--===*** Confirmation de l'enregistrer des champs ***===-->
                     <button type="submit" class="bouton bouton-block">S'enregistrer</button>
