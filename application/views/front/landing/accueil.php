@@ -364,16 +364,16 @@
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                <div class="header__navCtas header-ajust" style="margin-right: 20%;">
-                    <!-- Icône pour Linkedin dans le header -->
+                <!-- <div class="" style="margin-right: 20%;">
+                    
                     <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
                     </a>
-                    <!-- Icône pour Facebook dans le header -->
+                  
                     <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary cacher" style="color: #ffffff;">
                         <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
                     </a>
-                </div>
+                </div> -->
                 <div class="header__navCtas">
                     <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn-ajust" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         S'inscrire
@@ -1037,7 +1037,7 @@
         !(function() {
             function e() {
                 var e;
-                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d.classList.remove("header--withDrawer"),
+                window.innerWidth < 600 ? d.classList.add("header--withDrawer") : d.classList.remove("header--withDrawer"),
                     r && ((e = d.getBoundingClientRect().height), r.setAttribute("style", "height:" + e + "px"));
             }
 
