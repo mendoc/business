@@ -146,7 +146,6 @@ class Commercial extends CI_Controller
             $email       = $this->input->post('email');
             $sexe        = $this->input->post('sexe');
             $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
-            //$nom_util    = $this->input->post('nom_util');
             $mot_passe   = $this->input->post('mot_passe');
 
 
@@ -163,7 +162,6 @@ class Commercial extends CI_Controller
             $commercial->email      = $email;
             $commercial->sexe       = $sexe;
             $commercial->date_n     = $date_n;
-            //$commercial->nom_util   = 'will';
             $commercial->mot_passe  = $mot_passe;
             $commercial->hash       = $hash;
             $commercial->raccourci  = $raccourci;
@@ -252,20 +250,50 @@ class Commercial extends CI_Controller
     {
         $this->load->model('retrait_model');
         $this->load->model('commercial_model');
+        $this->load->model('statistique_model');
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
         $montant = $this->input->post('montant');
         $numero = $this->input->post('numero');
 
-        $retrait = new Retrait_model();
-        $retrait->montant_retrait = $montant;
-        $retrait->num_ret = $numero;
-        $retrait->id_com = $commercial->id_com;
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        else $nb_affilies_com_presentiel = 0;
 
-        if ($retrait->ajouter()) {
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+        else $nb_affilies_com_ligne = 0;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        if ($result) $retrait = $result->montant_retrait;
+        else $retrait = 0;
+
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
+        if ($solde < $montant) {
+            $this->session->set_flashdata('message', "Votre solde est insuffisant");
             redirect('commercial');
+        } else {
+
+            $retrait = new Retrait_model();
+            $retrait->montant_retrait = $montant;
+            $retrait->num_ret = $numero;
+            $retrait->id_com = $commercial->id_com;
+
+            if ($retrait->ajouter()) {
+                redirect('commercial');
+            }
         }
+
     }
 
     public function ressources()
