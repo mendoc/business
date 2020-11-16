@@ -10,7 +10,7 @@ class Commercial_model extends CI_Model
     public $email;
     public $sexe;
     public $date_n;
-    public $nom_util;
+    //public $nom_util;
     public $mot_passe;
     public $hash;
     public $raccourci;
@@ -174,5 +174,33 @@ class Commercial_model extends CI_Model
                 ORDER BY `com`.`nb_candidats` DESC, `nbr_visite` ASC;";
 
         return $this->db->query($sql)->result();
+    }
+
+    //listing des paiements qui octroient des commissions au commercial
+
+    public function paiement_commission_presentiel($id)
+    {
+        $sql = "SELECT nom_prenom, date 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND type_cours = \"P\"
+        AND id_can IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = ?)";
+        return $this->db->query($sql, array($id,PRIX_PRESENTIEL));
+    }
+
+    public function paiement_commission_ligne($id)
+    {
+        $sql = "SELECT nom_prenom, date 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND type_cours = \"L\"
+        AND id_can IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = ?)";
+        return $this->db->query($sql, array($id,PRIX_EN_LIGNE));
     }
 }

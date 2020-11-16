@@ -79,7 +79,7 @@ class Commercial extends CI_Controller
 
     public function inscription()
     {
-        $this->load->view('front/commercial/inscription');
+        $this->load->view('front/commercial/inscription-commercial');
     }
 
     public function connexion()
@@ -96,59 +96,100 @@ class Commercial extends CI_Controller
 
     public function traitement_inscription()
     {
-        // récupération des données
-        $nom_complet = $this->input->post('nom') . ' ' . $this->input->post('prenom');
-        $nom_prenom  = $nom_complet;
-        $num_tel     = $this->input->post('num_tel');
-        $num_what    = $this->input->post('num_what');
-        $email       = $this->input->post('email');
-        $sexe        = $this->input->post('sexe');
-        $date_n      = $this->input->post('date_n');
-        $nom_util    = $this->input->post('nom_util');
-        $mot_passe   = $this->input->post('mot_passe');
-
         // On valide les informations
+        $this->form_validation->set_rules('nom', 'Nom', 'required', array(
+            'required' => 'Le champ %s est obligatoire'
+        ));
 
-        // On raccourcit le lien
-        $this->load->helper('bitly');
-        $hash = sha1(time());
-        $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+        $this->form_validation->set_rules('email', 'email', 'is_unique[eb_commercial.email]|required|valid_email', array(
+            'required' => 'Le champ %s est obligatoire',
+            'valid_email' => 'Le champ %s n\'est pas valide',
+            'is_unique' => '%s existe déja'
+        ));
 
-        // On crée l'objet pour la requete
-        $commercial = new Commercial_model();
-        $commercial->nom_prenom = $nom_prenom;
-        $commercial->num_tel    = $num_tel;
-        $commercial->num_what   = $num_what;
-        $commercial->email      = $email;
-        $commercial->sexe       = $sexe;
-        $commercial->date_n     = $date_n;
-        $commercial->nom_util   = $nom_util;
-        $commercial->mot_passe  = $mot_passe;
-        $commercial->hash       = $hash;
-        $commercial->raccourci  = $raccourci;
+        $this->form_validation->set_rules('jour', 'jour', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
 
-        // insertion des informations
-        $inscrit = $commercial->creer();
+        $this->form_validation->set_rules('mois', 'mois', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
 
-        //redirection en fonction du résultat de la requete
-        if ($inscrit) {
-            $this->session->set_userdata('token_com', md5(time()));
-            $this->session->set_userdata('nom_com', $commercial->nom_prenom);
-            $this->session->set_userdata('email_com', $commercial->email);
-            $this->session->set_userdata('hash', $commercial->hash);
-            $this->session->set_userdata('raccourci', $commercial->raccourci);
-            // On envoie d'un mail au candidat
-            $message = "Bonjour " . ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
-            
-            $headers  = "MIME-Version: 1.0\r\n";
-            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
-            // On envoie d'un mail au candidat
-            mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
-            redirect('commercial');
-        } else {
-            redirect('commercial/inscription');
+        $this->form_validation->set_rules('annee', 'année', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
+        $this->form_validation->set_rules('num_tel', 'telephone', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+      
+        $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
+        $this->form_validation->set_rules('mot_passe', 'mot de passe', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
+        ));
+
+        $this->form_validation->set_rules('cmdp', 'Confirmation Mot de Passe', 'required|matches[mot_passe]', array(
+            'required' => 'Le champ %s est obligatoire',
+            'matches' => 'Le champ %s ne correspond pas au Mot de Passe '
+        ));
+
+        // si condition ok !
+        if ($this->form_validation->run() == true) {
+            // récupération des données
+            $nom_complet = $this->input->post('nom') . ' ' . $this->input->post('prenom');
+            $nom_prenom  = $nom_complet;
+            $num_tel     = $this->input->post('num_tel');
+            $num_what    = $this->input->post('num_what');
+            $email       = $this->input->post('email');
+            $sexe        = $this->input->post('sexe');
+            $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
+            $mot_passe   = $this->input->post('mot_passe');
+
+
+            // On raccourcit le lien
+            $this->load->helper('bitly');
+            $hash = sha1(time());
+            $raccourci = raccourcir_lien(site_url('partage/') . $hash);
+
+            // On crée l'objet pour la requete
+            $commercial = new Commercial_model();
+            $commercial->nom_prenom = $nom_prenom;
+            $commercial->num_tel    = $num_tel;
+            $commercial->num_what   = $num_what;
+            $commercial->email      = $email;
+            $commercial->sexe       = $sexe;
+            $commercial->date_n     = $date_n;
+            $commercial->mot_passe  = $mot_passe;
+            $commercial->hash       = $hash;
+            $commercial->raccourci  = $raccourci;
+
+            // insertion des informations
+            $inscrit = $commercial->creer();
+
+            //redirection en fonction du résultat de la requete
+            if ($inscrit) {
+                $this->session->set_userdata('token_com', md5(time()));
+                $this->session->set_userdata('nom_com', $commercial->nom_prenom);
+                $this->session->set_userdata('email_com', $commercial->email);
+                $this->session->set_userdata('hash', $commercial->hash);
+                $this->session->set_userdata('raccourci', $commercial->raccourci);
+                // On envoie d'un mail au candidat
+                $message =  ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+
+                $headers  = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+                // On envoie d'un mail au candidat
+                mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
+                redirect('commercial');
+            } else {
+                redirect('commercial/inscription');
+            }
         }
+        $this->load->view('front/commercial/inscription-commercial');
     }
 
     public function traitement_connexion()
@@ -209,20 +250,50 @@ class Commercial extends CI_Controller
     {
         $this->load->model('retrait_model');
         $this->load->model('commercial_model');
+        $this->load->model('statistique_model');
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
         $montant = $this->input->post('montant');
         $numero = $this->input->post('numero');
 
-        $retrait = new Retrait_model();
-        $retrait->montant_retrait = $montant;
-        $retrait->num_ret = $numero;
-        $retrait->id_com = $commercial->id_com;
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        else $nb_affilies_com_presentiel = 0;
 
-        if ($retrait->ajouter()) {
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+        else $nb_affilies_com_ligne = 0;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        if ($result) $retrait = $result->montant_retrait;
+        else $retrait = 0;
+
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
+        if ($solde < $montant) {
+            $this->session->set_flashdata('message', "Votre solde est insuffisant");
             redirect('commercial');
+        } else {
+
+            $retrait = new Retrait_model();
+            $retrait->montant_retrait = $montant;
+            $retrait->num_ret = $numero;
+            $retrait->id_com = $commercial->id_com;
+
+            if ($retrait->ajouter()) {
+                redirect('commercial');
+            }
         }
+
     }
 
     public function ressources()

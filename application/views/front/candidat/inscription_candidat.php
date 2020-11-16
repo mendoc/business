@@ -18,7 +18,7 @@
         gtag('config', 'G-4D8CEC5J5T');
     </script>
 
-    <script>
+     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:2094197,hjsv:6};
@@ -27,7 +27,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    </script> 
 </head>
 
 <body>
@@ -115,6 +115,7 @@
                                     <option>31</option>
                                 </select>
                             </div>
+                            <?= form_error('jour') ?>
                             <!--** ========= Les mois de l'année : 12 mois ============ **-->
                             <div class="choix">
                                 <div class="couleur"><span class="etoile1">*</span></div>
@@ -134,6 +135,7 @@
                                     <option value="12">Décembre</option>
                                 </select>
                             </div>
+                            <?= form_error('mois') ?>
                             <!--** ========= Les années : de 1960 à 2020 ============ **-->
                             <div class="choix">
                              <div class="couleur"><span class="etoile1">*</span></div>
@@ -202,6 +204,7 @@
                                     <option>2020</option>
                                 </select>
                             </div>
+                            <?= form_error('annee') ?>
                         </div>
                     </div>
 
@@ -217,6 +220,7 @@
                                     <option value="F">Femme</option>
                                 </select>
                             </div>
+                            <?= form_error('sexe') ?>
                         </div>
                     </div>
                     <!--===*** Numéro de téléphone ***===-->
@@ -261,7 +265,9 @@
                                     <option value="Autre">Autres</option>
                                 </select>
                             </div>
+                            <?= form_error('domaine') ?>
                         </div>
+
                         <div class="les-champs">
                             <div class="select">
                              <div class="couleur"><span class="etoile1">*</span></div>
@@ -271,6 +277,7 @@
                                     <option>Après-midi</option>
                                 </select>
                             </div>
+                            <?= form_error('horaire') ?>
                         </div>
                     </div>
                     <!--===*** Type de formation ***===-->
@@ -284,12 +291,14 @@
                                     <option value="L">En ligne - 85.000fcfa</option>
                                 </select>
                             </div>
+                            <?= form_error('type_cours') ?>
                         </div>
                     </div>
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
                         <label><span class="etoile"></span></label>
-                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea"  autofocus></textarea>
+
+                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" autofocus><?= set_value('attentes') ?></textarea>
                     </div>
                     <!--===*** Confirmation de l'enregistrer des champs ***===-->
                     <button type="submit" class="bouton bouton-block">S'enregistrer</button>
