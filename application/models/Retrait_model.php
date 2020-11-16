@@ -85,4 +85,13 @@ class Retrait_model extends CI_Model
        return $this->db->query($sql, array($id))->result();
        
     }
+        //Les retraits non traités d'un commercial
+        public function demande_retraits_commercial($id){
+
+            $sql =" SELECT * 
+                    FROM eb_retrait
+                    WHERE id_com = ?; ";
+           return $this->db->query($sql, array($id))->result();
+           
+        }
 }
