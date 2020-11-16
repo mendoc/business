@@ -295,6 +295,10 @@
                     <button type="submit" class="bouton bouton-block">S'enregistrer</button>
                 </form>
             </div>
+            <p class="msg-confidentiel">
+                En cliquant sur "Enregistrer", vous nous autorisez à utiliser vos informations
+                à des fins <strong>commerciales</strong> (Appels, e-mails etc)
+            </p>
         </div>
         <!--===*** À droite ***===-->
         <div class="droite"></div>

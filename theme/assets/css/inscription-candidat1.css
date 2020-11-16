@@ -110,9 +110,20 @@ body {
     margin: 5px 0;
 }
 
+
+/* --=============* message de confidentialité *===============-- */
+
+.msg-confidentiel {
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: .9em;
+    text-align: center;
+    color: #666;
+}
+
 @media screen and (max-width: 475px) {
     .gauche {
-        height: 150vh;
+        /* height: 150vh; */
         padding: 0!important;
         /* margin-bottom: 4em; */
     }
@@ -138,12 +149,28 @@ form {
 }
 
 @media screen and (max-width: 360px) {
+    .gauche {
+        height: 160vh;
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: 20px;
+    }
     .formulaire {
         height: 100%;
     }
 }
 
 @media screen and (min-width: 402px) and (max-width: 411px) {
+    .gauche {
+        height: 100%;
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: -5em;
+    }
     form {
         width: 100%;
         padding: 40px 20px !important;
@@ -177,6 +204,9 @@ form {
 }
 
 @media screen and (max-width: 375px) {
+    .msg-confidentiel {
+        margin-top: 10px;
+    }
     .logo>img {
         margin-top: -1em;
     }
@@ -318,6 +348,14 @@ label.highlight {
 }
 
 @media screen and (max-width: 475px) {
+    .gauche {
+        /* height: 160vh; */
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: 50px;
+    }
     .input {
         font-size: 16px;
         margin-bottom: 8px;
@@ -326,9 +364,6 @@ label.highlight {
     textarea .textarea {
         height: 1%;
     }
-    /* .form{
-        height: 100%;
-    } */
     form {
         padding: 20px;
     }
@@ -345,6 +380,9 @@ label.highlight {
     .gauche {
         height: 160vh;
         margin-top: -2em;
+    }
+    .msg-confidentiel {
+        margin-top: 20px;
     }
     /* .formulaire {
         height: 230%;
