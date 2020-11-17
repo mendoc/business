@@ -64,3 +64,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    const fileInput = document.querySelector('.custom-file-input');
+    // console.log(fileInput);
+    fileInput.onchange = () => {
+        if (fileInput.files.length > 0) {
+            const fileName = document.querySelector('.custom-file-label');
+            fileName.textContent = fileInput.files[0].name;
+        }
+    }
+</script>

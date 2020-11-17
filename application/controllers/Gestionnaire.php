@@ -221,8 +221,8 @@ class Gestionnaire extends CI_Controller
 			// On charge la vue du mail
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
-			$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
-			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $mot_passe);
+			$cles    = array('{NOM}', '{EMAIL}', '{PASS}');
+			$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
@@ -322,16 +322,7 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		//Récupération de toutes les ressources
-		$this->load->model('thematique_model');
-
-		$tuples = $this->thematique_model->tout();
-
-		$data = array(
-			"thematiques" => $tuples
-		);
-
-		afficher("back/gestionnaire/nouvelle_ressource", $data);
+		afficher("back/gestionnaire/nouvelle_ressource");
 	}
 
 	public function detail_ressource($id)
@@ -426,6 +417,7 @@ class Gestionnaire extends CI_Controller
 				$paiement->nom_candidat = $candidat->nom_prenom;
 				$paiement->type = $candidat->type_cours;
 				$paiement->gestionnaire = $gestionnaire->nom_prenom;
+				$paiement->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 			}
 		}
 
