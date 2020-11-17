@@ -39,7 +39,7 @@
             <?php endif; ?>
         </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <div class="page-header">
             <h1 class="page-title border-bottom">
                 Vidéos
@@ -82,7 +82,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-    </div>
+    </div> -->
     <div class="container">
         <div class="page-header">
             <h1 class="page-title border-bottom">
