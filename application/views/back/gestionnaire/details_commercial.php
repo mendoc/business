@@ -92,7 +92,7 @@
                   <td>Solde</td>
                   <td class="text-right">
                     <span class="badge badge-danger">
-                      
+                      <?= number_format($commission_total, 0, '', ' ') ?> F CFA 
                     </span>
                   </td>
                 </tr>
@@ -149,48 +149,6 @@
               </div>
       </div>
   </div>
-    
-</div>
-<div class=" my-md-5  conte1 my-3">
-  
-  <div class="card-header">
-    <h3 class="card-title">Derniers paiements</h3>
-  </div>
-
-  <div class="table-responsive">
-      <table class="table card-table table-striped table-vcenter">
-          <thead>
-              <tr>
-                  <th>Nom du Ges.</th>
-                  <th>Montant</th>
-                  <th>Date</th>
-              </tr>
-          </thead>
-          <tbody>
-          <?php if (empty($paiements)) { ?>
-                  <tr>
-                      <td colspan="3" class="text-center h1">
-                          <span> Il n'y a pas encore de retrait demande </span>
-                      </td>
-                  </tr>
-                  <?php } else {
-                  foreach ($paiements as $paiement) : ?>
-                      <tr>
-                          <td><?= $paiement->nom_candidat ?></td>
-                          <td class="text-nowrap"><?= number_format($paiement->montant, 0, '', ' ') ?> F CFA</td>
-                          <td class="" colspan="2">
-                              <?php 
-                                  $date = date_diff(date_create($paiement->date), date_create())->format('%d');
-                                  echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
-                              ?>
-                          </td>
-                      </tr>
-              <?php endforeach;
-              } ?>
-
-          </tbody>
-      </table>
-  </div>              
     
 </div>
     
