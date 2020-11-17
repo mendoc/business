@@ -322,16 +322,7 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		//Récupération de toutes les ressources
-		$this->load->model('thematique_model');
-
-		$tuples = $this->thematique_model->tout();
-
-		$data = array(
-			"thematiques" => $tuples
-		);
-
-		afficher("back/gestionnaire/nouvelle_ressource", $data);
+		afficher("back/gestionnaire/nouvelle_ressource");
 	}
 
 	public function detail_ressource($id)
