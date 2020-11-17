@@ -360,7 +360,7 @@
     <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
-                <a id="headerLogo" href="ecole-241-business-accueil.html" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
+                <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
