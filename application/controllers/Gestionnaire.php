@@ -578,8 +578,24 @@ class Gestionnaire extends CI_Controller
 				);
 
 				// Si l'insertion se passe bien 
-				if ($this->paiement_model->inserer($paiement)) {
-					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
+				if ($paiement = $this->paiement_model->inserer($paiement)) {
+					// On charge la vue email
+					$message = $this->load->view('email/candidat/enregistrement', '', TRUE);
+
+					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
+					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+					$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
+					$message = str_replace($cles, $valeurs, $message);
+	
+					// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+					//$headers[] = 'MIME-Version: 1.0';
+					//$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+	
+					$headers  = "MIME-Version: 1.0\r\n";
+					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+					$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
 					redirect('gestionnaire/detail_candidat/' . $id_can);
 				}
 				
