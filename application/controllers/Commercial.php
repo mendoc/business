@@ -122,7 +122,7 @@ class Commercial extends CI_Controller
         $this->form_validation->set_rules('num_tel', 'telephone', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
-      
+
         $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
@@ -204,7 +204,7 @@ class Commercial extends CI_Controller
         // On charge la vue inscription_candidat
         $this->load->view('front/commercial/inscription-commercial');
     }
-    
+
     public function traitement_connexion()
     {
         //récupération des données
@@ -306,7 +306,6 @@ class Commercial extends CI_Controller
                 redirect('commercial');
             }
         }
-
     }
 
     public function ressources()
@@ -320,8 +319,8 @@ class Commercial extends CI_Controller
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
-        $tuples = $this->ressource_model->par_commercial($commercial->id_com);
-
+        $tuples = $this->ressource_model->tout();
+        // $tuples = array();
         $images = array();
         $videos = array();
         $documents = array();
@@ -341,6 +340,32 @@ class Commercial extends CI_Controller
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
+    }
+
+    //Télécharger ressource
+
+    public function telecharger_ressource($id)
+    {
+        if (!$this->est_connecte()) {
+            redirect('commercial/connexion');
+        }
+
+        $this->load->helper('download');
+        
+        $this->load->model('ressource_model');
+
+        if ($ressource = $this->ressource_model->recuperer($id)) {
+
+            $fichier = realpath('ressources') . '/' . $ressource->fichier;
+
+            if (file_exists($fichier)) {
+                $contenu = file_get_contents($fichier);
+
+                force_download($ressource->fichier, $contenu);
+            }
+        }
+
+
     }
 
     public function partages()
