@@ -417,6 +417,7 @@ class Gestionnaire extends CI_Controller
 				$paiement->nom_candidat = $candidat->nom_prenom;
 				$paiement->type = $candidat->type_cours;
 				$paiement->gestionnaire = $gestionnaire->nom_prenom;
+				$paiement->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 			}
 		}
 
