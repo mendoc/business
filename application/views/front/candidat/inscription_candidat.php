@@ -18,7 +18,7 @@
         gtag('config', 'G-4D8CEC5J5T');
     </script>
 
-    <script>
+     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:2094197,hjsv:6};
@@ -27,7 +27,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    </script> 
 </head>
 
 <body>
@@ -49,19 +49,25 @@
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
                             <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
+                            <div class="erreurs">
                             <?= form_error('nom') ?>
+                            </div>
                         </div>
 
                         <div class="les-champs">
                             <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
-                            <?= form_error('prenom') ?>
+                            <div class="erreurs">
+                              <?= form_error('prenom') ?>
+                            </div>
                         </div>
                     </div>
                     <!--===*** Adresse mail ***===-->
                     <div class="les-champs">
                         <label><span class="etoile-mail">*</span></label>
                         <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
-                        <?= form_error('email') ?>
+                        <div class="erreurs">
+                         <?= form_error('email') ?>
+                        </div>
                     </div>
 
 
@@ -73,7 +79,8 @@
                         <div class="input-group">
                             <!--** ========= Les jours du mois : 31 jours max ============ **-->
                             <div class="choix">
-                                <select name="jour" class="selection">
+                             <div class="couleur"><span class="etoile1">*</span></div>
+                                <select name="jour" class="selection" required>
                                     <option selected disabled>Jour</option>
                                     <option>01</option>
                                     <option>02</option>
@@ -110,7 +117,8 @@
                             </div>
                             <!--** ========= Les mois de l'année : 12 mois ============ **-->
                             <div class="choix">
-                                <select name="mois" class="selection">
+                                <div class="couleur"><span class="etoile1">*</span></div>
+                                <select name="mois" class="selection" required>
                                     <option selected disabled>Mois</option>
                                     <option value="01">Janvier</option>
                                     <option value="02">Février</option>
@@ -128,7 +136,8 @@
                             </div>
                             <!--** ========= Les années : de 1960 à 2020 ============ **-->
                             <div class="choix">
-                                <select name="annee" class="selection">
+                             <div class="couleur"><span class="etoile1">*</span></div>
+                                <select name="annee" class="selection" required>
                                     <option selected disabled>Année</option>
                                     <option>1960</option>
                                     <option>1961</option>
@@ -194,18 +203,30 @@
                                 </select>
                             </div>
                         </div>
+                        <!-- <div class="erreurs">
+                            <?= form_error('annee') ?>
+                        </div>
+                        <div class="erreurs">
+                            <?= form_error('mois') ?>
+                        </div>
+                        <div class="erreurs">
+                            <?= form_error('jour') ?>
+                        </div> -->
                     </div>
 
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
+                         
                             <div class="select">
-                                <select name="sexe">
-                                    <option selected disabled>Sexe</option>
-                                    <option value="H">Homme</option>
+                                <div class="couleur"><span class="etoile1">*</span></div>
+                                <select name="sexe" required>
+                                    <!-- <option selected disabled>Sexe</option> -->
+                                    <option selected  value="H"> Homme</option>
                                     <option value="F">Femme</option>
                                 </select>
                             </div>
+                            <?= form_error('sexe') ?>
                         </div>
                     </div>
                     <!--===*** Numéro de téléphone ***===-->
@@ -213,13 +234,17 @@
                         <div class="les-champs">
                             <label><span class="etoile">*</span></label>
                             <input type="tel" name="telephone" value="<?= set_value('telephone') ?>" placeholder="N° de téléphone" class="input" required autofocus />
-                            <?= form_error('telephone') ?>
+                            <div class="erreurs">
+                             <?= form_error('telephone') ?>
+                            </div>
                         </div>
 
                         <div class="les-champs">
-                            <label><span class="etoile">*</span></label>
-                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" required autofocus />
-                            <?= form_error('num_what')?>
+                            <!-- <label><span class="etoile">*</span></label> -->
+                            <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" autofocus />
+                            <div class="erreurs">
+                                <?= form_error('num_what')?>
+                            </div>
                         </div>
                     </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
@@ -243,40 +268,52 @@
                                     <option value="Bois"> Bois / Papier / Carton / Imprimerie</option>
                                     <option value="Études">Études et conseils</option>
                                     <option value="Services">Services aux entreprises</option>
+                                    <option value="Autre">Autres</option>
                                 </select>
                             </div>
+                            <?= form_error('domaine') ?>
                         </div>
+
                         <div class="les-champs">
                             <div class="select">
-                                <select name="horaire">
+                             <div class="couleur"><span class="etoile1">*</span></div>
+                                <select name="horaire" required>
                                     <option selected disabled>Horaire</option>
                                     <option>Matin</option>
                                     <option>Après-midi</option>
                                 </select>
                             </div>
+                            <?= form_error('horaire') ?>
                         </div>
                     </div>
                     <!--===*** Type de formation ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs ">
                             <div class="select type-de-formation">
+                             <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel</option>
-                                    <option value="L">En ligne</option>
+                                    <option value="P">En présentiel - 150.000fcfa</option>
+                                    <option value="L">En ligne - 85.000fcfa</option>
                                 </select>
                             </div>
+                            <?= form_error('type_cours') ?>
                         </div>
                     </div>
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
                         <label><span class="etoile"></span></label>
-                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" required autofocus></textarea>
+
+                        <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" autofocus><?= set_value('attentes') ?></textarea>
                     </div>
                     <!--===*** Confirmation de l'enregistrer des champs ***===-->
                     <button type="submit" class="bouton bouton-block">S'enregistrer</button>
                 </form>
             </div>
+            <p class="msg-confidentiel">
+                En cliquant sur "Enregistrer", vous nous autorisez à utiliser vos informations
+                à des fins <strong>commerciales</strong> (Appels, e-mails etc)
+            </p>
         </div>
         <!--===*** À droite ***===-->
         <div class="droite"></div>
