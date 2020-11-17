@@ -55,7 +55,7 @@
                                     <!--** ========= Les jours du mois : 31 jours max ============ **-->
                                     <div class="choix">
                                       <div class="couleur"><span class="etoile1">*</span></div>
-                                        <select name="jour" id="format" class="selection">
+                                        <select name="jour" id="format" class="selection" required>
                                             <option selected disabled>Jour</option>
                                             <!--** 1 à 10 **-->
                                             <option>01</option>
