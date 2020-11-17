@@ -293,8 +293,8 @@
                              <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 150.000fcfa</option>
-                                    <option value="L">En ligne - 85.000fcfa</option>
+                                    <option value="P">En présentiel - 155.000fcfa</option>
+                                    <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
                             </div>
                             <?= form_error('type_cours') ?>
@@ -311,7 +311,7 @@
                 </form>
             </div>
             <p class="msg-confidentiel">
-                En cliquant sur "Enregistrer", vous nous autorisez à utiliser vos informations
+                En cliquant sur "S'enregistrer", vous nous autorisez à utiliser vos informations
                 à des fins <strong>commerciales</strong> (Appels, e-mails etc)
             </p>
         </div>
