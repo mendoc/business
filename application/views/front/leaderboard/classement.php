@@ -31,7 +31,9 @@
         gtag("js", new Date());
 
         gtag("config", "G-4D8CEC5J5T");
+    </script>
 
+    <script>
         setInterval(() => {
             location.reload()
         }, 60000);
