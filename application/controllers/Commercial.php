@@ -146,7 +146,6 @@ class Commercial extends CI_Controller
             $email       = $this->input->post('email');
             $sexe        = $this->input->post('sexe');
             $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
-            //$nom_util    = $this->input->post('nom_util');
             $mot_passe   = $this->input->post('mot_passe');
 
 
@@ -163,7 +162,6 @@ class Commercial extends CI_Controller
             $commercial->email      = $email;
             $commercial->sexe       = $sexe;
             $commercial->date_n     = $date_n;
-            //$commercial->nom_util   = 'will';
             $commercial->mot_passe  = $mot_passe;
             $commercial->hash       = $hash;
             $commercial->raccourci  = $raccourci;
@@ -179,21 +177,34 @@ class Commercial extends CI_Controller
                 $this->session->set_userdata('hash', $commercial->hash);
                 $this->session->set_userdata('raccourci', $commercial->raccourci);
                 // On envoie d'un mail au candidat
-                $message =  ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/inscription', '', TRUE);
+
+                $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{mot_passe}');
+                $valeurs = array(($commercial->sexe == 'F' ? 'Mme' : 'M.'), $commercial->nom_prenom, $commercial->sexe, $commercial->date_n, $commercial->email, $commercial->num_tel, $commercial->num_what, $commercial->mot_passe);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
                 // On envoie d'un mail au candidat
-                mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
+                mail($commercial->email, 'Ecole 241 Business - Inscription', $message, $headers);
+                // On redirige vers le tableau de bord
                 redirect('commercial');
             } else {
                 redirect('commercial/inscription');
             }
         }
+        // On charge la vue inscription_candidat
         $this->load->view('front/commercial/inscription-commercial');
     }
-
+    
     public function traitement_connexion()
     {
         //récupération des données
@@ -252,20 +263,50 @@ class Commercial extends CI_Controller
     {
         $this->load->model('retrait_model');
         $this->load->model('commercial_model');
+        $this->load->model('statistique_model');
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
         $montant = $this->input->post('montant');
         $numero = $this->input->post('numero');
 
-        $retrait = new Retrait_model();
-        $retrait->montant_retrait = $montant;
-        $retrait->num_ret = $numero;
-        $retrait->id_com = $commercial->id_com;
+        // Nombre d'affiliés en présentiel du commercial
+        $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+        if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+        else $nb_affilies_com_presentiel = 0;
 
-        if ($retrait->ajouter()) {
+        // Nombre d'affiliés en ligne du commercial
+        $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+        if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+        else $nb_affilies_com_ligne = 0;
+
+        // Commission du commercial
+        $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
+        $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
+
+        // Retrait du commercial
+        $result = $this->retrait_model->pour_commercial($commercial->id_com);
+        if ($result) $retrait = $result->montant_retrait;
+        else $retrait = 0;
+
+        // Solde du commercial
+        $solde = $commission - $retrait;
+
+        if ($solde < $montant) {
+            $this->session->set_flashdata('message', "Votre solde est insuffisant");
             redirect('commercial');
+        } else {
+
+            $retrait = new Retrait_model();
+            $retrait->montant_retrait = $montant;
+            $retrait->num_ret = $numero;
+            $retrait->id_com = $commercial->id_com;
+
+            if ($retrait->ajouter()) {
+                redirect('commercial');
+            }
         }
+
     }
 
     public function ressources()
