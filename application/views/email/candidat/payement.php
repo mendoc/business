@@ -55,16 +55,16 @@ font-family: 'Montserrat', sans-serif;
             margin-bottom: 0.60em" class=" title "> Confirmation du paiement</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
-            padding-top: 2em;font-size: 1rem;">Bonjour Christ ADINSI,</p>
+            padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
             <p style=" margin-top: 10px;
             margin-bottom: 10px;font-size: 1rem;">Votre payement a été enregistré avec succès.</p>
             <!--# le message 2 #--->
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Type de formation: en ligne</p>
+            margin-bottom: 10px;font-size: 1rem;">Type de formation: {TYPE_COURS}</p>
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant du payement:90000 fcfa</p>
+            margin-bottom: 10px;font-size: 1rem;">Montant du payement: {MONTANT} F CFA</p>
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant restant:0 fcfa</p>
+            margin-bottom: 10px;font-size: 1rem;">Montant restant: {MONTANT_RESTANT} fcfa</p>
              <p style="margin-top: 10px;
             margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confience accordée</p>
              
