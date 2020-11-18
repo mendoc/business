@@ -142,7 +142,7 @@
             div.galleryItem {
                 width: 30%;
             }
-        }
+        
 
         .wr {
             max-width: 1200px;
@@ -371,6 +371,11 @@
   src="https://www.facebook.com/tr?id=2731387397119205&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
+
+<script>
+  fbq('track', 'ViewContent');
+</script>
+
 </head>
 
 <body>
