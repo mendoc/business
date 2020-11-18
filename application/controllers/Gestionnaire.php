@@ -221,13 +221,17 @@ class Gestionnaire extends CI_Controller
 			// On charge la vue du mail
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
-			$cles    = array('{NOM}', '{EMAIL}', '{PASS}');
+			$cles    = array('{NOM}', '{EMAIL}', '{MOT_DE_PASSE}');
 			$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
+			$headers  = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
 			// On envoie un mail au gestionnaire
-			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message);
+			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message, $headers);
 		} else {
 			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
 		}
