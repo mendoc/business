@@ -45,6 +45,13 @@
   src="https://www.facebook.com/tr?id=2731387397119205&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Facebook Pixel Code -->
+<script>
+  fbq('track', 'ViewContent');
+</script>
+<script>
+  fbq('track', 'Lead');
+</script>
+<!-- Pour pixel fin  -->
 </head>
 
 <body>
