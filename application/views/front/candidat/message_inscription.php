@@ -58,17 +58,11 @@
             'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '2731387397119205');
         fbq('track', 'PageView');
+        fbq('track', 'ViewContent');
+        fbq('track', 'CompleteRegistration');
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2731387397119205&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
-    
-    <!-- Pour facebookpixel -->
-    <script>
-        fbq('track', 'ViewContent');
-    </script>
-    <script>
-        fbq('track', 'CompleteRegistration');
-    </script>
 
 </head>
 
