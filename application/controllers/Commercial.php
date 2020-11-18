@@ -122,7 +122,7 @@ class Commercial extends CI_Controller
         $this->form_validation->set_rules('num_tel', 'telephone', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
-      
+
         $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
             'required' => 'Le champ %s est obligatoire',
         ));
@@ -177,18 +177,31 @@ class Commercial extends CI_Controller
                 $this->session->set_userdata('hash', $commercial->hash);
                 $this->session->set_userdata('raccourci', $commercial->raccourci);
                 // On envoie d'un mail au candidat
-                $message =  ($sexe == 'F' ? 'Mme.' : 'M.') . " " . $inscrit->nom_prenom . ", \n\nNous avons bien reçu votre inscription comme commercial à L'école 241 Business.";
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/inscription', '', TRUE);
+
+                $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{mot_passe}');
+                $valeurs = array(($commercial->sexe == 'F' ? 'Mme' : 'M.'), $commercial->nom_prenom, $commercial->sexe, $commercial->date_n, $commercial->email, $commercial->num_tel, $commercial->num_what, $commercial->mot_passe);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
                 // On envoie d'un mail au candidat
-                mail($email, 'Ecole 241 Business - Inscription', $message, $headers);
+                mail($commercial->email, 'Ecole 241 Business - Inscription', $message, $headers);
+                // On redirige vers le tableau de bord
                 redirect('commercial');
             } else {
                 redirect('commercial/inscription');
             }
         }
+        // On charge la vue inscription_candidat
         $this->load->view('front/commercial/inscription-commercial');
     }
 
@@ -293,7 +306,6 @@ class Commercial extends CI_Controller
                 redirect('commercial');
             }
         }
-
     }
 
     public function ressources()
@@ -307,8 +319,8 @@ class Commercial extends CI_Controller
 
         $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
 
-        $tuples = $this->ressource_model->par_commercial($commercial->id_com);
-
+        $tuples = $this->ressource_model->tout();
+        // $tuples = array();
         $images = array();
         $videos = array();
         $documents = array();
@@ -328,6 +340,32 @@ class Commercial extends CI_Controller
 
         //Affichage de la vue de listing des ressources
         afficher("back/commercial/ressources", $data);
+    }
+
+    //Télécharger ressource
+
+    public function telecharger_ressource($id)
+    {
+        if (!$this->est_connecte()) {
+            redirect('commercial/connexion');
+        }
+
+        $this->load->helper('download');
+        
+        $this->load->model('ressource_model');
+
+        if ($ressource = $this->ressource_model->recuperer($id)) {
+
+            $fichier = realpath('ressources') . '/' . $ressource->fichier;
+
+            if (file_exists($fichier)) {
+                $contenu = file_get_contents($fichier);
+
+                force_download($ressource->fichier, $contenu);
+            }
+        }
+
+
     }
 
     public function partages()

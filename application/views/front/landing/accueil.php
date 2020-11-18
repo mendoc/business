@@ -142,7 +142,7 @@
             div.galleryItem {
                 width: 30%;
             }
-        }
+        
 
         .wr {
             max-width: 1200px;
@@ -354,13 +354,32 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
+    <!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '166742078436085');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
 </head>
 
 <body>
     <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
-                <a id="headerLogo" href="ecole-241-business-accueil.html" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
+                <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
