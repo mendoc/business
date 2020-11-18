@@ -221,8 +221,8 @@ class Gestionnaire extends CI_Controller
 			// On charge la vue du mail
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
-			$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
-			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $mot_passe);
+			$cles    = array('{NOM}', '{EMAIL}', '{PASS}');
+			$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
@@ -322,16 +322,7 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		//Récupération de toutes les ressources
-		$this->load->model('thematique_model');
-
-		$tuples = $this->thematique_model->tout();
-
-		$data = array(
-			"thematiques" => $tuples
-		);
-
-		afficher("back/gestionnaire/nouvelle_ressource", $data);
+		afficher("back/gestionnaire/nouvelle_ressource");
 	}
 
 	public function detail_ressource($id)
@@ -426,6 +417,7 @@ class Gestionnaire extends CI_Controller
 				$paiement->nom_candidat = $candidat->nom_prenom;
 				$paiement->type = $candidat->type_cours;
 				$paiement->gestionnaire = $gestionnaire->nom_prenom;
+				$paiement->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 			}
 		}
 
@@ -504,6 +496,8 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
 
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+
 		if($commercial = $this->commercial_model->recuperer_un($id)){
 			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
 			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
@@ -511,20 +505,51 @@ class Gestionnaire extends CI_Controller
 			$result_candidats_presentiel = $this->statistique_model->candidats_com_presentiel($id);
 			$result_visites = $this->statistique_model->visites_par_commercial($id);
 
-			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
 			$somme_retrait = $this->retrait_model->pour_commercial($id);
+			$retraits = $this->retrait_model->demande_retraits_commercial($id);
 
-			// var_dump($mes_retraits);
-			// die;
+			$nb_aff_ligne = isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0;
+			$nb_aff_presentiel = isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0;
 
+			$commission_ligne = $nb_aff_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
+			$commission_presentiel = $nb_aff_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
+
+			$commission_total = $commission_ligne + $commission_presentiel;
+			
+			$bonus_ligne = 0;
+			$bonus_presentiel = 0;
+
+			// Calcul des bonus 
+			for ($i=10; $i < $nb_aff_ligne; $i+=10) { 
+				$bonus_ligne += 1;
+			}
+
+			for ($i=10; $i < $nb_aff_presentiel; $i+=10) { 
+				$bonus_presentiel += 1;
+			}
+
+			$commission_total += ($bonus_ligne * 20000) + ($bonus_presentiel * 20000);
+			
+			
+			foreach ($retraits as $retrait) {
+				$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
+				$retrait->property = $commercial->nom_prenom;
+			}
+			
+			$retraits = array_filter($retraits, function ($retrait) {
+				return empty($retrait->date_fin);
+			});
 			
 			$data = [
+				"retraits" => $retraits,
+				"email_utilisateur" => $gestionnaire->email_gest,
 				"commercial" => $commercial,
 				"nb_aff_ligne" => isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0,
 				"nb_aff_presentiel" => isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0,
 				"inscrits_ligne" => $result_candidats_ligne,
 				"inscrits_presentiel" => $result_candidats_presentiel,
-				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0
+				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0,
+				"commission_total" => $commission_total
 			];
 
 			afficher('back/gestionnaire/details_commercial', $data);

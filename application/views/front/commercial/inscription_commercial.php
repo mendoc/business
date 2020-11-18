@@ -8,6 +8,16 @@
     <link rel="shortcut icon" type="image/x-icon" href="." />  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/inscription-commercial.css">
+    <script>
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:2094197,hjsv:6};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script>
 </head>
 
 <body>
@@ -54,7 +64,8 @@
                                 <div class="input-group">
                                     <!--** ========= Les jours du mois : 31 jours max ============ **-->
                                     <div class="choix">
-                                        <select name="jour" id="format" class="selection">
+                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <select name="jour" id="format" class="selection" required>
                                             <option selected disabled>Jour</option>
                                             <!--** 1 à 10 **-->
                                             <option>01</option>
@@ -100,7 +111,8 @@
                                     </div>
                                     <!--** ========= Les mois de l'année : 12 mois ============ **-->
                                     <div class="choix">
-                                        <select name="mois" id="format" class="selection">
+                                        <div class="couleur"><span class="etoile1">*</span></div>
+                                            <select name="mois" id="format" class="selection" required>
                                             <option selected disabled>Mois</option>
                                             <option value="janvier">Janvier</option>
                                             <option value="Février">Février</option>
@@ -122,7 +134,8 @@
                                     </div>
                                     <!--** ========= Les années : de 1960 à 2020 ============ **-->
                                     <div class="choix">
-                                        <select name="annee" id="format" class="selection">
+                                     <div class="couleur"><span class="etoile1">*</span></div>
+                                        <select name="annee" id="format" class="selection" required>
                                             <option selected disabled>Année</option>
                                             <!--** 1 à 10 **-->
                                             <option>1960</option>
@@ -205,10 +218,11 @@
 
                                 <div class="les-champs">
                                     <div class="select">
-                                        <select name="sexe" id="format">
-                                            <option selected disabled>Sexe</option>
+                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <select name="sexe" id="format" required>
+                                            <!-- <option selected disabled>Sexe</option> -->
+                                            <option selected disabled value="H">Homme</option>
                                             <option value="F">Femme</option>
-                                            <option value="H">Homme</option>
                                         </select>
                                     </div>
                                     <div class="erreur">
@@ -257,6 +271,10 @@
                             <p class="animation a3">Si vous avez un compte, alors vous pouvez vous connecter <a href="<?= site_url('commercial/connexion') ?>">ici</a></p>
                         </form>
                     </div>
+                    <p class="msg-confidentiel">
+                        En cliquant sur "S'Enregistrer", vous nous autorisez à utiliser vos informations
+                        à des fins <strong>commerciales</strong> (Appels, e-mails etc)
+                    </p>
                 </div>
             </div>
         </div>

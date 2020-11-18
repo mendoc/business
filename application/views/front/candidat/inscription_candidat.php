@@ -28,6 +28,26 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script> 
+    <!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '2731387397119205');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent');
+  fbq('track', 'Lead');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2731387397119205&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Facebook Pixel Code -->
+
 </head>
 
 <body>
@@ -293,8 +313,8 @@
                              <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 150.000fcfa</option>
-                                    <option value="L">En ligne - 85.000fcfa</option>
+                                    <option value="P">En présentiel - 155.000fcfa</option>
+                                    <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
                             </div>
                             <?= form_error('type_cours') ?>
@@ -311,7 +331,7 @@
                 </form>
             </div>
             <p class="msg-confidentiel">
-                En cliquant sur "Enregistrer", vous nous autorisez à utiliser vos informations
+                En cliquant sur "S'enregistrer", vous nous autorisez à utiliser vos informations
                 à des fins <strong>commerciales</strong> (Appels, e-mails etc)
             </p>
         </div>

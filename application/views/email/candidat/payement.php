@@ -52,40 +52,22 @@ font-family: 'Montserrat', sans-serif;
             margin: 20px 0;
             letter-spacing: 3px;
             font-size: 35px;
-            margin-bottom: 0.60em" class=" title ">Votre compte a été créé</h1>
+            margin-bottom: 0.60em" class=" title "> Confirmation du paiement</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
-            padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem;">Votre compte gestionnaire a bien été créé.</p>
+            padding-top: 2em;font-size: 1rem;">Bonjour Christ ADINSI,</p>
+            <p style=" margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Votre payement a été enregistré avec succès.</p>
             <!--# le message 2 #--->
-            <p style="margin-top: 20px;
-            margin-bottom: 20px;font-size: 1rem;">Ci-dessous, les informations pour vous connecter.</p>
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : <?= site_url('gestionnaire/connexion') ?></p>
-            <p style="margin-top: 20px;
-            margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
-            <!--# le message 3 #--->
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px; font-size: 15px;">Mot de passe : {MOT_DE_PASSE}</p>
-           
-            <!--# button d'accès au tableau de bord #--->
-            <a style=" display: block;
-            width: 180px;
-            text-align: center;
-            margin: 0 auto;
-            background-color: #003366;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 11px 30px;
-            margin-top: 2.50em;
-            margin-bottom: 2.50em;
-            border-radius: 5px;text-decoration: none;
-        ;" href="<?= site_url('gestionnaire/connexion') ?>">Accéder au tableau de bord</a>
-            <!--# le message 4 #--->
-            <p class="name-team " style="font-size: 1rem;font-family: 'Montserrat', sans-serif; font-style: italic; margin-bottom: 4em; ">L'équipe Ecole 241 Business.</p>
+            <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Type de formation: en ligne</p>
+            <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Montant du payement:90000 fcfa</p>
+            <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Montant restant:0 fcfa</p>
+             <p style="margin-top: 10px;
+            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confience accordée</p>
+             
         </div>
     </main>
 
