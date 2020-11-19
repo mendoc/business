@@ -578,6 +578,16 @@
                                     </svg>
                                     <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
                                 </li>
+                                <li class="color-1">
+                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
+                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span>Payable en trois tranches avant la fin de formation.</span>
+                                </li>
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
                         </div>
