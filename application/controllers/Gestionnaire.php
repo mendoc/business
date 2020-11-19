@@ -617,7 +617,7 @@ class Gestionnaire extends CI_Controller
 				// Si l'insertion se passe bien 
 				if ($paiement = $this->paiement_model->inserer($paiement)) {
 					// On charge la vue email
-					$message = $this->load->view('email/candidat/enregistrement', '', TRUE);
+					$message = $this->load->view('email/candidat/payement', '', TRUE);
 
 					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
 					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
