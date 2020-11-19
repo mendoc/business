@@ -52,20 +52,20 @@ font-family: 'Montserrat', sans-serif;
             margin: 20px 0;
             letter-spacing: 3px;
             font-size: 35px;
-            margin-bottom: 0.60em" class=" title "> Confirmation du paiement</h1>
+            margin-bottom: 0.60em" class=" title ">Demande de Retrait</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
             padding-top: 2em;font-size: 1rem;">Bonjour Christ ADINSI,</p>
             <p style=" margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Votre retrait a été enregistré avec succès.</p>
+            margin-bottom: 10px;font-size: 1rem;">Nous avons bien reçu votre demande de retrait et votre requête est en cours de traitement. </p>
             <!--# le message 2 #--->
       
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant du payement:90000 fcfa</p>
+            margin-bottom: 10px;font-size: 1rem;">Montant du retrait:90000 fcfa</p>
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant restant:0 fcfa</p>
+            margin-bottom: 10px;font-size: 1rem;">Solde:0 fcfa</p>
              <p style="margin-top: 10px;
-            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confience accordée</p>
+            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confiance accordée</p>
              
         </div>
     </main>
