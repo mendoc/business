@@ -49,8 +49,11 @@ class Gestionnaire extends CI_Controller
 		
 		// Traitement des informations du candidats
 		$candidats = $this->candidat_model->tout();
+
 		$nb_candidats = count($candidats);
+
 		$nb_apprenants = 0;
+
 		foreach($candidats as $candidat)
 		{
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
@@ -66,8 +69,8 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		// traitements des paiements du candidat
 		$paiements = $this->paiement_model->tous();
+
 		foreach ($paiements as $paiement)
 		{
 			$nom_candidat = $this->candidat_model->recuperer($paiement->id_can)->nom_prenom;
@@ -97,7 +100,9 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
+
 		if (est_connecte()) {
+			$this->session->sess_destroy();
 			redirect('gestionnaire');
 		} else {
 			$this->session->sess_destroy();
@@ -199,6 +204,7 @@ class Gestionnaire extends CI_Controller
 
 	public function ajouter_gestionnaire()
 	{
+		
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
@@ -220,13 +226,17 @@ class Gestionnaire extends CI_Controller
 			// On charge la vue du mail
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
-			$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
-			$valeurs = array($gestionnaire->nom_prenom, site_url('gestionnaire'), $gestionnaire->email_gest, $mot_passe);
+			$cles    = array('{NOM}', '{EMAIL}', '{MOT_DE_PASSE}');
+			$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
+			$headers  = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
 			// On envoie un mail au gestionnaire
-			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message);
+			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message, $headers);
 		} else {
 			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
 		}
@@ -321,16 +331,7 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		//Récupération de toutes les ressources
-		$this->load->model('thematique_model');
-
-		$tuples = $this->thematique_model->tout();
-
-		$data = array(
-			"thematiques" => $tuples
-		);
-
-		afficher("back/gestionnaire/nouvelle_ressource", $data);
+		afficher("back/gestionnaire/nouvelle_ressource");
 	}
 
 	public function detail_ressource($id)
@@ -425,6 +426,7 @@ class Gestionnaire extends CI_Controller
 				$paiement->nom_candidat = $candidat->nom_prenom;
 				$paiement->type = $candidat->type_cours;
 				$paiement->gestionnaire = $gestionnaire->nom_prenom;
+				$paiement->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 			}
 		}
 
@@ -503,6 +505,8 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
 
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+
 		if($commercial = $this->commercial_model->recuperer_un($id)){
 			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
 			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
@@ -510,20 +514,51 @@ class Gestionnaire extends CI_Controller
 			$result_candidats_presentiel = $this->statistique_model->candidats_com_presentiel($id);
 			$result_visites = $this->statistique_model->visites_par_commercial($id);
 
-			$mes_retraits = $this->retrait_model->liste_pour_commercial($id);
 			$somme_retrait = $this->retrait_model->pour_commercial($id);
+			$retraits = $this->retrait_model->demande_retraits_commercial($id);
 
-			// var_dump($mes_retraits);
-			// die;
+			$nb_aff_ligne = isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0;
+			$nb_aff_presentiel = isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0;
 
+			$commission_ligne = $nb_aff_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
+			$commission_presentiel = $nb_aff_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
+
+			$commission_total = $commission_ligne + $commission_presentiel;
+			
+			$bonus_ligne = 0;
+			$bonus_presentiel = 0;
+
+			// Calcul des bonus 
+			for ($i=10; $i < $nb_aff_ligne; $i+=10) { 
+				$bonus_ligne += 1;
+			}
+
+			for ($i=10; $i < $nb_aff_presentiel; $i+=10) { 
+				$bonus_presentiel += 1;
+			}
+
+			$commission_total += ($bonus_ligne * 20000) + ($bonus_presentiel * 20000);
+			
+			
+			foreach ($retraits as $retrait) {
+				$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
+				$retrait->property = $commercial->nom_prenom;
+			}
+			
+			$retraits = array_filter($retraits, function ($retrait) {
+				return empty($retrait->date_fin);
+			});
 			
 			$data = [
+				"retraits" => $retraits,
+				"email_utilisateur" => $gestionnaire->email_gest,
 				"commercial" => $commercial,
 				"nb_aff_ligne" => isset($result_aff_ligne) ? $result_aff_ligne->nb_affilies_com_ligne : 0,
 				"nb_aff_presentiel" => isset($result_aff_presentiel) ? $result_aff_presentiel->nb_affilies_com_presentiel : 0,
 				"inscrits_ligne" => $result_candidats_ligne,
 				"inscrits_presentiel" => $result_candidats_presentiel,
-				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0
+				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0,
+				"commission_total" => $commission_total
 			];
 
 			afficher('back/gestionnaire/details_commercial', $data);
@@ -568,8 +603,24 @@ class Gestionnaire extends CI_Controller
 				);
 
 				// Si l'insertion se passe bien 
-				if ($this->paiement_model->inserer($paiement)) {
-					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
+				if ($paiement = $this->paiement_model->inserer($paiement)) {
+					// On charge la vue email
+					$message = $this->load->view('email/candidat/enregistrement', '', TRUE);
+
+					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
+					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+					$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
+					$message = str_replace($cles, $valeurs, $message);
+	
+					// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+					//$headers[] = 'MIME-Version: 1.0';
+					//$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+	
+					$headers  = "MIME-Version: 1.0\r\n";
+					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+					$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
 					redirect('gestionnaire/detail_candidat/' . $id_can);
 				}
 				

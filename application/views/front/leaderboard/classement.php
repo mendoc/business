@@ -32,6 +32,13 @@
 
         gtag("config", "G-4D8CEC5J5T");
     </script>
+
+    <script>
+        setInterval(() => {
+            location.reload()
+        }, 60000);
+    </script>
+    
 </head>
 
 <body translate="no">

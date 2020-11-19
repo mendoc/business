@@ -32,7 +32,7 @@
                                     <td><?= $paiement->nom_candidat ?></td>
                                     <td><?= ($paiement->type == 'P') ? 'En presentiel' : 'En ligne' ?></td>
                                     <td><?= number_format($paiement->montant, 0, ',', ' ') ?> F CFA</td>
-                                    <td><?= number_format(150000 - $paiement->montant, 0,',',' ') ?> F CFA</td>
+                                    <td><?= number_format($paiement->max_montant - $paiement->montant, 0,',',' ') ?> F CFA</td>
                                     <td><?= $paiement->gestionnaire ?></td>
                                 </tr>
                             <?php endforeach; ?>
