@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/connexion_commercial.css">
-    <title>Formulaire mot de passe oublié commercialc</title>
+    <title>Mot de passe oublié commercial - Formulaire</title>
     <!-- Hotjar Tracking Code for https://business.ecole241.org -->
     <script>
         (function(h,o,t,j,a,r){
