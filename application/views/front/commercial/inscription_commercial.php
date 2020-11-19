@@ -9,14 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/inscription-commercial.css">
     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2094197,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        (function(h, o, t, j, a, r) {
+            h.hj = h.hj || function() {
+                (h.hj.q = h.hj.q || []).push(arguments)
+            };
+            h._hjSettings = {
+                hjid: 2094197,
+                hjsv: 6
+            };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script');
+            r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
             a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
     </script>
 </head>
 
@@ -64,7 +70,7 @@
                                 <div class="input-group">
                                     <!--** ========= Les jours du mois : 31 jours max ============ **-->
                                     <div class="choix">
-                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="jour" id="format" class="selection" required>
                                             <option selected disabled>Jour</option>
                                             <!--** 1 à 10 **-->
@@ -112,7 +118,7 @@
                                     <!--** ========= Les mois de l'année : 12 mois ============ **-->
                                     <div class="choix">
                                         <div class="couleur"><span class="etoile1">*</span></div>
-                                            <select name="mois" id="format" class="selection" required>
+                                        <select name="mois" id="format" class="selection" required>
                                             <option selected disabled>Mois</option>
                                             <option value="janvier">Janvier</option>
                                             <option value="Février">Février</option>
@@ -134,7 +140,7 @@
                                     </div>
                                     <!--** ========= Les années : de 1960 à 2020 ============ **-->
                                     <div class="choix">
-                                     <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="annee" id="format" class="selection" required>
                                             <option selected disabled>Année</option>
                                             <!--** 1 à 10 **-->
@@ -218,10 +224,10 @@
 
                                 <div class="les-champs">
                                     <div class="select">
-                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="sexe" id="format" required>
                                             <!-- <option selected disabled>Sexe</option> -->
-                                            <option selected disabled value="H">Homme</option>
+                                            <option selected value="H">Homme</option>
                                             <option value="F">Femme</option>
                                         </select>
                                     </div>
