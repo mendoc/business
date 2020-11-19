@@ -57,7 +57,7 @@ font-family: 'Montserrat', sans-serif;
             <p style="margin-bottom: 10px;
             padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
             <p style=" margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Votre payement a été enregistré avec succès.</p>
+            margin-bottom: 10px;font-size: 1rem;">Votre paiement a été enregistré avec succès.</p>
             <!--# le message 2 #--->
             <p style="margin-top: 10px;
             margin-bottom: 10px;font-size: 1rem;">Type de formation: {TYPE_COURS}</p>
