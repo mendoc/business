@@ -32,7 +32,7 @@ class Ressource_model extends CI_Model
     // Recuperer une ressource
     public function recuperer($id)
     {
-        return $this->db->get($this->table, array($this->id => $id))->row();
+        return $this->db->get_where($this->table, array($this->id => $id))->row();
     }
     //lister toutes les ressources 
     public function par_commercial($id_com)
