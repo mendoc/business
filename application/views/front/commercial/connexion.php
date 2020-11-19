@@ -55,6 +55,14 @@
                 <?php endif; ?>
                 <input type="text" placeholder="Adresse e-mail" name="email" required value="<?= $this->session->flashdata('email-com'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="mot_passe" required />
+
+                <div class="souvenir">
+                    <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
+                    <input type="checkbox" name="souvenir" id="souvenir" class="check-btn" checked>
+                </div>
+
+
+
                 <a href="<?= site_url('commercial/reinitialiser_mot_de_passe') ?>">Mot de passe oublié ?</a>
                 <button type="submit">SE CONNECTER</button>
                 <a href="<?= site_url('commercial/inscription') ?>">Créer un compte commercial</a>
