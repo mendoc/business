@@ -17,8 +17,6 @@
                             <th>E-mail</th>
                             <th>Téléphone</th>
                             <th>Affiliés</th>
-                            <th>Ressources partagées</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,9 +30,9 @@
                             foreach ($commerciaux as $commercial) : ?>
                                 <tr>
                                     <td>
-                                        <span>
+                                        <a href="<?= site_url('gestionnaire/detail_commercial/' . $commercial->id_com) ?>" class="btn btn-link">
                                             <?php echo $commercial->nom_prenom; ?>
-                                        </span>
+                                        </a>
                                     </td>
                                     <td>
                                         <span>
@@ -50,14 +48,6 @@
                                         <span>
                                             <?= 'Aucun' ?>
                                         </span>
-                                    </td>
-                                    <td>
-                                        <span>
-                                            <?= 'Aucune' ?>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a href="<?= site_url('gestionnaire/detail_commercial/' . $commercial->id_com) ?>" class="btn btn-sm btn-light">Voir les détails</a>
                                     </td>
                                 </tr>
                         <?php endforeach;
