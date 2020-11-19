@@ -318,11 +318,23 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->model('ressource_model');
-
-		if ($this->ressource_model->supprimer($id)) {
-			$this->session->set_flashdata('message', 'Ressource supprimée');
-			redirect('gestionnaire/ressources');
+		
+		if ($ressource = $this->ressource_model->recuperer($id)) {
+			
+			$fichier = realpath('ressources') . '/' . $ressource->fichier;
+			
+			if (file_exists($fichier)) {
+				if (unlink($fichier)) {
+					if ($this->ressource_model->supprimer($id)) {
+						$this->session->set_flashdata('message', 'Ressource supprimée');
+						redirect('gestionnaire/ressources');
+					}
+				}
+			}
 		}
+
+
+
 	}
 
 	public function nouvelle_ressource()
