@@ -51,6 +51,10 @@ p {
     width: 100%;
 }
 
+.check-btn {
+    margin-top: 1px;
+}
+
 span {
     font-size: 12px;
 }
@@ -248,7 +252,7 @@ input {
         width: 100%;
     }
     .check-btn {
-        margin-top: 4px;
+        margin-top: 2px;
         width: 90%;
     }
     .btn-souvenir {
