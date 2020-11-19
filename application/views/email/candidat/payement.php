@@ -57,16 +57,16 @@ font-family: 'Montserrat', sans-serif;
             <p style="margin-bottom: 10px;
             padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
             <p style=" margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Votre payement a été enregistré avec succès.</p>
+            margin-bottom: 10px;font-size: 1rem;">Votre paiement a été enregistré avec succès.</p>
             <!--# le message 2 #--->
             <p style="margin-top: 10px;
             margin-bottom: 10px;font-size: 1rem;">Type de formation: {TYPE_COURS}</p>
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant du payement: {MONTANT} F CFA</p>
+            margin-bottom: 10px;font-size: 1rem;">Montant du paiement: {MONTANT} F CFA</p>
             <p style="margin-top: 10px;
             margin-bottom: 10px;font-size: 1rem;">Montant restant: {MONTANT_RESTANT} fcfa</p>
              <p style="margin-top: 10px;
-            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confience accordée</p>
+            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confiance accordée</p>
              
         </div>
     </main>
