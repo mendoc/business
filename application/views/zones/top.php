@@ -83,6 +83,16 @@
                                         <a href="<?= site_url('commercial/transactions') ?>" class="nav-link m-0"><i class="fa fa-money"></i> Transactions</a>
                                     </li>
                                 <?php endif; ?>
+
+                                    <!-- <li class="nav-item  m-0 dropdown">
+                                        <a href="" class="nav-link m-0"><i class="fa fa-play-circle"></i> Comment ça marche?</a>
+                                    </li> -->
+                                    <li class="nav-item  m-0 dropdown">
+                                        <a href="https://wa.me/24102130707" class="nav-link m-0"><i class="fa fa-whatsapp"></i>Aide</a>
+                                    </li>
+
+
+
                             </ul>
                         </div>
                     </div>

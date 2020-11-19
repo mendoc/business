@@ -3,50 +3,53 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire candidat - Ecole 241 Business</title>
+    <title>Formulaire inscription candidat - Ecole 241 Business</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-candidat1.css">
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];​
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());​
-        gtag('config', 'G-4D8CEC5J5T');
-    </script>
+    <?php if (ENVIRONMENT !== 'development') :?> 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];​
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());​
+            gtag('config', 'G-4D8CEC5J5T');
+        </script>
 
-     <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2094197,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script> 
-    <!-- Facebook Pixel Code -->
-<script>
-  !function(f,b,e,v,n,t,s)
-  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-  n.queue=[];t=b.createElement(e);t.async=!0;
-  t.src=v;s=b.getElementsByTagName(e)[0];
-  s.parentNode.insertBefore(t,s)}(window, document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '166742078436085');
-  fbq('track', 'PageView');
-  fbq('track', 'ViewContent');
-  fbq('track', 'Lead');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
+        <script>
+            (function(h,o,t,j,a,r){
+                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+                h._hjSettings={hjid:2094197,hjsv:6};
+                a=o.getElementsByTagName('head')[0];
+                r=o.createElement('script');r.async=1;
+                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+        </script>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '166742078436085');
+        fbq('track', 'PageView');
+        fbq('track', 'ViewContent');
+        fbq('track', 'Lead');
+        </script>
+        <noscript><img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
+        /></noscript>
+        <!-- End Facebook Pixel Code -->
+    <?php endif; ?>
 
 </head>
 
@@ -288,6 +291,14 @@
                                     <option value="Bois"> Bois / Papier / Carton / Imprimerie</option>
                                     <option value="Études">Études et conseils</option>
                                     <option value="Services">Services aux entreprises</option>
+                                    <option value="Gaming">Industrie créative / Jeux vidéo</option>
+                                    <option value="Photographie">Portrait photographie et paysage</option>
+                                    <option value="Halieutique">Pêche</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Agriculture">Agricole</option>
+                                    <option value="Artisanat">Artisanat</option>
+                                    <option value="Maroquerie">Maroquerie</option>
+                                    <option value="Finance">Micro finance</option>
                                     <option value="Autre">Autres</option>
                                 </select>
                             </div>

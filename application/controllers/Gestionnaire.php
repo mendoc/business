@@ -49,8 +49,11 @@ class Gestionnaire extends CI_Controller
 		
 		// Traitement des informations du candidats
 		$candidats = $this->candidat_model->tout();
+
 		$nb_candidats = count($candidats);
+
 		$nb_apprenants = 0;
+
 		foreach($candidats as $candidat)
 		{
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
@@ -66,8 +69,8 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		// traitements des paiements du candidat
 		$paiements = $this->paiement_model->tous();
+
 		foreach ($paiements as $paiement)
 		{
 			$nom_candidat = $this->candidat_model->recuperer($paiement->id_can)->nom_prenom;
@@ -97,6 +100,7 @@ class Gestionnaire extends CI_Controller
 
 	public function connexion()
 	{
+
 		if (est_connecte()) {
 			$this->session->sess_destroy();
 			redirect('gestionnaire');
@@ -200,6 +204,7 @@ class Gestionnaire extends CI_Controller
 
 	public function ajouter_gestionnaire()
 	{
+		
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
@@ -221,13 +226,17 @@ class Gestionnaire extends CI_Controller
 			// On charge la vue du mail
 			$message = $this->load->view('email/gestionnaire/inscription', '', TRUE);
 
-			$cles    = array('{NOM}', '{EMAIL}', '{PASS}');
+			$cles    = array('{NOM}', '{EMAIL}', '{MOT_DE_PASSE}');
 			$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $mot_passe);
 
 			$message = str_replace($cles, $valeurs, $message);
 
+			$headers  = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+            $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
 			// On envoie un mail au gestionnaire
-			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message);
+			mail($gestionnaire->email_gest, 'Ecole 241 Business - Création de compte gestionnaire', $message, $headers);
 		} else {
 			$this->session->set_flashdata('message', "Une erreur s'est produite lors de la création du compte");
 		}
@@ -309,11 +318,23 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->model('ressource_model');
-
-		if ($this->ressource_model->supprimer($id)) {
-			$this->session->set_flashdata('message', 'Ressource supprimée');
-			redirect('gestionnaire/ressources');
+		
+		if ($ressource = $this->ressource_model->recuperer($id)) {
+			
+			$fichier = realpath('ressources') . '/' . $ressource->fichier;
+			
+			if (file_exists($fichier)) {
+				if (unlink($fichier)) {
+					if ($this->ressource_model->supprimer($id)) {
+						$this->session->set_flashdata('message', 'Ressource supprimée');
+						redirect('gestionnaire/ressources');
+					}
+				}
+			}
 		}
+
+
+
 	}
 
 	public function nouvelle_ressource()
@@ -594,8 +615,24 @@ class Gestionnaire extends CI_Controller
 				);
 
 				// Si l'insertion se passe bien 
-				if ($this->paiement_model->inserer($paiement)) {
-					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', "Tout s'est bien passe");
+				if ($paiement = $this->paiement_model->inserer($paiement)) {
+					// On charge la vue email
+					$message = $this->load->view('email/candidat/payement', '', TRUE);
+
+					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
+					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+					$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
+					$message = str_replace($cles, $valeurs, $message);
+	
+					// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+					//$headers[] = 'MIME-Version: 1.0';
+					//$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+	
+					$headers  = "MIME-Version: 1.0\r\n";
+					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+					$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
 					redirect('gestionnaire/detail_candidat/' . $id_can);
 				}
 				

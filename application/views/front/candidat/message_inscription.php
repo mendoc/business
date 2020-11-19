@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmation de l'enregistrement - Ecole 241 Business</title>
+    <title>Confirmation enregistrement du candidat - Ecole 241 Business</title>
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/message_inscription.css">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
