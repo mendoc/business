@@ -79,7 +79,7 @@ class Commercial extends CI_Controller
 
     public function inscription()
     {
-        $this->load->view('front/commercial/inscription-commercial');
+        $this->load->view('front/commercial/inscription_commercial');
     }
 
     public function connexion()
@@ -202,7 +202,7 @@ class Commercial extends CI_Controller
             }
         }
         // On charge la vue inscription_candidat
-        $this->load->view('front/commercial/inscription-commercial');
+        $this->load->view('front/commercial/inscription_commercial');
     }
 
     public function traitement_connexion()
@@ -351,21 +351,21 @@ class Commercial extends CI_Controller
         }
 
         $this->load->helper('download');
-        
+
         $this->load->model('ressource_model');
 
+
         if ($ressource = $this->ressource_model->recuperer($id)) {
-
+            //récupération du chemin vers le fichier
             $fichier = realpath('ressources') . '/' . $ressource->fichier;
-
+            //si le chemin vers le fichier existe
             if (file_exists($fichier)) {
+                //on récupère le contenu du fichier
                 $contenu = file_get_contents($fichier);
-
+                //télecharge la ressource
                 force_download($ressource->fichier, $contenu);
             }
         }
-
-
     }
 
     public function partages()

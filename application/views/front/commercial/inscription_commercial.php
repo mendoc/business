@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire commercial - ECOLE 241 BUSINESS </title>
+    <title>Formulaire inscription commercial - ECOLE 241 BUSINESS </title>
     <!-- <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="." />  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,7 +66,7 @@
                                 <div class="input-group">
                                     <!--** ========= Les jours du mois : 31 jours max ============ **-->
                                     <div class="choix">
-                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="jour" id="format" class="selection" required>
                                             <option selected disabled>Jour</option>
                                             <!--** 1 à 10 **-->
@@ -114,7 +114,7 @@
                                     <!--** ========= Les mois de l'année : 12 mois ============ **-->
                                     <div class="choix">
                                         <div class="couleur"><span class="etoile1">*</span></div>
-                                            <select name="mois" id="format" class="selection" required>
+                                        <select name="mois" id="format" class="selection" required>
                                             <option selected disabled>Mois</option>
                                             <option value="janvier">Janvier</option>
                                             <option value="Février">Février</option>
@@ -136,7 +136,7 @@
                                     </div>
                                     <!--** ========= Les années : de 1960 à 2020 ============ **-->
                                     <div class="choix">
-                                     <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="annee" id="format" class="selection" required>
                                             <option selected disabled>Année</option>
                                             <!--** 1 à 10 **-->
@@ -220,10 +220,10 @@
 
                                 <div class="les-champs">
                                     <div class="select">
-                                      <div class="couleur"><span class="etoile1">*</span></div>
+                                        <div class="couleur"><span class="etoile1">*</span></div>
                                         <select name="sexe" id="format" required>
                                             <!-- <option selected disabled>Sexe</option> -->
-                                            <option selected disabled value="H">Homme</option>
+                                            <option selected value="H">Homme</option>
                                             <option value="F">Femme</option>
                                         </select>
                                     </div>

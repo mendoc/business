@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECOLE 241 BUSINESS</title>
+    <title>E-mail retrait confirmé commercial - Ecole 241 Business</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
 </head>
@@ -43,7 +43,8 @@ font-family: 'Montserrat', sans-serif;
                 display: flex;
                 justify-items: center;
                 justify-content: center;
-                padding-top: 2em;" src="<?= theme_url() ?>/assets/images/Ebusiness.png" width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
+                padding-top: 2em;"
+                src="<?= theme_url() ?>/assets/images/Ebusiness.png"   width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <h1 style=" display: inline-block;
             width: 95%;
@@ -51,41 +52,21 @@ font-family: 'Montserrat', sans-serif;
             margin: 20px 0;
             letter-spacing: 3px;
             font-size: 35px;
-            margin-bottom: 0.60em" class=" title ">Votre compte a été créé</h1>
+            margin-bottom: 0.60em" class=" title ">Demande de Retrait</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
-            padding-top: 2em;font-size: 1rem;">{NOM}</p>
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem;">Votre compte commeriale a bien été créé.</p>
+            padding-top: 2em;font-size: 1rem;">Bonjour Christ ADINSI,</p>
+            <p style=" margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Nous avons bien reçu votre demande de retrait et votre requête est en cours de traitement. </p>
             <!--# le message 2 #--->
-            <p style="margin-top: 20px;
-            margin-bottom: 20px;font-size: 1rem;">Ci-dessous, les informations pour vous connecter.</p>
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : <a href="<?= site_url('commercial/connexion') ?>" target="_blank">business.ecole241.org/commercial/connexion</a> </p>
-            <p style="margin-top: 20px;
-            margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
-            <!--# le message 3 #--->
-            <p style=" margin-top: 30px;
-            margin-bottom: 20px; font-size: 15px;">Mot de passe : {mot_passe}</p>
-            <p style="margin-top: 20px;
-            margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
-            <!--# button d'accès au tableau de bord #--->
-            <a style=" display: block;
-            width: 180px;
-            text-align: center;
-            margin: 0 auto;
-            background-color: #003366;
-            text-decoration: none;
-            color: #ffffff;
-            font-size: 16px;
-            font-weight: bold;
-            padding: 11px 30px;
-            margin-top: 2.50em;
-            margin-bottom: 2.50em;
-            border-radius: 5px;text-decoration: none;
-        ;" href="<?= site_url('commercial/connexion') ?>">Accéder au tableau de bord</a>
-            <!--# le message 4 #--->
-            <p class="name-team " style="font-size: 1rem;font-family: 'Montserrat', sans-serif; font-style: italic; margin-bottom: 4em; ">L'équipe Ecole 241 Business.</p>
+      
+            <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Montant du retrait:90000 fcfa</p>
+            <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Solde:0 fcfa</p>
+             <p style="margin-top: 10px;
+            margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confiance accordée</p>
+             
         </div>
     </main>
 
@@ -115,7 +96,7 @@ font-family: 'Montserrat', sans-serif;
 
             </div>
 
-
+            
         </section>
     </footer>
     <!--# fin du container #--->

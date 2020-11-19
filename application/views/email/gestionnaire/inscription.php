@@ -68,7 +68,6 @@ font-family: 'Montserrat', sans-serif;
             <!--# le message 3 #--->
             <p style=" margin-top: 30px;
             margin-bottom: 20px; font-size: 15px;">Mot de passe : {MOT_DE_PASSE}</p>
-           
             <!--# button d'accès au tableau de bord #--->
             <a style=" display: block;
             width: 180px;

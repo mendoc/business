@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Devenir Commercial</title>
+    <title>Devenir Commercial - ECOLE 241 BUSINESS</title>
 
     <meta name="description" content="Deviens commercial pour le compte de l'Ecole 241 Business et fais-toi de l'argent gr&acirc;ce &agrave; tes aptitudes en communication." />
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />

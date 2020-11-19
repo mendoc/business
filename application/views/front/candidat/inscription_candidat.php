@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire candidat - Ecole 241 Business</title>
+    <title>Formulaire inscription candidat - Ecole 241 Business</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-candidat1.css">
 
@@ -291,6 +291,14 @@
                                     <option value="Bois"> Bois / Papier / Carton / Imprimerie</option>
                                     <option value="Études">Études et conseils</option>
                                     <option value="Services">Services aux entreprises</option>
+                                    <option value="Gaming">Industrie créative / Jeux vidéo</option>
+                                    <option value="Photographie">Portrait photographie et paysage</option>
+                                    <option value="Halieutique">Pêche</option>
+                                    <option value="Education">Education</option>
+                                    <option value="Agriculture">Agricole</option>
+                                    <option value="Artisanat">Artisanat</option>
+                                    <option value="Maroquerie">Maroquerie</option>
+                                    <option value="Finance">Micro finance</option>
                                     <option value="Autre">Autres</option>
                                 </select>
                             </div>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/mot_passe_oubli_gest.css">
-    <title>Mot de passe oublié gestionnaire Ecole241Bussiness </title>
+    <title>Mot de passe oublié gestionnaire - Ecole 241 Business</title>
     <!-- Hotjar Tracking Code for https://business.ecole241.org -->
     <script>
         (function(h,o,t,j,a,r){
