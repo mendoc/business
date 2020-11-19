@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-mail enregistrement candidat -Ecole 241 Business</title>
+    <title>Réinitialisation du mot de passe - Ecole 241 Business</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
 </head>
@@ -52,12 +52,12 @@ font-family: 'Montserrat', sans-serif;
             margin: 20px 0;
             letter-spacing: 3px;
             font-size: 25px;
-            margin-bottom: 0.60em" class=" title ">Votre mot de passe  a été réinitialisé</h1>
+            margin-bottom: 0.60em" class=" title ">Votre mot de passe a été réinitialisé</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
             padding-top: 2em;font-size: 1.3rem;">{NOM}</p>
             <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1.3rem;">Le mot de passe de votre compte commerial a bien été réinitialisé .</p>
+            margin-bottom: 20px;font-size: 1.3rem;">Le mot de passe de votre compte gestionnaire a bien été réinitialisé .</p>
             <!--# le message 2 #--->
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size:  1.3rem;">Ci-dessous, les informations pour vous connecter.</p>
@@ -67,7 +67,7 @@ font-family: 'Montserrat', sans-serif;
             margin-bottom: 20px;font-size:  1.3rem;">Adresse e-mail : {EMAIL}</p>
             <!--# le message 3 #--->
             <p style=" margin-top: 30px;
-            margin-bottom: 20px; font-size: 20px;">Mot de passe : {PASS}</p>
+            margin-bottom: 20px; font-size: 20px;">Mot de passe : {MOT_DE_PASSE}</p>
             <!--# button d'accès au tableau de bord #--->
             <a style=" display: block;
             width: 180px;
