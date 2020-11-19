@@ -56,7 +56,7 @@ font-family: 'Montserrat', sans-serif;
             <p style="margin-bottom: 10px;
             padding-top: 2em;font-size: 1rem;">{NOM}</p>
             <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem;">Votre compte gestionnaire a bien été créé.</p>
+            margin-bottom: 20px;font-size: 1rem;">Votre compte commeriale a bien été créé.</p>
             <!--# le message 2 #--->
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size: 1rem;">Ci-dessous, les informations pour vous connecter.</p>
