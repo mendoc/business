@@ -43,8 +43,7 @@ font-family: 'Montserrat', sans-serif;
                 display: flex;
                 justify-items: center;
                 justify-content: center;
-                padding-top: 2em;"
-                src="<?= theme_url() ?>/assets/images/Ebusiness.png"   width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
+                padding-top: 2em;" src="<?= theme_url() ?>/assets/images/Ebusiness.png" width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <h1 style=" display: inline-block;
             width: 95%;
@@ -55,20 +54,21 @@ font-family: 'Montserrat', sans-serif;
             margin-bottom: 0.60em" class=" title ">Votre compte a été créé</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
-            padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
+            padding-top: 2em;font-size: 1rem;">{NOM}</p>
             <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem;">Votre compte gestionnaire a bien été créé.</p>
+            margin-bottom: 20px;font-size: 1rem;">Votre compte commeriale a bien été créé.</p>
             <!--# le message 2 #--->
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size: 1rem;">Ci-dessous, les informations pour vous connecter.</p>
             <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : <?= site_url('gestionnaire/connexion') ?></p>
+            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : https://business.ecole241.org/index.php/commercial/connexion</p>
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
             <!--# le message 3 #--->
             <p style=" margin-top: 30px;
-            margin-bottom: 20px; font-size: 15px;">Mot de passe : {MOT_DE_PASSE}</p>
-           
+            margin-bottom: 20px; font-size: 15px;">Mot de passe : {mot_passe}</p>
+            <p style="margin-top: 20px;
+            margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
             <!--# button d'accès au tableau de bord #--->
             <a style=" display: block;
             width: 180px;
@@ -83,7 +83,7 @@ font-family: 'Montserrat', sans-serif;
             margin-top: 2.50em;
             margin-bottom: 2.50em;
             border-radius: 5px;text-decoration: none;
-        ;" href="<?= site_url('gestionnaire/connexion') ?>">Accéder au tableau de bord</a>
+        ;" href="https://business.ecole241.org/index.php/commercial/connexion">Accéder au tableau de bord</a>
             <!--# le message 4 #--->
             <p class="name-team " style="font-size: 1rem;font-family: 'Montserrat', sans-serif; font-style: italic; margin-bottom: 4em; ">L'équipe Ecole 241 Business.</p>
         </div>
@@ -115,7 +115,7 @@ font-family: 'Montserrat', sans-serif;
 
             </div>
 
-            
+
         </section>
     </footer>
     <!--# fin du container #--->
