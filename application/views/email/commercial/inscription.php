@@ -61,7 +61,7 @@ font-family: 'Montserrat', sans-serif;
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size: 1rem;">Ci-dessous, les informations pour vous connecter.</p>
             <p style=" margin-top: 30px;
-            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : https://business.ecole241.org/index.php/commercial/connexion</p>
+            margin-bottom: 20px;font-size: 1rem; word-wrap: break-word;">Lien de connexion : <a href="<?= site_url('commercial/connexion') ?>" target="_blank">business.ecole241.org/commercial/connexion</a> </p>
             <p style="margin-top: 20px;
             margin-bottom: 20px;font-size: 1rem;">Adresse e-mail : {EMAIL}</p>
             <!--# le message 3 #--->
@@ -83,7 +83,7 @@ font-family: 'Montserrat', sans-serif;
             margin-top: 2.50em;
             margin-bottom: 2.50em;
             border-radius: 5px;text-decoration: none;
-        ;" href="https://business.ecole241.org/index.php/commercial/connexion">Accéder au tableau de bord</a>
+        ;" href="<?= site_url('commercial/connexion') ?>">Accéder au tableau de bord</a>
             <!--# le message 4 #--->
             <p class="name-team " style="font-size: 1rem;font-family: 'Montserrat', sans-serif; font-style: italic; margin-bottom: 4em; ">L'équipe Ecole 241 Business.</p>
         </div>
