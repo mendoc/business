@@ -737,4 +737,47 @@ class Gestionnaire extends CI_Controller
 
 		}
 	}
+
+	public function reinitialiser_mot_de_passe()
+    {
+        $this->load->view('back/gestionnaire/mot_passe_oublie');
+	}
+	
+	public function traitement_mot_de_passe()
+    {
+        $email = $this->input->post('email');
+        if ($gestionnaire = $this->gestionnaire_model->par_email($email)) {
+
+			$nouveau_mot_passe = rand(1000, 9999);
+			$hash_nouveau_mot_de_passe =  password_hash($nouveau_mot_passe, PASSWORD_BCRYPT);
+
+            if ($this->gestionnaire_model->modifier_mot_de_passe($gestionnaire->id_gest, $hash_nouveau_mot_de_passe)) {
+
+                // On charge la vue du mail
+				$message = $this->load->view('email/gestionnaire/mdp_oubli', '', TRUE);
+
+				$cles    = array('{NOM}', '{EMAIL}', '{MOT_DE_PASSE}');
+				$valeurs = array($gestionnaire->nom_prenom, $gestionnaire->email_gest, $nouveau_mot_passe);
+
+				$message = str_replace($cles, $valeurs, $message);
+
+				$headers  = "MIME-Version: 1.0\r\n";
+				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+				$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+                mail($gestionnaire->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+
+                $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
+                $this->session->set_flashdata('email', $gestionnaire->nom_prenom);
+
+                redirect('gestionnaire/connexion');
+            } else {
+                $this->session->set_flashdata('message-error', "Erreur Serveur ! Contactez nous au 066 19 28 44");
+            	redirect('gestionnaire/reinitialiser_mot_de_passe');
+            }
+        } else {
+            $this->session->set_flashdata('message-error', "Votre email n'existe pas");
+            redirect('gestionnaire/reinitialiser_mot_de_passe');
+        }
+    }
 }

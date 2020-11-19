@@ -75,5 +75,10 @@ class Gestionnaire_model extends CI_Model
         return $query->row();
     }
 
+    public function modifier_mot_de_passe($id, $mot_de_passe)
+    {
+        return $this->db->update($this->table, array('mot_passe' => $mot_de_passe), array($this->id => $id));
+    }
+
 
 }

@@ -23,7 +23,7 @@
     <div class="container" id="container">
         <div class="form-container sign-in-container">
 
-            <form action="<?= site_url('commercial/traitement_mot_de_passe') ?>" method='post'>
+            <form action="<?= site_url('gestionnaire/traitement_mot_de_passe') ?>" method='post'>
                 <img src="<?= theme_url() ?>assets/images/blue.png" alt="Image de fond" width="150px">
                 <h1 class="h1">Rénitialiser le  mot de passe</h1>
                 <?php if ($this->session->flashdata('message-error')) : ?>
@@ -31,7 +31,7 @@
                 <?php endif; ?>
                 <input type="email" placeholder="Adresse e-mail" name="email" required/>
                 <button type="submit">Réinitialiser</button>
-                <a href="<?= site_url('commercial/inscription') ?>">Se connecter ?</a>
+                <a href="<?= site_url('gestionnaire/connexion') ?>">Se connecter ?</a>
             </form>
         </div>
         <div class="overlay-container">
