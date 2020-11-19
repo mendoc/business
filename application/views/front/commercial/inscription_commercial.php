@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Formulaire commercial - ECOLE 241 BUSINESS </title>
+    <title>Formulaire inscription commercial - ECOLE 241 BUSINESS </title>
     <!-- <link rel="icon" href="favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" type="image/x-icon" href="." />  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

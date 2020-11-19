@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/connexion_commercial.css">
-    <title>Connexion commercial - Ecole 241 Business</title>
+    <title> Formulaire connexion commercial - Ecole 241 Business</title>
     <style>
         body{
             background-image: url("<?= theme_url() ?>assets/images/back.jpg");
