@@ -22,13 +22,13 @@
                                     <img src="<?= theme_url() ?>demo/photos/grant-ritchie-338179-500.jpg" alt="Photo by Nathan Guerrero" class="rounded">
                                 <?php endif; ?>
                             </a>
-                            <div class="d-flex align-items-center p-2">
+                            <div class="d-flex align-items-center flex-wrap p-2">
                                 <div>
                                     <div><?= $image->nom_res ?></div>
                                     <small class="d-block text-muted">Publié le <?= date_format(date_create($image->date_res), " d M à H:i"); ?></small>
                                 </div>
                                 <div class="ml-auto text-muted">
-                                    <a href="<?= site_url('commercial/telecharger_ressource/' . $image->id_res) ?>" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-download mr-1" aria-hidden="true"></i></a>
+                                    <a href="<?= site_url('commercial/telecharger_ressource/' . $image->id_res) ?>" class="icon ml-3"><i class="fa fa-download mr-1" aria-hidden="true"></i></a>
                                 </div>
                             </div>
 
