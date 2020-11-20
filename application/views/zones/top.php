@@ -32,12 +32,14 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-3 ml-auto">
-                            <form class="input-icon my-3 my-lg-0 d-none">
-                                <input type="search" class="form-control header-search" placeholder="Rechercher" tabindex="1">
-                                <div class="input-icon-addon">
-                                    <i class="fe fe-search"></i>
-                                </div>
-                            </form>
+                            <?php if (est_un_gestionnaire()) : ?>
+                                <form class="input-icon my-3 my-lg-0" action="<?= site_url('gestionnaire/rechercher') ?>" method="GET">
+                                    <input type="search" name="q" class="form-control header-search" placeholder="Rechercher" tabindex="1">
+                                    <div class="input-icon-addon">
+                                        <i class="fe fe-search"></i>
+                                    </div>
+                                </form>
+                            <?php endif; ?>
                             <?php if (!est_un_gestionnaire()) : ?>
                                 <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                             <?php endif; ?>
@@ -87,12 +89,11 @@
                                     <!-- <li class="nav-item  m-0 dropdown">
                                         <a href="" class="nav-link m-0"><i class="fa fa-play-circle"></i> Comment ça marche?</a>
                                     </li> -->
+                                <?php if (!est_un_gestionnaire()) : ?>
                                     <li class="nav-item  m-0 dropdown">
                                         <a href="https://wa.me/24102130707" class="nav-link m-0"><i class="fa fa-whatsapp"></i>Aide</a>
                                     </li>
-
-
-
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>

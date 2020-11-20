@@ -52,4 +52,10 @@ class Candidat_model extends CI_Model
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
+
+    public function recherche_candidat($nom_prenom)
+    {
+        $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
+    }
 }

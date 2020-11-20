@@ -145,6 +145,56 @@ class Gestionnaire extends CI_Controller
 		}
 	}
 
+	public function rechercher()
+	{
+		// Chargement des modeles
+		$this->load->model('paiement_model');
+		$this->load->model('statistique_model');
+
+
+		$value = $this->input->get('q');
+
+		// traitement des informations du candidat
+		$candidats = $this->candidat_model->recherche_candidat($value);
+
+		// On boucle sur tous les candidats et on verifie s'ils ont payé 
+		foreach ($candidats as $candidat) {
+			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			$candidat->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE ;
+			if ($candidat->id_com) {
+				$commercial = $this->commercial_model->recuperer_un($candidat->id_com);
+				$candidat->nom_com = $commercial->nom_prenom;
+			}
+		}
+
+		// Traitement des informations du commercial
+		$commerciaux = $this->commercial_model->recherche_commercial($value);
+
+		foreach ($commerciaux as $commercial)
+		{
+			// Nombre d'affiliés en présentiel du commercial
+			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+			else $nb_affilies_com_presentiel = 0;
+	
+			// Nombre d'affiliés en ligne du commercial
+			$result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+			else $nb_affilies_com_ligne = 0;
+
+			$commercial->nb_affilies = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
+		}
+
+		$data = [
+			"commerciaux" => $commerciaux,
+			"candidats" => $candidats
+		];
+
+		$this->session->set_flashdata('search', $value);
+
+		afficher('back/gestionnaire/recherche_resultat', $data);
+	}
+
 	public function commerciaux()
 	{
 		if (!$this->est_connecte()) {
