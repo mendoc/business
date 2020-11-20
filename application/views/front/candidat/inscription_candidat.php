@@ -160,7 +160,7 @@
 
                    <div class="champ">
                    <div class="po" >
-                   <label class="label2 " for="text">Date de naissance jj-mm-aaa</label>
+                   <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
                    <span class="etoile2">*</span>
                     <input  class="input2" type="text" id="text" name="text" placeholder="19-05-1998">
                    </div>
