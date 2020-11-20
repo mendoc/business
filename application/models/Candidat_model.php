@@ -58,4 +58,15 @@ class Candidat_model extends CI_Model
         $this->db->like('nom_prenom', $nom_prenom);
         return $this->db->get($this->table)->result();
     }
+
+    public function interval_candidat($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function nombre_candidats()
+    {
+        return $this->db->count_all($this->table);
+    }
 }

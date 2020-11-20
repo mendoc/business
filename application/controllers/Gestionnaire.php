@@ -218,7 +218,50 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		$data['candidats'] =  $this->candidat_model->tout();
+		$this->load->library('pagination');
+
+		$config['base_url'] = site_url('gestionnaire/candidats');
+		$config['total_rows'] = $this->candidat_model->nombre_candidats();
+		$config["per_page"] = 15;
+		// $config["num_links"] = 2;
+		$config["uri_segment"] = 3;
+		$config['enable_query_strings'] = TRUE;
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = 'p';
+
+		// Customisation de la pagination
+		$config['attributes'] = array('class' => 'page-link');
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="page-item active" aria-current="page"> <a class="page-link" href="#"> ';
+		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li class="page-item">';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+	
+	
+	
+		$config['prev_link'] = '&laquo;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+	
+	
+		$config['next_link'] = '&raquo;';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+		// var_dump($page);
+		$data['candidats'] = $this->candidat_model->interval_candidat($config['per_page'], $page);
+		$data["links"] = $this->pagination->create_links();
+
 
 		$this->load->model('paiement_model');
 

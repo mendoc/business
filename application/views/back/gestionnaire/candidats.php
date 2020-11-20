@@ -57,5 +57,8 @@
                 </table>
             </div>
         </div>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
+            <?= $links ?>
+        </nav>
     </div>
 </div>
