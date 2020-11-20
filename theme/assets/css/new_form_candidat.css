@@ -3,10 +3,12 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
 }
 
 main {
     background: rgb(0, 51, 102, 0.03);
+    padding: 5px;
 }
 
 

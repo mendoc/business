@@ -15,7 +15,7 @@
         <div class="contenaire">
             <header>
                 <div class="logo">
-                    <img src="<?= theme_url() ?>assets/images/Blue-transparent.png" alt=" logo Ecole241 Business" width="130px" height="90px">
+                    <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
             </header>
 
