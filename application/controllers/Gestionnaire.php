@@ -201,8 +201,25 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		$this->load->model('statistique_model');
+		
 		//Récupération de tous les commerciaux
 		$tuples = $this->commercial_model->tout();
+
+		foreach ($tuples as $commercial)
+		{
+			// Nombre d'affiliés en présentiel du commercial
+			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+			else $nb_affilies_com_presentiel = 0;
+	
+			// Nombre d'affiliés en ligne du commercial
+			$result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+			else $nb_affilies_com_ligne = 0;
+
+			$commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
+		}
 
 		$data = array(
 			"commerciaux" => $tuples

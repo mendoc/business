@@ -46,7 +46,7 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <?= 'Aucun' ?>
+                                            <?= $commercial->nb_affilies ?>
                                         </span>
                                     </td>
                                 </tr>
