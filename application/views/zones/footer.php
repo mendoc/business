@@ -33,7 +33,7 @@
                 <div class="row align-items-center">
                     <div class="col-auto">
                         <a href="mailto:contact@ecole241.org" class="btn d-none btn-outline-danger btn-sm">Signaler un problème</a>
-                        <a href="<?= site_url('commercial/deconnexion') ?>" class="btn btn-outline-danger btn-sm">Déconnexion</a>
+                        <!-- <a href="<?= site_url('commercial/deconnexion') ?>" class="btn btn-outline-danger btn-sm">Déconnexion</a> -->
                     </div>
                 </div>
             </div>

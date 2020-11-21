@@ -921,6 +921,11 @@ pre code {
     order: 10;
 }
 
+
+/* .btn-hidden {
+    display: none !important;
+} */
+
 .order-11 {
     -ms-flex-order: 11;
     order: 11;
@@ -2867,16 +2872,16 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-    color: #467fcf;
+    color: #cd201f;
     background-color: transparent;
     background-image: none;
-    border-color: #467fcf;
+    border-color: #cd201f;
 }
 
 .btn-outline-primary:hover {
     color: #fff;
-    background-color: #467fcf;
-    border-color: #467fcf;
+    background-color: #cd201f;
+    border-color: #cd201f;
 }
 
 .btn-outline-primary:focus,
@@ -5791,6 +5796,9 @@ button.close {
     .modal-lg {
         max-width: 800px;
     }
+    /* .btn-hidden {
+        display: block !important;
+    } */
 }
 
 .tooltip {

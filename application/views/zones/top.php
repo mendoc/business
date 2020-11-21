@@ -12,7 +12,7 @@
                                 <?php if (!est_un_gestionnaire()) : ?>
                                     <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn btn-success d-lg-none action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                                 <?php endif; ?>
-                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn d-none btn-sm btn-outline-primary">Déconnexion</a>
+                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn  btn-sm btn-outline-primary d-none d-md-inline ">Déconnexion</a>
                             </div>
                             <a class="pr-0  d-none d-lg-block">
                                 <span class="d-none avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
@@ -21,6 +21,7 @@
                                     <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
                                 </span>
                             </a>
+                            <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion</a>
                         </div>
                         <a class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>
@@ -41,7 +42,9 @@
                                 </form>
                             <?php endif; ?>
                             <?php if (!est_un_gestionnaire()) : ?>
-                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
+                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
+                                
+                                
                             <?php endif; ?>
                         </div>
                         <div class="col-lg order-lg-first">
@@ -77,7 +80,7 @@
                                         <a href="javascript:void(0)" class="nav-link m-0" data-toggle="dropdown"><i class="fa fa-money"></i> Transactions</a>
                                         <div class="dropdown-menu dropdown-menu-arrow">
                                             <a href="<?= site_url('gestionnaire/transactions_candidats') ?>" class="dropdown-item"><i class="fe fe-film"></i> Candidats</a>
-                                            <a href="<?= site_url('gestionnaire/transactions_commercial') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Commercials</a>
+                                            <a href="<?= site_url('gestionnaire/transactions_commercial') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Commercials</a>    
                                         </div>
                                     </li>
                                 <?php else : ?>
@@ -93,7 +96,12 @@
                                     <li class="nav-item  m-0 dropdown">
                                         <a href="https://wa.me/24102130707" class="nav-link m-0"><i class="fa fa-whatsapp"></i>Aide</a>
                                     </li>
+
+                                    <li style="margin-bottom: 15px; margin-left: 15px">
+                                    <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-md-none btn-outline-danger btn-sm">Déconnexion</a>
+                                    </li>
                                 <?php endif; ?>
+
                             </ul>
                         </div>
                     </div>
