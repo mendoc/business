@@ -52,4 +52,27 @@ class Candidat_model extends CI_Model
         $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
+
+    public function recherche_candidat($nom_prenom)
+    {
+        $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function interval_candidat($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
+
+    public function nombre_candidats()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    public function modifier_infos($id_can, $params)
+    {
+        $this->db->where($this->id, $id_can);
+        return $this->db->update($this->table, $params);
+    }
 }

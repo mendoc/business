@@ -203,4 +203,10 @@ class Commercial_model extends CI_Model
         HAVING SUM(montant) = ?)";
         return $this->db->query($sql, array($id,PRIX_EN_LIGNE));
     }
+
+    public function recherche_commercial($nom_prenom)
+    {
+        $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
+    }
 }
