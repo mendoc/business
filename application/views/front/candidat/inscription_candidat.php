@@ -70,40 +70,47 @@
                     <div class="groupe-champ-de-saisie">
 
                         <div class="les-champs">
-                            <label><span class="etoile">*</span></label>
-                            <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom" class="input" required autofocus />
+                            <label  classe="label1"><span class="etoile1">*</span></label>
+                            <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom & Prenom" class="input" required autofocus />
                             <div class="erreurs">
                             <?= form_error('nom') ?>
                             </div>
                         </div>
-
                         <div class="les-champs">
+                        <label classe="label1"><span class="etoile1">*</span></label>
+                        <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
+                        <div class="erreurs">
+                         <?= form_error('email') ?>
+        
+                        </div>
+                    </div>
+                    
+                                
+                                
+                
+
+                        <!-- <div class="les-champs">
                             <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
                             <div class="erreurs">
                               <?= form_error('prenom') ?>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!--===*** Adresse mail ***===-->
-                    <div class="les-champs">
-                        <label><span class="etoile-mail">*</span></label>
-                        <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
-                        <div class="erreurs">
-                         <?= form_error('email') ?>
-                        </div>
-                    </div>
+                  
 
 
                     <!--==** Date de naissance **== -->
 
-
-                    <div class="les-champs">
-
-                        <div class="input-group">
-                            <!--** ========= Les jours du mois : 31 jours max ============ **-->
-                            <div class="choix">
+                    <!-- <div class="les-champs">
+                          -->
+                        <!-- <div class="input-group">
+                            ** ========= Les jours du mois : 31 jours max ============ **-->
+                           
+                            <!-- <div class="choix">
+                            
                              <div class="couleur"><span class="etoile1">*</span></div>
-                                <select name="jour" class="selection" required>
+                                <select name="jour" id="jour" class="selection" required>
                                     <option selected disabled>Jour</option>
                                     <option>01</option>
                                     <option>02</option>
@@ -137,95 +144,9 @@
                                     <option>30</option>
                                     <option>31</option>
                                 </select>
-                            </div>
+                            </div> -->
                             <!--** ========= Les mois de l'année : 12 mois ============ **-->
-                            <div class="choix">
-                                <div class="couleur"><span class="etoile1">*</span></div>
-                                <select name="mois" class="selection" required>
-                                    <option selected disabled>Mois</option>
-                                    <option value="01">Janvier</option>
-                                    <option value="02">Février</option>
-                                    <option value="03">Mars</option>
-                                    <option value="04">Avril</option>
-                                    <option value="05">Mai</option>
-                                    <option value="06">Juin</option>
-                                    <option value="07">Juillet</option>
-                                    <option value="08">Août</option>
-                                    <option value="09">Septembre</option>
-                                    <option value="10">Octobre</option>
-                                    <option value="11">Novembre</option>
-                                    <option value="12">Décembre</option>
-                                </select>
-                            </div>
-                            <!--** ========= Les années : de 1960 à 2020 ============ **-->
-                            <div class="choix">
-                             <div class="couleur"><span class="etoile1">*</span></div>
-                                <select name="annee" class="selection" required>
-                                    <option selected disabled>Année</option>
-                                    <option>1960</option>
-                                    <option>1961</option>
-                                    <option>1962</option>
-                                    <option>1963</option>
-                                    <option>1964</option>
-                                    <option>1965</option>
-                                    <option>1966</option>
-                                    <option>1967</option>
-                                    <option>1968</option>
-                                    <option>1969</option>
-                                    <option>1970</option>
-                                    <option>1971</option>
-                                    <option>1972</option>
-                                    <option>1973</option>
-                                    <option>1974</option>
-                                    <option>1975</option>
-                                    <option>1976</option>
-                                    <option>1977</option>
-                                    <option>1978</option>
-                                    <option>1979</option>
-                                    <option>1980</option>
-                                    <option>1981</option>
-                                    <option>1982</option>
-                                    <option>1983</option>
-                                    <option>1984</option>
-                                    <option>1985</option>
-                                    <option>1986</option>
-                                    <option>1987</option>
-                                    <option>1988</option>
-                                    <option>1989</option>
-                                    <option>1990</option>
-                                    <option>1991</option>
-                                    <option>1992</option>
-                                    <option>1993</option>
-                                    <option>1994</option>
-                                    <option>1995</option>
-                                    <option>1996</option>
-                                    <option>1997</option>
-                                    <option>1998</option>
-                                    <option>1999</option>
-                                    <option>2000</option>
-                                    <option>2001</option>
-                                    <option>2002</option>
-                                    <option>2003</option>
-                                    <option>2004</option>
-                                    <option>2005</option>
-                                    <option>2006</option>
-                                    <option>2007</option>
-                                    <option>2008</option>
-                                    <option>2009</option>
-                                    <option>2010</option>
-                                    <option>2011</option>
-                                    <option>2012</option>
-                                    <option>2013</option>
-                                    <option>2014</option>
-                                    <option>2015</option>
-                                    <option>2016</option>
-                                    <option>2017</option>
-                                    <option>2018</option>
-                                    <option>2019</option>
-                                    <option>2020</option>
-                                </select>
-                            </div>
-                        </div>
+                            
                         <!-- <div class="erreurs">
                             <?= form_error('annee') ?>
                         </div>
@@ -235,8 +156,16 @@
                         <div class="erreurs">
                             <?= form_error('jour') ?>
                         </div> -->
-                    </div>
+                    <!-- </div> -->
 
+                   <div class="champ">
+                   <div class="po" >
+                   <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
+                   <span class="etoile2">*</span>
+                    <input  class="input2" type="text" id="text" name="text" placeholder="19-05-1998">
+                   </div>
+
+                   </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
@@ -255,7 +184,7 @@
                     <!--===*** Numéro de téléphone ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
-                            <label><span class="etoile">*</span></label>
+                            <label classe="label1"><span class="etoile1">*</span></label>
                             <input type="tel" name="telephone" value="<?= set_value('telephone') ?>" placeholder="N° de téléphone" class="input" required autofocus />
                             <div class="erreurs">
                              <?= form_error('telephone') ?>
@@ -333,7 +262,7 @@
                     </div>
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
-                        <label><span class="etoile"></span></label>
+                        <label classe="label1"><span class="etoile1"></span></label>
 
                         <textarea type="text" name="attentes" placeholder="Vos attentes pour la formation" class="textarea" autofocus><?= set_value('attentes') ?></textarea>
                     </div>

@@ -148,6 +148,13 @@ form {
     border-bottom: 11px solid #003366;
 }
 
+.label1 {
+    color: #6d6c6c;
+    margin-top: 10px;
+    position: unset;
+    font-size: 13px;
+}
+
 @media screen and (max-width: 360px) {
     .gauche {
         height: 160vh;
@@ -284,7 +291,7 @@ h1 {
 
 /* Tous les label  */
 
-label {
+.label1 {
     position: absolute;
     transform: translateY(6px);
     left: 2px;
@@ -294,32 +301,59 @@ label {
     font-size: 13px;
 }
 
-.couleur {
+.label2 {
+    color: #6d6c6c;
+}
+
+.po {
+    position: relative;
+}
+
+
+/* .couleur {
     position: relative;
     margin-left: 2px;
     color: #f00;
-}
+} */
 
 .etoile1 {
     display: block;
     position: absolute;
-    left: 2.5px;
-    top: -5px;
+    left: 5.5px;
+    top: 11px;
     font-size: .8em;
     position: absolute;
+    color: #ff0000;
 }
 
-label .etoile {
-    position: relative;
-    float: left;
-    margin: 2px;
+.etoile2 {
+    left: 6.5px;
+    top: 35px;
+    font-size: .8em;
     color: #ff0000;
+    position: absolute;
+    display: block;
+}
+
+.input2 {
+    margin-top: 7PX;
 }
 
 label .etoile-mail {
     position: relative;
     color: #ff0000;
     float: left;
+}
+
+.label1 .etoile {
+    position: relative;
+    float: left;
+    margin: 2px;
+    color: #ff0000;
+}
+
+.dispplay-flex {
+    display: flex;
 }
 
 label.active {
@@ -427,6 +461,14 @@ textarea {
     .select::after {
         top: -7px !important;
     }
+    .etoile2 {
+        left: 6.5px;
+        top: 35px;
+        font-size: .8em;
+        color: #ff0000;
+        position: absolute;
+        display: block;
+    }
 }
 
 input:focus,
@@ -473,7 +515,7 @@ select::-ms-expand {
     position: relative;
     display: flex;
     height: 1.80em;
-    line-height: 3;
+    /* line-height: 3; */
     overflow: hidden;
     border-radius: .25em;
 }
@@ -659,3 +701,14 @@ select::-ms-expand {
     color: #fff;
     text-align: center;
 }*/
+
+cursor: pointer;
+transition: all 0.2s ease;
+
+}
+.input-box select:focus {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+}
+*/
