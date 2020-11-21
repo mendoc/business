@@ -20,21 +20,6 @@
 
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/leaderboard.css" />
 
-    <?php if (ENVIRONMENT !== 'development') : ?>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-
-            function gtag() {
-                dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-
-            gtag("config", "G-4D8CEC5J5T");
-        </script>
-    <?php endif; ?>
-
     <script>
         setInterval(() => {
             location.reload()

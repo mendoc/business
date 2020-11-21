@@ -1,0 +1,227 @@
+body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+main {
+    background: rgb(0, 51, 102, 0.03);
+    padding: 5px;
+}
+
+
+/* ===============* header *===============- */
+
+header {
+    padding: 8px 80px;
+    box-shadow: 0 2px 5px rgb(230, 229, 229);
+    background: #fff;
+}
+
+main .page {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* --======================* partie gauche *======================--- */
+
+.gauche {
+    margin: 50px auto;
+    max-width: 30%;
+}
+
+.titre {
+    color: #003366;
+    font-size: 1.3em;
+}
+
+main .page form {
+    width: 100%;
+    padding: 5px;
+    background: #fff;
+    border-radius: 3px;
+    /* box-shadow: 0 4px 10px 4px rgba(19, 35, 47, .3); */
+}
+
+.genre-choix {
+    font-size: .9em;
+    color: #003366;
+    font-weight: 600;
+}
+
+.choix-genre {
+    color: #000 !important;
+    font-weight: normal;
+}
+
+main .page form label {
+    margin-bottom: 10px;
+    font-size: .9em;
+    color: #003366;
+    font-weight: 600;
+}
+
+main .page form input[type="text"],
+input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 3px;
+    width: 93%;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+input[type="tel"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 3px;
+    width: 93%;
+    margin-top: 8px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 3px;
+    width: 95%;
+    margin: 8px 0;
+    font-size: .9em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+main .page form .saisie {
+    margin: 2px 5px;
+    padding: 5px 0;
+}
+
+main .page form .choix-activ-cours {
+    width: 100%;
+    margin: 5px;
+}
+
+main .page form .btn {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.btn-enregistrer {
+    border: none;
+    border-radius: 3px;
+    padding: 12px 50px;
+    background: rgba(255, 51, 51, 1);
+    color: #fff;
+    font-size: .9em;
+}
+
+.confidentiel {
+    line-height: 20px;
+    letter-spacing: 2px;
+}
+
+
+/* --================* droite *======================= */
+
+main .droite {
+    margin-top: 50px;
+}
+
+main .droite .texte-descriptif h1 {
+    color: #003366;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+main .droite .texte-descriptif p {
+    width: 70%;
+    text-align: center;
+    margin: 10px auto;
+}
+
+main .droite .image {
+    margin: 20px auto;
+    width: 320px;
+}
+
+main .droite img {
+    height: 360px;
+    width: 340px;
+}
+
+
+/* --=============* footer */
+
+footer {
+    padding: 20px 80px;
+    background: #003366;
+}
+
+main footer .footer-contenair p {
+    color: #fff;
+}
+
+main footer .footer-contenair a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+
+/* --====================* responsive *====================-- */
+
+@media screen and (max-width: 475px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .gauche {
+        max-width: 100%!important;
+        margin: 0 !important;
+    }
+    .titre {
+        text-align: center;
+        font-size: 1.5em;
+        padding: 10px;
+    }
+    main .page form label {
+        font-size: 1em;
+    }
+    main .page form input[type="text"],
+    input[type="email"] {
+        width: 91%;
+    }
+    input[type="tel"] {
+        width: 91%;
+    }
+    */select {
+        padding: 20px;
+    }
+    */ .confidentiel {
+        line-height: 25px;
+        font-weight: normal;
+        padding: 10px 20px;
+    }
+    .btn-enregistrer {
+        padding: 18px 50px;
+        font-size: 1.1em;
+    }
+    .genre-choix {
+        font-size: 1em;
+    }
+    select {
+        font-size: 1em;
+    }
+    .droite {
+        display: none;
+    }
+    footer {
+        padding: 20px 30px;
+    }
+}
