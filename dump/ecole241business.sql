@@ -102,7 +102,7 @@ CREATE TABLE `eb_gestionnaire` (
   `email_gest` varchar(40) NOT NULL,
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (3,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (1,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com');
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
