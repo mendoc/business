@@ -242,7 +242,7 @@
 </head>
 
 <body>
-    <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
+    <header id="#header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
                 <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
@@ -451,7 +451,40 @@
                         </a>
                     </li>
                 </ul>
+
+
+                 <!-- ===========================* ancre *======================== -->
+            <div class="ancre">
+                    <button id="goTop" class="btn-top" style="background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                        right: 1.2em;
+                        bottom: 1.2em;
+                        display: block;
+                        width: 48px;
+                        height: 48px;
+                        margin: 0;
+                        padding: 15px;
+                        border-radius:50%;
+                        box-shadow: 0 3px 3px #fff;
+                        line-height: 44px;" >
+                        <a href="#">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                            <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
+                                            0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            width: 18px;
+                            height: 18px;
+                            margin-left: -9px;
+                            margin-top: -5px;
+                            cursor: pointer;" />
+                        </svg> </a>
+                    </button>
+                </div>
+
             </div>
+
+           
+
+
         </div>
     </footer>
     <div style="position: relative;">
