@@ -140,6 +140,7 @@ main .page form .btn {
     background: rgba(255, 51, 51, 1);
     color: #fff;
     font-size: .9em;
+    cursor: pointer;
 }
 
 
@@ -197,6 +198,16 @@ main footer .footer-contenair a {
 
 
 /* --====================* responsive *====================-- */
+@media screen and (max-width: 900px){
+    .droite {
+        display: none;
+    }
+
+    .gauche {
+        max-width: 70%!important;
+        margin: auto !important;
+    }
+}
 
 @media screen and (max-width: 475px) {
     body {
