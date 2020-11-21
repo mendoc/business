@@ -69,4 +69,10 @@ class Candidat_model extends CI_Model
     {
         return $this->db->count_all($this->table);
     }
+
+    public function modifier_infos($id_can, $params)
+    {
+        $this->db->where($this->id, $id_can);
+        return $this->db->update($this->table, $params);
+    }
 }

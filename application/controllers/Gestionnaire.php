@@ -278,6 +278,58 @@ class Gestionnaire extends CI_Controller
 		afficher('back/gestionnaire/candidats', $data);
 	}
 
+	public function modifier_candidat($id_can)
+	{
+		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+			
+			$data = [
+				"candidat" => $candidat
+			];
+
+			afficher('back/gestionnaire/modifier_candidat', $data);
+		}
+	}
+
+	public function traitement_modification_candidat($id)
+	{
+		// Traitement des donnees 
+		$this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_email', array(
+            'required' => 'Le champ %s est obligatoire',
+            'valid_email' => 'Le champ %s n\'est pas valide',
+			'is_unique' => 'Cet %s éxiste déja'
+		));
+
+		if ($this->form_validation->run() == true) {
+			
+			// Recuperation des informations modifies 
+			$data = [];
+			foreach ($this->input->post() as $key => $value)
+			{
+				if (!empty($value)) {
+					$data[$key] =  $value;
+				}
+			}
+	
+			if (!empty($data['jour']) && !empty($data['mois'] && !empty($data['annee']))) {
+				$data['date_n'] = $data['annee'] . '-' . $data['mois'] . '-' . $data['jour'];
+				unset($data['jour']);
+				unset($data['mois']);
+				unset($data['annee']);
+			}
+	
+			if ($candidat = $this->candidat_model->modifier_infos($id, $data)) {
+				$this->session->set_flashdata('message-success', 'Les modifications apportes avec succes');
+				redirect('gestionnaire/detail_candidat/' . $id);
+			}
+		} else {
+			if (form_error('email')) {
+				$this->session->set_flashdata('email-error', form_error('email'));
+				redirect('gestionnaire/modifier_candidat/' . $id);
+			}
+		}
+
+	}
+
 	public function gestionnaires()
 	{
 		if (!$this->est_connecte()) {
@@ -858,7 +910,7 @@ class Gestionnaire extends CI_Controller
 				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 				$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 
-                mail($gestionnaire->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+                mail($gestionnaire->email_gest,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
 
                 $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
                 $this->session->set_flashdata('email', $gestionnaire->nom_prenom);
