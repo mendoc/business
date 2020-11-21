@@ -21,7 +21,7 @@
                                     <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
                                 </span>
                             </a>
-                            <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion</a>
+                            <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion </a>
                         </div>
                         <a class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>

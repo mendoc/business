@@ -921,11 +921,6 @@ pre code {
     order: 10;
 }
 
-
-/* .btn-hidden {
-    display: none !important;
-} */
-
 .order-11 {
     -ms-flex-order: 11;
     order: 11;
@@ -5796,9 +5791,6 @@ button.close {
     .modal-lg {
         max-width: 800px;
     }
-    /* .btn-hidden {
-        display: block !important;
-    } */
 }
 
 .tooltip {
