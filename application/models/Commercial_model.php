@@ -157,6 +157,7 @@ class Commercial_model extends CI_Model
     public function classement()
     {
         $sql = "SELECT
+                    `eb_commercial`.`id_com`,
                     `nom_prenom`,
                     `nbr_visite`,
                     `com`.`nb_candidats`
