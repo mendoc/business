@@ -23,7 +23,7 @@
     <script>
         setInterval(() => {
             location.reload()
-        }, 60000);
+        }, 5 * 60 * 1000);
     </script>
     
 </head>
@@ -36,6 +36,30 @@
             </h4>
             <span class="c-chip c-chip--success" onclick="javacript:location.reload()">Actualiser</span>
         </div>
+        <div>
+            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time></p>
+            <table class="table mb-5">
+                <thead class="table-head">
+                    <tr class="">
+                        <th colspan="2">Nombre d'apprenant</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr class="table-row">
+                        <td>En ligne</td>
+                        <td><?= $nb_apprenant_ligne ?></td>
+                    </tr>
+                    <tr class="table-row">
+                        <td>En presentiel</td>
+                        <td><?= $nb_apprenant_presentiel ?></td>
+                    </tr>
+                    <tr class="table-row bg-dark">
+                        <td>Total</td>
+                        <td><?= $nb_apprenant_ligne + $nb_apprenant_presentiel ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <table class="c-table">
             <thead class="c-table__head">
                 <tr class="c-table__head-row">
@@ -43,6 +67,7 @@
                     <th class="c-table__head-cell">Commercial</th>
                     <th class="c-table__head-cell">Visites</th>
                     <th class="c-table__head-cell u-text--right">Candidats</th>
+                    <th class="c-table__head-cell u-text--right">Affiliés</th>
                     <th class="c-table__head-cell u-text--right">% Conv.</th>
                 </tr>
             </thead>
@@ -58,6 +83,9 @@
                         <td class="c-table__cell c-table__cell--count"><small><?= $commercial->nbr_visite ?></small></td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
                             <strong><?= $commercial->nb_candidats ?></strong>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <?= $commercial->nb_affilies ?>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
                             <span><?= $commercial->nbr_visite == 0 ? 0  : number_format(($commercial->nb_candidats / $commercial->nbr_visite) * 100, 1,",", " " ); 
