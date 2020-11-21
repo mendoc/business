@@ -157,6 +157,7 @@ class Commercial_model extends CI_Model
     public function classement()
     {
         $sql = "SELECT
+                    `eb_commercial`.`id_com`,
                     `nom_prenom`,
                     `nbr_visite`,
                     `com`.`nb_candidats`
@@ -202,5 +203,11 @@ class Commercial_model extends CI_Model
         GROUP BY id_can 
         HAVING SUM(montant) = ?)";
         return $this->db->query($sql, array($id,PRIX_EN_LIGNE));
+    }
+
+    public function recherche_commercial($nom_prenom)
+    {
+        $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
     }
 }

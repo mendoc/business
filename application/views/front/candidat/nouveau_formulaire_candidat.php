@@ -18,7 +18,7 @@
                     <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
                 <div class="retour">
-                    <a href=""><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC"/></a>
+                    <a href="<?= site_url('welcome') ?>"><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC"/></a>
                 </div>
             </header>
 
@@ -98,9 +98,18 @@
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours:</label><br>
                                 <select name="type_cours" id="cours">
-                                    <!-- <option selected disabled>Type de cours</option> -->
                                     <option value="P">En présentiel - 155.000fcfa</option>
                                     <option value="L">En ligne - 90.000fcfa</option>
+                                </select>
+                            </div>
+
+                            <!-- =========* choix des modalites *=========-->
+                            <div class="choix-cours">
+                                <label for="modalite">Modalite de paiement:</label><br>
+                                <select name="modalite" id="modalite">
+                                    <option value="1">1 Tranche</option>
+                                    <option value="2">2 Tranche</option>
+                                    <option value="3">3 Tranche</option>
                                 </select>
                             </div>
                         </div>
@@ -143,6 +152,19 @@
             </div>
         </footer>
     </main>
+
+    <script>
+        const typeCoursElt = document.getElementById('cours');
+        const modaliteElt = document.getElementById('modalite');
+        typeCoursElt.onchange = e => {
+            if (e.target.value !== 'P') {
+                modaliteElt.setAttribute('disabled', true);
+            } else {
+                modaliteElt.removeAttribute('disabled');
+            }
+        }
+
+    </script>
 
 </body>
 

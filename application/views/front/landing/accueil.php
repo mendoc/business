@@ -20,7 +20,7 @@
     <link rel="icon" href="<?= theme_url() ?>favicon.png" />
     <link rel="stylesheet" href="<?= theme_url() ?>css/css-j5m8fgybln8l-02421f1add241e66ca488626436901d8b680dae7.css" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
-   
+
     <style tyle="text/css">
         body {
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -73,19 +73,19 @@
             }
         }
 
-        @media only screen and (max-width: 648px){
+        @media only screen and (max-width: 648px) {
 
-            .header__navCtas{
+            .header__navCtas {
                 margin-left: 0;
             }
-            
+
         }
 
-        @media only screen and (max-width: 600px){
-            
+        @media only screen and (max-width: 600px) {
+
             .header__navCtas {
-                    display: none;
-                }
+                display: none;
+            }
         }
 
         @media only screen and (max-width: 750px) {
@@ -93,7 +93,7 @@
                 --title-scale: 0.7;
             }
 
-            .cacher{
+            .cacher {
                 display: none !important;
             }
 
@@ -135,14 +135,14 @@
             }
 
             .header__navCtas {
-                    display: none;
-                }
+                display: none;
+            }
         }
 
-            div.galleryItem {
-                width: 30%;
-            }
-        
+        div.galleryItem {
+            width: 30%;
+        }
+
 
         .wr {
             max-width: 1200px;
@@ -330,7 +330,7 @@
         }
     </style>
 
-    <?php if (ENVIRONMENT !== 'development'): ?>
+    <?php if (ENVIRONMENT !== 'development') : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
         <script>
@@ -346,32 +346,46 @@
 
         <!-- Hotjar Tracking Code for https://business.ecole241.org -->
         <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:2094197,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
         </script>
         <!-- Facebook Pixel Code -->
         <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '166742078436085');
-        fbq('track', 'PageView');
-        fbq('track', 'ViewContent');
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function() {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '166742078436085');
+            fbq('track', 'PageView');
+            fbq('track', 'ViewContent');
         </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
-        /></noscript>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1" /></noscript>
         <!-- End Facebook Pixel Code -->
     <?php endif; ?>
 
@@ -588,7 +602,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>Payable en trois tranches avant la fin de formation.</span>
+                                    <span>Payable en 3 tranches avant la fin de formation.</span>
                                 </li>
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
@@ -939,7 +953,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <div id="media" class="section section--grid section--center dark section--ke37xk5u43g" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr">
@@ -1060,6 +1074,36 @@
                         </a>
                     </li>
                 </ul>
+
+        <!-- ===========================* ancre *======================== -->
+                <div class="ancre">
+                    <button id="goTop" class="btn-top" style="background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                        right: 1.2em;
+                        bottom: 1.2em;
+                        display: block;
+                        width: 48px;
+                        height: 48px;
+                        margin: 0;
+                        padding: 15px;
+                        border-radius:50%;
+                        box-shadow: 0 3px 3px #fff;
+                        line-height: 44px;" >
+                        <a href="#">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                            <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
+                                            0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            width: 18px;
+                            height: 18px;
+                            margin-left: -9px;
+                            margin-top: -5px;
+                            cursor: pointer;" />
+                        </svg> </a>
+                    </button>
+                </div>
+
+
+
             </div>
         </div>
     </footer>

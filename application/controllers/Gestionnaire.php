@@ -145,6 +145,56 @@ class Gestionnaire extends CI_Controller
 		}
 	}
 
+	public function rechercher()
+	{
+		// Chargement des modeles
+		$this->load->model('paiement_model');
+		$this->load->model('statistique_model');
+
+
+		$value = $this->input->get('q');
+
+		// traitement des informations du candidat
+		$candidats = $this->candidat_model->recherche_candidat($value);
+
+		// On boucle sur tous les candidats et on verifie s'ils ont payé 
+		foreach ($candidats as $candidat) {
+			$candidat->montant = $this->paiement_model->recuperer_tout_le_montant($candidat->id_can);
+			$candidat->max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE ;
+			if ($candidat->id_com) {
+				$commercial = $this->commercial_model->recuperer_un($candidat->id_com);
+				$candidat->nom_com = $commercial->nom_prenom;
+			}
+		}
+
+		// Traitement des informations du commercial
+		$commerciaux = $this->commercial_model->recherche_commercial($value);
+
+		foreach ($commerciaux as $commercial)
+		{
+			// Nombre d'affiliés en présentiel du commercial
+			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+			else $nb_affilies_com_presentiel = 0;
+	
+			// Nombre d'affiliés en ligne du commercial
+			$result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+			else $nb_affilies_com_ligne = 0;
+
+			$commercial->nb_affilies = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
+		}
+
+		$data = [
+			"commerciaux" => $commerciaux,
+			"candidats" => $candidats
+		];
+
+		$this->session->set_flashdata('search', $value);
+
+		afficher('back/gestionnaire/recherche_resultat', $data);
+	}
+
 	public function commerciaux()
 	{
 		if (!$this->est_connecte()) {
@@ -168,7 +218,50 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
-		$data['candidats'] =  $this->candidat_model->tout();
+		$this->load->library('pagination');
+
+		$config['base_url'] = site_url('gestionnaire/candidats');
+		$config['total_rows'] = $this->candidat_model->nombre_candidats();
+		$config["per_page"] = 15;
+		// $config["num_links"] = 2;
+		$config["uri_segment"] = 3;
+		$config['enable_query_strings'] = TRUE;
+		$config['page_query_string'] = true;
+		$config['query_string_segment'] = 'p';
+
+		// Customisation de la pagination
+		$config['attributes'] = array('class' => 'page-link');
+		$config['full_tag_open'] = "<ul class='pagination'>";
+		$config['full_tag_close'] = '</ul>';
+		$config['num_tag_open'] = '<li class="page-item">';
+		$config['num_tag_close'] = '</li>';
+		$config['cur_tag_open'] = '<li class="page-item active" aria-current="page"> <a class="page-link" href="#"> ';
+		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
+		$config['prev_tag_open'] = '<li class="page-item">';
+		$config['prev_tag_close'] = '</li>';
+		$config['first_tag_open'] = '<li class="page-item">';
+		$config['first_tag_close'] = '</li>';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+	
+	
+	
+		$config['prev_link'] = '&laquo;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+	
+	
+		$config['next_link'] = '&raquo;';
+		$config['next_tag_open'] = '<li class="page-item">';
+		$config['next_tag_close'] = '</li>';
+
+		$this->pagination->initialize($config);
+
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+		// var_dump($page);
+		$data['candidats'] = $this->candidat_model->interval_candidat($config['per_page'], $page);
+		$data["links"] = $this->pagination->create_links();
+
 
 		$this->load->model('paiement_model');
 
@@ -183,6 +276,58 @@ class Gestionnaire extends CI_Controller
 		}
 
 		afficher('back/gestionnaire/candidats', $data);
+	}
+
+	public function modifier_candidat($id_can)
+	{
+		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+			
+			$data = [
+				"candidat" => $candidat
+			];
+
+			afficher('back/gestionnaire/modifier_candidat', $data);
+		}
+	}
+
+	public function traitement_modification_candidat($id)
+	{
+		// Traitement des donnees 
+		$this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|valid_email', array(
+            'required' => 'Le champ %s est obligatoire',
+            'valid_email' => 'Le champ %s n\'est pas valide',
+			'is_unique' => 'Cet %s éxiste déja'
+		));
+
+		if ($this->form_validation->run() == true) {
+			
+			// Recuperation des informations modifies 
+			$data = [];
+			foreach ($this->input->post() as $key => $value)
+			{
+				if (!empty($value)) {
+					$data[$key] =  $value;
+				}
+			}
+	
+			if (!empty($data['jour']) && !empty($data['mois'] && !empty($data['annee']))) {
+				$data['date_n'] = $data['annee'] . '-' . $data['mois'] . '-' . $data['jour'];
+				unset($data['jour']);
+				unset($data['mois']);
+				unset($data['annee']);
+			}
+	
+			if ($candidat = $this->candidat_model->modifier_infos($id, $data)) {
+				$this->session->set_flashdata('message-success', 'Les modifications apportes avec succes');
+				redirect('gestionnaire/detail_candidat/' . $id);
+			}
+		} else {
+			if (form_error('email')) {
+				$this->session->set_flashdata('email-error', form_error('email'));
+				redirect('gestionnaire/modifier_candidat/' . $id);
+			}
+		}
+
 	}
 
 	public function gestionnaires()
@@ -765,7 +910,7 @@ class Gestionnaire extends CI_Controller
 				$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 				$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 
-                mail($gestionnaire->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+                mail($gestionnaire->email_gest,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
 
                 $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
                 $this->session->set_flashdata('email', $gestionnaire->nom_prenom);

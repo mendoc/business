@@ -71,7 +71,7 @@ class Statistique_model extends CI_Model
 
     public function nombre_apprenant_ligne() //Nbre de tous les apprenants en Ligne
     {
-        $sql = "SELECT COUNT(eb_candidat.id_can)
+        $sql = "SELECT COUNT(eb_candidat.id_can) as nb_apprenants_ligne
         FROM eb_candidat
         INNER JOIN eb_paiement
         ON eb_candidat.id_can = eb_paiement.id_can
@@ -79,7 +79,7 @@ class Statistique_model extends CI_Model
         GROUP BY eb_paiement.id_can 
         HAVING SUM(montant) = ?";
 
-        return $this->db->query($sql, [PRIX_EN_LIGNE]);
+        return $this->db->query($sql, [PRIX_EN_LIGNE])->row();
     }
 
     public function nombre_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
@@ -93,6 +93,18 @@ class Statistique_model extends CI_Model
         HAVING SUM(montant) = ?";
 
         return $this->db->query($sql, [PRIX_PRESENTIEL])->row();
+    }
+
+    public function nb_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
+    {
+        $sql = "SELECT COUNT(eb_candidat.id_can) as nb_apprenants_presentiel
+        FROM eb_candidat
+        INNER JOIN eb_paiement
+        ON eb_candidat.id_can = eb_paiement.id_can
+        WHERE type_cours =\"P\"GROUP BY eb_paiement.id_can 
+        HAVING SUM(montant) > 0";
+
+        return $this->db->query($sql)->row();
     }
 
     public function nombre_commerciaux() // Nbre de tous les commerciaux
