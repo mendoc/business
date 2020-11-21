@@ -17,6 +17,9 @@
                 <div class="logo">
                     <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
+                <div class="retour">
+                    <a href=""><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC"/></a>
+                </div>
             </header>
 
             <!-- ===============* espace travail *================ -->
@@ -26,7 +29,7 @@
                 <!-- ==============* partie formulaire *============= -->
                 <div class="gauche">
 
-                    <h1 class="titre">Inscription Candidat</h1>
+                    <h1 class="titre">S'inscire à la formation</h1>
                     <form action="" class="formulaire">
                         <!-- =====* Nom et prénom *======== -->
                         <div class="saisie">
@@ -40,12 +43,16 @@
                         </div>
 
                         <!-- ===========* choix genre *============= -->
-                        <div class="saisie choix">
+                        <div class="saisie choix display-flex">
                             <div class="genre-choix">Genre:</div>
-                            <label for="genre" selected class="choix-genre">Homme:</label>
-                            <input type="radio" name="genre" id="genre" required autofocus>
-                            <label for="femme" class="choix-genre">Femme:</label>
+                            <div>
+                                <label for="genre" selected class="choix-genre">Homme</label>
+                                <input type="radio" name="genre" id="genre" required autofocus>
+                            </div>
+                            <div>
+                            <label for="femme" class="choix-genre">Femme</label>
                             <input type="radio" name="genre" id="femme" required autofocus>
+                            </div>
                         </div>
 
                         <!-- ==========* Numéros de téléphone *=========== -->
@@ -104,7 +111,7 @@
                     </form>
                     <div class="confidentiel">
                         <p>
-                            En cliquant sur "S'enregistrer", vous nous autorisez à utiliser vos informations à des fins <strong>commerciales</strong> (Appels, e-mails etc)
+                            En cliquant sur <strong> "S'enregistrer"</strong>, vous nous autorisez à utiliser vos informations à des fins <strong>commerciales</strong> (Appels, e-mails etc)
                         </p>
                     </div>
                 </div>
