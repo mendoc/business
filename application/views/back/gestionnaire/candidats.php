@@ -15,11 +15,9 @@
                         <tr>
                             <th>Noms & prénoms</th>
                             <th>Commercial</th>
-                            <th>Téléphone</th>
                             <th>Statut</th>
                             <th>Payé</th>
                             <th>Reste a payer</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,22 +30,14 @@
                             <?php } else {
                             foreach ($candidats as $candidat) : ?>
                                 <tr>
-                                    <td><span><?= $candidat->nom_prenom; ?></span></td>
+                                    <td><a href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>"><?= $candidat->nom_prenom; ?></a></td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
-                                    <td>
-                                        <?= $candidat->num_tel ?>
-                                    </td>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
-                                    <td>
+                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : '' ?>">
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
                                     <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
                                         <?= number_format($candidat->max_montant - $candidat->montant, 0, ',', ' '); ?> F CFA
-                                    </td>
-                                    <td>
-                                        <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
                                     </td>
                                 </tr>
                         <?php endforeach;
