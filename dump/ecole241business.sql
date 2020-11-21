@@ -29,14 +29,15 @@ CREATE TABLE `eb_candidat` (
   `num_what` varchar(20) DEFAULT NULL,
   `email` varchar(50) NOT NULL,
   `sexe` varchar(1) NOT NULL,
-  `date_n` date NOT NULL,
+  `date_n` date DEFAULT NULL,
   `domaine_act` text,
   `type_serv` text,
   `attentes` text,
-  `horaire` varchar(10) NOT NULL,
+  `horaire` varchar(10) DEFAULT NULL,
   `type_cours` char(1) NOT NULL DEFAULT 'P',
   `id_com` int(11) DEFAULT NULL,
   `date_enrg` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modal_paiement` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id_can`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -221,4 +222,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-14 18:27:23
+-- Dump completed on 2020-11-21 13:56:53
