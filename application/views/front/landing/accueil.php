@@ -588,7 +588,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>Payable en trois tranches avant la fin de formation.</span>
+                                    <span>Payable en 3 tranches avant la fin de formation.</span>
                                 </li>
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>

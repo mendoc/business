@@ -84,7 +84,7 @@
                         text-align: left;
                          font-size: 13px;">{SEXE}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -93,7 +93,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{DATE}</span></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
@@ -104,7 +104,7 @@
                         text-align: left;
                          font-size: 13px;">{EMAIL}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -113,8 +113,8 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{TEL}</span></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -123,7 +123,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;">{WHATSAPP}</td>
-                    </tr>
+                    </tr> -->
                     <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
@@ -144,7 +144,7 @@
                         text-align: left;
                          font-size: 13px;">{DOMAINE}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -153,8 +153,8 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{SERVICE}</span></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -163,7 +163,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;">{ATTENNTES}</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
 
