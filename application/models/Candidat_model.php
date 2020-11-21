@@ -14,6 +14,7 @@ class Candidat_model extends CI_Model
     public $type_serv;
     public $attentes;
     public $horaire;
+    public $modal_paiement;
 
     // Nom de la table
     private $table = 'candidat';
