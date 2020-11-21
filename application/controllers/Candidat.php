@@ -13,10 +13,11 @@ class Candidat extends CI_Controller
     public function traitement_enregistrement()
     {
         // On valide les informations
-        $this->form_validation->set_rules('nom', 'Nom', 'required', array(
+        $this->form_validation->set_rules('nom', 'nom', 'required|is_unique[eb_candidat.nom_prenom]', array(
             'required' => 'Le champ %s est obligatoire',
+            'is_unique' => 'Cet %s éxiste déja'
         ));
-       
+
 
         $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
@@ -32,46 +33,58 @@ class Candidat extends CI_Controller
             'required' => 'Le champ %s est obligatoire',
         ));
 
-   
-        $this->form_validation->set_rules('jour', 'jour de naissance', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-
+        $this->form_validation->set_rules('annee', 'date de naissance', 'required', array(
+            'required' => 'Le champ %s est obligatoire',
         ));
-        $this->form_validation->set_rules('mois', 'mois de naissance', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
 
-        ));
-        $this->form_validation->set_rules('annee', 'année de naissance', 'required', array(
+        $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
             'required' => 'Veuillez choisir votre %s',
-
         ));
+
+        $this->form_validation->set_rules('horaire', 'horaire de formation', 'required', array(
+            'required' => 'Veuillez choisir votre %s',
+        ));
+
+
+        // $this->form_validation->set_rules('jour', 'jour de naissance', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+
+        // ));
+        // $this->form_validation->set_rules('mois', 'mois de naissance', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+
+        // ));
+        // $this->form_validation->set_rules('annee', 'année de naissance', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+
+        // ));
         //Si validation ok
         if ($this->form_validation->run() == true) {
             // On récupère les infos du formulaire
             $nom         = $this->input->post('nom');
-            $prenom      = $this->input->post('prenom');
+            //$prenom      = $this->input->post('prenom');
             $sexe        = $this->input->post('sexe');
-            $date_n      = $this->input->post('annee') . '-' . $this->input->post('mois') . '-' . $this->input->post('jour');
+            $date_n      = $this->input->post('annee');
             $email       = $this->input->post('email');
             $num_tel     = $this->input->post('telephone');
             $num_what    = $this->input->post('num_what');
             $horaire     = $this->input->post('horaire');
             $domaine_act = $this->input->post('domaine');
-            $type_serv   = $this->input->post('service');
+            // $type_serv   = $this->input->post('service');
             $attentes    = $this->input->post('attentes');
             $type_cours  = $this->input->post('type_cours');
             $hash        = $this->input->post('hash');
             // On crée un candidat
             $candidat = new Candidat_model();
 
-            $candidat->nom_prenom  = $nom . ' ' . $prenom;
+            $candidat->nom_prenom  = $nom;
             $candidat->num_tel     = $num_tel;
             $candidat->num_what    = $num_what;
             $candidat->email       = $email;
             $candidat->sexe        = $sexe;
             $candidat->date_n      = $date_n;
             $candidat->domaine_act = $domaine_act;
-            $candidat->type_serv   = $type_serv;
+            //$candidat->type_serv   = $type_serv;
             $candidat->attentes    = $attentes;
             $candidat->type_cours  = $type_cours;
             $candidat->horaire     = $horaire;
