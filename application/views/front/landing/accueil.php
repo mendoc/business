@@ -1088,7 +1088,7 @@
                         border-radius:50%;
                         box-shadow: 0 3px 3px #fff;
                         line-height: 44px;" >
-                        <a href="<?= site_url('') ?>">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                        <a href="#">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
                             <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
                                             0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
                             top: 50%;
