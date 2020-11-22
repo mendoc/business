@@ -298,9 +298,14 @@ class Gestionnaire extends CI_Controller
 	public function modifier_candidat($id_can)
 	{
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+
+			[$annee , $mois, $jour] = explode('-', $candidat->date_n);
 			
 			$data = [
-				"candidat" => $candidat
+				"candidat" => $candidat,
+				"annee" => $annee,
+				"mois" => $mois,
+				"jour" => $jour
 			];
 
 			afficher('back/gestionnaire/modifier_candidat', $data);
@@ -335,7 +340,7 @@ class Gestionnaire extends CI_Controller
 			}
 	
 			if ($candidat = $this->candidat_model->modifier_infos($id, $data)) {
-				$this->session->set_flashdata('message-success', 'Les modifications apportes avec succes');
+				$this->session->set_flashdata('message-success', 'Candidat mis a jour avec succes');
 				redirect('gestionnaire/detail_candidat/' . $id);
 			}
 		} else {
