@@ -39,8 +39,12 @@
                         </tbody>
                     </table>
                 </div>
+
             <?php endif; ?>
         </div>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
+            <?= $liens_de_pagination ?>
+        </nav>
     </div>
 
 </div>

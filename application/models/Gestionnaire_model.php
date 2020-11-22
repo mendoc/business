@@ -80,5 +80,18 @@ class Gestionnaire_model extends CI_Model
         return $this->db->update($this->table, array('mot_passe' => $mot_de_passe), array($this->id => $id));
     }
 
+    // Renvoie le nombre de gestionnaire
+    public function nombre_gestionnaire()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de gestionnaire dans un intervalle precis
+    public function recuperer_gestionnaire($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
+
 
 }

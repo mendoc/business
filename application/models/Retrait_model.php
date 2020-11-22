@@ -85,13 +85,26 @@ class Retrait_model extends CI_Model
        return $this->db->query($sql, array($id))->result();
        
     }
-        //Les retraits non traités d'un commercial
-        public function demande_retraits_commercial($id){
+    //Les retraits non traités d'un commercial
+    public function demande_retraits_commercial($id){
 
-            $sql =" SELECT * 
-                    FROM eb_retrait
-                    WHERE id_com = ?; ";
-           return $this->db->query($sql, array($id))->result();
-           
-        }
+        $sql =" SELECT * 
+                FROM eb_retrait
+                WHERE id_com = ?; ";
+        return $this->db->query($sql, array($id))->result();
+        
+    }
+
+    // Renvoie le nombre de transactions effectues
+    public function nombre_retraits()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de transactions dans un intervalle precis
+    public function recuperer_retraits($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
 }
