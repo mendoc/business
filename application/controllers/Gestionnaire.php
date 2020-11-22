@@ -347,6 +347,41 @@ class Gestionnaire extends CI_Controller
 
 	}
 
+	public function export_candidat()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// Creation du nom du fichier
+		$nom_fichier = 'candidats_' . date('Ymd') . '.csv';
+
+		// Configuration du header
+		header("Content-Description: File Transfer"); 
+		header("Content-Disposition: attachment; filename=$nom_fichier"); 
+		header("Content-Type: application/csv; ");
+
+		// Obtention des donnees
+		$candidats = $this->candidat_model->array_candidat();
+
+		// Creation du fichier
+		$fichier = fopen('php://output' , 'w');
+
+		$header = array("ID", "Nom Complet", "Telephone", "WhatsApp", "Email", "Sexe", "Date de Naissance", "Domaine D'activite", "Type de service", "Attentes", "horaire", "Type de Cours", "ID du Commercial", "Date d'inscription");
+
+		fputcsv($fichier, $header);
+
+		foreach ($candidats as $key => $candidat)
+		{
+			fputcsv($fichier, $candidat);
+		}
+
+		fclose($fichier);
+		exit;
+		
+		// redirect('gestionnaire/candidats');
+	}
+
 	public function gestionnaires()
 	{
 		if (!$this->est_connecte()) {
