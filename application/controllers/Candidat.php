@@ -19,9 +19,9 @@ class Candidat extends CI_Controller
     public function traitement_enregistrement()
     {
         // On valide les informations
-        $this->form_validation->set_rules('nom', 'nom', 'required|is_unique[eb_candidat.nom_prenom]', array(
+        $this->form_validation->set_rules('nom', 'nom', 'required', array(
             'required' => 'Le champ %s est obligatoire',
-            'is_unique' => 'Cet %s éxiste déja'
+
         ));
 
 
@@ -145,7 +145,7 @@ class Candidat extends CI_Controller
     public function traitement_enregistrement_form2()
     {
         // On valide les informations
-        $this->form_validation->set_rules('nom', 'nom', 'required|is_unique[eb_candidat.nom_prenom]', array(
+        $this->form_validation->set_rules('nom', 'nom', 'required', array(
             'required' => 'Le champ %s est obligatoire',
             'is_unique' => 'Cet %s éxiste déja'
         ));
