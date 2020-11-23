@@ -7,6 +7,7 @@
     <title>Confirmation enregistrement du candidat - Ecole 241 Business</title>
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/message_inscription.css">
 
+	<?php if (ENVIRONMENT !== 'development') : ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
     <script>
@@ -63,7 +64,7 @@
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1" /></noscript>
     <!-- End Facebook Pixel Code -->
-
+	 <?php endif; ?>
 </head>
 
 <body>

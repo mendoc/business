@@ -217,4 +217,17 @@ class Commercial_model extends CI_Model
         $this->db->like('nom_prenom', $nom_prenom);
         return $this->db->get($this->table)->result();
     }
+
+    // Renvoie le nombre de commerciaux
+    public function nombre_commerciaux()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de commerciaux dans un intervalle precis
+    public function interval_commercial($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
 }

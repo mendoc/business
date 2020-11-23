@@ -33,7 +33,7 @@
                                     <td><a href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>"><?= $candidat->nom_prenom; ?></a></td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
-                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : '' ?>">
+                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : ($candidat->montant > 0 ? 'font-weight-bold text-warning' : '') ?>">
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
                                     <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
@@ -47,8 +47,9 @@
                 </table>
             </div>
         </div>
+
         <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center"> 
-            <?= $links ?> <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-primary">Exporter en CSV</a>
+            <?= $liens ?> <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-primary">Exporter en CSV</a>
         </nav>
     </div>
 </div>

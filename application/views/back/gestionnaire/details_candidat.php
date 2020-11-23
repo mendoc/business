@@ -1,4 +1,10 @@
 <main class="container">
+    <?php if ($this->session->flashdata('message-success')) : ?>
+        <div class="alert alert-success alert-dismissible fade show font-weight-bold mt-5" role="alert">
+            <?= $this->session->flashdata('message-success') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <div class="my-3 my-md-5">
         <div class="details_centre">
             <div class="card">
@@ -18,7 +24,7 @@
 
                     <div class="block_details">
                         <h5 class="font-weight-normal text-body">date de naissance:</h5>
-                        <p class="font-weight-bold"> <?= date_format(date_create($candidat->date_n), "d F Y") ?></p>
+                        <p class="font-weight-bold text-capitalize" id="date-of-birth" data-date="<?= $candidat->date_n ?>"></p>
                     </div>
 
                     <div class="block_details">
@@ -131,3 +137,16 @@
             </div>
 
 </main>
+
+<script>
+    const dateBirthElt = document.getElementById('date-of-birth');
+    function DateShortFormat(birth)
+    {
+        const date = new Date(birth);
+        const options = {weekday: "long", year: "numeric", month: "long" , day: "numeric"};
+        console.log(birth);
+        return date.toLocaleDateString('fr', options);
+    }
+
+    dateBirthElt.textContent = DateShortFormat(dateBirthElt.getAttribute('data-date'));
+</script>

@@ -32,7 +32,7 @@
                                     </td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
-                                    <td>
+                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : '' ?>">
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
                                     <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
