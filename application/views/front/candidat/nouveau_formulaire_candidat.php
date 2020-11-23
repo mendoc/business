@@ -18,7 +18,7 @@
                     <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
                 <div class="retour">
-                    <a href="<?= site_url('welcome') ?>"><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC"/></a>
+                    <a href="<?= site_url('welcome') ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC" /></a>
                 </div>
             </header>
 
@@ -29,29 +29,29 @@
                 <!-- ==============* partie formulaire *============= -->
                 <div class="gauche">
 
-                    <h1 class="titre">S'inscire à la formation</h1>
+                    <h1 class="titre">S'inscrire à la formation</h1>
                     <form action="" class="formulaire">
                         <!-- =====* Nom et prénom *======== -->
                         <div class="saisie">
-                            <label for="nom-complet">Votre nom Complet:</label><br>
-                            <input type="text" name="" id="nom-complet" required placeholder="Noms et prénoms" class="input" autofocus>
+                            <label for="nom-complet">Votre nom Complet<span>*</span></label><br>
+                            <input type="text" name="" id="nom-complet" required placeholder="Ex: MOUSSIROU Grégorie" class="input" autofocus>
                         </div>
                         <!-- ========* e-mail *========== -->
                         <div class="saisie">
-                            <label for="e-mail"> Votre adresse e-mail:</label><br>
-                            <input type="email" name="" id="e-mail" required placeholder="Votre adresse e-mail" class="input" autofocus>
+                            <label for="e-mail">Votre adresse e-mail<span>*</span></label><br>
+                            <input type="email" name="" id="e-mail" required placeholder="Ex: moussirougregorie@gmail.com" class="input" autofocus>
                         </div>
 
                         <!-- ===========* choix genre *============= -->
                         <div class="saisie choix display-flex">
-                            <div class="genre-choix">Genre:</div>
+                            <div class="genre-choix">Genre<span>*</span></div>
                             <div>
                                 <label for="genre" selected class="choix-genre">Homme</label>
                                 <input type="radio" name="genre" id="genre" required autofocus>
                             </div>
                             <div>
-                            <label for="femme" class="choix-genre">Femme</label>
-                            <input type="radio" name="genre" id="femme" required autofocus>
+                                <label for="femme" class="choix-genre">Femme</label>
+                                <input type="radio" name="genre" id="femme" required autofocus>
                             </div>
                         </div>
 
@@ -59,8 +59,8 @@
 
                         <div class="saisie num">
                             <div class="num-tel">
-                                <label for="phone">Votre n° de téléphone:</label><br>
-                                <input type="tel" name="" id="phone" required class="input" autofocus placeholder="Votre numéro de téléphone / Whatsapp">
+                                <label for="phone">Votre n° de téléphone<span>*</span></label><br>
+                                <input type="tel" name="" id="phone" required class="input" autofocus placeholder="Ex: +241 00 00 00">
                             </div>
 
                             <!-- <div class="num-what">
@@ -73,7 +73,7 @@
                         <div class="saisie choix-activ-cours">
                             <div class="choix-activite">
                                 <!-- ==========* choix activité *========= -->
-                                <label for="activite">Votre activité:</label><br>
+                                <label for="activite">Votre activité<span>*</span></label><br>
                                 <select name="domaine" id="activite">
                                     <!-- <option selected disabled>Votre activité</option> -->
                                     <option value="Agroalimentaire">Agroalimentaire</option>
@@ -96,7 +96,7 @@
                             </div>
                             <!-- =========* choix du cours *=========-->
                             <div class="choix-cours">
-                                <label for="cours">Type de Cours:</label><br>
+                                <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
                                     <option value="P">En présentiel - 155.000fcfa</option>
                                     <option value="L">En ligne - 90.000fcfa</option>
@@ -105,9 +105,9 @@
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalite de paiement:</label><br>
+                                <label for="modalite">Modalite de paiement<span>*</span></label><br>
                                 <select name="modalite" id="modalite">
-                                    <option value="1">1 Tranche</option>
+                                    <option value="1" class="check">1 Tranche</option>
                                     <option value="2">2 Tranche</option>
                                     <option value="3">3 Tranche</option>
                                 </select>
@@ -128,13 +128,13 @@
                 <!-- =============* partie droit *============== -->
                 <div class="droite">
                     <div class="contenair">
-                        <div class="texte-descriptif">
+                        <!-- <div class="texte-descriptif">
                             <h1>Etes-vous prêt?</h1>
-                            <p> La tranformation digitale de votre activité est un atout incroyable à votre essor</p>
-                        </div>
+                            <p> La transformation digitale de votre activité est un atout incroyable à votre essor</p>
+                        </div> -->
 
                         <div class="image">
-                            <img src="<?= theme_url() ?>images/JOSIANE-MATENE.jpg" alt=" logo Ecole241 Business">
+                            <img src="<?= theme_url() ?>assets/images/ambassadeurs.png" alt=" Ambassadeurs Ecole241 Business">
                         </div>
                     </div>
                 </div>
@@ -157,13 +157,17 @@
         const typeCoursElt = document.getElementById('cours');
         const modaliteElt = document.getElementById('modalite');
         typeCoursElt.onchange = e => {
-            if (e.target.value !== 'P') {
+            if (e.target.value == 'L') {
                 modaliteElt.setAttribute('disabled', true);
-            } else {
+                modaliteElt.value = "1"
+            } 
+            else {
                 modaliteElt.removeAttribute('disabled');
             }
+            
+            
+        
         }
-
     </script>
 
 </body>
