@@ -48,7 +48,7 @@
             </div>
         </div>
         <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
-            <?= $links ?>
+            <?= $liens ?>
         </nav>
     </div>
 </div>
