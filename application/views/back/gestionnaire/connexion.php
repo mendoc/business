@@ -42,10 +42,10 @@
                 <input type="email" placeholder="Adresse e-mail" name="email" required value="<?= $this->session->flashdata('email'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="password" required />
                 
-                <div class="souvenir">
+                <!-- <div class="souvenir">
                     <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
                     <input type="checkbox" name="souvenir" id="souvenir" class="check-btn" checked>
-                </div>
+                </div> -->
 
                 <a href="<?= site_url('gestionnaire/reinitialiser_mot_de_passe') ?>">Mot de passe oublié ?</a>
                 <button type="submit">SE CONNECTER</button>
