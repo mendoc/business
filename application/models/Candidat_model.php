@@ -33,6 +33,12 @@ class Candidat_model extends CI_Model
         return $query->result();
     }
 
+    public function array_candidat()
+    {
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
     public function s_enregistrer()
     {
         return $this->db->insert($this->table, $this);

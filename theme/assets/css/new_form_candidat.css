@@ -37,6 +37,11 @@ main .page {
     padding: 20px 40px;
 }
 
+.erreurs {
+    color: #f00;
+    font-size: .95em;
+}
+
 .titre {
     color: #003366;
     font-size: 1.3em;

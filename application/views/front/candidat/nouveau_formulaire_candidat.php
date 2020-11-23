@@ -29,29 +29,46 @@
                 <!-- ==============* partie formulaire *============= -->
                 <div class="gauche">
 
+
                     <h1 class="titre">S'inscrire à la formation</h1>
-                    <form action="" class="formulaire">
+                    <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
+                        <?php if (isset($this->session->hash)) : ?>
+                            <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
+                        <?php endif; ?>
                         <!-- =====* Nom et prénom *======== -->
                         <div class="saisie">
-                            <label for="nom-complet">Votre nom Complet<span>*</span></label><br>
-                            <input type="text" name="" id="nom-complet" required placeholder="Ex: MOUSSIROU Grégorie" class="input" autofocus>
+                            <label for="nom-complet">Votre nom Complet <span>*</span></label><br>
+                            <input type="text" name="nom" id="nom-complet" value="<?= set_value('nom') ?>" required placeholder="Ex: MOUSSIROU Grégoire" class="input" autofocus>
+
+                        </div>
+                        <div class="erreurs">
+                          <?= form_error('nom') ?>
                         </div>
                         <!-- ========* e-mail *========== -->
                         <div class="saisie">
-                            <label for="e-mail">Votre adresse e-mail<span>*</span></label><br>
-                            <input type="email" name="" id="e-mail" required placeholder="Ex: moussirougregorie@gmail.com" class="input" autofocus>
-                        </div>
 
+                            <label for="e-mail"> Votre adresse e-mail <span>*</span></label><br>
+                            <input type="email" name="email" id="e-mail" value="<?= set_value('email') ?>" required placeholder="Ex moussirougregoire@gmail.com" class="input" autofocus>
+
+                        </div>
+                        <div class="erreurs">
+                         <?= form_error('email') ?>
+                        </div>
                         <!-- ===========* choix genre *============= -->
                         <div class="saisie choix display-flex">
                             <div class="genre-choix">Genre<span>*</span></div>
                             <div>
                                 <label for="genre" selected class="choix-genre">Homme</label>
-                                <input type="radio" name="genre" id="genre" required autofocus>
+                                <input type="radio" checked name="sexe" value="H" id="genre" required autofocus>
                             </div>
                             <div>
                                 <label for="femme" class="choix-genre">Femme</label>
-                                <input type="radio" name="genre" id="femme" required autofocus>
+
+                                <input type="radio" name="sexe" value="F" id="femme" required autofocus>
+
+                            </div>
+                            <div class="erreurs">
+                            <?= form_error('sexe') ?>
                             </div>
                         </div>
 
@@ -59,10 +76,14 @@
 
                         <div class="saisie num">
                             <div class="num-tel">
-                                <label for="phone">Votre n° de téléphone<span>*</span></label><br>
-                                <input type="tel" name="" id="phone" required class="input" autofocus placeholder="Ex: +241 00 00 00">
-                            </div>
 
+                                <label for="phone">Votre n° de téléphone <span>*</span></label><br>
+                                <input type="tel" name="telephone" id="phone" value="<?= set_value('telephone') ?>" required class="input" autofocus placeholder="Ex: +241 00 00 00">
+
+                            </div>
+                            <div class="erreurs">
+                                <?= form_error('telephone') ?>
+                            </div>
                             <!-- <div class="num-what">
                                 <label for="phone">N° de Whatsapp:</label><br>
                                 <input type="tel" name="" id="phone" required class="input" autofocus placeholder="votre numéro Whatsapp">
@@ -91,26 +112,37 @@
                                     <option value="Bois"> Bois / Papier / Carton / Imprimerie</option>
                                     <option value="Études">Études et conseils</option>
                                     <option value="Services">Services aux entreprises</option>
-                                    <option value="Autre">Autres</option>
+                                    <option selected value="Autre">Autres</option>
                                 </select>
+                            </div>
+                            <div class="erreurs">
+                             <?= form_error('domaine') ?>
                             </div>
                             <!-- =========* choix du cours *=========-->
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
-                                    <option value="P">En présentiel - 155.000fcfa</option>
+                                    <option selected value="P">En présentiel - 155.000fcfa</option>
                                     <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
+                                <div class="erreurs">
+                                 <?= form_error('type_cours') ?>
+                                </div>
                             </div>
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
                                 <label for="modalite">Modalite de paiement<span>*</span></label><br>
                                 <select name="modalite" id="modalite">
-                                    <option value="1" class="check">1 Tranche</option>
+
+                                    <option selected value="1">1 Tranche</option>
+
                                     <option value="2">2 Tranche</option>
                                     <option value="3">3 Tranche</option>
                                 </select>
+                                <div class="erreurs">
+                                 <?= form_error('modalite') ?>
+                                </div>
                             </div>
                         </div>
                         <!-- ===========* boutin s'Enregistrer *========== -->
@@ -163,10 +195,7 @@
             } 
             else {
                 modaliteElt.removeAttribute('disabled');
-            }
-            
-            
-        
+            } 
         }
     </script>
 
