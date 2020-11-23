@@ -18,7 +18,7 @@
                     <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
                 <div class="retour">
-                    <a href="<?= site_url('welcome') ?>"><img  src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC"/></a>
+                    <a href="<?= site_url('welcome') ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC" /></a>
                 </div>
             </header>
 
@@ -30,29 +30,34 @@
                 <div class="gauche">
 
                     <h1 class="titre">S'inscire à la formation</h1>
-                    <form action="" class="formulaire">
+                    <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
+                        <?php if (isset($this->session->hash)) : ?>
+                            <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
+                        <?php endif; ?>
                         <!-- =====* Nom et prénom *======== -->
                         <div class="saisie">
                             <label for="nom-complet">Votre nom Complet:</label><br>
-                            <input type="text" name="" id="nom-complet" required placeholder="Noms et prénoms" class="input" autofocus>
+                            <input type="text" name="nom" id="nom-complet" value="<?= set_value('nom') ?>" required placeholder="Noms et prénoms" class="input" autofocus>
                         </div>
+                        <?= form_error('nom') ?>
                         <!-- ========* e-mail *========== -->
                         <div class="saisie">
                             <label for="e-mail"> Votre adresse e-mail:</label><br>
-                            <input type="email" name="" id="e-mail" required placeholder="Votre adresse e-mail" class="input" autofocus>
+                            <input type="email" name="email" id="e-mail" value="<?= set_value('email') ?>" required placeholder="Votre adresse e-mail" class="input" autofocus>
                         </div>
-
+                        <?= form_error('email') ?>
                         <!-- ===========* choix genre *============= -->
                         <div class="saisie choix display-flex">
                             <div class="genre-choix">Genre:</div>
                             <div>
                                 <label for="genre" selected class="choix-genre">Homme</label>
-                                <input type="radio" name="genre" id="genre" required autofocus>
+                                <input type="radio" checked name="sexe" value="H" id="genre" required autofocus>
                             </div>
                             <div>
-                            <label for="femme" class="choix-genre">Femme</label>
-                            <input type="radio" name="genre" id="femme" required autofocus>
+                                <label for="femme" class="choix-genre">Femme</label>
+                                <input type="radio" name="sexe" value="F" id="femme" required autofocus>
                             </div>
+                            <?= form_error('sexe') ?>
                         </div>
 
                         <!-- ==========* Numéros de téléphone *=========== -->
@@ -60,9 +65,9 @@
                         <div class="saisie num">
                             <div class="num-tel">
                                 <label for="phone">Votre n° de téléphone:</label><br>
-                                <input type="tel" name="" id="phone" required class="input" autofocus placeholder="Votre numéro de téléphone / Whatsapp">
+                                <input type="tel" name="telephone" id="phone" value="<?= set_value('telephone') ?>" required class="input" autofocus placeholder="Votre numéro de téléphone / Whatsapp">
                             </div>
-
+                            <?= form_error('telephone') ?>
                             <!-- <div class="num-what">
                                 <label for="phone">N° de Whatsapp:</label><br>
                                 <input type="tel" name="" id="phone" required class="input" autofocus placeholder="votre numéro Whatsapp">
@@ -91,26 +96,29 @@
                                     <option value="Bois"> Bois / Papier / Carton / Imprimerie</option>
                                     <option value="Études">Études et conseils</option>
                                     <option value="Services">Services aux entreprises</option>
-                                    <option value="Autre">Autres</option>
+                                    <option selected value="Autre">Autres</option>
                                 </select>
                             </div>
+                            <?= form_error('domaine') ?>
                             <!-- =========* choix du cours *=========-->
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours:</label><br>
                                 <select name="type_cours" id="cours">
-                                    <option value="P">En présentiel - 155.000fcfa</option>
+                                    <option selected value="P">En présentiel - 155.000fcfa</option>
                                     <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
+                                <?= form_error('type_cours') ?>
                             </div>
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
                                 <label for="modalite">Modalite de paiement:</label><br>
                                 <select name="modalite" id="modalite">
-                                    <option value="1">1 Tranche</option>
+                                    <option selected value="1">1 Tranche</option>
                                     <option value="2">2 Tranche</option>
                                     <option value="3">3 Tranche</option>
                                 </select>
+                                <?= form_error('modalite') ?>
                             </div>
                         </div>
                         <!-- ===========* boutin s'Enregistrer *========== -->
@@ -163,7 +171,6 @@
                 modaliteElt.removeAttribute('disabled');
             }
         }
-
     </script>
 
 </body>
