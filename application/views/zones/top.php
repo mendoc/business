@@ -12,7 +12,7 @@
                                 <?php if (!est_un_gestionnaire()) : ?>
                                     <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn btn-success d-lg-none action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                                 <?php endif; ?>
-                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn  btn-sm btn-outline-primary d-none d-lg-block d-xl-none ml-3">Déconnexion</a>
+                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn  btn-sm btn-outline-primary d-none d-lg-block ml-3">Déconnexion</a>
                             </div>
                             <a class="pr-0  d-none d-lg-block">
                                 <span class="d-none avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
@@ -42,7 +42,7 @@
                                 </form>
                             <?php endif; ?>
                             <?php if (!est_un_gestionnaire()) : ?>
-                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none d-lg-block d-xl-none btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
+                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none d-lg-block  btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                                 
                                 
                             <?php endif; ?>
