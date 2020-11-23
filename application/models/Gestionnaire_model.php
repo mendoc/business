@@ -33,7 +33,7 @@ class Gestionnaire_model extends CI_Model
 
     public function recuperer_un_gestionnaire($id)
     {
-        $query = $this->db->get($this->table, array($this->id => $id));
+        $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
 
