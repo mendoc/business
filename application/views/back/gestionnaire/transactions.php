@@ -12,8 +12,9 @@
                     <p>Ici s'afficheront toutes les transactions financières de la plateforme.</p>
                 </div>
             <?php else : ?>
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">Historique des transactions</h3>
+                    <a href="<?= site_url('gestionnaire/export_transaction_candidat') ?>" class="btn btn-warning">Exporter en CSV</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">

@@ -382,6 +382,151 @@ class Gestionnaire extends CI_Controller
 		// redirect('gestionnaire/candidats');
 	}
 
+	public function export_commercial()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		// Creation du nom du fichier
+		$nom_fichier = 'commerciaux_' . date('Ymd') . '.csv';
+
+		// Configuration du header
+		header("Content-Description: File Transfer"); 
+		header("Content-Disposition: attachment; filename=$nom_fichier"); 
+		header("Content-Type: application/csv; ");
+
+		// Obtention des donnees
+		$commerciaux = $this->commercial_model->array_commerciaux();
+
+		// Creation du fichier
+		$fichier = fopen('php://output' , 'w');
+
+		$header = array("ID", "Nom Complet", "Telephone", "WhatsApp", "Email", "Sexe", "Date de Naissance", "Nombre de visite");
+
+		fputcsv($fichier, $header);
+
+		foreach ($commerciaux as $key => $commercial)
+		{
+			fputcsv($fichier, $commercial);
+		}
+
+		fclose($fichier);
+		exit;
+		
+		// redirect('gestionnaire/candidats');
+	}
+
+	public function export_transaction_candidat()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('paiement_model');
+
+		// Creation du nom du fichier
+		$nom_fichier = 'transactions-candidat_' . date('Ymd') . '.csv';
+
+		// Configuration du header
+		header("Content-Description: File Transfer"); 
+		header("Content-Disposition: attachment; filename=$nom_fichier"); 
+		header("Content-Type: application/csv; ");
+
+		//Récupération de toutes les transactions
+		if ($paiements = $this->paiement_model->tous()) {
+			$data = [];
+			// var_dump($paiements);
+			foreach ($paiements as $paiement) {
+				$ligne = [];
+				$candidat = $this->candidat_model->recuperer($paiement->id_can);
+				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($paiement->id_gest);
+				$max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
+				$ligne[] = $candidat->nom_prenom;
+				$ligne[] = $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne';
+				$ligne[] = $paiement->montant;
+				$ligne[] = $max_montant - $paiement->montant;
+				$ligne[] = $gestionnaire->nom_prenom;
+
+				// Ajout de chaque ligne dans data
+				$data[] = $ligne;
+			}
+
+			
+
+		}
+
+		// Creation du fichier
+		$fichier = fopen('php://output' , 'w');
+
+		$header = array("Nom du Candidat", "Type de Cours", "Montant Paye", "Montant Restant", "Nom du Gestionnaire");
+
+		fputcsv($fichier, $header);
+
+		foreach ($data as $transaction)
+		{
+			fputcsv($fichier, $transaction);
+		}
+
+		fclose($fichier);
+		exit;
+		
+	}
+	public function export_transaction_commercial()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		$this->load->model('retrait_model');
+
+		// Creation du nom du fichier
+		$nom_fichier = 'transactions-commercial_' . date('Ymd') . '.csv';
+
+		// Configuration du header
+		header("Content-Description: File Transfer"); 
+		header("Content-Disposition: attachment; filename=$nom_fichier"); 
+		header("Content-Type: application/csv; ");
+
+		//Récupération de toutes les transactions
+
+		$_retraits = $this->retrait_model->tout();
+
+		$retraits = array_filter($_retraits, function ($retrait) {
+			return !empty($retrait->date_fin);
+		});
+
+		$data = [];
+		foreach ($retraits as $retrait) {
+			$ligne = [];
+			$commercial = $this->commercial_model->recuperer_un($retrait->id_com);
+			$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($retrait->id_gest);
+			$ligne[] = $commercial->nom_prenom;
+			$ligne[] = $retrait->num_ret;
+			$ligne[] = $gestionnaire->nom_prenom;
+			$ligne[] = $retrait->date_fin;
+			$ligne[] = $retrait->montant_retrait;
+
+			$data[] = $ligne;
+		}
+
+		// var_dump($data);
+
+		// Creation du fichier
+		$fichier = fopen('php://output' , 'w');
+
+		$header = array("Nom du Commercial", "Numero mobile money", "Nom du Gestionnaire", "Date de Confirmation", "Montant Envoye");
+
+		fputcsv($fichier, $header);
+
+		foreach ($data as $transaction)
+		{
+			fputcsv($fichier, $transaction);
+		}
+
+		fclose($fichier);
+		exit;
+		
+	}
+
 	public function gestionnaires()
 	{
 		if (!$this->est_connecte()) {
