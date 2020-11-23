@@ -6,7 +6,7 @@
             </h1>
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Liste des candidats inscrits (<?= isset($candidats) ? count($candidats) : 0 ?>) </h3>
             </div>
             <div class="table-responsive">
@@ -47,8 +47,8 @@
                 </table>
             </div>
         </div>
-        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
-            <?= $liens ?>
+       <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center"> 
+            <?= $liens ?> <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-primary">Exporter en CSV</a>
         </nav>
     </div>
 </div>
