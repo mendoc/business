@@ -40,8 +40,8 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
-		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,15);
-		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 15);
+		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,10);
+		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 10);
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
