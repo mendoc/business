@@ -202,11 +202,20 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->model('statistique_model');
-		
-		//Récupération de tous les commerciaux
-		$tuples = $this->commercial_model->tout();
+		$this->load->library('pagination');
 
-		foreach ($tuples as $commercial)
+		// Pagination 
+		$config['base_url'] = site_url('gestionnaire/commerciaux');
+		$config['total_rows'] = $this->commercial_model->nombre_commerciaux();
+		$config["per_page"] = 15;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+		$commerciaux = $this->commercial_model->interval_commercial($config['per_page'], $page);
+
+		foreach ($commerciaux as $commercial)
 		{
 			// Nombre d'affiliés en présentiel du commercial
 			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
@@ -222,7 +231,8 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$data = array(
-			"commerciaux" => $tuples
+			"commerciaux" => $commerciaux,
+			"liens_de_pagination" => $this->pagination->create_links()
 		);
 
 		//Affichage de la vue de listing de commerciaux
@@ -240,44 +250,13 @@ class Gestionnaire extends CI_Controller
 		$config['base_url'] = site_url('gestionnaire/candidats');
 		$config['total_rows'] = $this->candidat_model->nombre_candidats();
 		$config["per_page"] = 15;
-		// $config["num_links"] = 2;
 		$config["uri_segment"] = 3;
-		$config['enable_query_strings'] = TRUE;
-		$config['page_query_string'] = true;
-		$config['query_string_segment'] = 'p';
-
-		// Customisation de la pagination
-		$config['attributes'] = array('class' => 'page-link');
-		$config['full_tag_open'] = "<ul class='pagination'>";
-		$config['full_tag_close'] = '</ul>';
-		$config['num_tag_open'] = '<li class="page-item">';
-		$config['num_tag_close'] = '</li>';
-		$config['cur_tag_open'] = '<li class="page-item active" aria-current="page"> <a class="page-link" href="#"> ';
-		$config['cur_tag_close'] = '<span class="sr-only">(current)</span></a></li>';
-		$config['prev_tag_open'] = '<li class="page-item">';
-		$config['prev_tag_close'] = '</li>';
-		$config['first_tag_open'] = '<li class="page-item">';
-		$config['first_tag_close'] = '</li>';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-	
-	
-	
-		$config['prev_link'] = '&laquo;';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-	
-	
-		$config['next_link'] = '&raquo;';
-		$config['next_tag_open'] = '<li class="page-item">';
-		$config['next_tag_close'] = '</li>';
 
 		$this->pagination->initialize($config);
 
 		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
-		// var_dump($page);
 		$data['candidats'] = $this->candidat_model->interval_candidat($config['per_page'], $page);
-		$data["links"] = $this->pagination->create_links();
+		$data["liens"] = $this->pagination->create_links();
 
 
 		$this->load->model('paiement_model');
@@ -298,9 +277,14 @@ class Gestionnaire extends CI_Controller
 	public function modifier_candidat($id_can)
 	{
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+
+			[$annee , $mois, $jour] = explode('-', $candidat->date_n);
 			
 			$data = [
-				"candidat" => $candidat
+				"candidat" => $candidat,
+				"annee" => $annee,
+				"mois" => $mois,
+				"jour" => $jour
 			];
 
 			afficher('back/gestionnaire/modifier_candidat', $data);
@@ -335,7 +319,7 @@ class Gestionnaire extends CI_Controller
 			}
 	
 			if ($candidat = $this->candidat_model->modifier_infos($id, $data)) {
-				$this->session->set_flashdata('message-success', 'Les modifications apportes avec succes');
+				$this->session->set_flashdata('message-success', 'Candidat mis a jour avec succes');
 				redirect('gestionnaire/detail_candidat/' . $id);
 			}
 		} else {
@@ -533,11 +517,25 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		$this->load->library('pagination');
+
+		$config['base_url'] = site_url('gestionnaire/gestionnaires');
+		$config['total_rows'] = $this->gestionnaire_model->nombre_gestionnaire();
+		$config["per_page"] = 15;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+		$gestionnaires = $this->gestionnaire_model->recuperer_gestionnaire($config['per_page'], $page);
+		$liens = $this->pagination->create_links();
+
 		//Récupération de tous les gestionnaires
-		$tuples = $this->gestionnaire_model->tout();
+		// $tuples = $this->gestionnaire_model->tout();
 
 		$data = array(
-			"gestionnaires" => $tuples
+			"gestionnaires" => $gestionnaires,
+			"liens" => $liens
 		);
 
 		//Affichage de la vue de listing de gestionnaires
@@ -770,10 +768,23 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 		$this->load->model('paiement_model');
+		$this->load->library('pagination');
 
+		// Pagination 
+		$config['base_url'] = site_url('gestionnaire/transactions_candidats');
+		$config['total_rows'] = $this->paiement_model->nombre_transactions();
+		$config["per_page"] = 15;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+
+		// On recupere le parametre p pour la pagination
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
 
 		//Récupération de tous les transactions
-		if ($paiements = $this->paiement_model->tous()) {
+		if ($paiements = $this->paiement_model->recuperer_transactions($config["per_page"], $page)) {
+
+
 			foreach ($paiements as $paiement) {
 				$candidat = $this->candidat_model->recuperer($paiement->id_can);
 				$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($paiement->id_gest);
@@ -786,7 +797,8 @@ class Gestionnaire extends CI_Controller
 
 
 		$data = array(
-			"paiements" => $paiements
+			"paiements" => empty($paiements) ? [] : $paiements,
+			"liens_de_pagination" => $this->pagination->create_links()
 		);
 
 		//Affichage de la vue de listing de transactions
@@ -800,8 +812,19 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->model('retrait_model');
+		$this->load->library('pagination');
 
-		$_retraits = $this->retrait_model->tout();
+		// Pagination 
+		$config['base_url'] = site_url('gestionnaire/transactions_commercial');
+		$config['total_rows'] = $this->retrait_model->nombre_retraits();
+		$config["per_page"] = 15;
+		$config["uri_segment"] = 3;
+
+		$this->pagination->initialize($config);
+
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+
+		$_retraits = $this->retrait_model->recuperer_retraits($config["per_page"], $page);
 
 		$retraits = array_filter($_retraits, function ($retrait) {
 			return !empty($retrait->date_fin);
@@ -816,7 +839,10 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		$data['retraits'] = $retraits;
+		$data = [
+			"retraits" => $retraits,
+			"liens_de_pagination" => $this->pagination->create_links()
+		];
 
 		// var_dump($retraits);
 		afficher('back/gestionnaire/transactions_commercial', $data);
