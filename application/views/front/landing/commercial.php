@@ -432,7 +432,7 @@
             <div class="footer footer--simple">
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span> <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                    <span>(+241) 62 13 07 07 | business@ecole241.org</span>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial/inscription') ?>">Programme d'affiliation</a><a href="<?= site_url('commercial/inscription') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">

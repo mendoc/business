@@ -447,7 +447,7 @@
             <div class="sec-2">
                 <p class="mb-15"><a>Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>
                 <p class="mb-15"><a>Ancienne SOBRAGA (descente en face de Multipress) Libreville - GABON</a></p>
-                <p class="mb-15"><a>B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
+                <p class="mb-15"><a>B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / business@ecole241.org</a></p>
 
             </div>
 

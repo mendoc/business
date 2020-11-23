@@ -56,10 +56,10 @@
                 <input type="text" placeholder="Adresse e-mail" name="email" required value="<?= $this->session->flashdata('email-com'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="mot_passe" required />
 
-                <div class="souvenir">
+                <!-- <div class="souvenir">
                     <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
                     <input type="checkbox" name="souvenir" id="souvenir" class="check-btn" checked>
-                </div>
+                </div> -->
 
 
 

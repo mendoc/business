@@ -79,4 +79,17 @@ class Paiement_model extends CI_Model
     {
         return $this->db->insert($this->table, $paiement);
     }
+
+    // Renvoie le nombre de transactions effectues
+    public function nombre_transactions()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de transactions dans un intervalle precis
+    public function recuperer_transactions($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
+    }
 }
