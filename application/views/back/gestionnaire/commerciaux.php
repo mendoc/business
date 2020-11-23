@@ -6,8 +6,9 @@
             </h1>
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title text-center">Liste des commerciaux inscrits</h3>
+                <a href="<?= site_url('gestionnaire/export_commercial') ?>" class="btn btn-warning">Exporter en CSV</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
@@ -56,6 +57,9 @@
                 </table>
             </div>
         </div>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
+            <?= $liens_de_pagination ?>
+        </nav>
     </div>
 
 </div>
