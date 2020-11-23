@@ -28,7 +28,7 @@ class Candidat extends CI_Controller
         $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
             'valid_email' => 'Le champ %s n\'est pas valide',
-            'is_unique' => 'Cet %s éxiste déja'
+            'is_unique' => 'Cet %s existe déjà'
         ));
 
         $this->form_validation->set_rules('sexe', 'sexe', 'required', array(
@@ -154,7 +154,7 @@ class Candidat extends CI_Controller
         $this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|required|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
             'valid_email' => 'Le champ %s n\'est pas valide',
-            'is_unique' => 'Cet %s éxiste déja'
+            'is_unique' => 'cet %s existe déjà'
         ));
 
         $this->form_validation->set_rules('sexe', 'genre', 'required', array(
