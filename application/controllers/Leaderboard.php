@@ -32,8 +32,8 @@ class Leaderboard extends CI_Controller
 
         $data = array(
             'commerciaux' => $coms,
-            'nb_apprenant_presentiel' => empty($nb_apprenant_presentiel->nb_apprenants_presentiel) ? 0 : $nb_apprenant_presentiel->nb_apprenants_presentiel,
-            'nb_apprenant_ligne' => empty($nb_apprenant_ligne->nb_apprenants_ligne) ? 0 : $nb_apprenant_ligne->nb_apprenants_ligne
+            'nb_apprenant_presentiel' => $nb_apprenant_presentiel,
+            'nb_apprenant_ligne' => $nb_apprenant_ligne
         );
 
         $this->load->view('front/leaderboard/classement', $data);
