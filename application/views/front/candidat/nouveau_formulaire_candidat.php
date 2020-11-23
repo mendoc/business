@@ -29,45 +29,61 @@
                 <!-- ==============* partie formulaire *============= -->
                 <div class="gauche">
 
-                    <h1 class="titre">S'inscire à la formation</h1>
+
+                    <h1 class="titre">S'inscrire à la formation</h1>
                     <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
                         <?php if (isset($this->session->hash)) : ?>
                             <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
                         <?php endif; ?>
                         <!-- =====* Nom et prénom *======== -->
                         <div class="saisie">
-                            <label for="nom-complet">Votre nom Complet:</label><br>
-                            <input type="text" name="nom" id="nom-complet" value="<?= set_value('nom') ?>" required placeholder="Noms et prénoms" class="input" autofocus>
+                            <label for="nom-complet">Votre nom Complet <span>*</span></label><br>
+                            <input type="text" name="nom" id="nom-complet" value="<?= set_value('nom') ?>" required placeholder="Ex: MOUSSIROU Grégoire" class="input" autofocus>
+
                         </div>
-                        <?= form_error('nom') ?>
+                        <div class="erreurs">
+                          <?= form_error('nom') ?>
+                        </div>
                         <!-- ========* e-mail *========== -->
                         <div class="saisie">
-                            <label for="e-mail"> Votre adresse e-mail:</label><br>
-                            <input type="email" name="email" id="e-mail" value="<?= set_value('email') ?>" required placeholder="Votre adresse e-mail" class="input" autofocus>
+
+                            <label for="e-mail"> Votre adresse e-mail <span>*</span></label><br>
+                            <input type="email" name="email" id="e-mail" value="<?= set_value('email') ?>" required placeholder="Ex moussirougregoire@gmail.com" class="input" autofocus>
+
                         </div>
-                        <?= form_error('email') ?>
+                        <div class="erreurs">
+                         <?= form_error('email') ?>
+                        </div>
                         <!-- ===========* choix genre *============= -->
                         <div class="saisie choix display-flex">
-                            <div class="genre-choix">Genre:</div>
+                            <div class="genre-choix">Genre<span>*</span></div>
                             <div>
                                 <label for="genre" selected class="choix-genre">Homme</label>
                                 <input type="radio" checked name="sexe" value="H" id="genre" required autofocus>
                             </div>
                             <div>
                                 <label for="femme" class="choix-genre">Femme</label>
+
                                 <input type="radio" name="sexe" value="F" id="femme" required autofocus>
+
                             </div>
+                            <div class="erreurs">
                             <?= form_error('sexe') ?>
+                            </div>
                         </div>
 
                         <!-- ==========* Numéros de téléphone *=========== -->
 
                         <div class="saisie num">
                             <div class="num-tel">
-                                <label for="phone">Votre n° de téléphone:</label><br>
-                                <input type="tel" name="telephone" id="phone" value="<?= set_value('telephone') ?>" required class="input" autofocus placeholder="Votre numéro de téléphone / Whatsapp">
+
+                                <label for="phone">Votre n° de téléphone <span>*</span></label><br>
+                                <input type="tel" name="telephone" id="phone" value="<?= set_value('telephone') ?>" required class="input" autofocus placeholder="Ex: +241 00 00 00">
+
                             </div>
-                            <?= form_error('telephone') ?>
+                            <div class="erreurs">
+                                <?= form_error('telephone') ?>
+                            </div>
                             <!-- <div class="num-what">
                                 <label for="phone">N° de Whatsapp:</label><br>
                                 <input type="tel" name="" id="phone" required class="input" autofocus placeholder="votre numéro Whatsapp">
@@ -78,7 +94,7 @@
                         <div class="saisie choix-activ-cours">
                             <div class="choix-activite">
                                 <!-- ==========* choix activité *========= -->
-                                <label for="activite">Votre activité:</label><br>
+                                <label for="activite">Votre activité<span>*</span></label><br>
                                 <select name="domaine" id="activite">
                                     <!-- <option selected disabled>Votre activité</option> -->
                                     <option value="Agroalimentaire">Agroalimentaire</option>
@@ -99,26 +115,34 @@
                                     <option selected value="Autre">Autres</option>
                                 </select>
                             </div>
-                            <?= form_error('domaine') ?>
+                            <div class="erreurs">
+                             <?= form_error('domaine') ?>
+                            </div>
                             <!-- =========* choix du cours *=========-->
                             <div class="choix-cours">
-                                <label for="cours">Type de Cours:</label><br>
+                                <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
                                     <option selected value="P">En présentiel - 155.000fcfa</option>
                                     <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
-                                <?= form_error('type_cours') ?>
+                                <div class="erreurs">
+                                 <?= form_error('type_cours') ?>
+                                </div>
                             </div>
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalite de paiement:</label><br>
+                                <label for="modalite">Modalite de paiement<span>*</span></label><br>
                                 <select name="modalite" id="modalite">
+
                                     <option selected value="1">1 Tranche</option>
+
                                     <option value="2">2 Tranche</option>
                                     <option value="3">3 Tranche</option>
                                 </select>
-                                <?= form_error('modalite') ?>
+                                <div class="erreurs">
+                                 <?= form_error('modalite') ?>
+                                </div>
                             </div>
                         </div>
                         <!-- ===========* boutin s'Enregistrer *========== -->
@@ -136,13 +160,13 @@
                 <!-- =============* partie droit *============== -->
                 <div class="droite">
                     <div class="contenair">
-                        <div class="texte-descriptif">
+                        <!-- <div class="texte-descriptif">
                             <h1>Etes-vous prêt?</h1>
-                            <p> La tranformation digitale de votre activité est un atout incroyable à votre essor</p>
-                        </div>
+                            <p> La transformation digitale de votre activité est un atout incroyable à votre essor</p>
+                        </div> -->
 
                         <div class="image">
-                            <img src="<?= theme_url() ?>images/JOSIANE-MATENE.jpg" alt=" logo Ecole241 Business">
+                            <img src="<?= theme_url() ?>assets/images/ambassadeurs.png" alt=" Ambassadeurs Ecole241 Business">
                         </div>
                     </div>
                 </div>
@@ -165,11 +189,13 @@
         const typeCoursElt = document.getElementById('cours');
         const modaliteElt = document.getElementById('modalite');
         typeCoursElt.onchange = e => {
-            if (e.target.value !== 'P') {
+            if (e.target.value == 'L') {
                 modaliteElt.setAttribute('disabled', true);
-            } else {
+                modaliteElt.value = "1"
+            } 
+            else {
                 modaliteElt.removeAttribute('disabled');
-            }
+            } 
         }
     </script>
 
