@@ -41,7 +41,7 @@
             <table class="table mb-5">
                 <thead class="table-head">
                     <tr class="">
-                        <th colspan="2">Nombre d'apprenant</th>
+                        <th colspan="2">Nombre d'apprenants</th>
                     </tr>
                 </thead>
                 <tbody class="table-body">
