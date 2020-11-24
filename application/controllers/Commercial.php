@@ -432,22 +432,31 @@ class Commercial extends CI_Controller
             $nouveau_mot_passe = rand(1000, 9999);
 
             if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe)) {
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/mdp_oublie', '', TRUE);
+
+                $cles    = array('{GENRE}', '{NOM}', '{EMAIL}', '{PASS}');
+                $valeurs = array(($commercial->sexe == 'F' ? 'Mme' : 'M.'), $commercial->nom_prenom, $commercial->email, $nouveau_mot_passe);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 
-                $message = "Il est maintenant possible de vous connecter via $nouveau_mot_passe";
-
-                mail($commercial->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+                // On envoie d'un mail au candidat
+                mail($commercial->email, 'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
 
                 $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
                 $this->session->set_flashdata('email-com', $commercial->nom_util);
 
                 redirect('commercial/connexion');
-            } else {
-                echo 'Bien';
             }
+            //================== suite du code ====================//
         } else {
             $this->session->set_flashdata('message-error', "Votre email n'existe pas");
             redirect('commercial/reinitialiser_mot_de_passe');
