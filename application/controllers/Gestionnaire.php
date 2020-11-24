@@ -77,8 +77,8 @@ class Gestionnaire extends CI_Controller
 			$paiement->nom_candidat = $nom_candidat;
 		}
 
-		$inscrit_par_jour = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour(), 0, 15));
-		$inscrits = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour_array(), 0, 15));
+		$inscrit_par_jour = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour(), 0, 30));
+		$inscrits = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour_array(), 0, 30));
 
 		// var_dump($inscrits);
 		$nombres_inscrits = [];
