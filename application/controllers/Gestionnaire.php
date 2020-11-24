@@ -46,9 +46,50 @@ class Gestionnaire extends CI_Controller
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
 		});
+
+		// Traitement du cumul de dette des commerciaux
+
+		$cumul_comission_commercial = 0;
+		$commerciaux_dette = $this->commercial_model->tout();
+		foreach ($commerciaux_dette as $commercial) {
+			// Nombre d'affiliés en présentiel du commercial
+			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+			else $nb_affilies_com_presentiel = 0;
+	
+			// Nombre d'affiliés en ligne du commercial
+			$result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+			else $nb_affilies_com_ligne = 0;
+
+			$result = $this->retrait_model->pour_commercial($commercial->id_com);
+        	if ($result) $retrait = $result->montant_retrait;
+        	else $retrait = 0;
+
+			$commission_ligne = $nb_affilies_com_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
+			$commission_presentiel = $nb_affilies_com_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
+
+			$nb_bonus_ligne = 0;
+			$nb_bonus_presentiel = 0;
+
+			// Calcul des bonus 
+			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
+				$nb_bonus_ligne += 1;
+			}
+
+			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
+				$nb_bonus_presentiel += 1;
+			}
+
+
+			$cumul_comission_commercial += ($commission_ligne + $commission_presentiel);
+			$cumul_comission_commercial += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
+		}
 		
 		// Traitement des informations du candidats
 		$candidats = $this->candidat_model->tout();
+
+		$cumul_candidats = 0;
 
 		$nb_candidats = count($candidats);
 
@@ -62,14 +103,16 @@ class Gestionnaire extends CI_Controller
 				if ($montant_candidat > 0) {
 					$nb_apprenants++;
 				}
+				$cumul_candidats += PRIX_PRESENTIEL - $montant_candidat;
 			} else {
+				$cumul_candidats += PRIX_EN_LIGNE - $montant_candidat;
 				if($montant_candidat == PRIX_EN_LIGNE){
 					$nb_apprenants++;
 				} 
 			}
 		}
 
-		$paiements = $this->paiement_model->tous();
+		$paiements = array_slice(array_reverse($this->paiement_model->tous()), 0, 10);
 
 		foreach ($paiements as $paiement)
 		{
@@ -77,10 +120,30 @@ class Gestionnaire extends CI_Controller
 			$paiement->nom_candidat = $nom_candidat;
 		}
 
-		$inscrit_par_jour = array_slice($this->statistique_model->nb_inscrit_jour(), 0, 15);
+		$inscrit_par_jour = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour(), 0, 30));
+		$inscrits = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour_array(), 0, 30));
 
-		
+		// var_dump($inscrits);
+		$nombres_inscrits = [];
+		$jours = [];
+		foreach($inscrits as $data)
+		{
+			$nombres_inscrits[] = $data['nombre_inscrits'];
+			$jours[] = $data['jour'];
+		}
+
+		$jours = array_map(function ($jour){
+			return date_format(date_create($jour), "j M");
+		}, $jours);
+
+		// var_dump($jours);
+		// die;
+
+
 		$data = array(
+			"cumul_candidats" => $cumul_candidats,
+			"dette_commercial" => ($cumul_comission_commercial - $total_retrait),
+			"solde_2" => $chiffre_affaire - $cumul_comission_commercial,
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
 			"nb_candidats" => ($nb_candidats - $nb_apprenants),
@@ -92,7 +155,9 @@ class Gestionnaire extends CI_Controller
 			"visites_total" => $commerciaux_visite->nbr_visite,
 			"commerciaux" => $commerciaux,
 			"best_commerciaux" => $commerciaux_candidats,
-			"inscrits_jour" => $inscrit_par_jour
+			"inscrits_jour" => $inscrit_par_jour,
+			"nombre_inscrits" => implode(',', $nombres_inscrits),
+			"jours" => implode(',',$jours)
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
@@ -905,19 +970,19 @@ class Gestionnaire extends CI_Controller
 
 			$commission_total = $commission_ligne + $commission_presentiel;
 			
-			$bonus_ligne = 0;
-			$bonus_presentiel = 0;
+			$nb_bonus_ligne = 0;
+			$nb_bonus_presentiel = 0;
 
 			// Calcul des bonus 
-			for ($i=10; $i < $nb_aff_ligne; $i+=10) { 
-				$bonus_ligne += 1;
+			for ($i=10; $i <= $nb_aff_ligne; $i+=10) { 
+				$nb_bonus_ligne += 1;
 			}
 
-			for ($i=10; $i < $nb_aff_presentiel; $i+=10) { 
-				$bonus_presentiel += 1;
+			for ($i=10; $i <= $nb_aff_presentiel; $i+=10) { 
+				$nb_bonus_presentiel += 1;
 			}
 
-			$commission_total += ($bonus_ligne * 20000) + ($bonus_presentiel * 20000);
+			$commission_total += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
 			
 			
 			foreach ($retraits as $retrait) {

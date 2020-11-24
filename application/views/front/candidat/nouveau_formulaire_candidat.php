@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/new_form_candidat.css">
+    <link rel="icon" href="<?= theme_url() ?>favicon.png" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <title>Formulaire Inscription Candidat - Ecole241 Business</title>
+    <title>Formulaire B Inscription Candidat - Ecole241 Business</title>
 </head>
 
 <body>
@@ -137,8 +138,8 @@
 
                                     <option selected value="1">1 Tranche</option>
 
-                                    <option value="2">2 Tranche</option>
-                                    <option value="3">3 Tranche</option>
+                                    <option value="2">2 Tranches</option>
+                                    <option value="3">3 Tranches</option>
                                 </select>
                                 <div class="erreurs">
                                  <?= form_error('modalite') ?>
@@ -182,6 +183,12 @@
                 <p>&copy Copyright Ecole241Business</p>
                 <a href="https://ecole241.org" class="footerBadge footerBadge--production">Réalisé par <span>Ecole 241</span></a>
             </div>
+            
+            <div class="liens">
+                <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
+                <a href="mailto:business@ecole241.org">business@ecole241.org</a>
+            </div>
+
         </footer>
     </main>
 
