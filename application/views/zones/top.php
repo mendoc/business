@@ -7,12 +7,12 @@
                         <a class="header-brand" href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>">
                             <img src="<?= theme_url() ?>assets/images/logo.png" style="height: 50px" alt="tabler logo">
                         </a>
-                        <div class="">
-                            <div>
+                        <div class="d-flex flex-row-reverse">
+                            <div class="">
                                 <?php if (!est_un_gestionnaire()) : ?>
                                     <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn btn-success d-lg-none action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                                 <?php endif; ?>
-                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn  btn-sm btn-outline-primary d-none d-md-inline ">Déconnexion</a>
+                                <a href="<?= est_un_gestionnaire() ? site_url('gestionnaire/deconnexion') : site_url('commercial/deconnexion') ?>" class="btn  btn-sm btn-outline-primary d-none d-lg-block ml-3">Déconnexion</a>
                             </div>
                             <a class="pr-0  d-none d-lg-block">
                                 <span class="d-none avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
@@ -21,7 +21,7 @@
                                     <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
                                 </span>
                             </a>
-                            <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion </a>
+                            <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion</a>
                         </div>
                         <a class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
                             <span class="header-toggler-icon"></span>
@@ -42,7 +42,7 @@
                                 </form>
                             <?php endif; ?>
                             <?php if (!est_un_gestionnaire()) : ?>
-                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
+                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none d-lg-block  btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
                                 
                                 
                             <?php endif; ?>
@@ -98,7 +98,7 @@
                                     </li>
 
                                     <li style="margin-bottom: 15px; margin-left: 15px">
-                                    <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-md-none btn-outline-danger btn-sm">Déconnexion</a>
+                                    <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-lg-none btn-outline-danger btn-sm">Déconnexion</a>
                                     </li>
                                 <?php endif; ?>
 

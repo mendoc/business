@@ -79,7 +79,7 @@ class Statistique_model extends CI_Model
         GROUP BY eb_paiement.id_can 
         HAVING SUM(montant) = ?";
 
-        return $this->db->query($sql, [PRIX_EN_LIGNE])->row();
+        return $this->db->query($sql, [PRIX_EN_LIGNE])->num_rows();
     }
 
     public function nombre_apprenant_presentiel() //Nbre de tous les apprenants en presentiel
@@ -104,7 +104,7 @@ class Statistique_model extends CI_Model
         WHERE type_cours =\"P\"GROUP BY eb_paiement.id_can 
         HAVING SUM(montant) > 0";
 
-        return $this->db->query($sql)->row();
+        return $this->db->query($sql)->num_rows();
     }
 
     public function nombre_commerciaux() // Nbre de tous les commerciaux
@@ -218,6 +218,16 @@ class Statistique_model extends CI_Model
             ORDER BY `Jour` DESC";
 
         return $this->db->query($sql)->result();
+    }
+
+    public function nb_inscrit_jour_array()
+    {
+        $sql = " SELECT DATE(date_enrg) AS `jour`, COUNT(*) AS `nombre_inscrits`
+            FROM eb_candidat
+            GROUP BY `Jour`
+            ORDER BY `Jour` DESC";
+
+        return $this->db->query($sql)->result_array();
     }
 
     public function nb_affilie_jour_ligne()

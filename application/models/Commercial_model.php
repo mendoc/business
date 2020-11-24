@@ -32,6 +32,13 @@ class Commercial_model extends CI_Model
         return $query->result();
     }
 
+    public function array_commerciaux()
+    {
+        $this->db->select('id_com, nom_prenom, num_tel, num_what, email, sexe, date_n, nbr_visite');
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
+
     public function connexion($email, $mot_passe)
     {
         $query = $this->db->get_where($this->table, array('email' => $email, 'mot_passe' => $mot_passe));
@@ -208,6 +215,19 @@ class Commercial_model extends CI_Model
     public function recherche_commercial($nom_prenom)
     {
         $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
+    }
+
+    // Renvoie le nombre de commerciaux
+    public function nombre_commerciaux()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de commerciaux dans un intervalle precis
+    public function interval_commercial($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
         return $this->db->get($this->table)->result();
     }
 }
