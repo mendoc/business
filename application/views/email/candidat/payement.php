@@ -93,7 +93,7 @@ font-family: 'Montserrat', sans-serif;
             <div style="color: #ffff; font-weight:bold;" class=" sec-2 ">
                 <p style="font-size: 1rem; margin: 1px; "><a style="font-size: 10px;text-decoration: none; color: var(--main-text-color); " href="/ ">Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>
                 <p style="font-size: 1rem;  margin: 1px; "><a style="font-size: 10px;text-decoration: none; color: var(--main-text-color); " href="/ ">Ancienne SOBRAGA (descente en face de Multipress) Libreville - GABON</a></p>
-                <p style="font-size: 1rem; margin: 1px; "><a style="font-size: 10px;text-decoration: none; color: var(--main-text-color); " href="/ ">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
+                <p style="font-size: 1rem; margin: 1px; "><a style="font-size: 10px;text-decoration: none; color: var(--main-text-color); " href="/ ">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / business@ecole241.org</a></p>
 
             </div>
 

@@ -242,7 +242,7 @@
 </head>
 
 <body>
-    <header id="#header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
+    <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
                 <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
@@ -432,7 +432,7 @@
             <div class="footer footer--simple">
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span> <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                    <span>(+241) 62 13 07 07 | business@ecole241.org</span>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial/inscription') ?>">Programme d'affiliation</a><a href="<?= site_url('commercial/inscription') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
