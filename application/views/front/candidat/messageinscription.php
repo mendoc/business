@@ -71,6 +71,8 @@
     <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
     </div>
     <main>
+
+         <div class="photo"></div>
         <section id="validation">
             <div class="vali">
                 <div class="yes">
