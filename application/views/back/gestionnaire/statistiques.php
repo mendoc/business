@@ -166,10 +166,28 @@
                                     <tr>
                                         <td><?= $paiement->nom_candidat ?></td>
                                         <td class="text-nowrap"><?= number_format($paiement->montant, 0, '', ' ') ?> F CFA</td>
-                                        <td class="" colspan="2">
+                                        <td class="text-nowrap" colspan="2">
                                             <?php 
                                                 $date = date_diff(date_create($paiement->date), date_create())->format('%d');
-                                                echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
+                                                // echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
+                                                switch ($date) {
+                                                    case '0':
+                                                        echo "Aujourd'hui";
+                                                        break;
+                                                    case '1':
+                                                        echo "Hier";
+                                                        break;
+                                                    case '2':
+                                                        echo "Avant-hier";
+                                                        break;
+                                                    default:
+                                                        if (in_array($date, ['3','4','5','6'])) {
+                                                            echo 'Il y a '. $date . ' jours';
+                                                        } else {
+                                                            echo 'le '. date_format(date_create($paiement->date), "j M y");
+                                                        }
+                                                        break;
+                                                }
                                             ?>
                                         </td>
                                     </tr>
