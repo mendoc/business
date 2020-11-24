@@ -134,7 +134,7 @@
                         </div>
 
                         <div class="image">
-                            <img src="<?= theme_url() ?>images/JOSIANE-MATENE.jpg" alt=" logo Ecole241 Business">
+                            <img src="<?= theme_url() ?>images/affiche-ambassadeur2.png"  alt=" logo Ecole241 Business">
                         </div>
                     </div>
                 </div>
