@@ -220,6 +220,16 @@ class Statistique_model extends CI_Model
         return $this->db->query($sql)->result();
     }
 
+    public function nb_inscrit_jour_array()
+    {
+        $sql = " SELECT DATE(date_enrg) AS `jour`, COUNT(*) AS `nombre_inscrits`
+            FROM eb_candidat
+            GROUP BY `Jour`
+            ORDER BY `Jour` DESC";
+
+        return $this->db->query($sql)->result_array();
+    }
+
     public function nb_affilie_jour_ligne()
     {
         $sql = "SELECT DATE(date) AS 'Jour' ,COUNT(eb_paiement.id_can)

@@ -92,6 +92,58 @@
                 </div>
             </div>
         </div>
+        <div class="col-lg-8 offset-lg-2">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Nombre d'inscrits des 30 derniers jours</h3>
+                  </div>
+                  <div class="card-body">
+                    <div id="chart-data" data-jours="<?= $jours ?>" data-number="<?= $nombre_inscrits ?>" style="height: 16rem"></div>
+                  </div>
+                </div>
+                <script>
+                    require(['c3', 'jquery'], function(c3, $) {
+                        $(document).ready(function(){
+                        // const chartElt = document.getElementById('chart-data');
+                        // const joursTab = chartElt.getAttribute('data-jours').split(',');
+                        // const nombreInscritTab = chartElt.getAttribute('data-number').split(',');
+                  		var chart = c3.generate({
+                  			bindto: '#chart-data', // id of chart wrapper
+                  			data: {
+                  				columns: [
+                  				    // each columns data
+                  					['data1', <?= $nombre_inscrits ?>],
+                  				],
+                  				type: 'line', // default type of chart
+                  				colors: {
+                  					'data1': tabler.colors["blue"],
+                  				},
+                  				names: {
+                  				    // name of each serie
+                  					'data1': "Nombre d'inscrit Par jour",
+                  				}
+                  			},
+                  			axis: {
+                  				x: {
+                  					type: 'category',
+                  					// name of each category
+                                      categories: [<?php foreach(explode(',', $jours) as $jour) {
+                                          echo "\"". $jour . "\",";
+                                      } ?>]
+                  				},
+                  			},
+                  			legend: {
+                                  show: false, //hide legend
+                  			},
+                  			padding: {
+                  				bottom: 0,
+                  				top: 0
+                  			},
+                  		});
+                  	});
+                  });
+                </script>
+              </div>
         <h2 class="page-title mb-5">
             Retraits et paiements
         </h2>
@@ -245,7 +297,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-lg-6 col-sm-12">
+            <!-- <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Nombre d'inscrit par jour </h3>
                 </div>
@@ -276,7 +328,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
 
             
         </div>
