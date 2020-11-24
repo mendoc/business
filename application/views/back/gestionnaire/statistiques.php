@@ -106,7 +106,7 @@
                         </div>
                         <div class="h3 mb-2"><?= number_format($cumul_candidats, 0, ',', ' ')  ?></div>
                         <div class="text-muted mb-4">
-                            Cumul des candidats
+                            Reste à payer des apprenants
                         </div>
                     </div>
                 </div>
@@ -119,7 +119,8 @@
                             <!-- <i class="fe fe-chevron-up"></i> -->
                         </div>
                         <div class="h3 m-0"><?= number_format($dette_commercial, 0, ',', ' ') ?></div>
-                        <div class="text-muted mb-4">Dette des commercials
+                        <div class="text-muted mb-4">
+                            Total à payer aux commerciaux
                         </div>
                     </div>
                 </div>
@@ -132,7 +133,8 @@
                             <!-- <i class="fe fe-chevron-up"></i> -->
                         </div>
                         <div class="h3 m-0"><?= number_format($solde_2, 0, ',', ' ') ?></div>
-                        <div class="text-muted mb-4">Solde Restant
+                        <div class="text-muted mb-4">
+                            Solde restant
                         </div>
                     </div>
                 </div>
