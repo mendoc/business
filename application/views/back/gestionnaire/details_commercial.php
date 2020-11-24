@@ -92,7 +92,7 @@
                   <td>Solde</td>
                   <td class="text-right">
                     <span class="badge badge-danger">
-                      <?= number_format($commission_total, 0, '', ' ') ?> F CFA 
+                      <?= number_format(($commission_total - $montant_retrait), 0, '', ' ') ?> F CFA 
                     </span>
                   </td>
                 </tr>

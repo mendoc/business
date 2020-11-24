@@ -92,6 +92,56 @@
                 </div>
             </div>
         </div>
+
+        <h2 class="page-title mb-5 text-danger">
+            Dettes
+        </h2>
+        <div class="row row-cards">
+
+            <div class="col-6 col-sm-4 col-lg-4">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
+                    <div class="text-right text-green">
+                            F CFA
+                        </div>
+                        <div class="h3 mb-2"><?= number_format($cumul_candidats, 0, ',', ' ')  ?></div>
+                        <div class="text-muted mb-4">
+                            Reste à payer des apprenants
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-4">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
+                        <div class="text-right text-green">
+                            F CFA
+                            <!-- <i class="fe fe-chevron-up"></i> -->
+                        </div>
+                        <div class="h3 m-0"><?= number_format($dette_commercial, 0, ',', ' ') ?></div>
+                        <div class="text-muted mb-4">
+                            Total à payer aux commerciaux
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-4">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
+                        <div class="text-right text-green">
+                            F CFA
+                            <!-- <i class="fe fe-chevron-up"></i> -->
+                        </div>
+                        <div class="h3 m-0"><?= number_format($solde_2, 0, ',', ' ') ?></div>
+                        <div class="text-muted mb-4">
+                            Solde restant
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
         <div class="col-lg-8 offset-lg-2">
                 <div class="card">
                   <div class="card-header">

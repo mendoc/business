@@ -436,7 +436,7 @@ class Commercial extends CI_Controller
                 $message = $this->load->view('email/commercial/mdp_oublie', '', TRUE);
 
                 $cles    = array('{NOM}', '{EMAIL}', '{PASS}');
-                $valeurs = array(($commercial->nom_prenom, $commercial->email, $nouveau_mot_passe);
+                $valeurs = array($commercial->nom_prenom, $commercial->email, $nouveau_mot_passe);
 
                 $message = str_replace($cles, $valeurs, $message);
 
