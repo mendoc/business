@@ -98,7 +98,7 @@
         </h2>
         <div class="row row-cards">
 
-            <div class="col-6 col-sm-4 col-lg-4">
+            <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <div class="card-body p-3 text-center">
                     <div class="text-right text-green">
@@ -111,7 +111,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-sm-4 col-lg-4">
+            <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <div class="card-body p-3 text-center">
                         <div class="text-right text-green">
@@ -125,7 +125,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-sm-4 col-lg-4">
+            <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <div class="card-body p-3 text-center">
                         <div class="text-right text-green">
