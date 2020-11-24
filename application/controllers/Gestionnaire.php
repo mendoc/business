@@ -73,11 +73,11 @@ class Gestionnaire extends CI_Controller
 			$nb_bonus_presentiel = 0;
 
 			// Calcul des bonus 
-			for ($i=10; $i < $nb_affilies_com_ligne; $i+=10) { 
+			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
 				$nb_bonus_ligne += 1;
 			}
 
-			for ($i=10; $i < $nb_affilies_com_presentiel; $i+=10) { 
+			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
 				$nb_bonus_presentiel += 1;
 			}
 
@@ -955,11 +955,11 @@ class Gestionnaire extends CI_Controller
 			$nb_bonus_presentiel = 0;
 
 			// Calcul des bonus 
-			for ($i=10; $i < $nb_aff_ligne; $i+=10) { 
+			for ($i=10; $i <= $nb_aff_ligne; $i+=10) { 
 				$nb_bonus_ligne += 1;
 			}
 
-			for ($i=10; $i < $nb_aff_presentiel; $i+=10) { 
+			for ($i=10; $i <= $nb_aff_presentiel; $i+=10) { 
 				$nb_bonus_presentiel += 1;
 			}
 
