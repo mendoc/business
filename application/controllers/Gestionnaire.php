@@ -69,7 +69,7 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		$paiements = $this->paiement_model->tous();
+		$paiements = array_slice(array_reverse($this->paiement_model->tous()), 0, 10);
 
 		foreach ($paiements as $paiement)
 		{
