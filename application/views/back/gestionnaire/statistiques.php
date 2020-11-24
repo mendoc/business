@@ -92,6 +92,7 @@
                 </div>
             </div>
         </div>
+
         <h2 class="page-title mb-5 text-danger">
             Dettes
         </h2>
@@ -138,6 +139,59 @@
             </div>
             
         </div>
+
+        <div class="col-lg-8 offset-lg-2">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">Nombre d'inscrits des 30 derniers jours</h3>
+                  </div>
+                  <div class="card-body">
+                    <div id="chart-data" data-jours="<?= $jours ?>" data-number="<?= $nombre_inscrits ?>" style="height: 16rem"></div>
+                  </div>
+                </div>
+                <script>
+                    require(['c3', 'jquery'], function(c3, $) {
+                        $(document).ready(function(){
+                        // const chartElt = document.getElementById('chart-data');
+                        // const joursTab = chartElt.getAttribute('data-jours').split(',');
+                        // const nombreInscritTab = chartElt.getAttribute('data-number').split(',');
+                  		var chart = c3.generate({
+                  			bindto: '#chart-data', // id of chart wrapper
+                  			data: {
+                  				columns: [
+                  				    // each columns data
+                  					['data1', <?= $nombre_inscrits ?>],
+                  				],
+                  				type: 'line', // default type of chart
+                  				colors: {
+                  					'data1': tabler.colors["blue"],
+                  				},
+                  				names: {
+                  				    // name of each serie
+                  					'data1': "Nombre d'inscrit Par jour",
+                  				}
+                  			},
+                  			axis: {
+                  				x: {
+                  					type: 'category',
+                  					// name of each category
+                                      categories: [<?php foreach(explode(',', $jours) as $jour) {
+                                          echo "\"". $jour . "\",";
+                                      } ?>]
+                  				},
+                  			},
+                  			legend: {
+                                  show: false, //hide legend
+                  			},
+                  			padding: {
+                  				bottom: 0,
+                  				top: 0
+                  			},
+                  		});
+                  	});
+                  });
+                </script>
+              </div>
         <h2 class="page-title mb-5">
             Retraits et paiements
         </h2>
@@ -212,10 +266,28 @@
                                     <tr>
                                         <td><?= $paiement->nom_candidat ?></td>
                                         <td class="text-nowrap"><?= number_format($paiement->montant, 0, '', ' ') ?> F CFA</td>
-                                        <td class="" colspan="2">
+                                        <td class="text-nowrap" colspan="2">
                                             <?php 
                                                 $date = date_diff(date_create($paiement->date), date_create())->format('%d');
-                                                echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
+                                                // echo $date == '0' ? "Aujourd'hui" : "Il y a ". $date . " jour(s)"
+                                                switch ($date) {
+                                                    case '0':
+                                                        echo "Aujourd'hui";
+                                                        break;
+                                                    case '1':
+                                                        echo "Hier";
+                                                        break;
+                                                    case '2':
+                                                        echo "Avant-hier";
+                                                        break;
+                                                    default:
+                                                        if (in_array($date, ['3','4','5','6'])) {
+                                                            echo 'Il y a '. $date . ' jours';
+                                                        } else {
+                                                            echo 'le '. date_format(date_create($paiement->date), "j M y");
+                                                        }
+                                                        break;
+                                                }
                                             ?>
                                         </td>
                                     </tr>
@@ -291,7 +363,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card col-lg-6 col-sm-12">
+            <!-- <div class="card col-lg-6 col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Nombre d'inscrit par jour </h3>
                 </div>
@@ -322,7 +394,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> -->
 
             
         </div>

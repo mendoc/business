@@ -112,7 +112,7 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
-		$paiements = $this->paiement_model->tous();
+		$paiements = array_slice(array_reverse($this->paiement_model->tous()), 0, 10);
 
 		foreach ($paiements as $paiement)
 		{
@@ -120,7 +120,24 @@ class Gestionnaire extends CI_Controller
 			$paiement->nom_candidat = $nom_candidat;
 		}
 
-		$inscrit_par_jour = array_slice($this->statistique_model->nb_inscrit_jour(), 0, 15);
+		$inscrit_par_jour = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour(), 0, 30));
+		$inscrits = array_reverse(array_slice($this->statistique_model->nb_inscrit_jour_array(), 0, 30));
+
+		// var_dump($inscrits);
+		$nombres_inscrits = [];
+		$jours = [];
+		foreach($inscrits as $data)
+		{
+			$nombres_inscrits[] = $data['nombre_inscrits'];
+			$jours[] = $data['jour'];
+		}
+
+		$jours = array_map(function ($jour){
+			return date_format(date_create($jour), "j M");
+		}, $jours);
+
+		// var_dump($jours);
+		// die;
 
 
 		$data = array(
@@ -138,7 +155,9 @@ class Gestionnaire extends CI_Controller
 			"visites_total" => $commerciaux_visite->nbr_visite,
 			"commerciaux" => $commerciaux,
 			"best_commerciaux" => $commerciaux_candidats,
-			"inscrits_jour" => $inscrit_par_jour
+			"inscrits_jour" => $inscrit_par_jour,
+			"nombre_inscrits" => implode(',', $nombres_inscrits),
+			"jours" => implode(',',$jours)
 		);
 
 		afficher('back/gestionnaire/statistiques', $data);
