@@ -10,10 +10,11 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     height: 76vh;
-    width: 100%;
     margin: 0 auto;
     background-image: url("http://localhost/business/theme/images/assets-fusvw691.png");
+    background-position: center;
 }
 
 
@@ -23,8 +24,7 @@ main {
     } */
 
 .logo {
-    width: 100%;
-    height: 80px;
+    padding: 20px 80px;
 }
 
 .vali {
@@ -110,7 +110,7 @@ main section#validation p {
     margin-bottom: 1em;
 }
 
-a {
+.btn-retour {
     border: 1px solid #003366;
     background-color: #003366;
     border-radius: 20px;
@@ -130,9 +130,15 @@ a {
     margin-left: 42%;
 }
 
-.footer {
-    width: 100%;
-    height: 60px;
+footer {
+    color: #fff;
+    padding: 20px 80px;
+    background: #003366;
+}
+
+footer a {
+    color: #fff;
+    text-decoration: none;
 }
 
 @media screen and (max-width: 645px) {
@@ -146,22 +152,31 @@ a {
         height: auto;
         margin-top: -13px;
     }
-    main section#validation h1 {
-        font-size: 2.1rem;
-        margin-top: 10px;
-        margin-left: 26%;
+    h1 {
+        font-size: 1.9rem;
+        text-align: center;
+        /*margin-top: 10px; */
+        margin-left: 0% !important;
     }
-    a {
-        border: 1px solid #003366;
-        background-color: #003366;
-        border-radius: 20px;
-        font-size: 15px;
-        padding: 12px;
-        color: white;
-        text-decoration: none;
-        margin-top: 120px;
+    #validation {
+        height: 270px;
+        padding: 20px 10px;
+    }
+    footer {
+        padding: 20px;
     }
     main {
         height: 80vh;
+        padding: 20px;
+    }
+    section#validation img {
+        width: 100%;
+        /* margin-top: 5px !important; */
+    }
+    .btn-retour {
+        margin-left: 25%;
+    }
+    section#validation p {
+        text-align: center;
     }
 }
