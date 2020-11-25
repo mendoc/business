@@ -102,11 +102,11 @@ class Gestionnaire extends CI_Controller
 			if ($candidat->type_cours == 'P') {
 				if ($montant_candidat > 0) {
 					$nb_apprenants++;
-					$cumul_candidats += PRIX_PRESENTIEL - $montant_candidat;
+					$cumul_candidats += (PRIX_PRESENTIEL - $montant_candidat);
 				}
 			} else {
-				$cumul_candidats += PRIX_EN_LIGNE - $montant_candidat;
 				if($montant_candidat == PRIX_EN_LIGNE){
+					$cumul_candidats += (PRIX_EN_LIGNE - $montant_candidat);
 					$nb_apprenants++;
 				} 
 			}
