@@ -294,6 +294,6 @@ class Candidat extends CI_Controller
 
     public function inscription_reussi()
     {
-        $this->load->view('front/candidat/message_inscription');
+        $this->load->view('front/candidat/messageinscription');
     }
 }
