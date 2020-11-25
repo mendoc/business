@@ -86,11 +86,17 @@
             <p>
                 Un email récapitulant vos informations a été envoyé.
             </p><br>
-            <a href="<?= site_url() ?>">Retour à l'accueil</a>
+            <a href="<?= site_url() ?>" class="btn-retour">Retour à l'accueil</a>
             </div>
         </section>
     </main>
-    <div class="footer"></div>
-</body>
+    <footer>
+            <div class="footer-contenair">
+                <p>&copy Copyright Ecole241Business</p>
+                <a href="tel:+241 62 13 07 07" class="contacts">(+241) 62 13 07 07 |</a>
+                <a href="mailto:business@ecole241.org">business@ecole241.org</a>
+                <!-- <a href="https://ecole241.org" class="footerBadge footerBadge--production">Réalisé par <span>Ecole 241</span></a> -->
+            </div>
+        </footer>
                
 </html>
