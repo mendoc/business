@@ -106,7 +106,6 @@ class Gestionnaire extends CI_Controller
 				}
 			} else {
 				if($montant_candidat == PRIX_EN_LIGNE){
-					$cumul_candidats += (PRIX_EN_LIGNE - $montant_candidat);
 					$nb_apprenants++;
 				} 
 			}
