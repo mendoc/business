@@ -148,7 +148,7 @@
                     <h3 class="card-title">Nombre d'inscrits des 30 derniers jours</h3>
                   </div>
                   <div class="card-body">
-                    <div id="chart-data" data-jours="<?= $jours ?>" data-number="<?= $nombre_inscrits ?>" style="height: 16rem"></div>
+                    <div id="chart-data" style="height: 16rem"></div>
                   </div>
                 </div>
                 <script>
