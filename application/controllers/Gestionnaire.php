@@ -94,6 +94,7 @@ class Gestionnaire extends CI_Controller
 		$nb_candidats = count($candidats);
 
 		$nb_apprenants = 0;
+		$nb_vrai_apprenants = 0;
 
 		foreach($candidats as $candidat)
 		{
@@ -103,9 +104,13 @@ class Gestionnaire extends CI_Controller
 				if ($montant_candidat > 0) {
 					$nb_apprenants++;
 					$cumul_candidats += (PRIX_PRESENTIEL - $montant_candidat);
+					if ($montant_candidat == PRIX_PRESENTIEL) {
+						$nb_vrai_apprenants++;
+					}
 				}
 			} else {
 				if($montant_candidat == PRIX_EN_LIGNE){
+					$nb_vrai_apprenants++;
 					$nb_apprenants++;
 				} 
 			}
@@ -147,6 +152,7 @@ class Gestionnaire extends CI_Controller
 			"email_utilisateur" => $gestionnaire->email_gest,
 			"nb_candidats" => ($nb_candidats - $nb_apprenants),
 			"nb_apprenants" => $nb_apprenants,
+			"nb_vrai_apprenants" => $nb_vrai_apprenants,
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
 			"total_retrait" => (int)$total_retrait,
