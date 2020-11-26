@@ -173,9 +173,9 @@ class Candidat extends CI_Controller
             'required' => 'Veuillez choisir votre %s',
         ));
 
-        $this->form_validation->set_rules('modalite', 'Modalite de paiement', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-        ));
+        // //$this->form_validation->set_rules('modalite', 'Modalite de paiement', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+        // ));
 
 
         //Si validation ok
@@ -187,7 +187,7 @@ class Candidat extends CI_Controller
             $num_tel     = $this->input->post('telephone');
             $domaine_act = $this->input->post('domaine');
             $type_cours  = $this->input->post('type_cours');
-            $modal_paiement = $this->input->post('modalite');
+            $modal_paiement = !empty($this->input->post('modalite')) ? $this->input->post('modalite') : 1;
             $date_n      = "";
             //$prenom      = $this->input->post('prenom');
             $num_what    = "";;
