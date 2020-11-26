@@ -168,7 +168,7 @@
 
                         <div class="image">
 
-                            <img src="<?= theme_url() ?>images/affiche-ambassadeur2.png"  alt=" logo Ecole241 Business">
+                            <img src="<?= theme_url() ?>images/affiche-ambassadeur22.png"  alt=" logo Ecole241 Business">
 
                         </div>
                     </div>
