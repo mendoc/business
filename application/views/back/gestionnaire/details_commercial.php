@@ -73,7 +73,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Total total affiliés</td>
+                  <td>Total affiliés</td>
                   <td class="text-right">
                     <span class="badge  badge-success">
                       <?= ($nb_aff_ligne + $nb_aff_presentiel) ?>
