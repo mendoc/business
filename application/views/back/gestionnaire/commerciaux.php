@@ -16,7 +16,7 @@
                         <tr>
                             <th>Noms d'utilisateurs</th>
                             <th>E-mail</th>
-                            <th>Téléphone</th>
+                            <th>Montant à Payer</th>
                             <th>Affiliés</th>
                         </tr>
                     </thead>
@@ -41,8 +41,8 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span>
-                                            <?php echo $commercial->num_tel; ?>
+                                        <span class="<?= empty($commercial->solde) ? '' : 'text-danger font-weight-bold' ?>">
+                                            <?= number_format($commercial->solde, 0, '', ' ') ?> F CFA
                                         </span>
                                     </td>
                                     <td>

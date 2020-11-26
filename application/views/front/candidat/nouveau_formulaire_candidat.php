@@ -43,7 +43,7 @@
 
                         </div>
                         <div class="erreurs">
-                          <?= form_error('nom') ?>
+                            <?= form_error('nom') ?>
                         </div>
                         <!-- ========* e-mail *========== -->
                         <div class="saisie">
@@ -53,7 +53,7 @@
 
                         </div>
                         <div class="erreurs">
-                         <?= form_error('email') ?>
+                            <?= form_error('email') ?>
                         </div>
                         <!-- ===========* choix genre *============= -->
                         <div class="saisie choix display-flex">
@@ -69,7 +69,7 @@
 
                             </div>
                             <div class="erreurs">
-                            <?= form_error('sexe') ?>
+                                <?= form_error('sexe') ?>
                             </div>
                         </div>
 
@@ -117,7 +117,7 @@
                                 </select>
                             </div>
                             <div class="erreurs">
-                             <?= form_error('domaine') ?>
+                                <?= form_error('domaine') ?>
                             </div>
                             <!-- =========* choix du cours *=========-->
                             <div class="choix-cours">
@@ -127,13 +127,13 @@
                                     <option value="L">En ligne - 90.000fcfa</option>
                                 </select>
                                 <div class="erreurs">
-                                 <?= form_error('type_cours') ?>
+                                    <?= form_error('type_cours') ?>
                                 </div>
                             </div>
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalite de paiement<span>*</span></label><br>
+                                <label for="modalite">Modalité de paiement<span></span></label><br>
                                 <select name="modalite" id="modalite">
 
                                     <option selected value="1">1 Tranche</option>
@@ -142,7 +142,7 @@
                                     <option value="3">3 Tranches</option>
                                 </select>
                                 <div class="erreurs">
-                                 <?= form_error('modalite') ?>
+                                    <?= form_error('modalite') ?>
                                 </div>
                             </div>
                         </div>
@@ -168,7 +168,7 @@
 
                         <div class="image">
 
-                            <img src="<?= theme_url() ?>images/affiche-ambassadeur2.png"  alt=" logo Ecole241 Business">
+                            <img src="<?= theme_url() ?>images/affiche-ambassadeur22.png" alt=" logo Ecole241 Business">
 
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                 <p>&copy Copyright Ecole241Business</p>
                 <a href="https://ecole241.org" class="footerBadge footerBadge--production">Réalisé par <span>Ecole 241</span></a>
             </div>
-            
+
             <div class="liens">
                 <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
                 <a href="mailto:business@ecole241.org">business@ecole241.org</a>
@@ -201,10 +201,9 @@
             if (e.target.value == 'L') {
                 modaliteElt.setAttribute('disabled', true);
                 modaliteElt.value = "1"
-            } 
-            else {
+            } else {
                 modaliteElt.removeAttribute('disabled');
-            } 
+            }
         }
     </script>
 
