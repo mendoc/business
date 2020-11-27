@@ -328,6 +328,14 @@ class Gestionnaire extends CI_Controller
 			$commercial->solde = $commission_total - $somme_retrait;
 		}
 
+		usort($commerciaux, function ($a, $b){
+			if ($a->solde == $b->solde) {
+				return 0;
+			}
+
+			return ($a->solde < $b->solde) ? 1 : -1;
+		});
+
 		$data = array(
 			"commerciaux" => $commerciaux,
 			"liens_de_pagination" => $this->pagination->create_links()
