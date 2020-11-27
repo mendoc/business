@@ -1055,7 +1055,8 @@
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span>
                     <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                        <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
+                        <a href="mailto:business@ecole241.org">business@ecole241.org</a>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial') ?>">Programme d'affiliation</a><a href="<?= site_url('candidat') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
@@ -1077,32 +1078,28 @@
 
         <!-- ===========================* ancre *======================== -->
                 <div class="ancre">
-                    <button id="goTop" class="btn-top" style="background:rgba(255, 51, 51, 1); border: none; position: fixed;
-                        right: 1.2em;
-                        bottom: 1.2em;
-                        display: block;
-                        width: 48px;
-                        height: 48px;
-                        margin: 0;
-                        padding: 15px;
-                        border-radius:50%;
-                        box-shadow: 0 3px 3px #fff;
-                        line-height: 44px;" >
-                        <a href="#">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                    
+                        <a href="#" style=" right: 1.2em;
+                            background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                            bottom: 1.2em;
+                            display: block;
+                            width: 15px;
+                            height: 15px;
+                            margin: 0;
+                            padding: 15px;
+                            border-radius:50%;
+                            box-shadow: 0 3px 3px #fff;
+                            line-height: 44px;">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
                             <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
                                             0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            width: 18px;
-                            height: 18px;
-                            margin-left: -9px;
-                            margin-top: -5px;
-                            cursor: pointer;" />
-                        </svg> </a>
-                    </button>
+                                top: 50%;
+                                left: 50%;
+                                font-size: .9em;
+                                cursor: pointer;" />
+                            </svg>
+                        </a>
+                        
                 </div>
-
-
 
             </div>
         </div>

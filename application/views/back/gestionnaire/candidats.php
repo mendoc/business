@@ -8,7 +8,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Liste des candidats inscrits (<?= isset($candidats) ? count($candidats) : 0 ?>) </h3>
-                <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-link">Exporter en CSV</a>
+                <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-warning">Exporter en CSV</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
@@ -34,7 +34,7 @@
                                     <td><a href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>"><?= $candidat->nom_prenom; ?></a></td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
-                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : '' ?>">
+                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : ($candidat->montant > 0 ? 'font-weight-bold text-warning' : '') ?>">
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
                                     <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
@@ -48,8 +48,8 @@
                 </table>
             </div>
         </div>
-        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
-            <?= $links ?>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center"> 
+            <?= $liens ?> 
         </nav>
     </div>
 </div>

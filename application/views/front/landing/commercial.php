@@ -30,20 +30,20 @@
         }
 
 
-        @media only screen and (max-width: 648px){
+        @media only screen and (max-width: 648px) {
 
-            .header__navCtas{
+            .header__navCtas {
                 margin-left: -20px;
             }
-            
+
         }
 
-        @media only screen and (max-width: 846px){
+        @media only screen and (max-width: 846px) {
 
-            .header__navCtas{
+            .header__navCtas {
                 margin-left: -20px;
             }
-            
+
         }
 
         @media screen and (max-width:600px) {
@@ -52,8 +52,8 @@
             }
 
             .header__navCtas {
-                    display: none;
-                }
+                display: none;
+            }
 
             div.galleryItem {
                 width: 90% !important;
@@ -65,7 +65,8 @@
             body {
                 --title-scale: 0.7;
             }
-            .cacher{
+
+            .cacher {
                 display: none !important;
             }
         }
@@ -215,7 +216,7 @@
         }
     </style>
 
-    <?php if (ENVIRONMENT !== 'development'): ?>
+    <?php if (ENVIRONMENT !== 'development') : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
         <script>
@@ -229,27 +230,33 @@
             gtag('config', 'G-4D8CEC5J5T');
         </script>
         <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:2094197,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
         </script>
     <?php endif; ?>
 </head>
 
 <body>
-    <header id="#header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
+    <header id="header" class="section header dark header--fixed header--solid" style="background-color: #fff; border-color: rgba(0, 0, 0, 0.1); --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr color-1" style="margin-top: 10px; margin-bottom: 10px;">
             <nav id="headerNav">
                 <a id="headerLogo" href="<?= site_url('') ?>" class="header__logoImg"><img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="Logo-officiel-E-241-Business-Transparent (1).png" /></a>
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                
+
                 <div class="header__navCtas">
                     <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         Je me lance
@@ -432,7 +439,8 @@
             <div class="footer footer--simple">
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span> <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                    <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
+                    <a href="mailto:business@ecole241.org">business@ecole241.org</a>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial/inscription') ?>">Programme d'affiliation</a><a href="<?= site_url('commercial/inscription') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
@@ -453,36 +461,34 @@
                 </ul>
 
 
-                 <!-- ===========================* ancre *======================== -->
-            <div class="ancre">
-                    <button id="goTop" class="btn-top" style="background:rgba(255, 51, 51, 1); border: none; position: fixed;
-                        right: 1.2em;
-                        bottom: 1.2em;
-                        display: block;
-                        width: 48px;
-                        height: 48px;
-                        margin: 0;
-                        padding: 15px;
-                        border-radius:50%;
-                        box-shadow: 0 3px 3px #fff;
-                        line-height: 44px;" >
-                        <a href="#">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                <!-- ===========================* ancre *======================== -->
+                <div class="ancre">
+
+
+                    <a href="#" style=" right: 1.2em;
+                            background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                            bottom: 1.2em;
+                            display: block;
+                            width: 15px;
+                            height: 15px;
+                            margin: 0;
+                            padding: 15px;
+                            border-radius:50%;
+                            box-shadow: 0 3px 3px #fff;
+                            line-height: 44px;"> <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
                             <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
                                             0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            width: 18px;
-                            height: 18px;
-                            margin-left: -9px;
-                            margin-top: -5px;
-                            cursor: pointer;" />
-                        </svg> </a>
-                    </button>
+                                top: 50%;
+                                left: 50%;
+                                font-size: .9em;
+                                cursor: pointer;" />
+                        </svg>
+                    </a>
                 </div>
 
             </div>
 
-           
+
 
 
         </div>
