@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <div class="contes container">
     
   <main class="conte3 ">

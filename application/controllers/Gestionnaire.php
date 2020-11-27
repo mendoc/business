@@ -274,6 +274,11 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
 		$this->load->library('pagination');
+		$this->load->library('breadcrumb');
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Commerciaux');
 
 		// Pagination 
 		$config['base_url'] = site_url('gestionnaire/commerciaux');
@@ -330,6 +335,7 @@ class Gestionnaire extends CI_Controller
 
 		$data = array(
 			"commerciaux" => $commerciaux,
+			"navigations" => $this->breadcrumb->rendu(),
 			"liens_de_pagination" => $this->pagination->create_links()
 		);
 
@@ -344,7 +350,16 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->library('pagination');
+		$this->load->library('breadcrumb');
 
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Candidats');
+		$data['navigations'] = $this->breadcrumb->rendu();
+
+
+		// Configuration de la pagination
 		$config['base_url'] = site_url('gestionnaire/candidats');
 		$config['total_rows'] = $this->candidat_model->nombre_candidats();
 		$config["per_page"] = 15;
@@ -374,7 +389,15 @@ class Gestionnaire extends CI_Controller
 
 	public function modifier_candidat($id_can)
 	{
+		$this->load->library('breadcrumb');
+
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+
+			// Configuration du breadcrumb
+			$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+			$this->breadcrumb->ajouter_lien('Candidats', site_url('gestionnaire/candidats'));
+			$this->breadcrumb->ajouter_lien($candidat->nom_prenom , site_url('gestionnaire/detail_candidat/'. $candidat->id_can));
+			$this->breadcrumb->ajouter_lien('Modifications des informations de '. $candidat->nom_prenom);
 
 			[$annee , $mois, $jour] = explode('-', $candidat->date_n);
 			
@@ -382,7 +405,8 @@ class Gestionnaire extends CI_Controller
 				"candidat" => $candidat,
 				"annee" => $annee,
 				"mois" => $mois,
-				"jour" => $jour
+				"jour" => $jour,
+				"navigations" => $this->breadcrumb->rendu()
 			];
 
 			afficher('back/gestionnaire/modifier_candidat', $data);
@@ -954,8 +978,16 @@ class Gestionnaire extends CI_Controller
 		}
 		$this->load->model('candidat_model');
 		$this->load->model('paiement_model');
+		$this->load->library('breadcrumb');
 
+		
 		$candidat = $this->candidat_model->recuperer($id);
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Candidats', site_url('gestionnaire/candidats'));
+		$this->breadcrumb->ajouter_lien($candidat->nom_prenom);
+
 		$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id);
 		$max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 
@@ -965,7 +997,8 @@ class Gestionnaire extends CI_Controller
 		$data = array(
 			"candidat" => $this->candidat_model->recuperer($id),
 			"paiements" => $this->paiement_model->recuperer($id),
-			"est_apprenant" => $est_apprenant
+			"est_apprenant" => $est_apprenant,
+			"navigations" => $this->breadcrumb->rendu()
 		);
 
 		
@@ -982,10 +1015,19 @@ class Gestionnaire extends CI_Controller
 		// Chargement des models
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
+		$this->load->library('breadcrumb');
+
 
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
 
 		if($commercial = $this->commercial_model->recuperer_un($id)){
+
+			// Configuration du breadcrumb
+			$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+			$this->breadcrumb->ajouter_lien('Commerciaux', site_url('gestionnaire/commerciaux'));
+			$this->breadcrumb->ajouter_lien($commercial->nom_prenom);
+
+			// Gestion des stats du commercial
 			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
 			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
 			$result_candidats_ligne = $this->statistique_model->candidats_com_ligne($id);
@@ -1036,7 +1078,8 @@ class Gestionnaire extends CI_Controller
 				"inscrits_ligne" => $result_candidats_ligne,
 				"inscrits_presentiel" => $result_candidats_presentiel,
 				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0,
-				"commission_total" => $commission_total
+				"commission_total" => $commission_total,
+				"navigations" => $this->breadcrumb->rendu()
 			];
 
 			afficher('back/gestionnaire/details_commercial', $data);

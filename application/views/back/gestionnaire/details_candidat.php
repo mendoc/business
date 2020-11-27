@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <main class="container">
     <?php if ($this->session->flashdata('message-success')) : ?>
         <div class="alert alert-success alert-dismissible fade show font-weight-bold mt-5" role="alert">
