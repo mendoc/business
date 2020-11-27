@@ -220,6 +220,7 @@ class Gestionnaire extends CI_Controller
 		// Chargement des modeles
 		$this->load->model('paiement_model');
 		$this->load->model('statistique_model');
+		$this->load->model('retrait_model');
 
 
 		$value = $this->input->get('q');
@@ -242,6 +243,10 @@ class Gestionnaire extends CI_Controller
 
 		foreach ($commerciaux as $commercial)
 		{
+			// Retrait d'un commercial
+			$somme_retrait = $this->retrait_model->pour_commercial($commercial->id_com);
+			$somme_retrait = isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0;
+			
 			// Nombre d'affiliés en présentiel du commercial
 			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
 			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
@@ -253,6 +258,29 @@ class Gestionnaire extends CI_Controller
 			else $nb_affilies_com_ligne = 0;
 
 			$commercial->nb_affilies = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
+
+			// Calcul du solde du commercial
+			$commission_ligne = $nb_affilies_com_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
+			$commission_presentiel = $nb_affilies_com_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
+
+			$commission_total = $commission_ligne + $commission_presentiel;
+			
+			$nb_bonus_ligne = 0;
+			$nb_bonus_presentiel = 0;
+
+			// Calcul des bonus 
+			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
+				$nb_bonus_ligne += 1;
+			}
+
+			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
+				$nb_bonus_presentiel += 1;
+			}
+
+			$commission_total += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
+
+			// On cree un attribue solde qui contient la commission total
+			$commercial->solde = $commission_total - $somme_retrait;
 		}
 
 		$data = [
