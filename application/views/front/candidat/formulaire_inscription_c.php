@@ -92,14 +92,17 @@
             <div class="d-lg-flex flex-column align-items-center justify-content-between">
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Nom Complet <span class="obliger">*</span> </label>
-                    <input type="text" name="nom" class="form-control" placeholder="Ex: MOUKEYTOU Regis" required>
-                    <!-- <small id="emailHelp" class="form-text text-danger">
-                        Cet email existe deja
-                    </small> -->
+                    <input type="text" value="<?= set_value('nom') ?>" name="nom" class="form-control" placeholder="Ex: MOUKEYTOU Regis" required>
+                    <small id="emailHelp" class="form-text text-danger">
+                        <?= form_error('nom') ?>
+                    </small>
                 </div>
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Addresse mail <span class="obliger">*</span></label>
-                    <input type="text" name="email" class="form-control" placeholder="Ex: moukeytouregis@gmail.com" required>
+                    <input type="text" name="email" value="<?= set_value('email') ?>" class="form-control" placeholder="Ex: moukeytouregis@gmail.com" required>
+                    <small id="emailHelp" class="form-text text-danger">
+                        <?= form_error('email') ?>
+                    </small>
                 </div>
             </div>
 
@@ -114,7 +117,10 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Numero de Telephone <span class="obliger">*</span></label>
-                    <input type="tel" name="telephone" class="form-control" placeholder="Ex: +24100 00 00" required />
+                    <input type="tel" value="<?= set_value('telephone') ?>" name="telephone" class="form-control" placeholder="Ex: +24100 00 00" required />
+                    <small id="emailHelp" class="form-text text-danger">
+                        <?= form_error('telephone') ?>
+                    </small>
                 </div>
             </div>
 
@@ -158,7 +164,7 @@
             <div class="form-group espace">
                 <label for="">Preferez vous apprendre en ligne ou en presentiel <span class="obliger">*</span></label>
                 <select name="type_cours" required class="custom-select" id="cours">
-                    <option value="P">En presentiel</option>
+                    <option selected value="P">En presentiel</option>
                     <option value="L">En ligne</option>
                 </select>
             </div>
@@ -166,7 +172,7 @@
             <div class="form-group espace">
                 <label for="">Modalite de paiement <span class="obliger">*</span></label>
                 <select name="modalite" required class="custom-select" id="modalite">
-                    <option value="1">1 Tranche</option>
+                    <option selected value="1">1 Tranche</option>
                     <option value="2">2 Tranches</option>
                     <option value="3">3 Tranches</option>
                 </select>
