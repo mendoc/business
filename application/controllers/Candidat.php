@@ -8,10 +8,12 @@ class Candidat extends CI_Controller
     public function index()
     {
         $aleat = random_int(1, 5);
-        if ($aleat > 3) {
+        if ($aleat == 3) {
             $this->load->view('front/candidat/inscription_candidat');
-        } else {
+        } elseif ($aleat > 3) {
             $this->load->view('front/candidat/nouveau_formulaire_candidat');
+        } else {
+            $this->load->view('front/candidat/formulaire_inscription_c');
         }
     }
 

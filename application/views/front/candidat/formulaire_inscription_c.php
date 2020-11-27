@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="<?= theme_url() ?>assets/css/formulaire_inscription-c.css">
+    <link rel="stylesheet" href="<?= theme_url() ?>assets/css/formulaire_inscription_c.css">
     <?php if (ENVIRONMENT !== 'development') : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
@@ -80,7 +80,7 @@
             <h1 titre-logo>Ecole 241<span>Business</span></h1>
         </div>
     </header>
-    <form id="regForm" action="" class="container">
+    <form id="regForm" action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" method="POST" class="container">
         <div class="form-img">
             <img src="https://business.ecole241.org/theme/assets/images/Ebusiness-logo.png" alt="">
         </div>
@@ -92,29 +92,29 @@
             <div class="d-lg-flex flex-column align-items-center justify-content-between">
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Nom Complet <span class="obliger">*</span> </label>
-                    <input type="text" class="form-control" placeholder="Ex: MOUKEYTOU Regis" required>
+                    <input type="text" name="nom" class="form-control" placeholder="Ex: MOUKEYTOU Regis" required>
                     <!-- <small id="emailHelp" class="form-text text-danger">
                         Cet email existe deja
                     </small> -->
                 </div>
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Addresse mail <span class="obliger">*</span></label>
-                    <input type="text" class="form-control" placeholder="Ex: moukeytouregis@gmail.com" required>
+                    <input type="text" name="email" class="form-control" placeholder="Ex: moukeytouregis@gmail.com" required>
                 </div>
             </div>
 
             <div class="d-lg-flex flex-column align-items-center justify-content-center">
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="">Genre <span class="obliger">*</span></label>
-                    <select class="custom-select" required>
-                        <option disabled >Choississez votre sexe</option>
+                    <select name="sexe" class="custom-select" required>
+                        <option disabled>Choississez votre sexe</option>
                         <option value="H" selected>Homme</option>
                         <option value="F">Femme</option>
                     </select>
                 </div>
                 <div class="col-lg-6 col-sm-12 form-group">
                     <label for="exampleInputEmail1">Numero de Telephone <span class="obliger">*</span></label>
-                    <input type="tel" class="form-control" placeholder="Ex: +24100 00 00" required />
+                    <input type="tel" name="telephone" class="form-control" placeholder="Ex: +24100 00 00" required />
                 </div>
             </div>
 
@@ -125,7 +125,7 @@
         <section class="tab dimension">
             <div class="form-group espace">
                 <label for="">Votre domaine d'activite <span class="obliger">*</span></label>
-                <select class="custom-select">
+                <select name="domaine" class="custom-select">
                     <!-- <option disabled selected>Choississez votre sexe</option>
                         <option selected disabled>Votre activité</option> -->
                     <option value="Agroalimentaire">Agroalimentaire</option>
@@ -165,7 +165,7 @@
 
             <div class="form-group espace">
                 <label for="">Modalite de paiement <span class="obliger">*</span></label>
-                <select name="type_cours" required class="custom-select" id="modalite">
+                <select name="modalite" required class="custom-select" id="modalite">
                     <option value="1">1 Tranche</option>
                     <option value="2">2 Tranches</option>
                     <option value="3">3 Tranches</option>
