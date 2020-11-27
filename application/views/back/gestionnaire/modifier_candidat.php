@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <div class="mt-5 mb-5 w-50 mx-auto bg-white p-5">
     <form action="<?= site_url('gestionnaire/traitement_modification_candidat/' . $candidat->id_can) ?>" method="POST">
         <div class="form-row mb-5">

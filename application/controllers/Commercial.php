@@ -51,8 +51,28 @@ class Commercial extends CI_Controller
         $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
         $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
 
+
         // Bonus du commercial
+        $nb_bonus = 0;
+        // $nb_bonus_presentiel = 0;
+        $total_bonus = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
         $bonus = 0;
+
+        for ($i = 10; $i <= $total_bonus; $i += 10) {
+            $nb_bonus += 1;
+        }
+
+        // for ($i = 10; $i <= $nb_affilies_com_ligne; $i += 10) {
+        //     $nb_bonus_ligne += 1;
+        // }
+
+        // for ($i = 10; $i <= $nb_affilies_com_presentiel; $i += 10) {
+        //     $nb_bonus_presentiel += 1;
+        // }
+
+
+        $bonus += ($nb_bonus * 20000);
+        //$bonus += ($commission_ligne + $commission_presentiel);
 
         // Retrait du commercial
         $result = $this->retrait_model->pour_commercial($commercial->id_com);
@@ -60,7 +80,7 @@ class Commercial extends CI_Controller
         else $retrait = 0;
 
         // Solde du commercial
-        $solde = $commission - $retrait;
+        $solde = ($commission + $bonus) - $retrait;
 
         $data = array(
             'nb_visites_com' => $nb_visites_com,
