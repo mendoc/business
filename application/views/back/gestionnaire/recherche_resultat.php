@@ -58,7 +58,7 @@
                 <table class="table card-table table-vcenter text-nowrap">
                     <thead>
                         <tr>
-                            <th>Noms Complet</th>
+                            <th>Nom Complet</th>
                             <th>E-mail</th>
                             <th>Téléphone</th>
                             <th>Affiliés</th>
