@@ -1059,8 +1059,6 @@ class Gestionnaire extends CI_Controller
 		$email_gest = $this->session->userdata('email_gest');
 		$gestionnaire = $this->gestionnaire_model->par_email($email_gest);
 
-		$montant = $this->input->post('montant');
-
 		// Recuperation des informations pour le traitement
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id_can);
@@ -1069,36 +1067,43 @@ class Gestionnaire extends CI_Controller
 			if ($montant_candidat == $max_montant) {
 				redirect('gestionnaire/detail_candidat/' . $id_can);
 			} else {
-				// Creation du paiement 
-				$paiement = array(
-					'montant' => (int)$montant,
-					'motif' => $this->input->post('motif'),
-					'id_gest' => $gestionnaire->id_gest,
-					'id_can' => $id_can,
-					'justificatif' => $this->input->post('justificatif'),
-					'moyen_paie' => $this->input->post('moyen_paiement'),
-					'num_trans' => $this->input->post('num_trans')
-				);
 
-				// Si l'insertion se passe bien 
-				if ($paiement = $this->paiement_model->inserer($paiement)) {
-					// On charge la vue email
-					$message = $this->load->view('email/candidat/payement', '', TRUE);
+				$montant = $this->input->post('montant');
 
-					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
-					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
-					$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
-					$message = str_replace($cles, $valeurs, $message);
+				if ($montant <= $max_montant && ($montant + $montant_candidat) < $max_montant) {
+
+					// Creation du paiement 
+					$paiement = array(
+						'montant' => (int)$montant,
+						'motif' => $this->input->post('motif'),
+						'id_gest' => $gestionnaire->id_gest,
+						'id_can' => $id_can,
+						'justificatif' => $this->input->post('justificatif'),
+						'moyen_paie' => $this->input->post('moyen_paiement'),
+						'num_trans' => $this->input->post('num_trans')
+					);
+					// Si l'insertion se passe bien 
+					if ($paiement = $this->paiement_model->inserer($paiement)) {
+						// On charge la vue email
+						$message = $this->load->view('email/candidat/payement', '', TRUE);
 	
-					// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-					//$headers[] = 'MIME-Version: 1.0';
-					//$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+						$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
+						$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+						$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
+						$message = str_replace($cles, $valeurs, $message);
+		
+						// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+		
+						$headers  = "MIME-Version: 1.0\r\n";
+						$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+						$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 	
-					$headers  = "MIME-Version: 1.0\r\n";
-					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-					$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+						mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
+						redirect('gestionnaire/detail_candidat/' . $id_can);
+					}
 
-					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
+				} else {
+					$this->session->set_flashdata('message-error', "Le montant soumis est supérieur au montant à fournir");
 					redirect('gestionnaire/detail_candidat/' . $id_can);
 				}
 				
