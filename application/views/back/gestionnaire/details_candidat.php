@@ -6,6 +6,12 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
+    <?php if ($this->session->flashdata('message-error')) : ?>
+        <div class="alert alert-danger alert-dismissible fade show font-weight-bold mt-5" role="alert">
+            <?= $this->session->flashdata('message-error') ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
     <div class="my-3 my-md-5">
         <div class="details_centre">
             <div class="card">
