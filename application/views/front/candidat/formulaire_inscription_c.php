@@ -80,7 +80,7 @@
             <h1 titre-logo>Ecole 241<span>Business</span></h1>
         </div>
     </header>
-    <form id="regForm" action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" method="POST" class="container">
+    <form id="regForm" action="<?= site_url('candidat/traitement_enregistrement_form3') ?>" method="POST" class="container">
         <div class="form-img">
             <img src="https://business.ecole241.org/theme/assets/images/Ebusiness-logo.png" alt="">
         </div>
