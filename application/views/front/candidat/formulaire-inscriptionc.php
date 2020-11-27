@@ -14,6 +14,63 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/formulaire-inscriptionc.css">
+    <?php if (ENVIRONMENT !== 'development') : ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];​
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());​
+            gtag('config', 'G-4D8CEC5J5T');
+        </script>
+
+        <script>
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+        </script>
+
+        <!-- Facebook Pixel Code -->
+        <script>
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function() {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '166742078436085');
+            fbq('track', 'PageView');
+            fbq('track', 'ViewContent');
+            fbq('track', 'Lead');
+        </script>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1" /></noscript>
+        <!-- End Facebook Pixel Code -->
+    <?php endif; ?>
 </head>
 
 <body>
@@ -147,78 +204,6 @@
             } else {
                 modaliteElt.removeAttribute('disabled');
             }
-        }
-        var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
-
-function showTab(n) {
-  // This function will display the specified tab of the form...
-  var x = document.getElementsByClassName("tab");
-  x[n].style.display = "block";
-  //... and fix the Previous/Next buttons:
-  if (n == 0) {
-    document.getElementById("prevBtn").style.display = "none";
-  } else {
-    document.getElementById("prevBtn").style.display = "inline";
-  }
-  if (n == (x.length - 1)) {
-    document.getElementById("nextBtn").innerHTML = "S'inscrire";
-  } else {
-    document.getElementById("nextBtn").innerHTML = "Suivant";
-  }
-  //... and run a function that will display the correct step indicator:
-  fixStepIndicator(n)
-}
-
-function nextPrev(n) {
-  // This function will figure out which tab to display
-  var x = document.getElementsByClassName("tab");
-  // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
-  // Hide the current tab:
-  x[currentTab].style.display = "none";
-  // Increase or decrease the current tab by 1:
-  currentTab = currentTab + n;
-  // if you have reached the end of the form...
-  if (currentTab >= x.length) {
-    // ... the form gets submitted:
-    document.getElementById("regForm").submit();
-    return false;
-  }
-  // Otherwise, display the correct tab:
-  showTab(currentTab);
-}
-
-        function validateForm() {
-        // This function deals with validation of the form fields
-        var x, y, i, valid = true;
-        x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("input");
-        // A loop that checks every input field in the current tab:
-        for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-            // add an "invalid" class to the field:
-            y[i].className += " invalid";
-            // and set the current valid status to false
-            valid = false;
-            }
-        }
-        // If the valid status is true, mark the step as finished and valid:
-        if (valid) {
-            document.getElementsByClassName("step")[currentTab].className += " finish";
-        }
-        return valid; // return the valid status
-        }
-
-        function fixStepIndicator(n) {
-        // This function removes the "active" class of all steps...
-        var i, x = document.getElementsByClassName("step");
-        for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
-        }
-        //... and adds the "active" class on the current step:
-        x[n].className += " active";
         }
     </script>
 
