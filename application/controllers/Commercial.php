@@ -114,6 +114,45 @@ class Commercial extends CI_Controller
         redirect('commercial/connexion');
     }
 
+    public function candidats()
+    {
+        if (!$this->est_connecte()) {
+            redirect('commercial/connexion');
+        }
+        $this->load->library('pagination');
+
+        // On recupere les informations du commercial
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        if (!$commercial) {
+            redirect('commercial/connexion');
+        }
+
+		// Configuration de la Pagination 
+		$config['base_url'] = site_url('commercial/candidats');
+		$config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
+		$config["per_page"] = 15;
+        $config["uri_segment"] = 3;
+
+        // var_dump($config['total_rows']);
+        // die;
+        
+        $this->pagination->initialize($config);
+
+        // On recupere le nombre de la page
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+
+        // On recupere les prospects
+        $mes_propects = $this->candidat_model->prospects_commercial($commercial->id_com, $config['per_page'], $page);
+
+        $data = [
+            'candidats' => $mes_propects,
+            'liens' => $this->pagination->create_links()
+        ];
+
+        afficher('back/commercial/candidats', $data);
+    }
+
     public function traitement_inscription()
     {
         // On valide les informations
