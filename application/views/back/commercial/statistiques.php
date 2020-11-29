@@ -72,7 +72,7 @@
                 </div>
             </div>  
             <div class="col-6 col-sm-4 col-lg-2">
-                <div class="card">
+                <div class="card" title="le nombre de personne qui ont déjà donné une avance">
                     <div class="card-body p-2 text-center">
                         <div class="text-right text-green">
                             0%
