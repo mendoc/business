@@ -264,6 +264,7 @@
                                     <option selected disabled>Horaire</option>
                                     <option>Matin</option>
                                     <option>Après-midi</option>
+                                    <option>Soir</option>
                                 </select>
                             </div>
                             <div class="erreurs">
@@ -279,8 +280,8 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                             </div>
                             <div class="erreurs">

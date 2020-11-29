@@ -181,8 +181,8 @@
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
-                                    <option selected value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option selected value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                                 <div class="erreurs">
                                     <?= form_error('type_cours') ?>
@@ -191,16 +191,14 @@
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalité de paiement<span></span></label><br>
-                                <select name="modalite" id="modalite">
-
-                                    <option selected value="1">1 Tranche</option>
-
-                                    <option value="2">2 Tranches</option>
-                                    <option value="3">3 Tranches</option>
+                                <label for="horaire">Horaire de formation <span>*</span></label><br>
+                                <select name="horaire" id="horaire" required>
+                                    <option>Matin</option>
+                                    <option>Après-midi</option>
+                                    <option>Soir</option>
                                 </select>
                                 <div class="erreurs">
-                                    <?= form_error('modalite') ?>
+                                    <?= form_error('horaire') ?>
                                 </div>
                             </div>
                         </div>
@@ -251,19 +249,6 @@
 
         </footer>
     </main>
-
-    <script>
-        const typeCoursElt = document.getElementById('cours');
-        const modaliteElt = document.getElementById('modalite');
-        typeCoursElt.onchange = e => {
-            if (e.target.value == 'L') {
-                modaliteElt.setAttribute('disabled', true);
-                modaliteElt.value = "1"
-            } else {
-                modaliteElt.removeAttribute('disabled');
-            }
-        }
-    </script>
 
 </body>
 
