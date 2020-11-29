@@ -26,9 +26,9 @@
             <div class="col">
                 <select name="horaire" class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                     <option disabled>Choississez une horaire</option>
-                    <option <?= $candidat->horaire == 'Matin' ? 'selected' : '' ?>>Matin</option>
-                    <option <?= $candidat->horaire == 'Après-midi' ? 'selected' : '' ?>>Après-midi</option>
-                    <option <?= $candidat->horaire == 'Soir' ? 'selected' : '' ?>>Soir</option>
+                    <option value="Matin" <?= $candidat->horaire == 'Matin' ? 'selected' : '' ?>>Matin (9h - 12h)</option>
+                    <option value="Après-midi" <?= $candidat->horaire == 'Après-midi' ? 'selected' : '' ?>>Après-midi (14h - 17h)</option>
+                    <option value="Soir" <?= $candidat->horaire == 'Soir' ? 'selected' : '' ?>>Soir (17h - 20h)</option>
                 </select>
             </div>
         </div>
