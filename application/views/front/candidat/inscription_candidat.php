@@ -262,8 +262,9 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="horaire" required>
                                     <option selected disabled>Horaire</option>
-                                    <option>Matin</option>
-                                    <option>Après-midi</option>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                             </div>
                             <div class="erreurs">
@@ -279,8 +280,8 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                             </div>
                             <div class="erreurs">

@@ -89,7 +89,10 @@
                 <div class="gauche">
 
 
-                    <h1 class="titre">S'inscrire à la formation</h1>
+                    <h1 class="titre">S'inscrire à la formation gratuite</h1>
+                    <!-- <div class="d-flex justify-content-center">
+                        <small class="text-muted">frais de dossier - 10 000 F CFA</small>
+                    </div> -->
                     <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
                         <?php if (isset($this->session->hash)) : ?>
                             <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
@@ -181,8 +184,8 @@
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
-                                    <option selected value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option selected value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                                 <div class="erreurs">
                                     <?= form_error('type_cours') ?>
@@ -191,16 +194,14 @@
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalité de paiement<span></span></label><br>
-                                <select name="modalite" id="modalite">
-
-                                    <option selected value="1">1 Tranche</option>
-
-                                    <option value="2">2 Tranches</option>
-                                    <option value="3">3 Tranches</option>
+                                <label for="horaire">Horaire de formation <span>*</span></label><br>
+                                <select name="horaire" id="horaire" required>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                                 <div class="erreurs">
-                                    <?= form_error('modalite') ?>
+                                    <?= form_error('horaire') ?>
                                 </div>
                             </div>
                         </div>
@@ -251,19 +252,6 @@
 
         </footer>
     </main>
-
-    <script>
-        const typeCoursElt = document.getElementById('cours');
-        const modaliteElt = document.getElementById('modalite');
-        typeCoursElt.onchange = e => {
-            if (e.target.value == 'L') {
-                modaliteElt.setAttribute('disabled', true);
-                modaliteElt.value = "1"
-            } else {
-                modaliteElt.removeAttribute('disabled');
-            }
-        }
-    </script>
 
 </body>
 
