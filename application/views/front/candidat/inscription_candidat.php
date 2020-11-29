@@ -262,9 +262,9 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="horaire" required>
                                     <option selected disabled>Horaire</option>
-                                    <option>Matin</option>
-                                    <option>Après-midi</option>
-                                    <option>Soir</option>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                             </div>
                             <div class="erreurs">

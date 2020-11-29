@@ -89,7 +89,10 @@
                 <div class="gauche">
 
 
-                    <h1 class="titre">S'inscrire à la formation</h1>
+                    <h1 class="titre">S'inscrire à la formation gratuite</h1>
+                    <!-- <div class="d-flex justify-content-center">
+                        <small class="text-muted">frais de dossier - 10 000 F CFA</small>
+                    </div> -->
                     <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
                         <?php if (isset($this->session->hash)) : ?>
                             <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
@@ -193,9 +196,9 @@
                             <div class="choix-cours">
                                 <label for="horaire">Horaire de formation <span>*</span></label><br>
                                 <select name="horaire" id="horaire" required>
-                                    <option>Matin</option>
-                                    <option>Après-midi</option>
-                                    <option>Soir</option>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                                 <div class="erreurs">
                                     <?= form_error('horaire') ?>
