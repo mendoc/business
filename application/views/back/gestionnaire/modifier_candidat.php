@@ -28,6 +28,7 @@
                     <option disabled>Choississez une horaire</option>
                     <option <?= $candidat->horaire == 'Matin' ? 'selected' : '' ?>>Matin</option>
                     <option <?= $candidat->horaire == 'Après-midi' ? 'selected' : '' ?>>Après-midi</option>
+                    <option <?= $candidat->horaire == 'Soir' ? 'selected' : '' ?>>Soir</option>
                 </select>
             </div>
         </div>
