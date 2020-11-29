@@ -71,6 +71,20 @@
                     </div>
                 </div>
             </div>  
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="card">
+                    <div class="card-body p-2 text-center">
+                        <div class="text-right text-green">
+                            0%
+                            <i class="fe fe-chevron-up"></i>
+                        </div>
+                        <div class="h3 m-0"><?= $nb_aspirants ?></div>
+                        <div class="text-muted">
+                            Aspirants
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
         <div class="row row-cards">
             <div class="col-6 col-sm-4 col-lg-3">
