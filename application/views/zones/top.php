@@ -74,6 +74,11 @@
                                     <li class=" d-none nav-item  m-0 dropdown">
                                         <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
                                     </li>
+                                    <li class="nav-item  m-0">
+                                        <a href="<?= site_url('commercial/candidats') ?>" class="nav-link m-0">
+                                            <i class="fa fa-users" aria-hidden="true"></i> Mes prospects
+                                        </a>
+                                    </li>
                                 <?php endif; ?>
                                 <?php if (est_un_gestionnaire()) : ?>
                                     <li class="nav-item  m-0 dropdown">

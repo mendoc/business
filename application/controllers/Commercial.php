@@ -20,10 +20,9 @@ class Commercial extends CI_Controller
         $this->load->model('statistique_model');
         $this->load->model('retrait_model');
 
-        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
         // Nombre de visites du commercial
-        //var_dump($result);
-        //die;
+        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
+        
         if ($result) $nb_visites_com = $result->nb_visites_com;
         else $nb_visites_com = 0;
 
@@ -46,6 +45,12 @@ class Commercial extends CI_Controller
         $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
         if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
         else $nb_affilies_com_ligne = 0;
+        
+        // Nombre d'aspirant d'un commercial
+        $result = $this->statistique_model->aspirant_commercial($commercial->id_com);
+        if ($result) $nb_aspirants = $result->nb_aspirants;
+        else $nb_aspirants = 0;
+
 
         // Commission du commercial
         $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
@@ -62,17 +67,8 @@ class Commercial extends CI_Controller
             $nb_bonus += 1;
         }
 
-        // for ($i = 10; $i <= $nb_affilies_com_ligne; $i += 10) {
-        //     $nb_bonus_ligne += 1;
-        // }
-
-        // for ($i = 10; $i <= $nb_affilies_com_presentiel; $i += 10) {
-        //     $nb_bonus_presentiel += 1;
-        // }
-
 
         $bonus += ($nb_bonus * 20000);
-        //$bonus += ($commission_ligne + $commission_presentiel);
 
         // Retrait du commercial
         $result = $this->retrait_model->pour_commercial($commercial->id_com);
@@ -88,6 +84,7 @@ class Commercial extends CI_Controller
             'nb_candidats_com_ligne' => $nb_candidats_com_ligne,
             'nb_affilies_com_presentiel' => $nb_affilies_com_presentiel,
             'nb_affilies_com_ligne' => $nb_affilies_com_ligne,
+            'nb_aspirants' => $nb_aspirants,
             'commission' => $commission,
             'retrait' => $retrait,
             'solde' => $solde,
@@ -112,6 +109,45 @@ class Commercial extends CI_Controller
     {
         $this->session->sess_destroy();
         redirect('commercial/connexion');
+    }
+
+    public function candidats()
+    {
+        if (!$this->est_connecte()) {
+            redirect('commercial/connexion');
+        }
+        $this->load->library('pagination');
+
+        // On recupere les informations du commercial
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        if (!$commercial) {
+            redirect('commercial/connexion');
+        }
+
+		// Configuration de la Pagination 
+		$config['base_url'] = site_url('commercial/candidats');
+		$config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
+		$config["per_page"] = 15;
+        $config["uri_segment"] = 3;
+
+        // var_dump($config['total_rows']);
+        // die;
+        
+        $this->pagination->initialize($config);
+
+        // On recupere le nombre de la page
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+
+        // On recupere les prospects
+        $mes_propects = $this->candidat_model->prospects_commercial($commercial->id_com, $config['per_page'], $page);
+
+        $data = [
+            'candidats' => $mes_propects,
+            'liens' => $this->pagination->create_links()
+        ];
+
+        afficher('back/commercial/candidats', $data);
     }
 
     public function traitement_inscription()
