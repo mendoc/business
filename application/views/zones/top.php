@@ -62,7 +62,7 @@
                                         </div>
                                     </li>
                                 <?php endif; ?>
-                                <?php if (est_un_gestionnaire()) : ?>
+                                <?php if (est_un_gestionnaire() && type_profil() != TRESORIER) : ?>
                                     <li class="nav-item  m-0">
                                         <a href="<?= site_url('gestionnaire/ressources') ?>" class="nav-link m-0"><i class="fe fe-file"></i> Ressources</a>
                                     </li>

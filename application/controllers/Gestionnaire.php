@@ -206,6 +206,7 @@ class Gestionnaire extends CI_Controller
 				$this->session->set_userdata('token_gest', md5(time()));
 				$this->session->set_userdata('nom_gest', $gestionnaire->nom_prenom);
 				$this->session->set_userdata('email_gest', $gestionnaire->email_gest);
+				$this->session->set_userdata('profil_gest', $gestionnaire->type_profil);
 			}
 			redirect('gestionnaire');
 		} else {
@@ -361,14 +362,6 @@ class Gestionnaire extends CI_Controller
 			$commercial->solde = $commission_total - $somme_retrait;
 		}
 
-		usort($commerciaux, function ($a, $b){
-			if ($a->solde == $b->solde) {
-				return 0;
-			}
-
-			return ($a->solde < $b->solde) ? 1 : -1;
-		});
-
 		$data = array(
 			"commerciaux" => $commerciaux,
 			"navigations" => $this->breadcrumb->rendu(),
@@ -425,6 +418,10 @@ class Gestionnaire extends CI_Controller
 
 	public function modifier_candidat($id_can)
 	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
 		$this->load->library('breadcrumb');
 
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
@@ -451,6 +448,10 @@ class Gestionnaire extends CI_Controller
 
 	public function traitement_modification_candidat($id)
 	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
 		// Traitement des donnees 
 		$this->form_validation->set_rules('email', 'email', 'is_unique[eb_candidat.email]|valid_email', array(
             'required' => 'Le champ %s est obligatoire',
@@ -487,6 +488,22 @@ class Gestionnaire extends CI_Controller
 			}
 		}
 
+	}
+
+	public function changer_droit($id)
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$type_profil = $this->input->post('type_profil');
+
+		if ($this->gestionnaire_model->modifier_droit($id, $type_profil)) {
+			$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($id);
+			$this->session->set_flashdata('message-success', 'Les droits de '. $gestionnaire->nom_prenom . ' ont change !');
+			$this->session->set_userdata('profil_gest', $gestionnaire->type_profil);
+			redirect('gestionnaire/gestionnaires');
+		}
 	}
 
 	public function export_candidat()

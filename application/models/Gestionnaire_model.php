@@ -93,5 +93,10 @@ class Gestionnaire_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    public function modifier_droit($id, $type_profil)
+    {
+        return $this->db->update($this->table, array('type_profil' => $type_profil), array($this->id => $id));
+    }
+
 
 }

@@ -1,23 +1,31 @@
 <div class="my-3 my-md-5">
     <div class="container">
+        <?php if ($this->session->flashdata('message-success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show font-weight-bold mt-5" role="alert">
+                <?= $this->session->flashdata('message-success') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
         <div class="page-header">
             <h1 class="page-title">
                 <i class="fa fa-users"></i> Gestionnaires
             </h1>
         </div>
-        <form class="mb-4" action="<?= site_url('gestionnaire/ajouter_gestionnaire'); ?>" method="POST">
-            <div class="form-row">
-                <div class="col">
-                    <input type="text" name="nom" class="form-control" required placeholder="Nom et prénom du gestionnaire">
+        <?php if(type_profil() == GESTIONNAIRE || type_profil() == ADMIN) : ?>
+            <form class="mb-4" action="<?= site_url('gestionnaire/ajouter_gestionnaire'); ?>" method="POST">
+                <div class="form-row">
+                    <div class="col">
+                        <input type="text" name="nom" class="form-control" required placeholder="Nom et prénom du gestionnaire">
+                    </div>
+                    <div class="col">
+                        <input type="email" name="email" class="form-control" required placeholder="Son adresse e-mail">
+                    </div>
+                    <div class="col-2">
+                        <input type="submit" class="form-control text-white bg-primary" value="valider">
+                    </div>
                 </div>
-                <div class="col">
-                    <input type="email" name="email" class="form-control" required placeholder="Son adresse e-mail">
-                </div>
-                <div class="col-2">
-                    <input type="submit" class="form-control text-white bg-primary" value="valider">
-                </div>
-            </div>
-        </form>
+            </form>
+        <?php endif; ?>
         <div class="card">
             <?php if (empty($gestionnaires)) : ?>
                 <div class="text-center display-5 p-5 col-12 mx-auto">
@@ -34,9 +42,7 @@
                             <tr>
                                 <th>Noms & prénoms</th>
                                 <th>Adresse e-mail</th>
-                                <th>Paiements confirmés</th>
-                                <th>Retraits gérés</th>
-                                <th>Ressources créées</th>
+                                <th>Droits d'acces</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,9 +50,19 @@
                                 <tr>
                                     <td><a href="" class="text-inherit"><?= $gestionnaire->nom_prenom; ?></a></td>
                                     <td><?= $gestionnaire->email_gest ?></td>
-                                    <td><?= 'Aucun' ?></td>
-                                    <td><?= 'Aucun' ?></td>
-                                    <td><?= 'Aucune' ?></td>
+                                    <td>
+                                        <form action="<?= site_url('gestionnaire/changer_droit/' . $gestionnaire->id_gest) ?>" method="post" class="col-lg-8 offset-lg-2 d-flex align-items-end">
+                                            <select name="type_profil" class="custom-select">
+                                                <option <?= $gestionnaire->type_profil == 1 ? 'selected' : '' ?> value="1">Superviseur</option>
+                                                <option <?= $gestionnaire->type_profil == 2 ? 'selected' : '' ?> value="2">Tresorier</option>
+                                                <option <?= $gestionnaire->type_profil == 3 ? 'selected' : '' ?> value="3">Gestionnaire</option>
+                                                <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
+                                            </select>
+                                            <button type="submit" class="btn btn-primary rounded-0">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
