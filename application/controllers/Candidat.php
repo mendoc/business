@@ -209,7 +209,7 @@ class Candidat extends CI_Controller
             $candidat->attentes    = $attentes;
             $candidat->type_cours  = $type_cours;
             $candidat->horaire     = $horaire;
-            $candidat->modal_paiement = $modal_paiement;
+            // $candidat->modal_paiement = $modal_paiement;
 
             if (isset($hash) and !empty($hash)) {
                 $this->load->model('commercial_model');
