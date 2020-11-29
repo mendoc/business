@@ -1149,7 +1149,7 @@ class Gestionnaire extends CI_Controller
 
 				$montant = $this->input->post('montant');
 
-				if ($montant <= $max_montant && ($montant + $montant_candidat) < $max_montant) {
+				if ($montant <= $max_montant && ($montant + $montant_candidat) <= $max_montant) {
 
 					// Creation du paiement 
 					$paiement = array(
