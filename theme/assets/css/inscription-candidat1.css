@@ -537,9 +537,9 @@ select::-ms-expand {
     content: '\25BC';
     position: absolute;
     height: 5em;
-    top: -7px;
+    top: 0px;
     right: 0;
-    padding: 0 0.30em;
+    padding: 5px;
     background: #e1e2e2;
     color: #003366;
     cursor: pointer;

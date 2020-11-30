@@ -172,7 +172,7 @@
                         </div> -->
                     <!-- </div> -->
 
-                    <div class="champ">
+                    <!-- <div class="champ">
                         <div class="po">
                             <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
                             <span class="etoile2">*</span>
@@ -182,7 +182,7 @@
                             <?= form_error('annee') ?>
                         </div>
 
-                    </div>
+                    </div> -->
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
