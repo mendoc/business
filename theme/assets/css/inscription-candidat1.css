@@ -459,7 +459,7 @@ textarea {
         display: none;
     }
     .select::after {
-        top: -7px !important;
+        padding: 15px 10px !important;
     }
     .etoile2 {
         left: 6.5px;
