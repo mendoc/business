@@ -203,4 +203,38 @@ class Commercial_model extends CI_Model
         HAVING SUM(montant) = ?)";
         return $this->db->query($sql, array($id,PRIX_EN_LIGNE));
     }
+
+    public function recherche_commercial($nom)
+    {
+        $sql = "SELECT *
+        FROM eb_commercial
+        WHERE nom_prenom
+        LIKE  %?% ";
+
+    return $this->db->query($sql,$nom)->result();
+    }
+
+    public function inscrit_non_paye_com($id) //listing des inscrits qui n'ont encore rien payé
+    {
+    $sql= "SELECT * FROM `eb_candidat` WHERE id_com = ? 
+    AND id_can
+    NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
+    INNER JOIN eb_paiement 
+    ON eb_candidat.id_can = eb_paiement.id_can )";
+
+    return $this->db->query($sql, $id);
+    }
+
+    public function aspirant_com ($id) //listing des aspirants
+    {
+        $sql = "SELECT * FROM eb_candidat 
+        INNER JOIN eb_paiement ON eb_candidat.id_can = eb_paiement.id_can
+        WHERE id_com = ?
+        AND eb_paiement.id_can IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = PRIX_PRESENTIEL) ";
+
+        return $this->db->query($sql, $id);
+    }
 }
