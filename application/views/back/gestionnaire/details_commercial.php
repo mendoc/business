@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <div class="contes container">
     
   <main class="conte3 ">
@@ -73,7 +74,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <td>Total total affiliés</td>
+                  <td>Total affiliés</td>
                   <td class="text-right">
                     <span class="badge  badge-success">
                       <?= ($nb_aff_ligne + $nb_aff_presentiel) ?>
@@ -92,7 +93,7 @@
                   <td>Solde</td>
                   <td class="text-right">
                     <span class="badge badge-danger">
-                      <?= number_format($commission_total, 0, '', ' ') ?> F CFA 
+                      <?= number_format(($commission_total - $montant_retrait), 0, '', ' ') ?> F CFA 
                     </span>
                   </td>
                 </tr>

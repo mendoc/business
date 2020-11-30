@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="page-header">
@@ -6,8 +7,9 @@
             </h1>
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title">Liste des candidats inscrits (<?= isset($candidats) ? count($candidats) : 0 ?>) </h3>
+                <a href="<?= site_url('gestionnaire/export_candidat') ?>"  class="btn btn-warning">Exporter en CSV</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
@@ -15,11 +17,9 @@
                         <tr>
                             <th>Noms & prénoms</th>
                             <th>Commercial</th>
-                            <th>Téléphone</th>
                             <th>Statut</th>
                             <th>Payé</th>
                             <th>Reste a payer</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,22 +32,14 @@
                             <?php } else {
                             foreach ($candidats as $candidat) : ?>
                                 <tr>
-                                    <td><span><?= $candidat->nom_prenom; ?></span></td>
+                                    <td><a href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>"><?= $candidat->nom_prenom; ?></a></td>
                                     <td><?= isset($candidat->nom_com) ? $candidat->nom_com : 'Aucun' ?></a></td>
-                                    <td>
-                                        <?= $candidat->num_tel ?>
-                                    </td>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
-                                    <td>
+                                    <td class="<?= $candidat->max_montant == $candidat->montant ? 'text-success font-weight-bold' : ($candidat->montant > 0 ? 'font-weight-bold text-warning' : '') ?>">
                                         <?=  number_format($candidat->montant, 0, ',', ' ');  ?> F CFA
                                     </td>
                                     <td class="<?= ($candidat->max_montant - $candidat->montant) > 0 ? 'text-danger font-weight-bold' : '' ?>">
                                         <?= number_format($candidat->max_montant - $candidat->montant, 0, ',', ' '); ?> F CFA
-                                    </td>
-                                    <td>
-                                        <a class="icon" href="<?= site_url('gestionnaire/detail_candidat/' . $candidat->id_can) ?>">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
                                     </td>
                                 </tr>
                         <?php endforeach;
@@ -57,5 +49,8 @@
                 </table>
             </div>
         </div>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center"> 
+            <?= $liens ?> 
+        </nav>
     </div>
 </div>

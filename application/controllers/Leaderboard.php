@@ -5,6 +5,7 @@ class Leaderboard extends CI_Controller
 {
     public function index()
     {
+        $this->load->model('statistique_model');
         $coms = $this->commercial_model->classement();
 
         if (!$coms) $coms = array();
@@ -12,9 +13,27 @@ class Leaderboard extends CI_Controller
         foreach ($coms as $commercial){
 
            $commercial->nb_candidats = $commercial->nb_candidats ? $commercial->nb_candidats : 0;
+           
+            // Nombre d'affiliés en présentiel du commercial
+            $result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
+            if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
+            else $nb_affilies_com_presentiel = 0;
+
+            // Nombre d'affiliés en ligne du commercial
+            $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
+            if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
+            else $nb_affilies_com_ligne = 0;
+
+            $commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
         }
+
+        $nb_apprenant_presentiel = $this->statistique_model->nb_apprenant_presentiel();
+        $nb_apprenant_ligne = $this->statistique_model->nombre_apprenant_ligne();
+
         $data = array(
-            'commerciaux' => $coms
+            'commerciaux' => $coms,
+            'nb_apprenant_presentiel' => $nb_apprenant_presentiel,
+            'nb_apprenant_ligne' => $nb_apprenant_ligne
         );
 
         $this->load->view('front/leaderboard/classement', $data);

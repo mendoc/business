@@ -188,7 +188,7 @@
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
         font-weight: bold;">Ancienne SOBRAGA (descente en face de Multipress) Libreville - GABON</a></p>
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
-        font-weight: bold;">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
+        font-weight: bold;">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 /business@ecole241.org</a></p>
 
             </div>
         </section>

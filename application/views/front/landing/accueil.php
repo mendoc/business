@@ -20,7 +20,7 @@
     <link rel="icon" href="<?= theme_url() ?>favicon.png" />
     <link rel="stylesheet" href="<?= theme_url() ?>css/css-j5m8fgybln8l-02421f1add241e66ca488626436901d8b680dae7.css" />
     <link href="https://fonts.googleapis.com/css?family=Oswald:500&amp;display=swap" rel="stylesheet" />
-   
+
     <style tyle="text/css">
         body {
             font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
@@ -73,19 +73,19 @@
             }
         }
 
-        @media only screen and (max-width: 648px){
+        @media only screen and (max-width: 648px) {
 
-            .header__navCtas{
+            .header__navCtas {
                 margin-left: 0;
             }
-            
+
         }
 
-        @media only screen and (max-width: 600px){
-            
+        @media only screen and (max-width: 600px) {
+
             .header__navCtas {
-                    display: none;
-                }
+                display: none;
+            }
         }
 
         @media only screen and (max-width: 750px) {
@@ -93,7 +93,7 @@
                 --title-scale: 0.7;
             }
 
-            .cacher{
+            .cacher {
                 display: none !important;
             }
 
@@ -135,14 +135,14 @@
             }
 
             .header__navCtas {
-                    display: none;
-                }
+                display: none;
+            }
         }
 
-            div.galleryItem {
-                width: 30%;
-            }
-        
+        div.galleryItem {
+            width: 30%;
+        }
+
 
         .wr {
             max-width: 1200px;
@@ -330,7 +330,7 @@
         }
     </style>
 
-    <?php if (ENVIRONMENT !== 'development'): ?>
+    <?php if (ENVIRONMENT !== 'development') : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
         <script>
@@ -346,32 +346,46 @@
 
         <!-- Hotjar Tracking Code for https://business.ecole241.org -->
         <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:2094197,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
         </script>
         <!-- Facebook Pixel Code -->
         <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '166742078436085');
-        fbq('track', 'PageView');
-        fbq('track', 'ViewContent');
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function() {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '166742078436085');
+            fbq('track', 'PageView');
+            fbq('track', 'ViewContent');
         </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
-        /></noscript>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1" /></noscript>
         <!-- End Facebook Pixel Code -->
     <?php endif; ?>
 
@@ -448,7 +462,7 @@
                 <div class="ft__wrapper" style="max-width: 570px;">
                     <div class="ft__content">
                         <h1 class="hero__title color-1 weight-title-h font-title">Apprenez &agrave; vous servir du digital pour faire cro&icirc;tre <br> votre activité.</h1>
-                        <p class="hero__subtitle weight-text">Inscrivez-vous &agrave; l'Ecole 241 Business et apprenez comment &eacute;tendre votre activit&eacute; commerciale ou artisanale en ligne.</p>
+                        <p class="hero__subtitle weight-text">Inscrivez-vous gratuitement à l'Ecole 241 Business et apprenez pendant 10 jours à étendre votre activité commerciale ou artisanale en ligne.</p>
                         <div class="ctas">
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                                 Je m'inscris
@@ -551,14 +565,14 @@
         </div>
         <div class="wr">
             <h2 class="color-1 weight-title-h font-title section__title center">CO&Ucirc;T DES FORMATIONS</h2>
-            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">5.000 Fcfa*</b></p>
+            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">10.000 Fcfa*</b></p>
             <div class="pricing">
                 <div id="pricingTiers_r8yywwkwjhg" class="pricingTiers active-a">
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
-                            <p class="pricingTier__description">Soit en cours du matin ou de l'apr&egrave;s-midi &agrave; la fabrique Ecole 241.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">150.000F</span></div>
+                            <p class="pricingTier__description">En cours du matin, de après-midi ou du soir; à la fabrique Ecole 241.</p>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333" >Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -568,7 +582,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>1 mois de formation avec des experts du num&eacute;rique.</span>
+                                    <span>10 jours de formation avec des experts du num&eacute;rique.</span>
                                 </li>
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -579,17 +593,7 @@
                                         </g>
                                     </svg>
                                     <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
-                                </li>
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>Payable en 3 tranches avant la fin de formation.</span>
-                                </li>
+                                
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
                         </div>
@@ -598,7 +602,7 @@
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
                             <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">85.000F</span></div>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333">Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -608,7 +612,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>1 mois de formation avec des outils num&eacute;riques de pointe.</span>
+                                    <span>10 jours de formation avec des outils num&eacute;riques de pointe.</span>
                                 </li>
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -873,7 +877,7 @@
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-q5oe1vdf.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/q5oe1vdf.png?w=600&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="text-align: center; font-weight: bold;">1 mois de cours intensif et acc&eacute;l&eacute;r&eacute;</h3>
+                            <h3 class="color-1 weight-text" style="text-align: center; font-weight: bold;">10 jours de cours intensif et acc&eacute;l&eacute;r&eacute;</h3>
                         </div>
                     </div>
                 </div>
@@ -939,7 +943,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <div id="media" class="section section--grid section--center dark section--ke37xk5u43g" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 60px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 51, 102, 1);">
         <div class="wr">
@@ -1041,7 +1045,8 @@
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span>
                     <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                        <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
+                        <a href="mailto:business@ecole241.org">business@ecole241.org</a>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial') ?>">Programme d'affiliation</a><a href="<?= site_url('candidat') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
@@ -1060,6 +1065,32 @@
                         </a>
                     </li>
                 </ul>
+
+        <!-- ===========================* ancre *======================== -->
+                <div class="ancre">
+                    
+                        <a href="#" style=" right: 1.2em;
+                            background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                            bottom: 1.2em;
+                            display: block;
+                            width: 15px;
+                            height: 15px;
+                            margin: 0;
+                            padding: 15px;
+                            border-radius:50%;
+                            box-shadow: 0 3px 3px #fff;
+                            line-height: 44px;">  <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                            <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
+                                            0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-size: .9em;
+                                cursor: pointer;" />
+                            </svg>
+                        </a>
+                        
+                </div>
+
             </div>
         </div>
     </footer>

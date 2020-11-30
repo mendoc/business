@@ -20,10 +20,9 @@ class Commercial extends CI_Controller
         $this->load->model('statistique_model');
         $this->load->model('retrait_model');
 
-        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
         // Nombre de visites du commercial
-        //var_dump($result);
-        //die;
+        $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
+        
         if ($result) $nb_visites_com = $result->nb_visites_com;
         else $nb_visites_com = 0;
 
@@ -46,13 +45,30 @@ class Commercial extends CI_Controller
         $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
         if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
         else $nb_affilies_com_ligne = 0;
+        
+        // Nombre d'aspirant d'un commercial
+        $result = $this->statistique_model->aspirant_commercial($commercial->id_com);
+        if ($result) $nb_aspirants = $result->nb_aspirants;
+        else $nb_aspirants = 0;
+
 
         // Commission du commercial
         $commission = $nb_affilies_com_presentiel * POURCENTAGE_PRE * COUT_PRESENTIEL;
         $commission += $nb_affilies_com_ligne * POURCENTAGE_LIGNE * COUT_EN_LIGNE;
 
+
         // Bonus du commercial
+        $nb_bonus = 0;
+        // $nb_bonus_presentiel = 0;
+        $total_bonus = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
         $bonus = 0;
+
+        for ($i = 10; $i <= $total_bonus; $i += 10) {
+            $nb_bonus += 1;
+        }
+
+
+        $bonus += ($nb_bonus * 20000);
 
         // Retrait du commercial
         $result = $this->retrait_model->pour_commercial($commercial->id_com);
@@ -60,7 +76,7 @@ class Commercial extends CI_Controller
         else $retrait = 0;
 
         // Solde du commercial
-        $solde = $commission - $retrait;
+        $solde = ($commission + $bonus) - $retrait;
 
         $data = array(
             'nb_visites_com' => $nb_visites_com,
@@ -68,6 +84,7 @@ class Commercial extends CI_Controller
             'nb_candidats_com_ligne' => $nb_candidats_com_ligne,
             'nb_affilies_com_presentiel' => $nb_affilies_com_presentiel,
             'nb_affilies_com_ligne' => $nb_affilies_com_ligne,
+            'nb_aspirants' => $nb_aspirants,
             'commission' => $commission,
             'retrait' => $retrait,
             'solde' => $solde,
@@ -92,6 +109,45 @@ class Commercial extends CI_Controller
     {
         $this->session->sess_destroy();
         redirect('commercial/connexion');
+    }
+
+    public function candidats()
+    {
+        if (!$this->est_connecte()) {
+            redirect('commercial/connexion');
+        }
+        $this->load->library('pagination');
+
+        // On recupere les informations du commercial
+        $commercial = $this->commercial_model->par_email($this->session->userdata('email_com'));
+
+        if (!$commercial) {
+            redirect('commercial/connexion');
+        }
+
+		// Configuration de la Pagination 
+		$config['base_url'] = site_url('commercial/candidats');
+		$config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
+		$config["per_page"] = 15;
+        $config["uri_segment"] = 3;
+
+        // var_dump($config['total_rows']);
+        // die;
+        
+        $this->pagination->initialize($config);
+
+        // On recupere le nombre de la page
+		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+
+        // On recupere les prospects
+        $mes_propects = $this->candidat_model->prospects_commercial($commercial->id_com, $config['per_page'], $page);
+
+        $data = [
+            'candidats' => $mes_propects,
+            'liens' => $this->pagination->create_links()
+        ];
+
+        afficher('back/commercial/candidats', $data);
     }
 
     public function traitement_inscription()
@@ -432,22 +488,31 @@ class Commercial extends CI_Controller
             $nouveau_mot_passe = rand(1000, 9999);
 
             if ($this->commercial_model->modifier_mot_de_passe($commercial->id_com, $nouveau_mot_passe)) {
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/mdp_oublie', '', TRUE);
+
+                $cles    = array('{NOM}', '{EMAIL}', '{PASS}');
+                $valeurs = array($commercial->nom_prenom, $commercial->email, $nouveau_mot_passe);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
 
                 $headers  = "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
                 $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 
-                $message = "Il est maintenant possible de vous connecter via $nouveau_mot_passe";
-
-                mail($commercial->email,  'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
+                // On envoie d'un mail au candidat
+                mail($commercial->email, 'Ecole 241 Business - Nouveau mot de passe', $message, $headers);
 
                 $this->session->set_flashdata('message-success', "Verifiez votre boite mail");
                 $this->session->set_flashdata('email-com', $commercial->nom_util);
 
                 redirect('commercial/connexion');
-            } else {
-                echo 'Bien';
             }
+            //================== suite du code ====================//
         } else {
             $this->session->set_flashdata('message-error', "Votre email n'existe pas");
             redirect('commercial/reinitialiser_mot_de_passe');

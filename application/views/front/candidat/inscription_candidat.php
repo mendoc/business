@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/inscription-candidat1.css">
 
-    <?php if (ENVIRONMENT !== 'development') :?> 
+    <?php if (ENVIRONMENT !== 'development') : ?>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
         <script>
@@ -20,34 +20,48 @@
         </script>
 
         <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:2094197,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
         </script>
 
         <!-- Facebook Pixel Code -->
         <script>
-        !function(f,b,e,v,n,t,s)
-        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-        n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t,s)}(window, document,'script',
-        'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', '166742078436085');
-        fbq('track', 'PageView');
-        fbq('track', 'ViewContent');
-        fbq('track', 'Lead');
+            ! function(f, b, e, v, n, t, s) {
+                if (f.fbq) return;
+                n = f.fbq = function() {
+                    n.callMethod ?
+                        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+                };
+                if (!f._fbq) f._fbq = n;
+                n.push = n;
+                n.loaded = !0;
+                n.version = '2.0';
+                n.queue = [];
+                t = b.createElement(e);
+                t.async = !0;
+                t.src = v;
+                s = b.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t, s)
+            }(window, document, 'script',
+                'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '166742078436085');
+            fbq('track', 'PageView');
+            fbq('track', 'ViewContent');
+            fbq('track', 'Lead');
         </script>
-        <noscript><img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1"
-        /></noscript>
+        <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=166742078436085&ev=PageView&noscript=1" /></noscript>
         <!-- End Facebook Pixel Code -->
     <?php endif; ?>
 
@@ -70,24 +84,24 @@
                     <div class="groupe-champ-de-saisie">
 
                         <div class="les-champs">
-                            <label  classe="label1"><span class="etoile1">*</span></label>
+                            <label classe="label1"><span class="etoile1">*</span></label>
                             <input type="text" name="nom" value="<?= set_value('nom') ?>" placeholder="Nom & Prenom" class="input" required autofocus />
                             <div class="erreurs">
-                            <?= form_error('nom') ?>
+                                <?= form_error('nom') ?>
                             </div>
                         </div>
                         <div class="les-champs">
-                        <label classe="label1"><span class="etoile1">*</span></label>
-                        <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
-                        <div class="erreurs">
-                         <?= form_error('email') ?>
-        
+                            <label classe="label1"><span class="etoile1">*</span></label>
+                            <input type="email" name="email" value="<?= set_value('email') ?>" placeholder="Adresse mail" class="input" required autofocus />
+                            <div class="erreurs">
+                                <?= form_error('email') ?>
+
+                            </div>
                         </div>
-                    </div>
-                    
-                                
-                                
-                
+
+
+
+
 
                         <!-- <div class="les-champs">
                             <input type="text" name="prenom" value="<?= set_value('prenom') ?>" placeholder="Prénom" class="input" required autofocus />
@@ -97,17 +111,17 @@
                         </div> -->
                     </div>
                     <!--===*** Adresse mail ***===-->
-                  
+
 
 
                     <!--==** Date de naissance **== -->
 
                     <!-- <div class="les-champs">
                           -->
-                        <!-- <div class="input-group">
+                    <!-- <div class="input-group">
                             ** ========= Les jours du mois : 31 jours max ============ **-->
-                           
-                            <!-- <div class="choix">
+
+                    <!-- <div class="choix">
                             
                              <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="jour" id="jour" class="selection" required>
@@ -145,9 +159,9 @@
                                     <option>31</option>
                                 </select>
                             </div> -->
-                            <!--** ========= Les mois de l'année : 12 mois ============ **-->
-                            
-                        <!-- <div class="erreurs">
+                    <!--** ========= Les mois de l'année : 12 mois ============ **-->
+
+                    <!-- <div class="erreurs">
                             <?= form_error('annee') ?>
                         </div>
                         <div class="erreurs">
@@ -158,27 +172,33 @@
                         </div> -->
                     <!-- </div> -->
 
-                   <div class="champ">
-                   <div class="po" >
-                   <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
-                   <span class="etoile2">*</span>
-                    <input  class="input2" type="text" id="text" name="text" placeholder="19-05-1998">
-                   </div>
+                    <div class="champ">
+                        <div class="po">
+                            <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
+                            <span class="etoile2">*</span>
+                            <input class="input2" type="date" value="<?= set_value('annee') ?>" id="annee" name="annee" placeholder="">
+                        </div>
+                        <div class="erreurs">
+                            <?= form_error('annee') ?>
+                        </div>
 
-                   </div>
+                    </div>
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
-                         
+
                             <div class="select">
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="sexe" required>
                                     <!-- <option selected disabled>Sexe</option> -->
-                                    <option selected  value="H"> Homme</option>
+                                    <option selected value="H"> Homme</option>
                                     <option value="F">Femme</option>
                                 </select>
                             </div>
-                            <?= form_error('sexe') ?>
+                            <div class="erreurs">
+                                <?= form_error('sexe') ?>
+
+                            </div>
                         </div>
                     </div>
                     <!--===*** Numéro de téléphone ***===-->
@@ -187,7 +207,7 @@
                             <label classe="label1"><span class="etoile1">*</span></label>
                             <input type="tel" name="telephone" value="<?= set_value('telephone') ?>" placeholder="N° de téléphone" class="input" required autofocus />
                             <div class="erreurs">
-                             <?= form_error('telephone') ?>
+                                <?= form_error('telephone') ?>
                             </div>
                         </div>
 
@@ -195,7 +215,7 @@
                             <!-- <label><span class="etoile">*</span></label> -->
                             <input type="tel" name="num_what" value="<?= set_value('num_what') ?>" placeholder="N° WhatsApp" class="input" autofocus />
                             <div class="erreurs">
-                                <?= form_error('num_what')?>
+                                <?= form_error('num_what') ?>
                             </div>
                         </div>
                     </div>
@@ -231,33 +251,43 @@
                                     <option value="Autre">Autres</option>
                                 </select>
                             </div>
-                            <?= form_error('domaine') ?>
+                            <div class="erreurs">
+                                <?= form_error('domaine') ?>
+
+                            </div>
                         </div>
 
                         <div class="les-champs">
                             <div class="select">
-                             <div class="couleur"><span class="etoile1">*</span></div>
+                                <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="horaire" required>
                                     <option selected disabled>Horaire</option>
-                                    <option>Matin</option>
-                                    <option>Après-midi</option>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                             </div>
-                            <?= form_error('horaire') ?>
+                            <div class="erreurs">
+                                <?= form_error('horaire') ?>
+
+                            </div>
                         </div>
                     </div>
                     <!--===*** Type de formation ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs ">
                             <div class="select type-de-formation">
-                             <div class="couleur"><span class="etoile1">*</span></div>
+                                <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                             </div>
-                            <?= form_error('type_cours') ?>
+                            <div class="erreurs">
+                                <?= form_error('type_cours') ?>
+
+                            </div>
                         </div>
                     </div>
                     <!--===*** Les attentes ***===-->

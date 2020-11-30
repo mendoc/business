@@ -1,3 +1,4 @@
+<?= $navigations ?>
 <div class="my-3 my-md-5">
     <div class="container">
         <div class="page-header">
@@ -6,8 +7,9 @@
             </h1>
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header d-flex justify-content-between">
                 <h3 class="card-title text-center">Liste des commerciaux inscrits</h3>
+                <a href="<?= site_url('gestionnaire/export_commercial') ?>" class="btn btn-warning">Exporter en CSV</a>
             </div>
             <div class="table-responsive">
                 <table class="table card-table table-vcenter text-nowrap">
@@ -15,7 +17,7 @@
                         <tr>
                             <th>Noms d'utilisateurs</th>
                             <th>E-mail</th>
-                            <th>Téléphone</th>
+                            <th>Montant à Payer</th>
                             <th>Affiliés</th>
                         </tr>
                     </thead>
@@ -40,13 +42,13 @@
                                         </span>
                                     </td>
                                     <td>
-                                        <span>
-                                            <?php echo $commercial->num_tel; ?>
+                                        <span class="<?= empty($commercial->solde) ? '' : 'text-danger font-weight-bold' ?>">
+                                            <?= number_format($commercial->solde, 0, '', ' ') ?> F CFA
                                         </span>
                                     </td>
                                     <td>
                                         <span>
-                                            <?= 'Aucun' ?>
+                                            <?= $commercial->nb_affilies ?>
                                         </span>
                                     </td>
                                 </tr>
@@ -56,6 +58,9 @@
                 </table>
             </div>
         </div>
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
+            <?= $liens_de_pagination ?>
+        </nav>
     </div>
 
 </div>
