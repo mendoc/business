@@ -380,7 +380,7 @@
     <main class="container">
         <div class="main-content">
             <div class="logo">
-                <img src="<?= theme_url() ?>assets/images/Ebusiness.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px">
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px">
             </div>
             <h1 class="title">Inscription enregistrée</h1>
             <!-----<a class="confirm-account" href="#">Confirmez votre inscription</a>----->
