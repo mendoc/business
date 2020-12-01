@@ -81,6 +81,9 @@
         </div>
     </header>
     <form id="regForm" action="<?= site_url('candidat/traitement_enregistrement_form3') ?>" method="POST" class="container">
+        <?php if (isset($this->session->hash)) : ?>
+            <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
+        <?php endif; ?>
         <div class="form-img">
             <img src="https://business.ecole241.org/theme/assets/images/Ebusiness-logo.png" alt="">
         </div>
