@@ -223,7 +223,8 @@ class Commercial_model extends CI_Model
         return $this->db->query($sql, $id);
     }
 
-    public function aspirant_com($id) //listing des aspirants
+
+    public function aspirant_com ($id) //Nombre des aspirants
     {
         $sql = "SELECT COUNT(eb_candidat.id_can) AS nb_aspirant_com 
         FROM eb_candidat 
@@ -232,9 +233,8 @@ class Commercial_model extends CI_Model
         AND eb_paiement.id_can NOT IN ( SELECT id_can
         FROM eb_paiement 
         GROUP BY id_can 
-        HAVING SUM(montant) = PRIX_PRESENTIEL) ";
-
-        return $this->db->query($sql, $id);
+        HAVING SUM(montant) = ?) ";
+        return $this->db->query($sql, array($id, PRIX_PRESENTIEL))->row();
     }
 
     public function recherche_commercial($nom_prenom)
