@@ -571,7 +571,7 @@
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
-                            <p class="pricingTier__description">En cours du matin <strong>(9h-12h)</strong>, de après-midi <strong>(12h-17h)</strong> ou du soir <strong>(17h-20h)</strong>; à la fabrique Ecole 241.</p>
+                            <p class="pricingTier__description">En cours du matin <strong>(9h-12h)</strong>, de après-midi <strong>(14h-17h)</strong> ou du soir <strong>(17h-20h)</strong>; à la fabrique Ecole 241.</p>
                             <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333" >Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
@@ -601,7 +601,7 @@
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
-                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business, de <strong>(8h-12h)</strong>, <strong>(12h-17h)</strong> et de <strong>(17h-20h)</strong></p>
+                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business, de <strong>(9h-12h)</strong>, <strong>(14h-17h)</strong> et de <strong>(17h-20h)</strong></p>
                             <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333">Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
