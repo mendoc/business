@@ -548,11 +548,11 @@
             </div>
         </div>
     </div>
-    <div id="titles" class="section section--titles section--center dark section--bnseerbnkgr" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 30px; padding-top: 20px; --pdx-min-height: 0px; --wr-max: 1200px; font-size: 14px; color: rgba(255, 51, 51, 1);">
+    <!-- <div id="titles" class="section section--titles section--center dark section--bnseerbnkgr" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 30px; padding-top: 20px; --pdx-min-height: 0px; --wr-max: 1200px; font-size: 14px; color: rgba(255, 51, 51, 1);">
         <div class="wr">
             <h2 class="color-1 weight-title-h font-title section__title center standalone">FORMATION EN PRESENTIEL A PARTIR DU 23 NOVEMBRE 2020</h2>
         </div>
-    </div>
+    </div> -->
 
     <div id="pricing" class="section section--pricing section--center dark section--d5z3ivwxnzp" style="padding-bottom: 84px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 0, 0, 1);">
         <div class="sectionBackdropWrapper" style="background-image: url(https://cdn.landen.coundefined?w=1300&amp;h=800&amp;q=50&amp;fit=crop);">
@@ -571,7 +571,7 @@
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
-                            <p class="pricingTier__description">En cours du matin, de après-midi ou du soir; à la fabrique Ecole 241.</p>
+                            <p class="pricingTier__description">En cours du matin <strong>(9h-12h)</strong>, de après-midi <strong>(12h-17h)</strong> ou du soir <strong>(17h-20h)</strong>; à la fabrique Ecole 241.</p>
                             <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333" >Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
@@ -601,7 +601,7 @@
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
-                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business.</p>
+                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business, de <strong>(8h-12h)</strong>, <strong>(12h-17h)</strong> et de <strong>(17h-20h)</strong></p>
                             <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333">Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
