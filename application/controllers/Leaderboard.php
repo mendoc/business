@@ -25,6 +25,11 @@ class Leaderboard extends CI_Controller
             else $nb_affilies_com_ligne = 0;
 
             $commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
+
+            // Nombre d'aspirant
+            $result = $this->commercial_model->aspirant_com($commercial->id_com);
+            if ($result) $commercial->nb_aspirant = $result->nb_aspirant_com;
+            else $commercial->nb_aspirant = 0;
         }
 
         $nb_apprenant_presentiel = $this->statistique_model->nb_apprenant_presentiel();
