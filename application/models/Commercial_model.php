@@ -196,7 +196,7 @@ class Commercial_model extends CI_Model
         FROM eb_paiement 
         GROUP BY id_can 
         HAVING SUM(montant) = ?)";
-        return $this->db->query($sql, array($id,PRIX_PRESENTIEL));
+        return $this->db->query($sql, array($id, PRIX_PRESENTIEL));
     }
 
     public function paiement_commission_ligne($id)
@@ -209,19 +209,20 @@ class Commercial_model extends CI_Model
         FROM eb_paiement 
         GROUP BY id_can 
         HAVING SUM(montant) = ?)";
-        return $this->db->query($sql, array($id,PRIX_EN_LIGNE));
+        return $this->db->query($sql, array($id, PRIX_EN_LIGNE));
     }
 
     public function inscrit_non_paye_com($id) //listing des inscrits qui n'ont encore rien payé
     {
-    $sql= "SELECT * FROM `eb_candidat` WHERE id_com = ? 
+        $sql = "SELECT * FROM `eb_candidat` WHERE id_com = ? 
     AND id_can
     NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
     INNER JOIN eb_paiement 
     ON eb_candidat.id_can = eb_paiement.id_can )";
 
-    return $this->db->query($sql, $id);
+        return $this->db->query($sql, $id);
     }
+
 
     public function aspirant_com ($id) //Nombre des aspirants
     {
@@ -233,7 +234,6 @@ class Commercial_model extends CI_Model
         FROM eb_paiement 
         GROUP BY id_can 
         HAVING SUM(montant) = ?) ";
-
         return $this->db->query($sql, array($id, PRIX_PRESENTIEL))->row();
     }
 

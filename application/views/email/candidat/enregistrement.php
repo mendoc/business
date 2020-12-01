@@ -33,7 +33,7 @@
         <div class="main-content" style=" width: 80%;
         margin: 0 auto;">
             <div class="logo">
-                <img src="<?= theme_url() ?>assets/images/Ebusiness.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px" style="margin: auto;
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px" style="margin: auto;
     display: flex;
     justify-items: center;
     justify-content: center;

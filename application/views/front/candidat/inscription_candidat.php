@@ -77,7 +77,7 @@
                         <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
                     <?php endif; ?>
                     <div class="logo">
-                        <img src="<?= theme_url() ?>assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
+                        <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo de l'Ecole 241 BUSINESS">
                     </div>
                     <h1>Inscription candidat</h1>
                     <!--===*** Nom et prenom ***===-->
@@ -172,7 +172,7 @@
                         </div> -->
                     <!-- </div> -->
 
-                    <div class="champ">
+                    <!-- <div class="champ">
                         <div class="po">
                             <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
                             <span class="etoile2">*</span>
@@ -182,7 +182,7 @@
                             <?= form_error('annee') ?>
                         </div>
 
-                    </div>
+                    </div> -->
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
