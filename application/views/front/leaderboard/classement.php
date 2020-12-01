@@ -67,6 +67,7 @@
                     <th class="c-table__head-cell">Commercial</th>
                     <th class="c-table__head-cell">Visites</th>
                     <th class="c-table__head-cell u-text--right">Candidats</th>
+                    <th class="c-table__head-cell u-text--right">Aspirant</th>
                     <th class="c-table__head-cell u-text--right">Affiliés</th>
                     <th class="c-table__head-cell u-text--right">% Conv.</th>
                 </tr>
@@ -83,6 +84,9 @@
                         <td class="c-table__cell c-table__cell--count"><small><?= $commercial->nbr_visite ?></small></td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
                             <strong><?= $commercial->nb_candidats ?></strong>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <?= $commercial->nb_aspirant ?>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
                             <?= $commercial->nb_affilies ?>

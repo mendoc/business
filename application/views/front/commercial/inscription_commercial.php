@@ -33,7 +33,7 @@
 
                         <form action="<?= site_url('commercial/traitement_inscription') ?>" method="post">
                             <div class="logo">
-                                <img src="<?= theme_url() ?>/assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
+                                <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo de l'Ecole 241 BUSINESS">
                             </div>
                             <h1>Inscription commercial</h1>
                             <!--===*** Nom et prenom ***===-->
