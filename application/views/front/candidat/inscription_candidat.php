@@ -77,7 +77,7 @@
                         <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
                     <?php endif; ?>
                     <div class="logo">
-                        <img src="<?= theme_url() ?>assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
+                        <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo de l'Ecole 241 BUSINESS">
                     </div>
                     <h1>Inscription candidat</h1>
                     <!--===*** Nom et prenom ***===-->

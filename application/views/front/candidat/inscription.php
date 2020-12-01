@@ -50,7 +50,7 @@
         <!--===*** The left ***===-->
         <div class="left">
             <div class="logo">
-                <img src="<?= theme_url() ?>assets/images/formulaires/Ebusiness.png" alt="logo de l'Ecole 241 BUSINESS">
+                <img src="<?= theme_url() ?>images/logoecole241.png.png" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <div class="header">
                 <h2 class="animation a1">Enregistrement du candidat</h2>

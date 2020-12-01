@@ -16,7 +16,7 @@
         <div class="contenaire">
             <header>
                 <div class="logo">
-                    <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
+                    <img src="<?= theme_url() ?>images/logoecole241.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
                 <div class="retour">
                     <a href="<?= site_url('welcome') ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC" /></a>
@@ -171,6 +171,7 @@
                             <img src="<?= theme_url() ?>images/affiche-ambassadeur22.png" alt=" logo Ecole241 Business">
 
                         </div>
+                        
                     </div>
                 </div>
 
@@ -190,7 +191,7 @@
                 <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
                 <a href="mailto:business@ecole241.org">business@ecole241.org</a>
             </div>
-
+          
         </footer>
     </main>
 
