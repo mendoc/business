@@ -34,7 +34,13 @@ class Leaderboard extends CI_Controller
 
         usort($coms, function ($a, $b){
             if ($a->nb_affilies == $b->nb_affilies) {
-                if ($a->nb_aspirant == $b->nb_aspirant) return 0;
+                if ($a->nb_aspirant == $b->nb_aspirant) {
+                    if ($a->nb_candidats == $b->nb_candidats) {
+                        if ($a->nbr_visite == $b->nbr_visite) return 0;
+                        return $a->nbr_visite < $b->nbr_visite ? -1 : 1;
+                    }
+                    return $a->nb_candidats < $b->nb_candidats ? 1 : -1;
+                }
                 return $a->nb_aspirant < $b->nb_aspirant ? 1 : -1;
             }
 
