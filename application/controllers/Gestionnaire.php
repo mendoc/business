@@ -142,7 +142,7 @@ class Gestionnaire extends CI_Controller
 
 		// var_dump($jours);
 		// die;
-		$prevision_commission = ($nb_apprenants - $nb_vrai_apprenants) * PRIX_PRESENTIEL;
+		$prevision_commission = ($nb_apprenants - $nb_vrai_apprenants) * COUT_PRESENTIEL * POURCENTAGE_PRE;
 
 
 		$data = array(
