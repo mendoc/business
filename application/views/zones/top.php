@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="d-flex align-items-center justify-content-between">
                         <a class="header-brand" href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>">
-                            <img src="<?= theme_url() ?>assets/images/logo.png" style="height: 50px" alt="tabler logo">
+                            <img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="logo Ecole 241 Business">
                         </a>
                         <div class="d-flex flex-row-reverse">
                             <div class="">
