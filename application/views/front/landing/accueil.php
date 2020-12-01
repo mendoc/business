@@ -462,7 +462,7 @@
                 <div class="ft__wrapper" style="max-width: 570px;">
                     <div class="ft__content">
                         <h1 class="hero__title color-1 weight-title-h font-title">Apprenez &agrave; vous servir du digital pour faire cro&icirc;tre <br> votre activité.</h1>
-                        <p class="hero__subtitle weight-text">Inscrivez-vous &agrave; l'Ecole 241 Business et apprenez comment &eacute;tendre votre activit&eacute; commerciale ou artisanale en ligne.</p>
+                        <p class="hero__subtitle weight-text">Inscrivez-vous gratuitement à l'Ecole 241 Business et apprenez pendant 10 jours à étendre votre activité commerciale ou artisanale en ligne.</p>
                         <div class="ctas">
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary btn--large" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                                 Je m'inscris
@@ -548,11 +548,11 @@
             </div>
         </div>
     </div>
-    <div id="titles" class="section section--titles section--center dark section--bnseerbnkgr" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 30px; padding-top: 20px; --pdx-min-height: 0px; --wr-max: 1200px; font-size: 14px; color: rgba(255, 51, 51, 1);">
+    <!-- <div id="titles" class="section section--titles section--center dark section--bnseerbnkgr" style="background-color: rgba(255, 255, 255, 1); padding-bottom: 30px; padding-top: 20px; --pdx-min-height: 0px; --wr-max: 1200px; font-size: 14px; color: rgba(255, 51, 51, 1);">
         <div class="wr">
             <h2 class="color-1 weight-title-h font-title section__title center standalone">FORMATION EN PRESENTIEL A PARTIR DU 23 NOVEMBRE 2020</h2>
         </div>
-    </div>
+    </div> -->
 
     <div id="pricing" class="section section--pricing section--center dark section--d5z3ivwxnzp" style="padding-bottom: 84px; padding-top: 60px; --pdx-min-height: 0px; --wr-max: 1200px; color: rgba(0, 0, 0, 1);">
         <div class="sectionBackdropWrapper" style="background-image: url(https://cdn.landen.coundefined?w=1300&amp;h=800&amp;q=50&amp;fit=crop);">
@@ -565,14 +565,14 @@
         </div>
         <div class="wr">
             <h2 class="color-1 weight-title-h font-title section__title center">CO&Ucirc;T DES FORMATIONS</h2>
-            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">5.000 Fcfa*</b></p>
+            <p class="weight-text section__subtitle center" style="color: #000000;font-size: 1.2em;">Frais de d&eacute;p&ocirc;t de dossiers: <b style="color: #ff3333; font-weight: bold;">10.000 Fcfa*</b></p>
             <div class="pricing">
                 <div id="pricingTiers_r8yywwkwjhg" class="pricingTiers active-a">
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN PRESENTIEL</h3>
-                            <p class="pricingTier__description">Soit en cours du matin ou de l'apr&egrave;s-midi &agrave; la fabrique Ecole 241.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">150.000F</span></div>
+                            <p class="pricingTier__description">En cours du matin <strong>(9h-12h)</strong>, de après-midi <strong>(12h-17h)</strong> ou du soir <strong>(17h-20h)</strong>; à la fabrique Ecole 241.</p>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333" >Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -582,7 +582,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>1 mois de formation avec des experts du num&eacute;rique.</span>
+                                    <span>10 jours de formation avec des experts du num&eacute;rique.</span>
                                 </li>
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -593,17 +593,7 @@
                                         </g>
                                     </svg>
                                     <span>Certificat d&eacute;livr&eacute; en fin de formation.</span>
-                                </li>
-                                <li class="color-1">
-                                    <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <g id="ui-icons" transform="translate(-109.000000, -67.000000)" fill="#22BC66">
-                                                <polygon id="check" points="108.994099 76.4000626 115.987848 83.419577 129.407253 69.9978283 126.587674 67.1592372 115.987848 77.7490936 111.827057 73.5894775"></polygon>
-                                            </g>
-                                        </g>
-                                    </svg>
-                                    <span>Payable en 3 tranches avant la fin de formation.</span>
-                                </li>
+                                
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
                         </div>
@@ -611,8 +601,8 @@
                     <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
-                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business.</p>
-                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price color-1">85.000F</span></div>
+                            <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business, de <strong>(8h-12h)</strong>, <strong>(12h-17h)</strong> et de <strong>(17h-20h)</strong></p>
+                            <div class="pricingTier__price a;" style="font-weight: bold;"><span class="price" style="color: #ff3333">Gratuit</span></div>
                             <ul class="pricingTier__features">
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -622,7 +612,7 @@
                                             </g>
                                         </g>
                                     </svg>
-                                    <span>1 mois de formation avec des outils num&eacute;riques de pointe.</span>
+                                    <span>10 jours de formation avec des outils num&eacute;riques de pointe.</span>
                                 </li>
                                 <li class="color-1">
                                     <svg width="21px" height="17px" viewbox="0 0 21 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -887,7 +877,7 @@
                     <div target="">
                         <div class="media"><img src="<?= theme_url() ?>images/assets-q5oe1vdf.png" srcset="https://landen.imgix.net/j5m8fgybln8l/assets/q5oe1vdf.png?w=600&amp;h=400&amp;fit=crop 2x" alt="" /></div>
                         <div class="gallery__meta">
-                            <h3 class="color-1 weight-text" style="text-align: center; font-weight: bold;">1 mois de cours intensif et acc&eacute;l&eacute;r&eacute;</h3>
+                            <h3 class="color-1 weight-text" style="text-align: center; font-weight: bold;">10 jours de cours intensif et acc&eacute;l&eacute;r&eacute;</h3>
                         </div>
                     </div>
                 </div>

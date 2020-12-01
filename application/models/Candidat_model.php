@@ -72,6 +72,22 @@ class Candidat_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    // Renvoie tout les candidats d'un commercial 
+    // $limit - la limite du nombre de candidat renvoyes
+    // debut - la ligne a partir de laquel on recupere les candidats
+    public function prospects_commercial($id, $limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        $query = $this->db->get_where($this->table, array('id_com' => $id));
+        return $query->result();
+    }
+
+    public function nb_prospects_commercial($id)
+    {
+        $query = $this->db->get_where($this->table, array('id_com' => $id));
+        return $query->num_rows();
+    }
+
     public function nombre_candidats()
     {
         return $this->db->count_all($this->table);

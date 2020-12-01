@@ -1,0 +1,157 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #8fb9e5b7;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    padding: 30px 50px;
+    box-shadow: 0 1.2px 3px #ccc;
+}
+
+header h1 {
+    color: #003366;
+    font-size: 1.8em;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header span {
+    color: #ff3333;
+}
+
+#regForm {
+    margin-top: 50px;
+    background-color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.obliger {
+    color: #f00;
+    font-size: .8em;
+}
+
+.dimension {
+    width: 50%;
+    margin: 0 auto;
+}
+
+
+/* Champs du formulaire */
+
+.heading-1 {
+    text-align: center;
+    font-family: 'Raleway', cursive;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+
+/* Mark input boxes that gets an error on validation: */
+
+input.invalid {
+    background-color: #ffdddd;
+}
+
+
+/* Hide all steps by default: */
+
+.espace {
+    padding: 10px 0;
+}
+
+.tab {
+    display: none;
+}
+
+button {
+    background-color: #255fac;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 17px;
+    font-family: Raleway;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#prevBtn {
+    background-color: #ddd7d7;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #a09999;
+    border: none;
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.step.active {
+    opacity: 1;
+}
+
+
+/* Mark the steps that are finished and valid: */
+
+.step.finish {
+    background-color: #4CAF50;
+}
+
+.form-img {
+    text-align: center;
+}
+
+.form-img img {
+    width: 15%;
+    object-fit: cover;
+}
+
+footer {
+    padding: 20px 80px;
+    background: #003366;
+    color: #fff;
+}
+
+footer .footer-contenair a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+}
+
+footer .footer-contenair a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 785px) {
+    .dimension {
+        width: 70%;
+    }
+    footer {
+        padding: 20px;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .form-img img {
+        width: 40%;
+    }
+    .dimension {
+        width: 100%;
+        margin: 0 auto;
+    }
+    footer {
+        padding: 20px;
+    }
+}
