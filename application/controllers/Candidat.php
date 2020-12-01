@@ -39,9 +39,9 @@ class Candidat extends CI_Controller
             'required' => 'Le champ %s est obligatoire',
         ));
 
-        $this->form_validation->set_rules('annee', 'date de naissance', 'required', array(
-            'required' => 'Le champ %s est obligatoire',
-        ));
+        // $this->form_validation->set_rules('annee', 'date de naissance', 'required', array(
+        //     'required' => 'Le champ %s est obligatoire',
+        // ));
 
         $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
             'required' => 'Veuillez choisir votre %s',
@@ -70,7 +70,7 @@ class Candidat extends CI_Controller
             $nom         = $this->input->post('nom');
             //$prenom      = $this->input->post('prenom');
             $sexe        = $this->input->post('sexe');
-            $date_n      = $this->input->post('annee');
+            // $date_n      = $this->input->post('annee');
             $email       = $this->input->post('email');
             $num_tel     = $this->input->post('telephone');
             $num_what    = $this->input->post('num_what');
@@ -88,7 +88,7 @@ class Candidat extends CI_Controller
             $candidat->num_what    = $num_what;
             $candidat->email       = $email;
             $candidat->sexe        = $sexe;
-            $candidat->date_n      = $date_n;
+            // $candidat->date_n      = $date_n;
             $candidat->domaine_act = $domaine_act;
             //$candidat->type_serv   = $type_serv;
             $candidat->attentes    = $attentes;
@@ -115,8 +115,8 @@ class Candidat extends CI_Controller
                 // On charge la vue du mail
                 $message = $this->load->view('email/candidat/enregistrement', '', TRUE);
 
-                $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{DATE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{HEURE}', '{SERVICE}', '{ATTENNTES}');
-                $valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->attentes);
+                $cles    = array('{GENRE}', '{NOM}', '{SEXE}', '{EMAIL}', '{TEL}', '{WHATSAPP}', '{HEURE}', '{SERVICE}', '{ATTENNTES}');
+                $valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe,  $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->attentes);
 
                 $message = str_replace($cles, $valeurs, $message);
 
