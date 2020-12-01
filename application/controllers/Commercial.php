@@ -22,7 +22,7 @@ class Commercial extends CI_Controller
 
         // Nombre de visites du commercial
         $result = $this->statistique_model->visites_par_commercial($commercial->id_com);
-        
+
         if ($result) $nb_visites_com = $result->nb_visites_com;
         else $nb_visites_com = 0;
 
@@ -45,7 +45,7 @@ class Commercial extends CI_Controller
         $result = $this->statistique_model->affilies_com_ligne($commercial->id_com);
         if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
         else $nb_affilies_com_ligne = 0;
-        
+
         // Nombre d'aspirant d'un commercial
         $result = $this->statistique_model->aspirant_commercial($commercial->id_com);
         if ($result) $nb_aspirants = $result->nb_aspirants;
@@ -125,22 +125,22 @@ class Commercial extends CI_Controller
             redirect('commercial/connexion');
         }
 
-		// Configuration de la Pagination 
-		$config['base_url'] = site_url('commercial/candidats');
-		$config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
-		$config["per_page"] = 15;
+        // Configuration de la Pagination 
+        $config['base_url'] = site_url('commercial/candidats');
+        $config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
+        $config["per_page"] = 15;
         $config["uri_segment"] = 3;
 
         // var_dump($config['total_rows']);
         // die;
-        
+
         $this->pagination->initialize($config);
 
         // On recupere le nombre de la page
-		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
+        $page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
 
         // On recupere les prospects
-        $mes_propects = $this->candidat_model->prospects_commercial($commercial->id_com, $config['per_page'], $page);
+        $mes_propects = $this->commercial_model->inscrit_non_paye_com($commercial->id_com, $config['per_page'], $page);
 
         $data = [
             'candidats' => $mes_propects,
