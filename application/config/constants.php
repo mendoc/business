@@ -97,3 +97,9 @@ defined('PRIX_EN_LIGNE')      OR define('PRIX_EN_LIGNE', FRAIS_DOSSIER + COUT_EN
 
 defined('POURCENTAGE_PRES')   OR define('POURCENTAGE_PRE', 0.1);
 defined('POURCENTAGE_LIGNE')  OR define('POURCENTAGE_LIGNE', 0.1);
+
+// Constantes des droits d'acces
+defined('SUPERVISEUR')  OR define('SUPERVISEUR', 1);
+defined('TRESORIER')  OR define('TRESORIER', 2);
+defined('GESTIONNAIRE')  OR define('GESTIONNAIRE', 3);
+defined('ADMIN')  OR define('ADMIN', 4);

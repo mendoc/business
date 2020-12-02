@@ -22,3 +22,12 @@ function est_un_gestionnaire()
 
     return $CI->session->userdata('token_gest') != null;
 }
+
+function type_profil()
+{
+    $CI = &get_instance();
+
+    $CI->load->library('session');
+
+    return $CI->session->userdata('profil_gest');
+}
