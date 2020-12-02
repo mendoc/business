@@ -68,7 +68,7 @@
 
 <body>
     <div class="logo">
-      <img src="<?= theme_url() ?>images/logoecole241.png" alt=" logo Ecole241 Business" width="130px" height="90px">
+      <img src="<?= theme_url() ?>images/logoecole241.png" alt=" logo Ecole241 Business" width="160px">
     </div>
     <main>
 

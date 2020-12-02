@@ -85,7 +85,7 @@
             <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
         <?php endif; ?>
         <div class="form-img">
-            <img src="https://business.ecole241.org/theme/assets/images/Ebusiness-logo.png" alt="">
+            <img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="">
         </div>
         <legend class="heading-1">Inscription candidat</legend>
         <!-- One "tab" for each step in the form: -->
