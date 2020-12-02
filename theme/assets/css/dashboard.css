@@ -10658,8 +10658,7 @@ body.fixed-header .page {
 }
 
 .header {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
+    height: 120PX;
     background: #fff;
     border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 }
