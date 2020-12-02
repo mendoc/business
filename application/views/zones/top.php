@@ -18,7 +18,27 @@
                                 <span class="d-none avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
                                 <span class="ml-2 d-lg-block">
                                     <span class="text-default"><?= est_un_gestionnaire() ? $this->session->nom_gest : $this->session->nom_com ?></span>
-                                    <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
+                                    <small class="text-muted d-block mt-1">
+                                        <?php 
+                                            switch (type_profil()) {
+                                                case SUPERVISEUR:
+                                                    echo 'Superviseur';
+                                                    break;
+                                                case TRESORIER:
+                                                    echo 'Tresorier';
+                                                    break;
+                                                case GESTIONNAIRE:
+                                                    echo 'Gestionnaire';
+                                                    break;
+                                                case ADMIN:
+                                                    echo 'Administrateur';
+                                                    break;
+                                                default:
+                                                    echo 'Commercial';
+                                                    break;
+                                            }
+                                         ?>
+                                    </small>
                                 </span>
                             </a>
                             <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion</a>
