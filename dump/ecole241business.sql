@@ -100,9 +100,10 @@ CREATE TABLE `eb_gestionnaire` (
   `mot_passe` varchar(200) NOT NULL,
   `nom_prenom` varchar(250) NOT NULL,
   `email_gest` varchar(40) NOT NULL,
+  `type_profil` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +112,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com');
+INSERT INTO `eb_gestionnaire` VALUES (1,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com',1);
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,4 +223,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-21 13:56:53
+
+-- Dump completed on 2020-12-02 16:31:04
