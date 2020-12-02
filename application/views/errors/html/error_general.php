@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <h1 class="h2 mb-3"><?= $heading ?></h1>
           <p class="h4 text-muted font-weight-normal mb-7"><?= $message ?></p>
           <a class="btn btn-primary" href="javascript:history.back()">
-            <i class="fe fe-arrow-left mr-2"></i>Go back
+            <i class="fe fe-arrow-left mr-2"></i> Retour
           </a>
         </div>
       </div>

@@ -43,8 +43,7 @@ font-family: 'Montserrat', sans-serif;
                 display: flex;
                 justify-items: center;
                 justify-content: center;
-                padding-top: 2em;"
-                src="<?= theme_url() ?>images/logoecole241.png"   width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
+                padding-top: 2em;" src="<?= theme_url() ?>images/logoecole241.png" width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <h1 style=" display: inline-block;
             width: 95%;
@@ -55,18 +54,18 @@ font-family: 'Montserrat', sans-serif;
             margin-bottom: 0.60em" class=" title ">Demande de Retrait</h1>
             <!--# le message 1 #--->
             <p style="margin-bottom: 10px;
-            padding-top: 2em;font-size: 1rem;">Bonjour Christ ADINSI,</p>
+            padding-top: 2em;font-size: 1rem;">Bonjour {NOM},</p>
             <p style=" margin-top: 10px;
             margin-bottom: 10px;font-size: 1rem;">Nous avons bien reçu votre demande de retrait et votre requête est en cours de traitement. </p>
             <!--# le message 2 #--->
-      
+
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Montant du retrait:90000 fcfa</p>
+            margin-bottom: 10px;font-size: 1rem;">Montant du retrait:{MONTANT} fcfa</p>
             <p style="margin-top: 10px;
-            margin-bottom: 10px;font-size: 1rem;">Solde:0 fcfa</p>
-             <p style="margin-top: 10px;
+            margin-bottom: 10px;font-size: 1rem;">Numéro de retrait:{NUMERO} fcfa</p>
+            <p style="margin-top: 10px;
             margin-bottom: 70px;font-size: 1rem;">L' equipe Ecole 241 business vous remercie pour la confiance accordée</p>
-             
+
         </div>
     </main>
 
@@ -96,7 +95,7 @@ font-family: 'Montserrat', sans-serif;
 
             </div>
 
-            
+
         </section>
     </footer>
     <!--# fin du container #--->
