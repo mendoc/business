@@ -359,6 +359,25 @@ class Commercial extends CI_Controller
             $retrait->id_com = $commercial->id_com;
 
             if ($retrait->ajouter()) {
+                // Envoie d'un mail au commercial
+                // On charge la vue du mail
+                $message = $this->load->view('email/commercial/retrait_confirme', '', TRUE);
+
+                $cles    = array('{NOM}', '{MONTANT}', '{NUMERO}');
+                $valeurs = array($commercial->nom_prenom, $retrait->montant_retrait, $retrait->num_ret);
+
+                $message = str_replace($cles, $valeurs, $message);
+
+                // Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+                //$headers[] = 'MIME-Version: 1.0';
+                //$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+
+                $headers  = "MIME-Version: 1.0\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+
+                // On envoie d'un mail au commercial après le retrait
+                mail($commercial->email, 'Ecole 241 Business - Retrait', $message, $headers);
                 redirect('commercial');
             }
         }
