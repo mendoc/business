@@ -43,7 +43,7 @@ font-family: 'Montserrat', sans-serif;
                 display: flex;
                 justify-items: center;
                 justify-content: center;
-                padding-top: 2em;" src="<?= theme_url() ?>/assets/images/Ebusiness.png" width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
+                padding-top: 2em;" src="<?= theme_url() ?>images/logoecole241.png" width="260" height="180" alt="logo de l'Ecole 241 BUSINESS">
             </div>
             <h1 style=" display: inline-block;
             width: 95%;

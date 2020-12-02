@@ -142,12 +142,14 @@ class Gestionnaire extends CI_Controller
 
 		// var_dump($jours);
 		// die;
+		$prevision_commission = ($nb_apprenants - $nb_vrai_apprenants) * COUT_PRESENTIEL * POURCENTAGE_PRE;
 
 
 		$data = array(
 			"cumul_candidats" => $cumul_candidats,
 			"dette_commercial" => ($cumul_comission_commercial - $total_retrait),
-			"solde_2" => $chiffre_affaire - $cumul_comission_commercial,
+			"prevision_commission" => $prevision_commission,
+			"solde_2" => $chiffre_affaire - $cumul_comission_commercial - $prevision_commission,
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
 			"nb_candidats" => ($nb_candidats - $nb_apprenants),
@@ -1166,7 +1168,7 @@ class Gestionnaire extends CI_Controller
 
 				$montant = $this->input->post('montant');
 
-				if ($montant <= $max_montant && ($montant + $montant_candidat) < $max_montant) {
+				if ($montant <= $max_montant && ($montant + $montant_candidat) <= $max_montant) {
 
 					// Creation du paiement 
 					$paiement = array(

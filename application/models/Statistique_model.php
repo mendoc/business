@@ -145,6 +145,28 @@ class Statistique_model extends CI_Model
 
         return ($result ? $result->row() : FALSE);
     }
+    public function aspirant_commercial($id) //Les affiliés d'un commercial en présentiel
+    {
+        $sql = "SELECT
+                    COUNT(id_can) AS nb_aspirants
+                FROM
+                    eb_candidat
+                WHERE
+                    id_com = ? AND id_can IN(
+                    SELECT
+                    id_can
+                    FROM
+                    eb_paiement
+                    GROUP BY
+                    id_can
+                    HAVING
+                    SUM(montant) > 0 AND SUM(montant) < ?
+                )";
+
+        $result = $this->db->query($sql, array($id, PRIX_PRESENTIEL));
+
+        return ($result ? $result->row() : FALSE);
+    }
 
     public function affilies_com_ligne($id) //Les affiliés d'un commercial en ligne
     {

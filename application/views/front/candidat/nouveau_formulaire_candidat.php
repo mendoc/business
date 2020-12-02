@@ -74,7 +74,7 @@
         <div class="contenaire">
             <header>
                 <div class="logo">
-                    <img src="<?= theme_url() ?>assets/images/blue.png" alt=" logo Ecole241 Business" width="130px" height="90px">
+                    <img src="<?= theme_url() ?>images/logoecole241.png" alt=" logo Ecole241 Business" width="130px" height="90px">
                 </div>
                 <div class="retour">
                     <a href="<?= site_url('welcome') ?>"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAABX0lEQVRoQ+2YzW3DMAyFyQmaTZpj2lORBZoNmjnSHnrJHM4kVY/ZqD9GzYIGBAiB7Nh9MioC9NUgxe896ckwk/GHjc9PDvDfDroD7gCogG8hUEC43B2AJQQbuANjAm6e307n43YPijxavogDD69h9fHdNcy8Ox+3i6wRqYo374dvJTDRWhcxBXB/COsf7odfRYXMANy9hF0n0qTDm3Fgcwh7Ymlyp616BzRpiOhpKCqqBUiTZiznqgS4TBpTALmkMQMwlDQlb9q5W27yRTaWNA6QKLCYA7qGbiER0di8Kal62mtRAF1ID3HH8j4VYu5Ac4WZfAbSxhqjn20PcXttwSoBdGiF+GrlJESPZmI0N6jZT4kUxvTHXAQZSqhqz0BuO+USyhRAPNxpQpkDuEwokwBxe5n9rXLtciv5/k83cckB0F4OgCqI1rsDqIJovTuAKojWuwOogmi9O4AqiNb/Ar0ckjGewR2jAAAAAElFTkSuQmCC" /></a>
@@ -89,7 +89,10 @@
                 <div class="gauche">
 
 
-                    <h1 class="titre">S'inscrire à la formation</h1>
+                    <h1 class="titre">S'inscrire à la formation gratuite</h1>
+                    <!-- <div class="d-flex justify-content-center">
+                        <small class="text-muted">frais de dossier - 10 000 F CFA</small>
+                    </div> -->
                     <form action="<?= site_url('candidat/traitement_enregistrement_form2') ?>" class="formulaire" method="POST">
                         <?php if (isset($this->session->hash)) : ?>
                             <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
@@ -181,8 +184,8 @@
                             <div class="choix-cours">
                                 <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
-                                    <option selected value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option selected value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                                 <div class="erreurs">
                                     <?= form_error('type_cours') ?>
@@ -191,16 +194,14 @@
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
-                                <label for="modalite">Modalité de paiement<span></span></label><br>
-                                <select name="modalite" id="modalite">
-
-                                    <option selected value="1">1 Tranche</option>
-
-                                    <option value="2">2 Tranches</option>
-                                    <option value="3">3 Tranches</option>
+                                <label for="horaire">Horaire de formation <span>*</span></label><br>
+                                <select name="horaire" id="horaire" required>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                                 <div class="erreurs">
-                                    <?= form_error('modalite') ?>
+                                    <?= form_error('horaire') ?>
                                 </div>
                             </div>
                         </div>
@@ -229,6 +230,7 @@
                             <img src="<?= theme_url() ?>images/affiche-ambassadeur22.png" alt=" logo Ecole241 Business">
 
                         </div>
+                        
                     </div>
                 </div>
 
@@ -248,22 +250,9 @@
                 <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
                 <a href="mailto:business@ecole241.org">business@ecole241.org</a>
             </div>
-
+          
         </footer>
     </main>
-
-    <script>
-        const typeCoursElt = document.getElementById('cours');
-        const modaliteElt = document.getElementById('modalite');
-        typeCoursElt.onchange = e => {
-            if (e.target.value == 'L') {
-                modaliteElt.setAttribute('disabled', true);
-                modaliteElt.value = "1"
-            } else {
-                modaliteElt.removeAttribute('disabled');
-            }
-        }
-    </script>
 
 </body>
 

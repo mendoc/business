@@ -25,7 +25,27 @@ class Leaderboard extends CI_Controller
             else $nb_affilies_com_ligne = 0;
 
             $commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
+
+            // Nombre d'aspirant
+            $result = $this->commercial_model->aspirant_com($commercial->id_com);
+            if ($result) $commercial->nb_aspirant = $result->nb_aspirant_com;
+            else $commercial->nb_aspirant = 0;
         }
+
+        usort($coms, function ($a, $b){
+            if ($a->nb_affilies == $b->nb_affilies) {
+                if ($a->nb_aspirant == $b->nb_aspirant) {
+                    if ($a->nb_candidats == $b->nb_candidats) {
+                        if ($a->nbr_visite == $b->nbr_visite) return 0;
+                        return $a->nbr_visite < $b->nbr_visite ? -1 : 1;
+                    }
+                    return $a->nb_candidats < $b->nb_candidats ? 1 : -1;
+                }
+                return $a->nb_aspirant < $b->nb_aspirant ? 1 : -1;
+            }
+
+            return $a->nb_affilies < $b->nb_affilies ? 1 : -1;
+        });
 
         $nb_apprenant_presentiel = $this->statistique_model->nb_apprenant_presentiel();
         $nb_apprenant_ligne = $this->statistique_model->nombre_apprenant_ligne();
