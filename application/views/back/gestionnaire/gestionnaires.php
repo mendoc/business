@@ -62,7 +62,7 @@
                                                     <?php endif; ?>
                                                 </select>
                                                 <button type="submit" class="btn btn-primary rounded-0">
-                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                    OK
                                                 </button>
                                             </form>
                                         <?php else :
