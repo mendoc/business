@@ -51,15 +51,13 @@
                                     <td><a href="" class="text-inherit"><?= $gestionnaire->nom_prenom; ?></a></td>
                                     <td><?= $gestionnaire->email_gest ?></td>
                                     <td>
-                                        <?php if(type_profil() != SUPERVISEUR && type_profil() != TRESORIER): ?>
+                                        <?php if(type_profil() == ADMIN): ?>
                                             <form action="<?= site_url('gestionnaire/changer_droit/' . $gestionnaire->id_gest) ?>" method="post" class="col-lg-8 offset-lg-2 d-flex align-items-end">
                                                 <select name="type_profil" class="custom-select">
                                                     <option <?= $gestionnaire->type_profil == 1 ? 'selected' : '' ?> value="1">Superviseur</option>
                                                     <option <?= $gestionnaire->type_profil == 2 ? 'selected' : '' ?> value="2">Tresorier</option>
                                                     <option <?= $gestionnaire->type_profil == 3 ? 'selected' : '' ?> value="3">Gestionnaire</option>
-                                                    <?php if (type_profil() == ADMIN) : ?>
-                                                        <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
-                                                    <?php endif; ?>
+                                                    <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
                                                 </select>
                                                 <button type="submit" class="btn btn-primary rounded-0">
                                                     OK
