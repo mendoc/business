@@ -1,11 +1,11 @@
 <body class="">
     <div class="page">
         <div class="page-main">
-            <div class="header py-4">
+            <div class="header">
                 <div class="container">
                     <div class="d-flex align-items-center justify-content-between">
                         <a class="header-brand" href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>">
-                            <img src="<?= theme_url() ?>assets/images/logo.png" style="height: 50px" alt="tabler logo">
+                            <img src="<?= theme_url() ?>images/logoecole241.png" style="width:150px; height:20%" alt="tabler logo">
                         </a>
                         <div class="d-flex flex-row-reverse">
                             <div class="">
