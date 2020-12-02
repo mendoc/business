@@ -57,7 +57,9 @@
                                                     <option <?= $gestionnaire->type_profil == 1 ? 'selected' : '' ?> value="1">Superviseur</option>
                                                     <option <?= $gestionnaire->type_profil == 2 ? 'selected' : '' ?> value="2">Tresorier</option>
                                                     <option <?= $gestionnaire->type_profil == 3 ? 'selected' : '' ?> value="3">Gestionnaire</option>
-                                                    <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
+                                                    <?php if (type_profil() == ADMIN) : ?>
+                                                        <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
+                                                    <?php endif; ?>
                                                 </select>
                                                 <button type="submit" class="btn btn-primary rounded-0">
                                                     <i class="fa fa-pencil" aria-hidden="true"></i>
