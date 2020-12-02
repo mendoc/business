@@ -44,15 +44,9 @@
 
                     </tbody>
                 </table>
-                <?php
-                if (!empty($candidat)) { ?>
-                    <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center">
-                        <?= $liens ?>
-                    </nav>
-
-                <?php }
-
-                ?>
+                <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center">
+                    <?= $liens ?>
+                </nav>
             </div>
         </div>
     </div>

@@ -127,7 +127,7 @@ class Commercial extends CI_Controller
 
         // Configuration de la Pagination 
         $config['base_url'] = site_url('commercial/candidats');
-        $config['total_rows'] = $this->candidat_model->nb_prospects_commercial($commercial->id_com);
+        $config['total_rows'] = $this->commercial_model->nb_inscrit_non_paye_com($commercial->id_com);
         $config["per_page"] = 15;
         $config["uri_segment"] = 3;
 
