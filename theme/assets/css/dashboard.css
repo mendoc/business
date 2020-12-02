@@ -609,6 +609,16 @@ pre code {
     display: flex;
 }
 
+.hauteur {
+    height: PX;
+    background: #fff;
+    border-bottom: 1px solid rgba(0, 40, 100, 0.12);
+}
+
+.hauter {
+    height: 90PX;
+}
+
 .conte1 {
     width: 700px;
     margin-right: 15px;
@@ -10658,7 +10668,7 @@ body.fixed-header .page {
 }
 
 .header {
-    height: 120PX;
+    height: 90PX;
     background: #fff;
     border-bottom: 1px solid rgba(0, 40, 100, 0.12);
 }
@@ -19277,4 +19287,11 @@ fe-zoom-out:before {
 
 e-zoom-out:before {
     content: "\ea06";
+}
+
+content: "\ea06";
+
+}
+content: "\ea06";
+
 }
