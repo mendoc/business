@@ -424,6 +424,10 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		$this->load->library('breadcrumb');
 
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
@@ -452,6 +456,10 @@ class Gestionnaire extends CI_Controller
 	{
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
+		}
+
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
 		}
 
 		// Traitement des donnees 
@@ -498,12 +506,16 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		if (type_profil() != ADMIN) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		$type_profil = $this->input->post('type_profil');
 
 		if ($this->gestionnaire_model->modifier_droit($id, $type_profil)) {
 			$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($id);
 			$this->session->set_flashdata('message-success', 'Les droits de '. $gestionnaire->nom_prenom . ' ont change !');
-			$this->session->set_userdata('profil_gest', $gestionnaire->type_profil);
+			// $this->session->set_userdata('profil_gest', $gestionnaire->type_profil);
 			redirect('gestionnaire/gestionnaires');
 		}
 	}
@@ -726,6 +738,10 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		// Générer un mot de passe
 		$mot_passe  = rand(1000, 9999);
 
@@ -762,6 +778,14 @@ class Gestionnaire extends CI_Controller
 
 	public function finaliser_un_retrait($id)
 	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+		
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		$this->load->model('retrait_model');
 
 		// recuperation des informations
@@ -786,6 +810,10 @@ class Gestionnaire extends CI_Controller
 	{
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
+		}
+		
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
 		}
 
 		$this->load->model('gestionnaire_model');
@@ -815,6 +843,10 @@ class Gestionnaire extends CI_Controller
 			redirect('gestionnaire/connexion');
 		}
 
+		if (type_profil() == TRESORIER) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		//Récupération de toutes les ressources
 		$this->load->model('ressource_model');
 
@@ -832,6 +864,10 @@ class Gestionnaire extends CI_Controller
 	{
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
+		}
+
+		if (type_profil() == TRESORIER) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
 		}
 
 		$this->load->model('ressource_model');
@@ -858,6 +894,10 @@ class Gestionnaire extends CI_Controller
 	{
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
+		}
+
+		if (type_profil() == TRESORIER) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
 		}
 
 		afficher("back/gestionnaire/nouvelle_ressource");
@@ -1152,6 +1192,11 @@ class Gestionnaire extends CI_Controller
 		if (!$this->est_connecte()) {
 			redirect('gestionnaire/connexion');
 		}
+		
+		if (type_profil() == SUPERVISEUR) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
 		$this->load->model('paiement_model');
 		$this->load->model('candidat_model');
 		$email_gest = $this->session->userdata('email_gest');

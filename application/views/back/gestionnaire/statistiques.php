@@ -262,53 +262,55 @@
         <h2 class="page-title mb-5">
             Retraits et paiements
         </h2>
-        <div class="col-lg-12 row">
-            <div class="card col-lg-6 col-sm-12">
-                <div class="card-header">
-                    <h3 class="card-title">Dernières demandes de retraits</h3>
-                </div>
+        <div class="row">
+            <?php if (type_profil() != SUPERVISEUR): ?>
+                <div class="card col-lg-6 col-sm-12">
+                    <div class="card-header">
+                        <h3 class="card-title">Dernières demandes de retraits</h3>
+                    </div>
 
-                <div class="table-responsive">
-                    <table class="table card-table table-striped table-vcenter">
-                        <thead>
-                            <tr>
-                                <th>Nom</th>
-                                <th>Numéro</th>
-                                <th>Montant</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (empty($retraits)) { ?>
+                    <div class="table-responsive">
+                        <table class="table card-table table-striped table-vcenter">
+                            <thead>
                                 <tr>
-                                    <td colspan="4" class="text-center h1">
-                                        <span> Il n'y a pas encore de retrait demande </span>
-                                    </td>
+                                    <th>Nom</th>
+                                    <th>Numéro</th>
+                                    <th>Montant</th>
+                                    <th></th>
                                 </tr>
-                                <?php } else {
-                                foreach ($retraits as $retrait) : ?>
+                            </thead>
+                            <tbody>
+                                <?php if (empty($retraits)) { ?>
                                     <tr>
-                                        <td><?= $retrait->property ?></td>
-                                        <td><?= $retrait->num_ret ?></td>
-                                        <td class="text-nowrap"><?= number_format($retrait->montant_retrait, 0, ',', ' '); ?> F CFA</td>
-                                        <?php if ($email_utilisateur == $this->session->userdata('email_gest') && !empty($retrait->id_gest)) { ?>
-                                            <td class="w-1"> <a href="<?= site_url('gestionnaire/finaliser_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-success text-white"> je confirme </a></td>
-                                        <?php } else { ?>
-                                            <?php if ($retrait->id_gest) { ?>
-                                                <td> en cours </td>
-                                            <?php } else { ?>
-                                                <td class="w-1"> <a href="<?= site_url('gestionnaire/prendre_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-primary text-white"> je prends</a></td>
-                                            <?php } ?>
-                                        <?php } ?>
+                                        <td colspan="4" class="text-center h1">
+                                            <span> Il n'y a pas encore de retrait demande </span>
+                                        </td>
                                     </tr>
-                            <?php endforeach;
-                            } ?>
-                        </tbody>
-                    </table>
+                                    <?php } else {
+                                    foreach ($retraits as $retrait) : ?>
+                                        <tr>
+                                            <td><?= $retrait->property ?></td>
+                                            <td><?= $retrait->num_ret ?></td>
+                                            <td class="text-nowrap"><?= number_format($retrait->montant_retrait, 0, ',', ' '); ?> F CFA</td>
+                                            <?php if ($email_utilisateur == $this->session->userdata('email_gest') && !empty($retrait->id_gest)) { ?>
+                                                <td class="w-1"> <a href="<?= site_url('gestionnaire/finaliser_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-success text-white"> je confirme </a></td>
+                                            <?php } else { ?>
+                                                <?php if ($retrait->id_gest) { ?>
+                                                    <td> en cours </td>
+                                                <?php } else { ?>
+                                                    <td class="w-1"> <a href="<?= site_url('gestionnaire/prendre_un_retrait/' . $retrait->id_ret) ?>" class="btn btn-sm btn-primary text-white"> je prends</a></td>
+                                                <?php } ?>
+                                            <?php } ?>
+                                        </tr>
+                                <?php endforeach;
+                                } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
-            <div class="card col-lg-5 offset-lg-1 col-sm-12">
+            <div class="card <?= type_profil() != SUPERVISEUR ? 'col-lg-5 offset-lg-1' : 'col-lg-12' ?> col-sm-12">
                 <div class="card-header">
                     <h3 class="card-title">Derniers paiements des candidats</h3>
                 </div>

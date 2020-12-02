@@ -51,17 +51,38 @@
                                     <td><a href="" class="text-inherit"><?= $gestionnaire->nom_prenom; ?></a></td>
                                     <td><?= $gestionnaire->email_gest ?></td>
                                     <td>
-                                        <form action="<?= site_url('gestionnaire/changer_droit/' . $gestionnaire->id_gest) ?>" method="post" class="col-lg-8 offset-lg-2 d-flex align-items-end">
-                                            <select name="type_profil" class="custom-select">
-                                                <option <?= $gestionnaire->type_profil == 1 ? 'selected' : '' ?> value="1">Superviseur</option>
-                                                <option <?= $gestionnaire->type_profil == 2 ? 'selected' : '' ?> value="2">Tresorier</option>
-                                                <option <?= $gestionnaire->type_profil == 3 ? 'selected' : '' ?> value="3">Gestionnaire</option>
-                                                <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
-                                            </select>
-                                            <button type="submit" class="btn btn-primary rounded-0">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </button>
-                                        </form>
+                                        <?php if(type_profil() != SUPERVISEUR && type_profil() != TRESORIER): ?>
+                                            <form action="<?= site_url('gestionnaire/changer_droit/' . $gestionnaire->id_gest) ?>" method="post" class="col-lg-8 offset-lg-2 d-flex align-items-end">
+                                                <select name="type_profil" class="custom-select">
+                                                    <option <?= $gestionnaire->type_profil == 1 ? 'selected' : '' ?> value="1">Superviseur</option>
+                                                    <option <?= $gestionnaire->type_profil == 2 ? 'selected' : '' ?> value="2">Tresorier</option>
+                                                    <option <?= $gestionnaire->type_profil == 3 ? 'selected' : '' ?> value="3">Gestionnaire</option>
+                                                    <option <?= $gestionnaire->type_profil == 4 ? 'selected' : '' ?> value="4">Administrateur</option>
+                                                </select>
+                                                <button type="submit" class="btn btn-primary rounded-0">
+                                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                </button>
+                                            </form>
+                                        <?php else :
+                                            // Si on est superviseur , On montre juste le type de profil
+                                            switch ($gestionnaire->type_profil) {
+                                                case SUPERVISEUR:
+                                                    echo 'Superviseur';
+                                                    break;
+                                                case TRESORIER:
+                                                    echo 'Tresorier';
+                                                    break;
+                                                case GESTIONNAIRE:
+                                                    echo 'Gestionnaire';
+                                                    break;
+                                                case ADMIN:
+                                                    echo 'Administrateur';
+                                                    break;
+                                                default:
+                                                    // Aucune convenance
+                                                    break;
+                                            }
+                                        endif; ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

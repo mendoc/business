@@ -1,64 +1,56 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<title>Error</title>
-<style type="text/css">
-
-::selection { background-color: #E13300; color: white; }
-::-moz-selection { background-color: #E13300; color: white; }
-
-body {
-	background-color: #fff;
-	margin: 40px;
-	font: 13px/20px normal Helvetica, Arial, sans-serif;
-	color: #4F5155;
-}
-
-a {
-	color: #003399;
-	background-color: transparent;
-	font-weight: normal;
-}
-
-h1 {
-	color: #444;
-	background-color: transparent;
-	border-bottom: 1px solid #D0D0D0;
-	font-size: 19px;
-	font-weight: normal;
-	margin: 0 0 14px 0;
-	padding: 14px 15px 10px 15px;
-}
-
-code {
-	font-family: Consolas, Monaco, Courier New, Courier, monospace;
-	font-size: 12px;
-	background-color: #f9f9f9;
-	border: 1px solid #D0D0D0;
-	color: #002166;
-	display: block;
-	margin: 14px 0 14px 0;
-	padding: 12px 10px 12px 10px;
-}
-
-#container {
-	margin: 10px;
-	border: 1px solid #D0D0D0;
-	box-shadow: 0 0 8px #D0D0D0;
-}
-
-p {
-	margin: 12px 15px 12px 15px;
-}
-</style>
-</head>
-<body>
-	<div id="container">
-		<h1><?php echo $heading; ?></h1>
-		<?php echo $message; ?>
-	</div>
-</body>
+?><!doctype html>
+<html lang="fr">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta http-equiv="Content-Language" content="fr" />
+  <meta name="msapplication-TileColor" content="#2d89ef">
+  <meta name="theme-color" content="#4188c9">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <link rel="icon" href="<?= theme_url() ?>favicon.png" type="image/x-icon" />
+  <link rel="shortcut icon" type="image/x-icon" href="<?= theme_url() ?>favicon.png" />
+  <!-- Generated: 2018-04-16 09:29:05 +0200 -->
+  <title><?= $heading ?></title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext">
+  <script src="<?= theme_url() ?>assets/js/require.min.js"></script>
+  <script>
+    requirejs.config({
+      baseUrl: '.'
+    });
+  </script>
+  <!-- Dashboard Core -->
+  <link href="<?= theme_url() ?>assets/css/dashboard.css" rel="stylesheet" />
+  <script src="<?= theme_url() ?>assets/js/dashboard.js"></script>
+  <!-- c3.js Charts Plugin -->
+  <link href="<?= theme_url() ?>assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
+  <script defer src="<?= theme_url() ?>assets/plugins/charts-c3/plugin.js"></script>
+  <!-- Google Maps plugin -->
+  <link href="<?= theme_url() ?>assets/plugins/maps-google/plugin.css" rel="stylesheet" />
+  <script src="<?= theme_url() ?>assets/plugins/maps-google/plugin.js"></script>
+  <!-- Input Mask Plugin -->
+  <script src="<?= theme_url() ?>assets/plugins/input-mask/plugin.js"></script>
+  
+  </head>
+  <body class="">
+    <div class="page">
+      <div class="page-content">
+        <div class="container text-center">
+          <div class="display-1 text-muted mb-5"><i class="si si-exclamation"></i> <?= $status_code ?></div>
+          <h1 class="h2 mb-3"><?= $heading ?></h1>
+          <p class="h4 text-muted font-weight-normal mb-7"><?= $message ?></p>
+          <a class="btn btn-primary" href="javascript:history.back()">
+            <i class="fe fe-arrow-left mr-2"></i>Go back
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
