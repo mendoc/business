@@ -39,7 +39,7 @@
                                         <?= number_format($retrait->montant_retrait, 0, '', ' '); ?> F CFA
                                     </td>
                                     <td>
-                                       0<?= number_format($retrait->num_ret, 0, '', ' '); ?>
+                                       <?= $retrait->num_ret ?>
                                     </td>
                                     <td>
                                         <?= $retrait->nom_prenom ?>

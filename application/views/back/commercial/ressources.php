@@ -22,22 +22,16 @@
                                     <img src="<?= theme_url() ?>demo/photos/grant-ritchie-338179-500.jpg" alt="Photo by Nathan Guerrero" class="rounded">
                                 <?php endif; ?>
                             </a>
-                            <div class="d-flex align-items-center p-2">
+                            <div class="d-flex align-items-center flex-wrap p-2">
                                 <div>
                                     <div><?= $image->nom_res ?></div>
                                     <small class="d-block text-muted">Publié le <?= date_format(date_create($image->date_res), " d M à H:i"); ?></small>
                                 </div>
                                 <div class="ml-auto text-muted">
-                                    <a href="javascript:void(0)" class="icon d-none d-md-inline-block ml-3"><i class="fe fe-share-2 mr-1"></i></a>
+                                    <a href="<?= site_url('commercial/telecharger_ressource/' . $image->id_res) ?>" class="icon ml-3"><i class="fa fa-download mr-1" aria-hidden="true"></i></a>
                                 </div>
                             </div>
-                            <?php if (isset($image->lien_gen)) : ?>
-                                <button data-lien="<?= site_url('partage/') . $image->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
-                            <?php else : ?>
-                                <button data-ressource="<?= $image->id_res ?>" class="btn btn-outline-primary mt-2 action generer">Gérérer le lien</button>
-                                <button class="btn btn-primary rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
-                                <button class="btn btn-outline-success mt-2 action copier d-none">Copier le lien</button>
-                            <?php endif; ?>
+
                         </div>
 
                     </div>
@@ -45,7 +39,7 @@
             <?php endif; ?>
         </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
         <div class="page-header">
             <h1 class="page-title border-bottom">
                 Vidéos
@@ -88,7 +82,7 @@
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-    </div>
+    </div> -->
     <div class="container">
         <div class="page-header">
             <h1 class="page-title border-bottom">
@@ -113,14 +107,8 @@
                                     <div><?= $document->nom_res ?></div>
                                     <small class="d-block text-muted">Publié le <?= date_format(date_create($document->date_res), " d M à H:i"); ?></small>
                                 </div>
-                                <div class="">
-                                    <?php if (isset($document->lien_gen)) : ?>
-                                        <button data-lien="<?= site_url('partage/') . $document->lien_gen ?>" class="btn btn-outline-success mt-2 action copier">Copier le lien</button>
-                                    <?php else : ?>
-                                        <button data-ressource="<?= $document->id_res ?>" class="btn btn-sm btn-outline-primary mt-2 action generer">Gérérer le lien</button>
-                                        <button class="btn btn-primary btn-sm rounded-0 btn-loading mt-2 d-none action">&nbsp;</button>
-                                        <button class="btn btn-outline-success btn-sm mt-2 action copier d-none">Copier le lien</button>
-                                    <?php endif; ?>
+                                <div class="ml-auto text-muted">
+                                    <a href="<?= site_url('commercial/telecharger_ressource/' . $document->id_res) ?>" class="icon d-none d-md-inline-block ml-3"><i class="fa fa-download mr-1" aria-hidden="true"></i></a>
                                 </div>
                             </div>
 

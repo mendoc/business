@@ -1990,7 +1990,7 @@ pre code {
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid rgba(0, 40, 100, 0.12);
-    border-radius: 10px;
+    border-radius: 6px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
@@ -2867,16 +2867,17 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-    color: #467fcf;
-    background-color: transparent;
-    background-image: none;
-    border-color: #467fcf;
+    color: #fff;
+    background-color: #cd201f;
+    /* background-color: transparent;
+    background-image: none; */
+    /* border-color: #cd201f; */
 }
 
 .btn-outline-primary:hover {
-    color: #fff;
-    background-color: #467fcf;
-    border-color: #467fcf;
+    color: #cd201f;
+    background: #fff;
+    border-color: #cd201f;
 }
 
 .btn-outline-primary:focus,
@@ -3057,15 +3058,13 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-danger {
-    color: #cd201f;
-    background-color: transparent;
-    background-image: none;
-    border-color: #cd201f;
+    color: #fff;
+    background-color: #cd201f;
 }
 
 .btn-outline-danger:hover {
-    color: #fff;
-    background-color: #cd201f;
+    color: #cd201f;
+    background-color: #fff;
     border-color: #cd201f;
 }
 
@@ -3878,7 +3877,7 @@ input[type="button"].btn-block {
     display: inline-block;
     width: 100%;
     height: 2.375rem;
-    /* padding: 0.5rem 1.75rem 0.5rem 0.75rem; */
+    padding: 0.5rem 1.75rem 0.5rem 0.75rem;
     line-height: 1.5;
     color: #495057;
     vertical-align: middle;
@@ -3886,11 +3885,12 @@ input[type="button"].btn-block {
     background-size: 8px 10px;
     border: 1px solid rgba(0, 40, 100, 0.12);
     border-radius: 3px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    /* -webkit-appearance: none; */
+    /* -moz-appearance: none; */
+    /* appearance: none; */
     margin-top: -.3rem;
-    border-radius: 15px;
+    cursor: pointer;
+    /* border-radius: 15px; */
 }
 
 .custom-select:focus {

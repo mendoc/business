@@ -30,31 +30,12 @@
   <script src="<?= theme_url() ?>assets/js/dashboard.js"></script>
   <!-- c3.js Charts Plugin -->
   <link href="<?= theme_url() ?>assets/plugins/charts-c3/plugin.css" rel="stylesheet" />
-  <script src="<?= theme_url() ?>assets/plugins/charts-c3/plugin.js"></script>
+  <script defer src="<?= theme_url() ?>assets/plugins/charts-c3/plugin.js"></script>
+  <!-- Google Maps plugin -->
+  <link href="<?= theme_url() ?>assets/plugins/maps-google/plugin.css" rel="stylesheet" />
+  <script src="<?= theme_url() ?>assets/plugins/maps-google/plugin.js"></script>
   <!-- Input Mask Plugin -->
   <script src="<?= theme_url() ?>assets/plugins/input-mask/plugin.js"></script>
-
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-
-    gtag('config', 'G-4D8CEC5J5T');
-  </script>
-  <!-- Hotjar Tracking Code for https://business.ecole241.org -->
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2094197,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+  
+  
 </head>

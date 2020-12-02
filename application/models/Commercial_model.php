@@ -10,7 +10,7 @@ class Commercial_model extends CI_Model
     public $email;
     public $sexe;
     public $date_n;
-    public $nom_util;
+    //public $nom_util;
     public $mot_passe;
     public $hash;
     public $raccourci;
@@ -30,6 +30,13 @@ class Commercial_model extends CI_Model
     {
         $query = $this->db->get($this->table);
         return $query->result();
+    }
+
+    public function array_commerciaux()
+    {
+        $this->db->select('id_com, nom_prenom, num_tel, num_what, email, sexe, date_n, nbr_visite');
+        $query = $this->db->get($this->table);
+        return $query->result_array();
     }
 
     public function connexion($email, $mot_passe)
@@ -157,6 +164,7 @@ class Commercial_model extends CI_Model
     public function classement()
     {
         $sql = "SELECT
+                    `eb_commercial`.`id_com`,
                     `nom_prenom`,
                     `nbr_visite`,
                     `com`.`nb_candidats`
@@ -174,5 +182,90 @@ class Commercial_model extends CI_Model
                 ORDER BY `com`.`nb_candidats` DESC, `nbr_visite` ASC;";
 
         return $this->db->query($sql)->result();
+    }
+
+    //listing des paiements qui octroient des commissions au commercial
+
+    public function paiement_commission_presentiel($id)
+    {
+        $sql = "SELECT nom_prenom, date 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND type_cours = \"P\"
+        AND id_can IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = ?)";
+        return $this->db->query($sql, array($id, PRIX_PRESENTIEL));
+    }
+
+    public function paiement_commission_ligne($id)
+    {
+        $sql = "SELECT nom_prenom, date 
+        FROM eb_candidat 
+        WHERE id_com = ?
+        AND type_cours = \"L\"
+        AND id_can IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can 
+        HAVING SUM(montant) = ?)";
+        return $this->db->query($sql, array($id, PRIX_EN_LIGNE));
+    }
+
+    public function inscrit_non_paye_com($id, $limite, $debut) //listing des inscrits qui n'ont encore rien payé
+    {
+        $sql = "SELECT * FROM `eb_candidat` WHERE id_com = ? 
+        AND id_can
+        NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
+        INNER JOIN eb_paiement 
+        ON eb_candidat.id_can = eb_paiement.id_can )
+        LIMIT ?,?";
+
+        return $this->db->query($sql, array($id,$debut,$limite))->result();
+    }
+
+    public function nb_inscrit_non_paye_com($id) //listing des inscrits qui n'ont encore rien payé
+    {
+        $sql = "SELECT COUNT(`eb_candidat`.`id_can`) AS nb_inscrit_non_paye FROM `eb_candidat` WHERE id_com = ? 
+        AND id_can
+        NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
+        INNER JOIN eb_paiement 
+        ON eb_candidat.id_can = eb_paiement.id_can )
+        ";
+
+        $query = $this->db->query($sql, $id)->row();
+        return $query->nb_inscrit_non_paye;
+    }
+
+    public function aspirant_com ($id) //Nombre des aspirants
+    {
+        $sql = "SELECT COUNT(eb_candidat.id_can) AS nb_aspirant_com 
+        FROM eb_candidat 
+        INNER JOIN eb_paiement ON eb_candidat.id_can = eb_paiement.id_can
+        WHERE id_com = ?
+        AND eb_paiement.id_can NOT IN ( SELECT id_can
+        FROM eb_paiement 
+        GROUP BY id_can
+        HAVING SUM(montant) = ?) ";
+        return $this->db->query($sql, array($id, PRIX_PRESENTIEL))->row();
+    }
+
+    public function recherche_commercial($nom_prenom)
+    {
+        $this->db->like('nom_prenom', $nom_prenom);
+        return $this->db->get($this->table)->result();
+    }
+
+    // Renvoie le nombre de commerciaux
+    public function nombre_commerciaux()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de commerciaux dans un intervalle precis
+    public function interval_commercial($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
     }
 }

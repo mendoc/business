@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Devenir Commercial</title>
+    <title>Devenir Commercial - ECOLE 241 BUSINESS</title>
 
     <meta name="description" content="Deviens commercial pour le compte de l'Ecole 241 Business et fais-toi de l'argent gr&acirc;ce &agrave; tes aptitudes en communication." />
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
@@ -30,10 +30,44 @@
         }
 
 
+        @media only screen and (max-width: 648px) {
+
+            .header__navCtas {
+                margin-left: -20px;
+            }
+
+        }
+
+        @media only screen and (max-width: 846px) {
+
+            .header__navCtas {
+                margin-left: -20px;
+            }
+
+        }
+
+        @media screen and (max-width:600px) {
+            #headerMenuButton {
+                display: block;
+            }
+
+            .header__navCtas {
+                display: none;
+            }
+
+            div.galleryItem {
+                width: 90% !important;
+            }
+        }
+
 
         @media only screen and (max-width: 750px) {
             body {
                 --title-scale: 0.7;
+            }
+
+            .cacher {
+                display: none !important;
             }
         }
 
@@ -182,28 +216,36 @@
         }
     </style>
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+    <?php if (ENVIRONMENT !== 'development') : ?>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        gtag('config', 'G-4D8CEC5J5T');
-    </script>
-    <script>
-        (function(h,o,t,j,a,r){
-            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-            h._hjSettings={hjid:2094197,hjsv:6};
-            a=o.getElementsByTagName('head')[0];
-            r=o.createElement('script');r.async=1;
-            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-            a.appendChild(r);
-        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+            gtag('config', 'G-4D8CEC5J5T');
+        </script>
+        <script>
+            (function(h, o, t, j, a, r) {
+                h.hj = h.hj || function() {
+                    (h.hj.q = h.hj.q || []).push(arguments)
+                };
+                h._hjSettings = {
+                    hjid: 2094197,
+                    hjsv: 6
+                };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script');
+                r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+                a.appendChild(r);
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+        </script>
+    <?php endif; ?>
 </head>
 
 <body>
@@ -214,16 +256,7 @@
                 <div class="spacer"></div>
                 <div class="headerNav__links"></div>
                 <!-- Icônes des réseaux sociaux -->
-                <div class="header__navCtas" style="margin-right: 35%;">
-                    <!-- Icône pour Linkedin dans le header -->
-                    <a href="https://www.linkedin.com/company/business-ecole241" class="btn btn--c btn--secondary" style="color: #ffffff;">
-                        <img src="https://img.icons8.com/fluent/30/000000/linkedin.png" />
-                    </a>
-                    <!-- Icône pour Facebook dans le header -->
-                    <a href="https://www.facebook.com/ecole-241-business-101322485115490" class="btn btn--c btn--secondary" style="color: #ffffff;">
-                        <img src="https://img.icons8.com/fluent/30/000000/facebook-new.png" />
-                    </a>
-                </div>
+
                 <div class="header__navCtas">
                     <a href="<?= site_url('commercial/inscription') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">
                         Je me lance
@@ -241,7 +274,7 @@
         </div>
         <nav id="headerDrawer" class="headerMenu col-dark-sec">
             <div id="headerDrawerBackdrop" class="headerMenu__backdrop"></div>
-            <div class="headerMenu__wrapper" style=": #ffffff;">
+            <div class="headerMenu__wrapper" style="color: #ffffff;">
                 <ul class="headerMenu__links">
                     <li>
                         <a href="<?= site_url('commercial/inscription') ?>" class="drawerLink col-dark">
@@ -406,7 +439,8 @@
             <div class="footer footer--simple">
                 <div class="footer__primary">
                     <span>&copy; 2020 Ecole 241 Business</span> <br>
-                    <span>(+241) 62 13 07 07 | contact@business.ecole241.org</span>
+                    <a href="tel:+241 62 13 07 07">(+241) 62 13 07 07 |</a>
+                    <a href="mailto:business@ecole241.org">business@ecole241.org</a>
                     <nav class="footer__linkRow"><a href="<?= site_url('commercial/inscription') ?>">Programme d'affiliation</a><a href="<?= site_url('commercial/inscription') ?>">S'inscrire</a></nav>
                 </div>
                 <ul class="footer__social">
@@ -425,7 +459,38 @@
                         </a>
                     </li>
                 </ul>
+
+
+                <!-- ===========================* ancre *======================== -->
+                <div class="ancre">
+
+
+                    <a href="#" style=" right: 1.2em;
+                            background:rgba(255, 51, 51, 1); border: none; position: fixed;
+                            bottom: 1.2em;
+                            display: block;
+                            width: 15px;
+                            height: 15px;
+                            margin: 0;
+                            padding: 15px;
+                            border-radius:50%;
+                            box-shadow: 0 3px 3px #fff;
+                            line-height: 44px;"> <svg class="arrow up" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="5 0 50 80" xml:space="preserve">
+                            <polyline fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" points="
+                                            0.375, 35.375 28.375, 0.375 58.67, 35.375 " style=" position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                font-size: .9em;
+                                cursor: pointer;" />
+                        </svg>
+                    </a>
+                </div>
+
             </div>
+
+
+
+
         </div>
     </footer>
     <div style="position: relative;">
@@ -436,7 +501,7 @@
         !(function() {
             function e() {
                 var e;
-                window.innerWidth < s + l + 60 + (u ? 60 : 40) + 10 ? d.classList.add("header--withDrawer") : d
+                window.innerWidth < 600 ? d.classList.add("header--withDrawer") : d
                     .classList.remove("header--withDrawer"),
                     r && ((e = d.getBoundingClientRect().height), r.setAttribute("style", "height:" + e + "px"));
             }

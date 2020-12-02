@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/connexion_commercial.css">
-    <title>Formulaire</title>
+    <title>Connexion du gestionnaire - Ecole 241 Business </title>
 
     <style>
         body {
@@ -14,7 +14,7 @@
 
     </style>
     <!-- Hotjar Tracking Code for https://business.ecole241.org -->
-    <script>
+    <!-- <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
             h._hjSettings={hjid:2094197,hjsv:6};
@@ -23,7 +23,7 @@
             r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -31,20 +31,23 @@
         <div class="form-container sign-in-container">
 
             <form action="<?= site_url('gestionnaire/traitement_connexion') ?>" method='post'>
-                <img src="<?= theme_url() ?>assets/images/blue.png" alt="Image de fond" width="150px">
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="Image de fond" width="150px">
                 <h1 class="h1">Connexion</h1>
                 <?php if ($this->session->flashdata('message')) : ?>
                     <p style="padding: 5px 10px; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message'); ?></p>
                 <?php endif; ?>
+                <?php if ($this->session->flashdata('message-success')) : ?>
+                    <p style="padding: 5px 10px; font-weight: bold; color: #008148; margin:0;"><?= $this->session->flashdata('message-success'); ?></p>
+                <?php endif; ?>
                 <input type="email" placeholder="Adresse e-mail" name="email" required value="<?= $this->session->flashdata('email'); ?>" />
                 <input type="password" placeholder="Mot de passe" name="password" required />
                 
-                <div class="souvenir">
+                <!-- <div class="souvenir">
                     <label for="souvenir" class="btn-souvenir">Se souvenir de moi</label>
                     <input type="checkbox" name="souvenir" id="souvenir" class="check-btn" checked>
-                </div>
+                </div> -->
 
-                <a href="#">Mot de passe oublié ?</a>
+                <a href="<?= site_url('gestionnaire/reinitialiser_mot_de_passe') ?>">Mot de passe oublié ?</a>
                 <button type="submit">SE CONNECTER</button>
             </form>
         </div>

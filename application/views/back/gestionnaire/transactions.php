@@ -12,8 +12,9 @@
                     <p>Ici s'afficheront toutes les transactions financières de la plateforme.</p>
                 </div>
             <?php else : ?>
-                <div class="card-header">
+                <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title">Historique des transactions</h3>
+                    <a href="<?= site_url('gestionnaire/export_transaction_candidat') ?>" class="btn btn-warning">Exporter en CSV</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table card-table table-vcenter text-nowrap">
@@ -32,7 +33,7 @@
                                     <td><?= $paiement->nom_candidat ?></td>
                                     <td><?= ($paiement->type == 'P') ? 'En presentiel' : 'En ligne' ?></td>
                                     <td><?= number_format($paiement->montant, 0, ',', ' ') ?> F CFA</td>
-                                    <td><?= number_format(150000 - $paiement->montant, 0,',',' ') ?> F CFA</td>
+                                    <td><?= number_format($paiement->max_montant - $paiement->montant, 0,',',' ') ?> F CFA</td>
                                     <td><?= $paiement->gestionnaire ?></td>
                                 </tr>
                             <?php endforeach; ?>
@@ -41,6 +42,10 @@
                 </div>
             <?php endif; ?>
         </div>
+
+        <nav aria-label="Page navigation Candidat" class="d-flex justify-content-center"> 
+            <?= $liens_de_pagination ?>
+        </nav>
     </div>
 
 </div>

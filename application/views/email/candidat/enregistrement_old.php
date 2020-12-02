@@ -380,7 +380,7 @@
     <main class="container">
         <div class="main-content">
             <div class="logo">
-                <img src="<?= theme_url() ?>assets/images/Ebusiness.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px">
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px">
             </div>
             <h1 class="title">Inscription enregistrée</h1>
             <!-----<a class="confirm-account" href="#">Confirmez votre inscription</a>----->
@@ -447,7 +447,7 @@
             <div class="sec-2">
                 <p class="mb-15"><a>Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>
                 <p class="mb-15"><a>Ancienne SOBRAGA (descente en face de Multipress) Libreville - GABON</a></p>
-                <p class="mb-15"><a>B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
+                <p class="mb-15"><a>B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / business@ecole241.org</a></p>
 
             </div>
 

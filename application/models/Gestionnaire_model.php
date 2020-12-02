@@ -33,7 +33,7 @@ class Gestionnaire_model extends CI_Model
 
     public function recuperer_un_gestionnaire($id)
     {
-        $query = $this->db->get($this->table, array($this->id => $id));
+        $query = $this->db->get_where($this->table, array($this->id => $id));
         return $query->row();
     }
 
@@ -73,6 +73,24 @@ class Gestionnaire_model extends CI_Model
     {
         $query = $this->db->get_where($this->table, array('email_gest' => $email));
         return $query->row();
+    }
+
+    public function modifier_mot_de_passe($id, $mot_de_passe)
+    {
+        return $this->db->update($this->table, array('mot_passe' => $mot_de_passe), array($this->id => $id));
+    }
+
+    // Renvoie le nombre de gestionnaire
+    public function nombre_gestionnaire()
+    {
+        return $this->db->count_all($this->table);
+    }
+
+    // Renvoie le nombre de gestionnaire dans un intervalle precis
+    public function recuperer_gestionnaire($limite, $debut)
+    {
+        $this->db->limit($limite, $debut);
+        return $this->db->get($this->table)->result();
     }
 
 

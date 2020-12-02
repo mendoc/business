@@ -13,13 +13,6 @@ class Test extends CI_Controller
 	public function index()
 	{
 		// On charge le modele
-		$message = $this->load->view('email/candidat/enregistrement', '', TRUE);
-
-		$cles    = array('{NOM}', '{LIEN}', '{EMAIL}', '{PASS}');
-		$valeurs = array('Dimitri ONGOUA', site_url('gestionnaire'), 'ongouadimitri5@gmail.com', '7842');
-
-		$message = str_replace($cles, $valeurs, $message);
-
-		echo $message;
+		$this->load->view('front/candidat/nouveau_formulaire_candidat');
 	}
 }

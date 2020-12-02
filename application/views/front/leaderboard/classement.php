@@ -20,18 +20,12 @@
 
     <link rel="stylesheet" href="<?= theme_url() ?>assets/css/leaderboard.css" />
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4D8CEC5J5T"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag("js", new Date());
-
-        gtag("config", "G-4D8CEC5J5T");
+        setInterval(() => {
+            location.reload()
+        }, 5 * 60 * 1000);
     </script>
+    
 </head>
 
 <body translate="no">
@@ -42,6 +36,30 @@
             </h4>
             <span class="c-chip c-chip--success" onclick="javacript:location.reload()">Actualiser</span>
         </div>
+        <div>
+            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time></p>
+            <table class="table mb-5">
+                <thead class="table-head">
+                    <tr class="">
+                        <th colspan="2">Nombre d'apprenants</th>
+                    </tr>
+                </thead>
+                <tbody class="table-body">
+                    <tr class="table-row">
+                        <td>En ligne</td>
+                        <td><?= $nb_apprenant_ligne ?></td>
+                    </tr>
+                    <tr class="table-row">
+                        <td>En presentiel</td>
+                        <td><?= $nb_apprenant_presentiel ?></td>
+                    </tr>
+                    <tr class="table-row bg-dark">
+                        <td>Total</td>
+                        <td><?= $nb_apprenant_ligne + $nb_apprenant_presentiel ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <table class="c-table">
             <thead class="c-table__head">
                 <tr class="c-table__head-row">
@@ -49,6 +67,9 @@
                     <th class="c-table__head-cell">Commercial</th>
                     <th class="c-table__head-cell">Visites</th>
                     <th class="c-table__head-cell u-text--right">Candidats</th>
+                    <th class="c-table__head-cell u-text--right">Aspirant</th>
+                    <th class="c-table__head-cell u-text--right">Affiliés</th>
+                    <th class="c-table__head-cell u-text--right">% Conv.</th>
                 </tr>
             </thead>
             <tbody>
@@ -62,50 +83,23 @@
                         </td>
                         <td class="c-table__cell c-table__cell--count"><small><?= $commercial->nbr_visite ?></small></td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <strong><?= $commercial->nb_candidats ? $commercial->nb_candidats : 0 ?></strong>
+                            <strong><?= $commercial->nb_candidats ?></strong>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <?= $commercial->nb_aspirant ?>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <?= $commercial->nb_affilies ?>
+                        </td>
+                        <td class="c-table__cell c-table__cell--points u-text--right">
+                            <span><?= $commercial->nbr_visite == 0 ? 0  : number_format(($commercial->nb_candidats / $commercial->nbr_visite) * 100, 1,",", " " ); 
+                                      ?></span>
                         </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
-    <!-- Code injected by live-server -->
-    <script type="text/javascript">
-        // <![CDATA[  <-- For SVG support
-        if ('WebSocket' in window) {
-            (function() {
-                function refreshCSS() {
-                    var sheets = [].slice.call(document.getElementsByTagName("link"));
-                    var head = document.getElementsByTagName("head")[0];
-                    for (var i = 0; i < sheets.length; ++i) {
-                        var elem = sheets[i];
-                        var parent = elem.parentElement || head;
-                        parent.removeChild(elem);
-                        var rel = elem.rel;
-                        if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                            var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                            elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                        }
-                        parent.appendChild(elem);
-                    }
-                }
-                var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                var address = protocol + window.location.host + window.location.pathname + '/ws';
-                var socket = new WebSocket(address);
-                socket.onmessage = function(msg) {
-                    if (msg.data == 'reload') window.location.reload();
-                    else if (msg.data == 'refreshcss') refreshCSS();
-                };
-                if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                    console.log('Live reload enabled.');
-                    sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                }
-            })();
-        } else {
-            console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-        }
-        // ]]>
-    </script>
 </body>
 
 </html>

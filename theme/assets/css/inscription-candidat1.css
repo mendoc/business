@@ -21,7 +21,7 @@ body {
 
 .container {
     display: flex;
-    height: 100vh;
+    height: 120vh;
     justify-content: space-between;
 }
 
@@ -33,6 +33,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+.erreurs {
+    color: #ff0000;
+    font-size: .8em;
 }
 
 .gauche {
@@ -48,7 +53,7 @@ body {
 
 /* --===============***date de naissance selectionnée ***================--*/
 
-.selection{
+.selection {
     -webkit-appearance: none;
     -moz-appearance: none;
     -ms-appearance: none;
@@ -67,11 +72,10 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
-.input-group{
+.input-group {
     display: flex;
     justify-content: space-between;
 }
-
 
 .choix {
     margin-top: 2px;
@@ -101,20 +105,28 @@ body {
     color: #1b4c7e;
 }
 
-.groupe-champ-de-saisie{
+.groupe-champ-de-saisie {
     width: 100%;
     margin: 5px 0;
 }
 
 
+/* --=============* message de confidentialité *===============-- */
+
+.msg-confidentiel {
+    margin-top: 20px;
+    font-weight: 100;
+    font-size: .9em;
+    text-align: center;
+    color: #666;
+}
+
 @media screen and (max-width: 475px) {
     .gauche {
-        height: 130vh;
+        /* height: 150vh; */
         padding: 0!important;
         /* margin-bottom: 4em; */
     }
-
-    
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px) {
@@ -136,15 +148,36 @@ form {
     border-bottom: 11px solid #003366;
 }
 
+.label1 {
+    color: #6d6c6c;
+    margin-top: 10px;
+    position: unset;
+    font-size: 13px;
+}
+
 @media screen and (max-width: 360px) {
-    .formulaire{
+    .gauche {
+        height: 160vh;
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: 20px;
+    }
+    .formulaire {
         height: 100%;
     }
 }
 
-
 @media screen and (min-width: 402px) and (max-width: 411px) {
-    
+    .gauche {
+        height: 100%;
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: -5em;
+    }
     form {
         width: 100%;
         padding: 40px 20px !important;
@@ -174,10 +207,13 @@ form {
     margin-right: auto;
     margin-left: auto;
     position: relative;
-    height: 5em;
+    /* height: 5em; */
 }
 
 @media screen and (max-width: 375px) {
+    .msg-confidentiel {
+        margin-top: 10px;
+    }
     .logo>img {
         margin-top: -1em;
     }
@@ -255,7 +291,7 @@ h1 {
 
 /* Tous les label  */
 
-label {
+.label1 {
     position: absolute;
     transform: translateY(6px);
     left: 2px;
@@ -265,17 +301,59 @@ label {
     font-size: 13px;
 }
 
-label .etoile {
+.label2 {
+    color: #6d6c6c;
+}
+
+.po {
     position: relative;
-    float: left;
-    margin: 2px;
+}
+
+
+/* .couleur {
+    position: relative;
+    margin-left: 2px;
+    color: #f00;
+} */
+
+.etoile1 {
+    display: block;
+    position: absolute;
+    left: 5.5px;
+    top: 11px;
+    font-size: .8em;
+    position: absolute;
     color: #ff0000;
+}
+
+.etoile2 {
+    left: 6.5px;
+    top: 35px;
+    font-size: .8em;
+    color: #ff0000;
+    position: absolute;
+    display: block;
+}
+
+.input2 {
+    margin-top: 7PX;
 }
 
 label .etoile-mail {
     position: relative;
     color: #ff0000;
     float: left;
+}
+
+.label1 .etoile {
+    position: relative;
+    float: left;
+    margin: 2px;
+    color: #ff0000;
+}
+
+.dispplay-flex {
+    display: flex;
 }
 
 label.active {
@@ -304,55 +382,57 @@ label.highlight {
 }
 
 @media screen and (max-width: 475px) {
+    .gauche {
+        /* height: 160vh; */
+        margin-top: -2em;
+        overflow-y: scroll;
+    }
+    .msg-confidentiel {
+        margin-top: 50px;
+    }
     .input {
         font-size: 16px;
         margin-bottom: 8px;
         padding: 16px;
     }
-
     textarea .textarea {
         height: 1%;
     }
-
-    /* .form{
-        height: 100%;
-    } */
-    form{
+    form {
         padding: 20px;
     }
-    h1{
+    h1 {
         font-size: 1.3em;
     }
-
-    .formulaire{
+    .formulaire {
         height: 100%;
         box-sizing: border-box;
     }
-
-
-
 }
 
-@media screen and (max-width: 320px){
-    .formulaire{
+@media screen and (max-width: 320px) {
+    .gauche {
+        height: 160vh;
+        margin-top: -2em;
+    }
+    .msg-confidentiel {
+        margin-top: 20px;
+    }
+    /* .formulaire {
         height: 230%;
         box-sizing: border-box;
         margin-top: -30em;
-    }
-
-    .input{
+    } */
+    .input {
         height: 2.3em;
     }
-    .select{
+    .select {
         height: .7em;
     }
-    .bouton{
+    .bouton {
         margin-top: 0 !important;
     }
-
-} 
-
-
+}
 
 input,
 textarea {
@@ -379,7 +459,15 @@ textarea {
         display: none;
     }
     .select::after {
-        top: -7px !important;
+        padding: 15px 10px !important;
+    }
+    .etoile2 {
+        left: 6.5px;
+        top: 35px;
+        font-size: .8em;
+        color: #ff0000;
+        position: absolute;
+        display: block;
     }
 }
 
@@ -412,6 +500,8 @@ select {
     padding: 0 .5em;
     color: #6d6c6c;
     cursor: pointer;
+    border-radius: 5px;
+    padding-left: 13px;
     font-size: 0.98em;
     font-family: 'Montserrat', sans-serif;
 }
@@ -425,7 +515,7 @@ select::-ms-expand {
     position: relative;
     display: flex;
     height: 1.80em;
-    line-height: 3;
+    /* line-height: 3; */
     overflow: hidden;
     border-radius: .25em;
 }
@@ -447,9 +537,9 @@ select::-ms-expand {
     content: '\25BC';
     position: absolute;
     height: 5em;
-    top: -7px;
+    top: 0px;
     right: 0;
-    padding: 0 0.30em;
+    padding: 5px;
     background: #e1e2e2;
     color: #003366;
     cursor: pointer;
@@ -611,3 +701,14 @@ select::-ms-expand {
     color: #fff;
     text-align: center;
 }*/
+
+cursor: pointer;
+transition: all 0.2s ease;
+
+}
+.input-box select:focus {
+    background-color: #003366;
+    color: #fff;
+    text-align: center;
+}
+*/

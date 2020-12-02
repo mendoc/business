@@ -11,6 +11,7 @@
 
 
 <body style="background-color: #f4f4f4;
+            margin: 0;
             font-size: 10px;
             line-height: 1.3;
             font-family: 'Montserrat', sans-serif;">
@@ -32,7 +33,7 @@
         <div class="main-content" style=" width: 80%;
         margin: 0 auto;">
             <div class="logo">
-                <img src="<?= theme_url() ?>assets/images/Ebusiness.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px" style="margin: auto;
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="logo ECOLE 241 BUSINESS" width="260px" height="180px" style="margin: auto;
     display: flex;
     justify-items: center;
     justify-content: center;
@@ -55,9 +56,11 @@
             margin-bottom: 20px; font-size: 1.2rem;" class="third-text">Ci-dessous, les informations que vous avez fournies lors de votre enregistrement.</p>
 
 
-            <table style="width: 560px;
+            <table style="width: 100%;
                 border-collapse: collapse;
-                margin: 40px auto;">
+                margin: 40px auto;
+                font-family: 'Montserrat', sans-serif;""
+                >
 
                 <tbody>
                     <tr style="background: #ccc;">
@@ -81,7 +84,7 @@
                         text-align: left;
                          font-size: 13px;">{SEXE}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -90,7 +93,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{DATE}</span></td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
@@ -101,7 +104,7 @@
                         text-align: left;
                          font-size: 13px;">{EMAIL}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -110,8 +113,8 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{TEL}</span></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -120,7 +123,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;">{WHATSAPP}</td>
-                    </tr>
+                    </tr> -->
                     <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
@@ -141,7 +144,7 @@
                         text-align: left;
                          font-size: 13px;">{DOMAINE}</td>
                     </tr>
-                    <tr style="background: #ccc;">
+                    <!-- <tr style="background: #ccc;">
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -150,8 +153,8 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;"><span style=" color: #003366;">{SERVICE}</span></td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td style="padding: 5px;
                         border: 1px solid #ccc;
                         text-align: left;
@@ -160,7 +163,7 @@
                         border: 1px solid #ccc;
                         text-align: left;
                          font-size: 13px;">{ATTENNTES}</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
 
@@ -173,19 +176,19 @@
     </main>
 
 
-    <footer class="container footer-right" style="background-color: #ff0000;">
+    <footer class="container footer-right" style="background-color: #ff0000; max-width: 750px; margin: 0 auto">
         <section style="top: -50px;
         background-color: #003366;
         text-align: center;
         justify-content: center;
-        padding: 5px 0;" class="container need-help">
+        padding: 5px 10px;" class="container need-help">
             <div class="sec-2">
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
         font-weight: bold;">Ogooue Labs - Avenue François Xavier POUNEDIAN</a></p>
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
         font-weight: bold;">Ancienne SOBRAGA (descente en face de Multipress) Libreville - GABON</a></p>
                 <p style="font-size: 13px;" class="mb-15"><a style="color: #ffffff;
-        font-weight: bold;">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 / contact@ecole241.org</a></p>
+        font-weight: bold;">B.P: 2839 - Tel : +241 077 850 352 / +241 065 358 392 /business@ecole241.org</a></p>
 
             </div>
         </section>

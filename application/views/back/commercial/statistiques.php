@@ -70,7 +70,21 @@
                         </div>
                     </div>
                 </div>
-            </div>  
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="card" title="le nombre de personne qui ont déjà donné une avance">
+                    <div class="card-body p-2 text-center">
+                        <div class="text-right text-green">
+                            0%
+                            <i class="fe fe-chevron-up"></i>
+                        </div>
+                        <div class="h3 m-0"><?= $nb_aspirants - $nb_affilies_com_ligne ?></div>
+                        <div class="text-muted">
+                            Aspirants
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row row-cards">
             <div class="col-6 col-sm-4 col-lg-3">
@@ -137,7 +151,7 @@
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="form-group">
                             <label class="form-label">Entrez votre numero mobile money</label>
-                            <input class="form-control" name="numero" oninvalid="this.setCustomValidity('Saisissez un numero valide')" type="tel" pattern="^0(66|74|77|65|60|62)\d{6}" placeholder="numero mobile money" required />
+                            <input class="form-control" name="numero" type="tel" placeholder="numero mobile money" required />
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-3">
@@ -147,6 +161,9 @@
                         </div>
                     </div>
                     </form>
+                    <?php if ($this->session->flashdata('message')) : ?>
+                        <p style="padding:0 12px;text-align:center;font-size:1.2em; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message'); ?></p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

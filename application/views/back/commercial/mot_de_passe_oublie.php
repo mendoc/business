@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<?= theme_url() ?>/assets/css/connexion_commercial.css">
-    <title>Formulaire</title>
+    <title>Mot de passe oublié commercial - Formulaire</title>
     <!-- Hotjar Tracking Code for https://business.ecole241.org -->
     <script>
         (function(h,o,t,j,a,r){
@@ -24,7 +24,7 @@
         <div class="form-container sign-in-container">
 
             <form action="<?= site_url('commercial/traitement_mot_de_passe') ?>" method='post'>
-                <img src="<?= theme_url() ?>assets/images/blue.png" alt="Image de fond" width="150px">
+                <img src="<?= theme_url() ?>images/logoecole241.png" alt="Image de fond" width="150px">
                 <h1 class="h1">Rénitialiser le  mot de passe</h1>
                 <?php if ($this->session->flashdata('message-error')) : ?>
                     <p style="padding: 5px 10px; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('message-error'); ?></p>
