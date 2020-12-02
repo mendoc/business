@@ -111,6 +111,19 @@
             <div class="col-sm-12 col-lg-4">
                 <div class="card">
                     <div class="card-body p-3 text-center">
+                    <div class="text-right text-green">
+                            F CFA
+                        </div>
+                        <div class="h3 mb-2"><?= number_format($prevision_commission, 0, '', ' ')  ?> F CFA</div>
+                        <div class="text-muted mb-4">
+                            Prévision commission
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
                         <div class="text-right text-green">
                             F CFA
                             <!-- <i class="fe fe-chevron-up"></i> -->

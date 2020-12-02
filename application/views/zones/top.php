@@ -5,7 +5,7 @@
                 <div class="container">
                     <div class="d-flex align-items-center hauter justify-content-between">
                         <a class="header-brand" href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>">
-                            <img src="<?= theme_url() ?>images/logoecole241.png" style="width:150px; height:160" alt="tabler logo">
+                            <img src="<?= theme_url() ?>images/logoecole241.png" style="width:150px; height:160px" alt="tabler logo">
                         </a>
                         <div class="d-flex flex-row-reverse">
                             <div class="">
@@ -73,6 +73,11 @@
                                     </li>
                                     <li class=" d-none nav-item  m-0 dropdown">
                                         <a href="<?= site_url('commercial/partages') ?>" class="nav-link m-0"><i class="fe fe-share-2"></i> Partages</a>
+                                    </li>
+                                    <li class="nav-item  m-0">
+                                        <a href="<?= site_url('commercial/candidats') ?>" class="nav-link m-0">
+                                            <i class="fa fa-users" aria-hidden="true"></i> Mes prospects
+                                        </a>
                                     </li>
                                 <?php endif; ?>
                                 <?php if (est_un_gestionnaire()) : ?>

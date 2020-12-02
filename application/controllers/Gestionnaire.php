@@ -142,12 +142,14 @@ class Gestionnaire extends CI_Controller
 
 		// var_dump($jours);
 		// die;
+		$prevision_commission = ($nb_apprenants - $nb_vrai_apprenants) * COUT_PRESENTIEL * POURCENTAGE_PRE;
 
 
 		$data = array(
 			"cumul_candidats" => $cumul_candidats,
 			"dette_commercial" => ($cumul_comission_commercial - $total_retrait),
-			"solde_2" => $chiffre_affaire - $cumul_comission_commercial,
+			"prevision_commission" => $prevision_commission,
+			"solde_2" => $chiffre_affaire - $cumul_comission_commercial - $prevision_commission,
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
 			"nb_candidats" => ($nb_candidats - $nb_apprenants),
@@ -220,6 +222,7 @@ class Gestionnaire extends CI_Controller
 		// Chargement des modeles
 		$this->load->model('paiement_model');
 		$this->load->model('statistique_model');
+		$this->load->model('retrait_model');
 
 
 		$value = $this->input->get('q');
@@ -242,6 +245,10 @@ class Gestionnaire extends CI_Controller
 
 		foreach ($commerciaux as $commercial)
 		{
+			// Retrait d'un commercial
+			$somme_retrait = $this->retrait_model->pour_commercial($commercial->id_com);
+			$somme_retrait = isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0;
+			
 			// Nombre d'affiliés en présentiel du commercial
 			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
 			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
@@ -253,6 +260,29 @@ class Gestionnaire extends CI_Controller
 			else $nb_affilies_com_ligne = 0;
 
 			$commercial->nb_affilies = $nb_affilies_com_presentiel + $nb_affilies_com_ligne;
+
+			// Calcul du solde du commercial
+			$commission_ligne = $nb_affilies_com_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
+			$commission_presentiel = $nb_affilies_com_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
+
+			$commission_total = $commission_ligne + $commission_presentiel;
+			
+			$nb_bonus_ligne = 0;
+			$nb_bonus_presentiel = 0;
+
+			// Calcul des bonus 
+			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
+				$nb_bonus_ligne += 1;
+			}
+
+			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
+				$nb_bonus_presentiel += 1;
+			}
+
+			$commission_total += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
+
+			// On cree un attribue solde qui contient la commission total
+			$commercial->solde = $commission_total - $somme_retrait;
 		}
 
 		$data = [
@@ -274,6 +304,11 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
 		$this->load->library('pagination');
+		$this->load->library('breadcrumb');
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Commerciaux');
 
 		// Pagination 
 		$config['base_url'] = site_url('gestionnaire/commerciaux');
@@ -328,8 +363,17 @@ class Gestionnaire extends CI_Controller
 			$commercial->solde = $commission_total - $somme_retrait;
 		}
 
+		usort($commerciaux, function ($a, $b){
+			if ($a->solde == $b->solde) {
+				return 0;
+			}
+
+			return ($a->solde < $b->solde) ? 1 : -1;
+		});
+
 		$data = array(
 			"commerciaux" => $commerciaux,
+			"navigations" => $this->breadcrumb->rendu(),
 			"liens_de_pagination" => $this->pagination->create_links()
 		);
 
@@ -344,7 +388,16 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$this->load->library('pagination');
+		$this->load->library('breadcrumb');
 
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Candidats');
+		$data['navigations'] = $this->breadcrumb->rendu();
+
+
+		// Configuration de la pagination
 		$config['base_url'] = site_url('gestionnaire/candidats');
 		$config['total_rows'] = $this->candidat_model->nombre_candidats();
 		$config["per_page"] = 15;
@@ -374,7 +427,15 @@ class Gestionnaire extends CI_Controller
 
 	public function modifier_candidat($id_can)
 	{
+		$this->load->library('breadcrumb');
+
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
+
+			// Configuration du breadcrumb
+			$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+			$this->breadcrumb->ajouter_lien('Candidats', site_url('gestionnaire/candidats'));
+			$this->breadcrumb->ajouter_lien($candidat->nom_prenom , site_url('gestionnaire/detail_candidat/'. $candidat->id_can));
+			$this->breadcrumb->ajouter_lien('Modifications des informations de '. $candidat->nom_prenom);
 
 			[$annee , $mois, $jour] = explode('-', $candidat->date_n);
 			
@@ -382,7 +443,8 @@ class Gestionnaire extends CI_Controller
 				"candidat" => $candidat,
 				"annee" => $annee,
 				"mois" => $mois,
-				"jour" => $jour
+				"jour" => $jour,
+				"navigations" => $this->breadcrumb->rendu()
 			];
 
 			afficher('back/gestionnaire/modifier_candidat', $data);
@@ -954,8 +1016,16 @@ class Gestionnaire extends CI_Controller
 		}
 		$this->load->model('candidat_model');
 		$this->load->model('paiement_model');
+		$this->load->library('breadcrumb');
 
+		
 		$candidat = $this->candidat_model->recuperer($id);
+
+		// Configuration du breadcrumb
+		$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+		$this->breadcrumb->ajouter_lien('Candidats', site_url('gestionnaire/candidats'));
+		$this->breadcrumb->ajouter_lien($candidat->nom_prenom);
+
 		$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id);
 		$max_montant = $candidat->type_cours == 'P' ? PRIX_PRESENTIEL : PRIX_EN_LIGNE;
 
@@ -965,7 +1035,8 @@ class Gestionnaire extends CI_Controller
 		$data = array(
 			"candidat" => $this->candidat_model->recuperer($id),
 			"paiements" => $this->paiement_model->recuperer($id),
-			"est_apprenant" => $est_apprenant
+			"est_apprenant" => $est_apprenant,
+			"navigations" => $this->breadcrumb->rendu()
 		);
 
 		
@@ -982,10 +1053,19 @@ class Gestionnaire extends CI_Controller
 		// Chargement des models
 		$this->load->model('statistique_model');
 		$this->load->model('retrait_model');
+		$this->load->library('breadcrumb');
+
 
 		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
 
 		if($commercial = $this->commercial_model->recuperer_un($id)){
+
+			// Configuration du breadcrumb
+			$this->breadcrumb->ajouter_lien('Accueil', site_url('gestionnaire'));
+			$this->breadcrumb->ajouter_lien('Commerciaux', site_url('gestionnaire/commerciaux'));
+			$this->breadcrumb->ajouter_lien($commercial->nom_prenom);
+
+			// Gestion des stats du commercial
 			$result_aff_ligne = $this->statistique_model->affilies_com_ligne($id);
 			$result_aff_presentiel = $this->statistique_model->affilies_com_presentiel($id);
 			$result_candidats_ligne = $this->statistique_model->candidats_com_ligne($id);
@@ -1036,7 +1116,8 @@ class Gestionnaire extends CI_Controller
 				"inscrits_ligne" => $result_candidats_ligne,
 				"inscrits_presentiel" => $result_candidats_presentiel,
 				"montant_retrait" => isset($somme_retrait->montant_retrait) ? $somme_retrait->montant_retrait : 0,
-				"commission_total" => $commission_total
+				"commission_total" => $commission_total,
+				"navigations" => $this->breadcrumb->rendu()
 			];
 
 			afficher('back/gestionnaire/details_commercial', $data);
@@ -1059,8 +1140,6 @@ class Gestionnaire extends CI_Controller
 		$email_gest = $this->session->userdata('email_gest');
 		$gestionnaire = $this->gestionnaire_model->par_email($email_gest);
 
-		$montant = $this->input->post('montant');
-
 		// Recuperation des informations pour le traitement
 		if ($candidat = $this->candidat_model->recuperer($id_can)) {
 			$montant_candidat = $this->paiement_model->recuperer_tout_le_montant($id_can);
@@ -1069,36 +1148,43 @@ class Gestionnaire extends CI_Controller
 			if ($montant_candidat == $max_montant) {
 				redirect('gestionnaire/detail_candidat/' . $id_can);
 			} else {
-				// Creation du paiement 
-				$paiement = array(
-					'montant' => (int)$montant,
-					'motif' => $this->input->post('motif'),
-					'id_gest' => $gestionnaire->id_gest,
-					'id_can' => $id_can,
-					'justificatif' => $this->input->post('justificatif'),
-					'moyen_paie' => $this->input->post('moyen_paiement'),
-					'num_trans' => $this->input->post('num_trans')
-				);
 
-				// Si l'insertion se passe bien 
-				if ($paiement = $this->paiement_model->inserer($paiement)) {
-					// On charge la vue email
-					$message = $this->load->view('email/candidat/payement', '', TRUE);
+				$montant = $this->input->post('montant');
 
-					$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
-					$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
-					$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
-					$message = str_replace($cles, $valeurs, $message);
+				if ($montant <= $max_montant && ($montant + $montant_candidat) <= $max_montant) {
+
+					// Creation du paiement 
+					$paiement = array(
+						'montant' => (int)$montant,
+						'motif' => $this->input->post('motif'),
+						'id_gest' => $gestionnaire->id_gest,
+						'id_can' => $id_can,
+						'justificatif' => $this->input->post('justificatif'),
+						'moyen_paie' => $this->input->post('moyen_paiement'),
+						'num_trans' => $this->input->post('num_trans')
+					);
+					// Si l'insertion se passe bien 
+					if ($paiement = $this->paiement_model->inserer($paiement)) {
+						// On charge la vue email
+						$message = $this->load->view('email/candidat/payement', '', TRUE);
 	
-					// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
-					//$headers[] = 'MIME-Version: 1.0';
-					//$headers[] = 'Content-type: text/html; charset=iso-8859-1';
+						$cles    = array('{NOM}', '{TYPE_COURS}', '{MONTANT}', '{MONTANT_RESTANT}');
+						$valeurs = array(($candidat->sexe == 'F' ? 'Mme' : 'M.'), $candidat->nom_prenom, $candidat->sexe, $candidat->date_n, $candidat->email, $candidat->num_tel, $candidat->num_what, $candidat->horaire, $candidat->domaine_act, $candidat->type_serv, $candidat->attentes);
+						$valeurs = array($candidat->nom_prenom, $candidat->type_cours, $paiement->montant, ($max_montant - $paiement->montant));
+						$message = str_replace($cles, $valeurs, $message);
+		
+						// Pour envoyer un mail HTML, l'en-tête Content-type doit être défini
+		
+						$headers  = "MIME-Version: 1.0\r\n";
+						$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+						$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
 	
-					$headers  = "MIME-Version: 1.0\r\n";
-					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-					$headers .= "From: Ecole 241 Business <contact@business.ecole241.org>\r\n";
+						mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
+						redirect('gestionnaire/detail_candidat/' . $id_can);
+					}
 
-					mail($candidat->email,  'Ecole 241 Business - Confirmation du Paiement', $message, $headers);
+				} else {
+					$this->session->set_flashdata('message-error', "Le montant soumis est supérieur au montant à fournir");
 					redirect('gestionnaire/detail_candidat/' . $id_can);
 				}
 				

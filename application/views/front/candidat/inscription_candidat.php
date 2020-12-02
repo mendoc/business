@@ -77,7 +77,7 @@
                         <input type="hidden" name="hash" value="<?= $this->session->hash ?>">
                     <?php endif; ?>
                     <div class="logo">
-                        <img src="<?= theme_url() ?>assets/images/Ebusiness-logo.png" alt="logo de l'Ecole 241 BUSINESS">
+                        <img src="<?= theme_url() ?>images/logoecole241.png" width="160" alt="logo de l'Ecole 241 BUSINESS">
                     </div>
                     <h1>Inscription candidat</h1>
                     <!--===*** Nom et prenom ***===-->
@@ -172,7 +172,7 @@
                         </div> -->
                     <!-- </div> -->
 
-                    <div class="champ">
+                    <!-- <div class="champ">
                         <div class="po">
                             <label class="label2 " for="text">Date de naissance jj-mm-aaaa</label>
                             <span class="etoile2">*</span>
@@ -182,7 +182,7 @@
                             <?= form_error('annee') ?>
                         </div>
 
-                    </div>
+                    </div> -->
                     <!--===*** Date de naissance et choix du sexe ***===-->
                     <div class="groupe-champ-de-saisie">
                         <div class="les-champs">
@@ -262,8 +262,9 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="horaire" required>
                                     <option selected disabled>Horaire</option>
-                                    <option>Matin</option>
-                                    <option>Après-midi</option>
+                                    <option value="Matin">Matin (9h - 12h)</option>
+                                    <option value="Après-midi">Après-midi (14h -17h)</option>
+                                    <option value="Soir">Soir (17h - 20h)</option>
                                 </select>
                             </div>
                             <div class="erreurs">
@@ -279,8 +280,8 @@
                                 <div class="couleur"><span class="etoile1">*</span></div>
                                 <select name="type_cours">
                                     <option selected disabled>Type de cours</option>
-                                    <option value="P">En présentiel - 155.000fcfa</option>
-                                    <option value="L">En ligne - 90.000fcfa</option>
+                                    <option value="P">En présentiel</option>
+                                    <option value="L">En ligne</option>
                                 </select>
                             </div>
                             <div class="erreurs">
