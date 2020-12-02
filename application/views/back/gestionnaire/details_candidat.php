@@ -74,14 +74,16 @@
                         <p class="font-weight-bold"><?= $candidat->attentes; ?></p>
                     </div>
 
-                    <a href="<?= site_url('gestionnaire/modifier_candidat/' . $candidat->id_can) ?>" class="btn btn-primary rounded-0">
-                        Modifier les informations <i class="fa fa-pencil-square" aria-hidden="true"></i>
-                    </a>
+                    <?php if(type_profil() != SUPERVISEUR) : ?>
+                        <a href="<?= site_url('gestionnaire/modifier_candidat/' . $candidat->id_can) ?>" class="btn btn-primary rounded-0">
+                            Modifier les informations <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                        </a>
+                    <?php endif; ?>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-12">
 
-                <?php if (!$est_apprenant) : ?>
+                <?php if (type_profil() != SUPERVISEUR && !$est_apprenant): ?>
                     <form class="mb-4" action="<?= site_url('gestionnaire/inscription_candidat/' . $candidat->id_can); ?>" method="POST">
                         <div class="form-row">
                             <div class="col-lg-6 mb-4">

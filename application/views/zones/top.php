@@ -1,11 +1,11 @@
 <body class="">
     <div class="page">
         <div class="page-main">
-            <div class="header py-4">
+            <div class="header">
                 <div class="container">
-                    <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center hauter justify-content-between">
                         <a class="header-brand" href="<?= est_un_gestionnaire() ? site_url('gestionnaire') : site_url('commercial') ?>">
-                            <img src="<?= theme_url() ?>assets/images/logo.png" style="height: 50px" alt="tabler logo">
+                            <img src="<?= theme_url() ?>images/logoecole241.png" style="width:150px; height:160px" alt="tabler logo">
                         </a>
                         <div class="d-flex flex-row-reverse">
                             <div class="">
@@ -18,7 +18,27 @@
                                 <span class="d-none avatar" style="background-image: url(<?= theme_url() ?>demo/faces/male/41.jpg)"></span>
                                 <span class="ml-2 d-lg-block">
                                     <span class="text-default"><?= est_un_gestionnaire() ? $this->session->nom_gest : $this->session->nom_com ?></span>
-                                    <small class="text-muted d-block mt-1"><?= est_un_gestionnaire() ? 'Gestionnaire' : 'Commercial' ?></small>
+                                    <small class="text-muted d-block mt-1">
+                                        <?php 
+                                            switch (type_profil()) {
+                                                case SUPERVISEUR:
+                                                    echo 'Superviseur';
+                                                    break;
+                                                case TRESORIER:
+                                                    echo 'Tresorier';
+                                                    break;
+                                                case GESTIONNAIRE:
+                                                    echo 'Gestionnaire';
+                                                    break;
+                                                case ADMIN:
+                                                    echo 'Administrateur';
+                                                    break;
+                                                default:
+                                                    echo 'Commercial';
+                                                    break;
+                                            }
+                                         ?>
+                                    </small>
                                 </span>
                             </a>
                             <a href="<?= site_url('commercial/deconnexion') ?>" class="btn d-none btn-outline-danger btn-sm">Déconnexion</a>
@@ -29,8 +49,8 @@
                     </div>
                 </div>
             </div>
-            <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-                <div class="container">
+            <div class="  hauteur collapse d-lg-flex p-0" id="headerMenuCollapse">
+                <div class="container hauteur">
                     <div class="row align-items-center">
                         <div class="col-lg-3 ml-auto">
                             <?php if (est_un_gestionnaire()) : ?>
@@ -62,7 +82,7 @@
                                         </div>
                                     </li>
                                 <?php endif; ?>
-                                <?php if (est_un_gestionnaire()) : ?>
+                                <?php if (est_un_gestionnaire() && type_profil() != TRESORIER) : ?>
                                     <li class="nav-item  m-0">
                                         <a href="<?= site_url('gestionnaire/ressources') ?>" class="nav-link m-0"><i class="fe fe-file"></i> Ressources</a>
                                     </li>

@@ -30,7 +30,12 @@
                             foreach ($candidats as $candidat) : ?>
                                 <tr>
                                     <td><?= $candidat->nom_prenom ?></td>
-                                    <td><?= $candidat->num_tel ?></td>
+                                    <?php
+                                    if (empty($candidat->num_what)) { ?>
+                                        <td><a href="tel:<?= $candidat->num_tel ?>"><?= $candidat->num_tel ?></a></td>
+                                    <?php   } else { ?>
+                                        <td><a href="https://wa.me/<?= $candidat->num_what ?>"> <?= $candidat->num_what ?> </a></td>
+                                    <?php } ?>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
                                     <td><?= $candidat->domaine_act ?></td>
                                 </tr>
@@ -39,15 +44,9 @@
 
                     </tbody>
                 </table>
-                <?php
-                if (!empty($candidat)) { ?>
-                    <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center">
-                        <?= $liens ?>
-                    </nav>
-
-                <?php }
-
-                ?>
+                <nav aria-label="Page navigation Candidat" class="d-flex justify-content-around align-items-center">
+                    <?= $liens ?>
+                </nav>
             </div>
         </div>
     </div>

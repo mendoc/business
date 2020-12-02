@@ -114,7 +114,7 @@ button:hover {
 }
 
 .form-img img {
-    width: 15%;
+    /* width: 15%; */
     object-fit: cover;
 }
 

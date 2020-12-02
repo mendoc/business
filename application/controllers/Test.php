@@ -13,6 +13,7 @@ class Test extends CI_Controller
 	public function index()
 	{
 		// On charge le modele
-		$this->load->view('front/candidat/nouveau_formulaire_candidat');
+		// $this->load->view
+		afficher('back/gestionnaire/statistiques');
 	}
 }

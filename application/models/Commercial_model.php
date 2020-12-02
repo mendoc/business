@@ -215,13 +215,26 @@ class Commercial_model extends CI_Model
     public function inscrit_non_paye_com($id, $limite, $debut) //listing des inscrits qui n'ont encore rien payé
     {
         $sql = "SELECT * FROM `eb_candidat` WHERE id_com = ? 
-    AND id_can
-    NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
-    INNER JOIN eb_paiement 
-    ON eb_candidat.id_can = eb_paiement.id_can )
-    LIMIT ?,?";
+        AND id_can
+        NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
+        INNER JOIN eb_paiement 
+        ON eb_candidat.id_can = eb_paiement.id_can )
+        LIMIT ?,?";
 
-    return $this->db->query($sql, array($id,$debut,$limite))->result();
+        return $this->db->query($sql, array($id,$debut,$limite))->result();
+    }
+
+    public function nb_inscrit_non_paye_com($id) //listing des inscrits qui n'ont encore rien payé
+    {
+        $sql = "SELECT COUNT(`eb_candidat`.`id_can`) AS nb_inscrit_non_paye FROM `eb_candidat` WHERE id_com = ? 
+        AND id_can
+        NOT IN (SELECT eb_candidat.id_can FROM eb_candidat 
+        INNER JOIN eb_paiement 
+        ON eb_candidat.id_can = eb_paiement.id_can )
+        ";
+
+        $query = $this->db->query($sql, $id)->row();
+        return $query->nb_inscrit_non_paye;
     }
 
     public function aspirant_com ($id) //Nombre des aspirants
