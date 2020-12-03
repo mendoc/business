@@ -168,6 +168,30 @@
             </div>
         </div>
 
+        <!-- zone de message de retrait -->
+
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Mes demandes de retraits </h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table card-table table-vcenter text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Numero de telephone</th>
+                            <th>Montant</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="tel:+241062413491">+241 062 41 34 91</a> </td>
+                            <td class="text-danger font-weight-bold">1500 FCFA</td>
+                            <td> En attente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
     </div>
-</div>
