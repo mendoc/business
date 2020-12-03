@@ -103,6 +103,10 @@
             </div>
         </div>
 
+        <h2 class="page-title mb-5">
+            Total déjà payé aux commerciaux : <?= isset($total_transaction_commerciaux) ? number_format($total_transaction_commerciaux, 0, '.', ' ') : 0 ?> F CFA
+        </h2>
+
         <h2 class="page-title mb-5 text-danger">
             Dettes
         </h2>
@@ -125,7 +129,7 @@
                             <!-- <form> -->
                             <div class="form-group">
                                 <label for="montant" class="col-form-label">Saisissez le montant a retirer </label>
-                                <input type="number" name="montant" min="10000" step="5000" class="form-control" id="montant" required>
+                                <input type="number" name="montant" min="1000"  class="form-control" id="montant" required>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Quel est votre motif ?</label>
@@ -133,7 +137,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="mot_de_passe" class="col-form-label">Confirmer ce retrait avec votre mot de passe </label>
-                                <input type="password" required name="mot_de_passe" min="10000" step="5000" class="form-control" id="mot_de_passe">
+                                <input type="password" required name="mot_de_passe" class="form-control" id="mot_de_passe">
                             </div>
                             <!-- </form> -->
                         </div>

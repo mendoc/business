@@ -1,5 +1,18 @@
 <div class="my-3 my-md-5">
     <div class="container">
+        <div class="col-sm-4 col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body p-3 text-center">
+                    <div class="text-right text-red">
+                        F CFA
+                    </div>
+                    <div class="h3 text-danger mb-1"><?= number_format($somme, 0, '', ' ') ?> F CFA </div>
+                    <div class="text-muted mb-4">
+                        Total parti des caisses
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="page-header">
             <h1 class="page-title">
                 <i class="fa fa-money"></i> Sortie de caisse (retraits effectués)
