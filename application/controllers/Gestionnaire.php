@@ -14,6 +14,7 @@ class Gestionnaire extends CI_Controller
 		$this->load->model('commercial_model');
 		$this->load->model('statistique_model');
 		$this->load->model('paiement_model');
+		$this->load->model('tresorerie_model');
 		
 		
 		// Recuperation des stats
@@ -27,6 +28,9 @@ class Gestionnaire extends CI_Controller
 		
 		$result = $this->retrait_model->total_retrait();
 		$total_retrait = $result->montant_retrait;
+
+		// Recuperation du retrait de la fabrique
+		$total_retrait += $this->tresorerie_model->somme_retrait();
 		
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
@@ -416,6 +420,66 @@ class Gestionnaire extends CI_Controller
 		}
 
 		afficher('back/gestionnaire/candidats', $data);
+	}
+
+	public function sortie_caisse()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		if (type_profil() != TRESORIER) {
+			show_error('Vous n’êtes pas autoriser a accéder a cette page', 403,'Accès interdit');
+		}
+
+		$this->form_validation->set_rules('montant', 'montant', 'required', array(
+            'required' => 'Le %s est obligatoire',
+		));
+		
+		$this->form_validation->set_rules('motif', 'motif', 'required', array(
+            'required' => 'Il vous faut forcement un %s pour continuer',
+		));
+		
+		$this->form_validation->set_rules('mot_de_passe', 'Mot de Passe', 'callback_verication_mot_de_passe');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->session->set_flashdata('message-error', validation_errors());
+			redirect('gestionnaire');
+		} else {
+			$this->load->model('tresorerie_model');
+			// On recupere les informations du gestionnaire
+			$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+
+			// On recupere les informations du formulaire
+			$montant = $this->input->post('montant');
+			$motif = $this->input->post('motif');
+			$id_gest = $gestionnaire->id_gest;
+
+			$retrait = new Tresorerie_model();
+
+			$retrait->id_gest = $id_gest;
+			$retrait->montant = $montant;
+			$retrait->motif = $motif;
+
+			if ($retrait->creer()) {
+				$this->session->set_flashdata('message-success', 'Transaction effectuée avec succès !');
+				redirect('gestionnaire');
+			}
+		}
+		
+	}
+
+	public function verication_mot_de_passe($mot_de_passe)
+	{
+		$gestionnaire = $this->gestionnaire_model->par_email($this->session->userdata('email_gest'));
+		
+		if (password_verify($mot_de_passe, $gestionnaire->mot_passe)) {
+			return TRUE;
+		} else {
+			$this->form_validation->set_message('verication_mot_de_passe', 'Le {field} n\'est pas correct');
+			return FALSE;
+		}
 	}
 
 	public function modifier_candidat($id_can)
@@ -1063,6 +1127,28 @@ class Gestionnaire extends CI_Controller
 
 		// var_dump($retraits);
 		afficher('back/gestionnaire/transactions_commercial', $data);
+	}
+
+	public function transactions_sortie_de_caisse()
+	{
+		if (!$this->est_connecte()) {
+			redirect('gestionnaire/connexion');
+		}
+
+		$this->load->model('tresorerie_model');
+
+		$retraits = $this->tresorerie_model->tout();
+
+		foreach ($retraits as $retrait)
+		{
+			$gestionnaire = $this->gestionnaire_model->recuperer_un_gestionnaire($retrait->id_gest);
+
+			$retrait->gestionnaire = $gestionnaire->nom_prenom;
+		}
+
+		$data['retraits'] = $retraits;
+
+		afficher('back/gestionnaire/transactions_sorties', $data);
 	}
 
 	// Vue detail d'un candidat
