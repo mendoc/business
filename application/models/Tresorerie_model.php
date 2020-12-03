@@ -5,7 +5,6 @@ class Tresorerie_model extends CI_Model
 {
     public $motif;
     public $montant;
-    public $date_ret;
     public $id_gest;
     
 
@@ -29,5 +28,12 @@ class Tresorerie_model extends CI_Model
     public function creer()
     {
         return $this->db->insert($this->table, $this);
+    }
+
+    public function somme_retrait()
+    {
+        $this->db->select_sum('montant');
+        $query = $this->db->get($this->table)->row();
+        return $query->montant;
     }
 }

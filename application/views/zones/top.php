@@ -62,9 +62,7 @@
                                 </form>
                             <?php endif; ?>
                             <?php if (!est_un_gestionnaire()) : ?>
-                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none d-lg-block  btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>
-                                
-                                
+                                <button data-lien="<?= $this->session->raccourci ? $this->session->raccourci : site_url('partage/') . $this->session->hash ?>" class="btn d-none d-lg-block  btn-success action copier"><i class="fe fe-copy"></i> Copier mon lien</button>  
                             <?php endif; ?>
                         </div>
                         <div class="col-lg order-lg-first">
@@ -106,6 +104,7 @@
                                         <div class="dropdown-menu dropdown-menu-arrow">
                                             <a href="<?= site_url('gestionnaire/transactions_candidats') ?>" class="dropdown-item"><i class="fe fe-film"></i> Candidats</a>
                                             <a href="<?= site_url('gestionnaire/transactions_commercial') ?>" class="dropdown-item"><i class="fe fe-folder"></i> Commercials</a>    
+                                            <a href="<?= site_url('gestionnaire/transactions_sortie_de_caisse') ?>" class="dropdown-item"> <i class="fa fa-money" aria-hidden="true"></i> Sortie de caisse</a>    
                                         </div>
                                     </li>
                                 <?php else : ?>
