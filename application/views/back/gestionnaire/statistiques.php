@@ -1,5 +1,18 @@
 <div class="my-3 my-md-5">
     <div class="container">
+        <?php if ($this->session->flashdata('message-error')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show font-weight-bold" role="alert">
+                <?= $this->session->flashdata('message-error') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+        <?php if ($this->session->flashdata('message-success')) : ?>
+            <div class="alert alert-success alert-dismissible fade show font-weight-bold" role="alert">
+                <?= $this->session->flashdata('message-success') ?>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
         <div class="page-header">
             <h1 class="page-title">
                 Tableau de bord
@@ -93,6 +106,46 @@
         <h2 class="page-title mb-5 text-danger">
             Dettes
         </h2>
+
+        <?php if (type_profil() == TRESORIER): ?>
+            <button type="button" class="btn btn-danger text-uppercase mb-5" data-toggle="modal" data-target="#retraitModal">
+                Effectuer un retrait
+            </button>
+
+            <div class="modal fade" id="retraitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <form class="modal-content" method="POST" action="<?= site_url('gestionnaire/sortie_caisse') ?>">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Formulaire de sortie de caisse
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- <form> -->
+                            <div class="form-group">
+                                <label for="montant" class="col-form-label">Saisissez le montant a retirer </label>
+                                <input type="number" name="montant" min="10000" step="5000" class="form-control" id="montant" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">Quel est votre motif ?</label>
+                                <textarea class="form-control" name="motif" id="message-text" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="mot_de_passe" class="col-form-label">Confirmer ce retrait avec votre mot de passe </label>
+                                <input type="password" required name="mot_de_passe" min="10000" step="5000" class="form-control" id="mot_de_passe">
+                            </div>
+                            <!-- </form> -->
+                        </div>
+                        <div class="modal-footer">
+                            <input type="reset" value="Annuler" class="btn btn-secondary" />
+                            <button type="submit" class="btn btn-primary rounded-0">Envoyer</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <?php endif; ?>
+        
         <div class="row row-cards">
 
             <div class="col-sm-12 col-lg-4">

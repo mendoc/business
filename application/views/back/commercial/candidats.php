@@ -32,9 +32,11 @@
                                     <td><?= $candidat->nom_prenom ?></td>
                                     <?php
                                     if (empty($candidat->num_what)) { ?>
-                                        <td><a href="tel:<?= $candidat->num_tel ?>"><?= $candidat->num_tel ?></a></td>
+                                        <td><a href="tel:<?= $candidat->num_tel ?>"><?= $candidat->num_tel ?></a><i style="padding-left: 8px;" class="fa fa-phone" aria-hidden="true"></i></td>
+
                                     <?php   } else { ?>
-                                        <td><a href="https://wa.me/<?= $candidat->num_what ?>"> <?= $candidat->num_what ?> </a></td>
+                                        <td><a href="https://wa.me/<?= $candidat->num_what ?>"> <?= $candidat->num_what ?> </a><i style="padding-left: 8px;" class="fa fa-whatsapp" aria-hidden="true"></i></td>
+
                                     <?php } ?>
                                     <td><?= $candidat->type_cours == 'P' ? 'En presentiel' : 'En ligne' ?></td>
                                     <td><?= $candidat->domaine_act ?></td>
