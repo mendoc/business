@@ -179,7 +179,7 @@
                     <div class="text-right text-green">
                             F CFA
                         </div>
-                        <div class="h3 mb-2"><?= number_format($prevision_commission, 0, '', ' ')  ?> F CFA</div>
+                        <div class="h3 mb-2"><?= number_format($prevision_commission, 0, '', ' ')  ?> </div>
                         <div class="text-muted mb-4">
                             Prévision commission
                         </div>
