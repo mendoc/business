@@ -60,6 +60,6 @@
     }
 
     dateElts.forEach(date => {
-        date.textContent = DateShortFormat(date.getAttribute('data-create'));
+        date.textContent = DateShortFormat(date.getAttribute('data-date'));
     })
 </script>
