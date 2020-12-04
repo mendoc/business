@@ -8,14 +8,14 @@
                     </div>
                     <div class="h3 text-danger mb-1"><?= number_format($somme, 0, '', ' ') ?> </div>
                     <div class="text-muted mb-4">
-                        Total parti des caisses
+                        Total sortie de caisse
                     </div>
                 </div>
             </div>
         </div>
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Sortie de caisse (retraits effectués)
+                <i class="fa fa-money"></i> Sortie de caisse (retraits)
             </h1>
         </div>
         <div class="card">
