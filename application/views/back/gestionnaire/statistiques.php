@@ -92,6 +92,18 @@
             <div class="col-6 col-sm-4 col-lg-2">
                 <div class="card">
                     <div class="card-body p-3 text-center">
+                        <div class="text-right text-green">
+                            F CFA
+                        </div>
+                        <div class="h3 m-0"><?= isset($total_transaction_commerciaux) ? number_format($total_transaction_commerciaux, 0, '.', ' ') : 0 ?></div>
+                        <div class="text-muted mb-1">Total Paiements Commerciaux
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
                         <div class="text-right text-red">
                             F CFA
                         </div>
@@ -102,10 +114,6 @@
                 </div>
             </div>
         </div>
-
-        <h2 class="page-title mb-5">
-            Total déjà payé aux commerciaux : <?= isset($total_transaction_commerciaux) ? number_format($total_transaction_commerciaux, 0, '.', ' ') : 0 ?> F CFA
-        </h2>
 
         <h2 class="page-title mb-5 text-danger">
             Dettes
