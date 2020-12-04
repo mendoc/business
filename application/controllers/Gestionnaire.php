@@ -46,6 +46,16 @@ class Gestionnaire extends CI_Controller
 		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
 		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,10);
 		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 10);
+
+
+		// Traitement du cumul de retrait des commerciaux
+		$transactions_commerciaux = array_filter($retraits, function ($retrait){
+			return !empty($retrait->date_fin);
+		});
+
+		$total_transaction_commerciaux = array_sum(array_map(function ($retrait){
+			return $retrait->montant_retrait;
+		}, $transactions_commerciaux));
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
@@ -1165,6 +1175,8 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$data['retraits'] = $retraits;
+
+		$data['somme'] = $this->tresorerie_model->somme_retrait();
 
 		afficher('back/gestionnaire/transactions_sorties', $data);
 	}

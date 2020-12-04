@@ -78,6 +78,12 @@ class Commercial extends CI_Controller
         // Solde du commercial
         $solde = ($commission + $bonus) - $retrait;
 
+        //retraits non traité d'un commercial
+        $com_retrait = $this->retrait_model->demande_retraits_commercial($commercial->id_com);
+        $transaction = array_filter($com_retrait, function ($retrait) {
+            return $retrait->id_gest == null && $retrait->date_fin == null;
+        });
+
         $data = array(
             'nb_visites_com' => $nb_visites_com,
             'nb_candidats_com_presentiel' => $nb_candidats_com_presentiel,
@@ -89,6 +95,7 @@ class Commercial extends CI_Controller
             'retrait' => $retrait,
             'solde' => $solde,
             'bonus' => $bonus,
+            'com_retrait' => $transaction
         );
 
         afficher('back/commercial/statistiques', $data);
@@ -378,6 +385,7 @@ class Commercial extends CI_Controller
 
                 // On envoie d'un mail au commercial après le retrait
                 mail($commercial->email, 'Ecole 241 Business - Retrait', $message, $headers);
+
                 redirect('commercial');
             }
         }

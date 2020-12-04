@@ -184,11 +184,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><a href="tel:+241062413491">+241 062 41 34 91</a> </td>
-                            <td class="text-danger font-weight-bold">1500 FCFA</td>
-                            <td> En attente</td>
-                        </tr>
+                        <?php foreach ($com_retrait as $com) : ?>
+                            <tr style="color: red;">
+                                <td><a href="tel:+241062413491"><?= $com->num_ret ?></a> </td>
+                                <td class="text-danger font-weight-bold"><?= $com->montant_retrait ?></td>
+                                <?php
+                                if ($com->id_gest == null && $com->date_fin == null) { ?>
+                                    <td> En attente</td>
+
+                                <?php } else { ?>
+                                    <td> Validé</td>
+                                <?php
+                                }
+                                ?>
+                            </tr>
+                        <?php endforeach   ?>
                     </tbody>
                 </table>
             </div>
