@@ -141,7 +141,7 @@
                                         <tr>
                                             <td><?= number_format($paiement->montant, 0, ',', ' '); ?> F CFA</td>
                                             <td><?= $paiement->motif ?></td>
-                                            <td class="text-nowrap text-capitalize date"><?= $paiement->date ?></td>
+                                            <td class="text-nowrap text-capitalize date" data-create="<?= $paiement->date ?>"></td>
                                         </tr>
                                 <?php endforeach;
                                 } ?>
