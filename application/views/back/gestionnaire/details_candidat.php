@@ -66,13 +66,19 @@
 
                     <div class="block_details">
                         <h5 class="font-weight-normal text-body">Type de service:</h5>
-                        <p class="font-weight-bold"><?= $candidat->type_serv; ?></p>
+                        <p class="font-weight-bold"><?= empty($candidat->type_serv) ? 'Non défini' : $candidat->type_serv ?></p>
                     </div>
 
                     <div class="block_details">
-                        <h5 class="font-weight-normal text-body">Attentes:</h5>
+                        <h5 class="font-weight-normal text-body">Date d'enregistrement:</h5>
+                        <p class="font-weight-bold text-capitalize" id="date-sign-in" data-date="<?= $candidat->date_enrg ?>"></p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h5 class="font-weight-normal text-body">Attentes</h5>
                         <p class="font-weight-bold"><?= $candidat->attentes; ?></p>
                     </div>
+
 
                     <?php if(type_profil() != SUPERVISEUR) : ?>
                         <a href="<?= site_url('gestionnaire/modifier_candidat/' . $candidat->id_can) ?>" class="btn btn-primary rounded-0">
@@ -148,7 +154,10 @@
 </main>
 
 <script>
+
     const dateBirthElt = document.getElementById('date-of-birth');
+    const dateSignIn = document.getElementById('date-sign-in');
+
     function DateShortFormat(birth)
     {
         const date = new Date(birth);
@@ -158,4 +167,6 @@
     }
 
     dateBirthElt.textContent = DateShortFormat(dateBirthElt.getAttribute('data-date'));
+    dateSignIn.textContent = DateShortFormat(dateSignIn.getAttribute('data-date'));
+
 </script>

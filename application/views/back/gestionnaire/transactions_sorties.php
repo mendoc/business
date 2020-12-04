@@ -2,7 +2,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Sortie de caisse (retraits effectués)
+                <i class="fa fa-money"></i> Sorties de caisse (retraits)
             </h1>
         </div>
         <div class="card">

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Transactions
+                <i class="fa fa-money"></i> Transactions des candidats (paiements)
             </h1>
         </div>
         <div class="card">
