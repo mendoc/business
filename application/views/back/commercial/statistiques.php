@@ -184,12 +184,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($com_retrait as $com_retraits) : ?>
+                        <?php foreach ($com_retrait as $com) : ?>
                             <tr>
-                                <td><a href="tel:+241062413491"><?= $com_retraits->num_ret ?></a> </td>
-                                <td class="text-danger font-weight-bold"><?= $com_retraits->montant_retrait ?></td>
+                                <td><a href="tel:+241062413491"><?= $com->num_ret ?></a> </td>
+                                <td class="text-danger font-weight-bold"><?= $com->montant_retrait ?></td>
                                 <?php
-                                if ($com_retraits->id_gest == null && $com_retraits->date_fin == null) { ?>
+                                if ($com->id_gest == null && $com->date_fin == null) { ?>
                                     <td> En attente</td>
 
                                 <?php } else { ?>

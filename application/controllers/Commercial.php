@@ -80,6 +80,9 @@ class Commercial extends CI_Controller
 
         //retraits non traité d'un commercial
         $com_retrait = $this->retrait_model->demande_retraits_commercial($commercial->id_com);
+        $transaction = array_filter($com_retrait, function ($retrait) {
+            return $retrait->id_gest == null && $retrait->date_fin == null;
+        });
 
         $data = array(
             'nb_visites_com' => $nb_visites_com,
@@ -92,7 +95,7 @@ class Commercial extends CI_Controller
             'retrait' => $retrait,
             'solde' => $solde,
             'bonus' => $bonus,
-            'com_retrait' => $com_retrait
+            'com_retrait' => $transaction
         );
 
         afficher('back/commercial/statistiques', $data);
