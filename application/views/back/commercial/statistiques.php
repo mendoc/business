@@ -185,7 +185,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($com_retrait as $com) : ?>
-                            <tr>
+                            <tr style="color: red;">
                                 <td><a href="tel:+241062413491"><?= $com->num_ret ?></a> </td>
                                 <td class="text-danger font-weight-bold"><?= $com->montant_retrait ?></td>
                                 <?php
