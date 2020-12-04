@@ -173,8 +173,8 @@
             </div>
 
             <div class="form-group espace">
-                <label for="">Modalite de paiement <span class="obliger">*</span></label>
-                <select name="modalite" required class="custom-select">
+                <label for="">Horaire <span class="obliger">*</span></label>
+                <select name="horaire" required class="custom-select">
                     <option value="Matin">Matin (9h - 12h)</option>
                     <option value="Après-midi">Après-midi (14h -17h)</option>
                     <option value="Soir">Soir (17h - 20h)</option>
