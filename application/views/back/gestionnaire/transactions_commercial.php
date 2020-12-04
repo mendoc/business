@@ -2,7 +2,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Transactions Commercials (retraits effectues)
+                <i class="fa fa-money"></i> Transactions des commerciaux (retraits)
             </h1>
         </div>
         <div class="card">
