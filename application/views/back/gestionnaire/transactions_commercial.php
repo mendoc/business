@@ -2,7 +2,7 @@
     <div class="container">
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Transactions Commercials (retraits effectues)
+                <i class="fa fa-money"></i> Transactions des commerciaux (retraits)
             </h1>
         </div>
         <div class="card">
@@ -33,7 +33,7 @@
                                     <td><?= $retrait->nom_com ?></td>
                                     <td><?= $retrait->num_ret ?></td>
                                     <td><?= $retrait->nom_gest ?></td>
-                                    <td><?= date_format(date_create($retrait->date_fin), 'D, d M y | G:i') ?></td>
+                                    <td class="date text-capitalize" data-date="<?= $retrait->date_fin ?>"></td>
                                     <td><?= number_format($retrait->montant_retrait, 0, ',', ' ') ?> F CFA</td>
                                 </tr>
                             <?php endforeach; ?>
@@ -49,3 +49,17 @@
     </div>
 
 </div>
+<script>
+    const dateElts = document.querySelectorAll('.date');
+    function DateShortFormat(birth)
+    {
+        const date = new Date(birth);
+        const options = {weekday: "long", year: "numeric", month: "long" , day: "numeric"};
+        console.log(birth);
+        return date.toLocaleDateString('fr', options);
+    }
+
+    dateElts.forEach(date => {
+        date.textContent = DateShortFormat(date.getAttribute('data-create'));
+    })
+</script>

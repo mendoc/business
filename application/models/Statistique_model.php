@@ -152,7 +152,7 @@ class Statistique_model extends CI_Model
                 FROM
                     eb_candidat
                 WHERE
-                    id_com = ? AND id_can IN(
+                    id_com = ? AND type_cours = 'P' AND id_can IN(
                     SELECT
                     id_can
                     FROM

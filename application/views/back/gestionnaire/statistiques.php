@@ -92,6 +92,18 @@
             <div class="col-6 col-sm-4 col-lg-2">
                 <div class="card">
                     <div class="card-body p-3 text-center">
+                        <div class="text-right text-green">
+                            F CFA
+                        </div>
+                        <div class="h3 m-0"><?= isset($total_transaction_commerciaux) ? number_format($total_transaction_commerciaux, 0, '.', ' ') : 0 ?></div>
+                        <div class="text-muted mb-1">Total Paiements Commerciaux
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-lg-2">
+                <div class="card">
+                    <div class="card-body p-3 text-center">
                         <div class="text-right text-red">
                             F CFA
                         </div>
@@ -125,7 +137,7 @@
                             <!-- <form> -->
                             <div class="form-group">
                                 <label for="montant" class="col-form-label">Saisissez le montant a retirer </label>
-                                <input type="number" name="montant" min="10000" step="5000" class="form-control" id="montant" required>
+                                <input type="number" name="montant" min="1000"  class="form-control" id="montant" required>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">Quel est votre motif ?</label>
@@ -133,7 +145,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="mot_de_passe" class="col-form-label">Confirmer ce retrait avec votre mot de passe </label>
-                                <input type="password" required name="mot_de_passe" min="10000" step="5000" class="form-control" id="mot_de_passe">
+                                <input type="password" required name="mot_de_passe" class="form-control" id="mot_de_passe">
                             </div>
                             <!-- </form> -->
                         </div>
@@ -167,7 +179,7 @@
                     <div class="text-right text-green">
                             F CFA
                         </div>
-                        <div class="h3 mb-2"><?= number_format($prevision_commission, 0, '', ' ')  ?> F CFA</div>
+                        <div class="h3 mb-2"><?= number_format($prevision_commission, 0, '', ' ')  ?> </div>
                         <div class="text-muted mb-4">
                             Prévision commission
                         </div>

@@ -27,10 +27,10 @@ class Gestionnaire extends CI_Controller
 		$chiffre_affaire = $result->montant;
 		
 		$result = $this->retrait_model->total_retrait();
-		$total_retrait = $result->montant_retrait;
+		$commerciaux_retrait = $result->montant_retrait;
 
 		// Recuperation du retrait de la fabrique
-		$total_retrait += $this->tresorerie_model->somme_retrait();
+		$tresorier_retrait = $this->tresorerie_model->somme_retrait();
 		
 		// Recuperation des informations
 		$retraits = $this->retrait_model->tout();
@@ -46,6 +46,16 @@ class Gestionnaire extends CI_Controller
 		$commerciaux_visite = $this->statistique_model->nombre_viste_total();
 		$commerciaux = array_slice($this->statistique_model->nombre_visite_commercial() ,0 ,10);
 		$commerciaux_candidats = array_slice($this->statistique_model->nombre_candidat_commercial(), 0, 10);
+
+
+		// Traitement du cumul de retrait des commerciaux
+		$transactions_commerciaux = array_filter($retraits, function ($retrait){
+			return !empty($retrait->date_fin);
+		});
+
+		$total_transaction_commerciaux = array_sum(array_map(function ($retrait){
+			return $retrait->montant_retrait;
+		}, $transactions_commerciaux));
 		
 		$retraits = array_filter($retraits, function ($retrait) {
 			return empty($retrait->date_fin);
@@ -54,8 +64,14 @@ class Gestionnaire extends CI_Controller
 		// Traitement du cumul de dette des commerciaux
 
 		$cumul_comission_commercial = 0;
+		
+		// On cree la variable qui va prendre le nombre total de bonus previsible
+		$bonus_prevision = 0;
+
 		$commerciaux_dette = $this->commercial_model->tout();
+
 		foreach ($commerciaux_dette as $commercial) {
+
 			// Nombre d'affiliés en présentiel du commercial
 			$result = $this->statistique_model->affilies_com_presentiel($commercial->id_com);
 			if ($result) $nb_affilies_com_presentiel = $result->nb_affilies_com_presentiel;
@@ -66,6 +82,11 @@ class Gestionnaire extends CI_Controller
 			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
 			else $nb_affilies_com_ligne = 0;
 
+			// Nombre d'aspirant d'un commercial
+			$result = $this->statistique_model->aspirant_commercial($commercial->id_com);
+			if ($result) $nb_aspirants = $result->nb_aspirants;
+			else $nb_aspirants = 0;
+
 			$result = $this->retrait_model->pour_commercial($commercial->id_com);
         	if ($result) $retrait = $result->montant_retrait;
         	else $retrait = 0;
@@ -73,22 +94,28 @@ class Gestionnaire extends CI_Controller
 			$commission_ligne = $nb_affilies_com_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
 			$commission_presentiel = $nb_affilies_com_presentiel * (COUT_PRESENTIEL * POURCENTAGE_PRE);
 
-			$nb_bonus_ligne = 0;
-			$nb_bonus_presentiel = 0;
+			$nb_bonus = 0;
+			$nb_aff_total = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
 
 			// Calcul des bonus 
-			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
-				$nb_bonus_ligne += 1;
+			for ($i=10; $i <= $nb_aff_total; $i+=10) { 
+				$nb_bonus += 1;
 			}
 
-			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
-				$nb_bonus_presentiel += 1;
-			}
+			// Calcul du bonus previsible
+			$nb_aff_previsible = $nb_aff_total % 10;
+			$nb_aff_previsible += $nb_aspirants;
 
+			for ($i=10; $i <= $nb_aff_previsible; $i+=10) { 
+				$bonus_prevision += 1;
+			}
 
 			$cumul_comission_commercial += ($commission_ligne + $commission_presentiel);
-			$cumul_comission_commercial += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
+			$cumul_comission_commercial += ($nb_bonus * 20000);
 		}
+
+		// var_dump($cumul_comission_commercial);
+		// die;
 		
 		// Traitement des informations du candidats
 		$candidats = $this->candidat_model->tout();
@@ -147,13 +174,15 @@ class Gestionnaire extends CI_Controller
 		// var_dump($jours);
 		// die;
 		$prevision_commission = ($nb_apprenants - $nb_vrai_apprenants) * COUT_PRESENTIEL * POURCENTAGE_PRE;
+		$prevision_commission += ($bonus_prevision * 20000);
 
 
 		$data = array(
 			"cumul_candidats" => $cumul_candidats,
-			"dette_commercial" => ($cumul_comission_commercial - $total_retrait),
+			"total_transaction_commerciaux" => $total_transaction_commerciaux,
+			"dette_commercial" => ($cumul_comission_commercial - $commerciaux_retrait),
 			"prevision_commission" => $prevision_commission,
-			"solde_2" => $chiffre_affaire - $cumul_comission_commercial - $prevision_commission,
+			"solde_2" => $chiffre_affaire - $cumul_comission_commercial - $prevision_commission - $tresorier_retrait,
 			"retraits" => $retraits,
 			"email_utilisateur" => $gestionnaire->email_gest,
 			"nb_candidats" => ($nb_candidats - $nb_apprenants),
@@ -161,7 +190,7 @@ class Gestionnaire extends CI_Controller
 			"nb_vrai_apprenants" => $nb_vrai_apprenants,
 			"nombre_commerciaux" => $nombre_commerciaux,
 			"chiffre_affaire" => (int)($chiffre_affaire),
-			"total_retrait" => (int)$total_retrait,
+			"total_retrait" => (int)$commerciaux_retrait + (int)$tresorier_retrait,
 			"paiements" => $paiements,
 			"visites_total" => $commerciaux_visite->nbr_visite,
 			"commerciaux" => $commerciaux,
@@ -1147,6 +1176,8 @@ class Gestionnaire extends CI_Controller
 		}
 
 		$data['retraits'] = $retraits;
+
+		$data['somme'] = $this->tresorerie_model->somme_retrait();
 
 		afficher('back/gestionnaire/transactions_sorties', $data);
 	}

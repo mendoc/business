@@ -306,10 +306,8 @@ class Candidat extends CI_Controller
             $type_cours  = $this->input->post('type_cours');
             $modal_paiement = !empty($this->input->post('modalite')) ? $this->input->post('modalite') : 1;
             $date_n      = "";
-            //$prenom      = $this->input->post('prenom');
-            $num_what    = "";;
-            $horaire     = "";;
-            // $type_serv   = $this->input->post('service');
+            $num_what    = "";
+            $horaire     = $this->input->post('horaire');
             $attentes    = "";;
             $hash        = $this->input->post('hash');
             // On crée un candidat
