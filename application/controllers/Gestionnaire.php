@@ -179,6 +179,7 @@ class Gestionnaire extends CI_Controller
 
 		$data = array(
 			"cumul_candidats" => $cumul_candidats,
+			"total_transaction_commerciaux" => $total_transaction_commerciaux,
 			"dette_commercial" => ($cumul_comission_commercial - $commerciaux_retrait),
 			"prevision_commission" => $prevision_commission,
 			"solde_2" => $chiffre_affaire - $cumul_comission_commercial - $prevision_commission - $tresorier_retrait,
