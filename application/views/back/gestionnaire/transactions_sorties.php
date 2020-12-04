@@ -1,8 +1,21 @@
 <div class="my-3 my-md-5">
     <div class="container">
+        <div class="col-sm-4 col-lg-6 offset-lg-3">
+            <div class="card">
+                <div class="card-body p-3 text-center">
+                    <div class="text-right text-red">
+                        F CFA
+                    </div>
+                    <div class="h3 text-danger mb-1"><?= number_format($somme, 0, '', ' ') ?> </div>
+                    <div class="text-muted mb-4">
+                        Total sortie de caisse
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="page-header">
             <h1 class="page-title">
-                <i class="fa fa-money"></i> Sorties de caisse (retraits)
+                <i class="fa fa-money"></i> Sortie de caisse (retraits)
             </h1>
         </div>
         <div class="card">
@@ -32,7 +45,7 @@
                                     <td><?= $retrait->gestionnaire ?></td>
                                     <td><?= number_format($retrait->montant, 0, ',', ' ') ?> F CFA</td>
                                     <td><?= $retrait->motif ?></td>
-                                    <td><?= date_format(date_create($retrait->date_ret), 'D, d M y | G:i') ?></td>
+                                    <td class="date text-capitalize" data-create="<?= $retrait->date_ret ?>"></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -47,3 +60,18 @@
     </div>
 
 </div>
+
+<script>
+    const dateElts = document.querySelectorAll('.date');
+    function DateShortFormat(birth)
+    {
+        const date = new Date(birth);
+        const options = {weekday: "long", year: "numeric", month: "long" , day: "numeric"};
+        console.log(birth);
+        return date.toLocaleDateString('fr', options);
+    }
+
+    dateElts.forEach(date => {
+        date.textContent = DateShortFormat(date.getAttribute('data-create'));
+    })
+</script>

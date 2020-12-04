@@ -141,7 +141,7 @@
                                         <tr>
                                             <td><?= number_format($paiement->montant, 0, ',', ' '); ?> F CFA</td>
                                             <td><?= $paiement->motif ?></td>
-                                            <td class="text-nowrap"><?= $paiement->date ?></td>
+                                            <td class="text-nowrap text-capitalize date"><?= $paiement->date ?></td>
                                         </tr>
                                 <?php endforeach;
                                 } ?>
@@ -157,7 +157,7 @@
 
     const dateBirthElt = document.getElementById('date-of-birth');
     const dateSignIn = document.getElementById('date-sign-in');
-
+    const dateElts = document.querySelectorAll('.date');
     function DateShortFormat(birth)
     {
         const date = new Date(birth);
@@ -168,5 +168,7 @@
 
     dateBirthElt.textContent = DateShortFormat(dateBirthElt.getAttribute('data-date'));
     dateSignIn.textContent = DateShortFormat(dateSignIn.getAttribute('data-date'));
-
+    dateElts.forEach(date => {
+        date.textContent = DateShortFormat(date.getAttribute('data-create'));
+    })
 </script>
