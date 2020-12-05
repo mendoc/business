@@ -4,7 +4,7 @@ if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Breadcrumb
 {
     private $breadcrumbs = array();
-    private $debut = '<nav aria-label="breadcrumb"><ol class="breadcrumb">';
+    private $debut = '<nav class="container" aria-label="breadcrumb"><ol class="breadcrumb">';
     private $fin = '</ol></nav>';
     
     public function __construct($params = array())
