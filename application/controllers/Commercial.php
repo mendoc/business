@@ -391,6 +391,19 @@ class Commercial extends CI_Controller
         }
     }
 
+    // Fonction annule retrait
+    public function annuler_retrait($id)
+    {
+        $this->load->model('retrait_model');
+        $this->load->model('commercial_model');
+        $this->load->model('statistique_model');
+        $commercial_retrait_annul = $this->retrait_model->supprimer($id);
+        if ($commercial_retrait_annul) {
+            $this->session->set_flashdata('annule', "Retrait annulé");
+            redirect('commercial');
+        }
+    }
+
     public function ressources()
     {
         if (!$this->est_connecte()) {

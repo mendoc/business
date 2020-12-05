@@ -181,6 +181,7 @@
                             <th>Numero de telephone</th>
                             <th>Montant</th>
                             <th>Statut</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -197,9 +198,13 @@
                                 <?php
                                 }
                                 ?>
+                                <td><a style="color: red;" href="<?= site_url('commercial/annuler_retrait/' . $com->id_ret) ?> ">Annuler retrait</a> </td>
                             </tr>
                         <?php endforeach   ?>
                     </tbody>
+                    <?php if ($this->session->flashdata('annule')) : ?>
+                        <p style="padding: 5px 10px; font-weight: bold; color: red; margin:0;"><?= $this->session->flashdata('annule'); ?></p>
+                    <?php endif; ?>
                 </table>
             </div>
         </div>
