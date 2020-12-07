@@ -89,6 +89,58 @@ LOCK TABLES `eb_commercial` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `eb_droit`
+--
+
+DROP TABLE IF EXISTS `eb_droit`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `eb_droit` (
+  `id_droit` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id_droit`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eb_droit`
+--
+
+LOCK TABLES `eb_droit` WRITE;
+/*!40000 ALTER TABLE `eb_droit` DISABLE KEYS */;
+/*!40000 ALTER TABLE `eb_droit` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `eb_droit_gest`
+--
+
+DROP TABLE IF EXISTS `eb_droit_gest`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `eb_droit_gest` (
+  `id_droit` int(11) NOT NULL,
+  `id_gest` int(11) NOT NULL,
+  `id_dg` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_droit`,`id_gest`),
+  UNIQUE KEY `id_dg` (`id_dg`),
+  KEY `id_gest` (`id_gest`),
+  CONSTRAINT `eb_droit_gest_ibfk_1` FOREIGN KEY (`id_droit`) REFERENCES `eb_droit` (`id_droit`) ON UPDATE CASCADE,
+  CONSTRAINT `eb_droit_gest_ibfk_2` FOREIGN KEY (`id_gest`) REFERENCES `eb_gestionnaire` (`id_gest`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `eb_droit_gest`
+--
+
+LOCK TABLES `eb_droit_gest` WRITE;
+/*!40000 ALTER TABLE `eb_droit_gest` DISABLE KEYS */;
+/*!40000 ALTER TABLE `eb_droit_gest` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `eb_gestionnaire`
 --
 
@@ -103,7 +155,7 @@ CREATE TABLE `eb_gestionnaire` (
   `type_profil` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`id_gest`),
   UNIQUE KEY `email_gest` (`email_gest`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +164,7 @@ CREATE TABLE `eb_gestionnaire` (
 
 LOCK TABLES `eb_gestionnaire` WRITE;
 /*!40000 ALTER TABLE `eb_gestionnaire` DISABLE KEYS */;
-INSERT INTO `eb_gestionnaire` VALUES (1,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com',1);
+INSERT INTO `eb_gestionnaire` VALUES (3,'$2y$10$4GrJDIB0G6ox8po1e5vDzOiFSw0951U8..JvxoUoPG0VPCHcHjHq2','Richard OGOULA','richard@yopmail.com',1);
 /*!40000 ALTER TABLE `eb_gestionnaire` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,5 +275,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-
--- Dump completed on 2020-12-02 16:31:04
+-- Dump completed on 2020-12-07 12:57:23
