@@ -353,7 +353,10 @@ class Gestionnaire extends CI_Controller
 		$this->pagination->initialize($config);
 
 		$page = empty($this->input->get('p')) ? 0 : $this->input->get('p');
-		$commerciaux = $this->commercial_model->interval_commercial($config['per_page'], $page);
+		$commerciaux = $this->commercial_model->listing_meilleurs_com($config['per_page'], $page);
+
+		// var_dump($commerciaux);
+		// die;
 
 		foreach ($commerciaux as $commercial)
 		{
@@ -371,7 +374,7 @@ class Gestionnaire extends CI_Controller
 			if ($result) $nb_affilies_com_ligne = $result->nb_affilies_com_ligne;
 			else $nb_affilies_com_ligne = 0;
 
-			$commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
+			// $commercial->nb_affilies = $nb_affilies_com_ligne + $nb_affilies_com_presentiel;
 
 			// Calcul du solde du commercial
 			$commission_ligne = $nb_affilies_com_ligne * (COUT_EN_LIGNE * POURCENTAGE_LIGNE);
@@ -379,19 +382,14 @@ class Gestionnaire extends CI_Controller
 
 			$commission_total = $commission_ligne + $commission_presentiel;
 			
-			$nb_bonus_ligne = 0;
-			$nb_bonus_presentiel = 0;
+			$nb_bonus = 0;
 
 			// Calcul des bonus 
-			for ($i=10; $i <= $nb_affilies_com_ligne; $i+=10) { 
-				$nb_bonus_ligne += 1;
+			for ($i=10; $i <= $commercial->nb_affilie; $i+=10) { 
+				$nb_bonus += 1;
 			}
 
-			for ($i=10; $i <= $nb_affilies_com_presentiel; $i+=10) { 
-				$nb_bonus_presentiel += 1;
-			}
-
-			$commission_total += ($nb_bonus_ligne * 20000) + ($nb_bonus_presentiel * 20000);
+			$commission_total += ($nb_bonus * 20000);
 
 			// On cree un attribue solde qui contient la commission total
 			$commercial->solde = $commission_total - $somme_retrait;
