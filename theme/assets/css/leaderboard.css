@@ -120,6 +120,12 @@ p {
     font-size: .9em;
 }
 
+.float-right{
+    float: right;
+    font-weight: bold;
+    color: royalblue;
+}
+
 .mb-5 {
     margin-bottom: 2em;
 }

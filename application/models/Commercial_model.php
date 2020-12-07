@@ -276,12 +276,12 @@ class Commercial_model extends CI_Model
     {
         $sql="SELECT
         eb_commercial.nom_prenom,
-        `nombre d'affilié`,
+        `nb_affilie`,
         nb_aspirant_com,
         nb_inscrit,
         nbr_visite
         FROM eb_commercial
-        LEFT JOIN (SELECT eb_candidat.id_com,COUNT(eb_commercial.id_com) AS \"nombre d'affilié\"
+        LEFT JOIN (SELECT eb_candidat.id_com,COUNT(eb_commercial.id_com) AS \"nb_affilie\"
     FROM
         eb_candidat
     INNER JOIN eb_commercial ON eb_candidat.id_com = eb_commercial.id_com
@@ -346,7 +346,7 @@ class Commercial_model extends CI_Model
      AS beta
     ON
         eb_commercial.id_com = beta.id_com
-        ORDER BY `nombre d'affilié`DESC, nb_aspirant_com DESC, nb_inscrit DESC, nbr_visite ASC";
+        ORDER BY `nb_affilie`DESC, nb_aspirant_com DESC, nb_inscrit DESC, nbr_visite ASC";
          return $this->db->query($sql)->result();
     }
 
