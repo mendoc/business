@@ -268,4 +268,171 @@ class Commercial_model extends CI_Model
         $this->db->limit($limite, $debut);
         return $this->db->get($this->table)->result();
     }
+
+
+    // listing commerciaux par affilié, aspirant, nb_inscrit et visite
+
+    public function listing_com()
+    {
+        $sql="SELECT
+        eb_commercial.nom_prenom,
+        `nb_affilie`,
+        nb_aspirant_com,
+        nb_inscrit,
+        nbr_visite
+        FROM eb_commercial
+        LEFT JOIN (SELECT eb_candidat.id_com,COUNT(eb_commercial.id_com) AS \"nb_affilie\"
+    FROM
+        eb_candidat
+    INNER JOIN eb_commercial ON eb_candidat.id_com = eb_commercial.id_com
+    WHERE
+        (
+            type_cours = \"L\" AND eb_candidat.id_can IN(
+            SELECT
+                eb_paiement.id_can
+            FROM
+                eb_paiement
+            GROUP BY
+                eb_paiement.id_can
+            HAVING
+                SUM(montant) = 90000
+        )
+        ) OR(
+            type_cours = \"P\" AND eb_candidat.id_can IN(
+            SELECT
+                eb_paiement.id_can
+            FROM
+                eb_paiement
+            GROUP BY
+                eb_paiement.id_can
+            HAVING
+                SUM(montant) = 155000
+        )
+        )
+    GROUP BY
+        eb_commercial.id_com)AS com ON eb_commercial.id_com=com.id_com
+    LEFT JOIN(
+       SELECT
+        eb_candidat.id_com,
+        COUNT(eb_paiement.id_can) AS nb_aspirant_com
+    FROM
+        eb_candidat
+    INNER JOIN eb_paiement ON eb_candidat.id_can = eb_paiement.id_can
+    WHERE
+        type_cours = \"P\" AND eb_paiement.id_can NOT IN(
+        SELECT
+            id_can
+        FROM
+            eb_paiement
+        GROUP BY
+            id_can
+        HAVING
+            SUM(montant) = 155000
+    )
+    GROUP BY eb_candidat.id_com
+    ) AS alpha
+    ON
+        eb_commercial.id_com = alpha.id_com
+    LEFT JOIN(
+       SELECT eb_candidat.id_com,COUNT(*) AS nb_inscrit
+    FROM eb_candidat INNER JOIN eb_commercial ON eb_candidat.id_com = eb_commercial.id_com
+    WHERE  id_can
+        NOT IN (SELECT eb_candidat.id_can
+    FROM eb_candidat
+        INNER JOIN eb_paiement
+        ON eb_candidat.id_can = eb_paiement.id_can )
+        GROUP BY eb_candidat.id_com
+        )
+     AS beta
+    ON
+        eb_commercial.id_com = beta.id_com
+        ORDER BY `nb_affilie`DESC, nb_aspirant_com DESC, nb_inscrit DESC, nbr_visite ASC";
+         return $this->db->query($sql)->result();
+    }
+
+    public function listing_meilleurs_com($limite, $debut)
+    {
+        $sql="SELECT
+        eb_commercial.id_com,
+        eb_commercial.nom_prenom,
+        eb_commercial.email,
+        `nb_affilie`,
+        nb_aspirant_com,
+        nb_inscrit,
+        nbr_visite
+        FROM eb_commercial
+            LEFT JOIN (SELECT eb_candidat.id_com,COUNT(eb_commercial.id_com) AS \"nb_affilie\"
+        FROM
+            eb_candidat
+        INNER JOIN eb_commercial ON eb_candidat.id_com = eb_commercial.id_com
+        WHERE
+            (
+                type_cours = \"L\" AND eb_candidat.id_can IN(
+                SELECT
+                    eb_paiement.id_can
+                FROM
+                    eb_paiement
+                GROUP BY
+                    eb_paiement.id_can
+                HAVING
+                    SUM(montant) = 90000
+            )
+            ) OR(
+                type_cours = \"P\" AND eb_candidat.id_can IN(
+                SELECT
+                    eb_paiement.id_can
+                FROM
+                    eb_paiement
+                GROUP BY
+                    eb_paiement.id_can
+                HAVING
+                    SUM(montant) = 155000
+            )
+            )
+        GROUP BY
+            eb_commercial.id_com)AS com ON eb_commercial.id_com=com.id_com
+        LEFT JOIN(
+       SELECT
+        eb_candidat.id_com,
+        COUNT(eb_paiement.id_can) AS nb_aspirant_com
+        FROM
+            eb_candidat
+        INNER JOIN eb_paiement ON eb_candidat.id_can = eb_paiement.id_can
+        WHERE
+            type_cours = \"P\" AND eb_paiement.id_can NOT IN(
+            SELECT
+                id_can
+            FROM
+                eb_paiement
+            GROUP BY
+                id_can
+            HAVING
+                SUM(montant) = 155000
+        )
+        GROUP BY eb_candidat.id_com
+        ) AS alpha
+        ON
+            eb_commercial.id_com = alpha.id_com
+        LEFT JOIN(
+        SELECT eb_candidat.id_com,COUNT(*) AS nb_inscrit
+        FROM eb_candidat INNER JOIN eb_commercial ON eb_candidat.id_com = eb_commercial.id_com
+        WHERE  id_can
+            NOT IN (SELECT eb_candidat.id_can
+        FROM eb_candidat
+            INNER JOIN eb_paiement
+            ON eb_candidat.id_can = eb_paiement.id_can )
+            GROUP BY eb_candidat.id_com
+            )
+        AS beta
+        ON
+        eb_commercial.id_com = beta.id_com
+        ORDER BY `nb_affilie`DESC, nb_aspirant_com DESC, nb_inscrit DESC, nbr_visite ASC";
+
+        $this->db->limit($limite, $debut);
+
+        return $this->db->query($sql)->result();
+    }
+
+
 }
+

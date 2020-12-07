@@ -37,7 +37,7 @@
             <span class="c-chip c-chip--success" onclick="javacript:location.reload()">Actualiser</span>
         </div>
         <div>
-            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time></p>
+            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time> <span class="float-right"><?= count($commerciaux) ?> commerciaux</span> </p>
             <table class="table mb-5">
                 <thead class="table-head">
                     <tr class="">
@@ -83,16 +83,16 @@
                         </td>
                         <td class="c-table__cell c-table__cell--count"><small><?= $commercial->nbr_visite ?></small></td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <strong><?= $commercial->nb_candidats ?></strong>
+                            <strong><?= $commercial->nb_inscrit ?></strong>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <?= $commercial->nb_aspirant ?>
+                            <?= $commercial->nb_aspirant_com ?>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <?= $commercial->nb_affilies ?>
+                            <?= $commercial->nb_affilie ?>
                         </td>
                         <td class="c-table__cell c-table__cell--points u-text--right">
-                            <span><?= $commercial->nbr_visite == 0 ? 0  : number_format(($commercial->nb_candidats / $commercial->nbr_visite) * 100, 1,",", " " ); 
+                            <span><?= $commercial->nbr_visite == 0 ? 0  : number_format(($commercial->nb_inscrit / $commercial->nbr_visite) * 100, 1,",", " " ); 
                                       ?></span>
                         </td>
                     </tr>

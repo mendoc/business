@@ -48,7 +48,7 @@
                                     </td>
                                     <td>
                                         <span>
-                                            <?= $commercial->nb_affilies ?>
+                                            <?= isset($commercial->nb_affilie) ? $commercial->nb_affilie : 0 ?>
                                         </span>
                                     </td>
                                 </tr>
