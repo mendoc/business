@@ -37,7 +37,7 @@
             <span class="c-chip c-chip--success" onclick="javacript:location.reload()">Actualiser</span>
         </div>
         <div>
-            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time></p>
+            <p>Dernière actualisation: <time> <?= date('G:i:s') ?> </time> <span class="float-right"><?= count($commerciaux) ?> commerciaux</span> </p>
             <table class="table mb-5">
                 <thead class="table-head">
                     <tr class="">
