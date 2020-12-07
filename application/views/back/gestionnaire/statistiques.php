@@ -231,48 +231,7 @@
                     <div id="chart-data" style="height: 16rem"></div>
                     </div>
                 </div>
-                <script>
-                    require(['c3', 'jquery'], function(c3, $) {
-                        $(document).ready(function(){
-                        // const chartElt = document.getElementById('chart-data');
-                        // const joursTab = chartElt.getAttribute('data-jours').split(',');
-                        // const nombreInscritTab = chartElt.getAttribute('data-number').split(',');
-                        var chart = c3.generate({
-                            bindto: '#chart-data', // id of chart wrapper
-                            data: {
-                                columns: [
-                                    // each columns data
-                                    ['data1', <?= $nombre_inscrits ?>],
-                                ],
-                                type: 'line', // default type of chart
-                                colors: {
-                                    'data1': tabler.colors["blue"],
-                                },
-                                names: {
-                                    // name of each serie
-                                    'data1': "Nombre d'inscrit Par jour",
-                                }
-                            },
-                            axis: {
-                                x: {
-                                    type: 'category',
-                                    // name of each category
-                                        categories: [<?php foreach(explode(',', $jours) as $jour) {
-                                            echo "\"". $jour . "\",";
-                                        } ?>]
-                                },
-                            },
-                            legend: {
-                                    show: false, //hide legend
-                            },
-                            padding: {
-                                bottom: 0,
-                                top: 0
-                            },
-                        });
-                    });
-                    });
-                </script>
+                
             </div>
             <div class="col-lg-4">
                 <div class="card">
@@ -283,44 +242,7 @@
                     <div id="chart-pie" style="height: 16rem"></div>
                     </div>
                 </div>
-                <script>
-                    require(['c3', 'jquery'], function(c3, $) {
-                    $(document).ready(function(){
-                        var chart = c3.generate({
-                            bindto: '#chart-pie', // id of chart wrapper
-                            data: {
-                                columns: [
-                                    // each columns data
-                                    ['data1', <?= isset($nb_candidats) ? $nb_candidats : 0 ?>],
-                                    ['data2', <?= isset($nb_apprenants) && isset($nb_vrai_apprenants) ? $nb_apprenants - $nb_vrai_apprenants : 0 ?>],
-                                    ['data3', <?= isset($nb_vrai_apprenants) ? $nb_vrai_apprenants : 0 ?>],
-                                ],
-                                type: 'pie', // default type of chart
-                                colors: {
-                                    'data1': tabler.colors["red-dark"],
-                                    'data2': tabler.colors["yellow"],
-                                    'data3': tabler.colors["green"],
-                                },
-                                names: {
-                                    // name of each serie
-                                    'data1': 'Les candidats',
-                                    'data2': 'Les aspirants',
-                                    'data3': 'Les affiliés',
-                                }
-                            },
-                            axis: {
-                            },
-                            legend: {
-                                show: true, //hide legend
-                            },
-                            padding: {
-                                bottom: 0,
-                                top: 0
-                            },
-                        });
-                    });
-                    });
-                </script>
+                
             </div>
         </div>
 
