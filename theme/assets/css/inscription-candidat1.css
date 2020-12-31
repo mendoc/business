@@ -21,7 +21,7 @@ body {
 
 .container {
     display: flex;
-    height: 120vh;
+    height: 125vh;
     justify-content: space-between;
 }
 
@@ -32,7 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh; */
 }
 
 .erreurs {
@@ -123,7 +123,7 @@ body {
 
 @media screen and (max-width: 475px) {
     .gauche {
-        /* height: 150vh; */
+        height: 180vh;
         padding: 0!important;
         /* margin-bottom: 4em; */
     }
@@ -157,22 +157,22 @@ form {
 
 @media screen and (max-width: 360px) {
     .gauche {
-        height: 160vh;
-        margin-top: -2em;
+        /* height: 160vh; */
+        margin-top: 5px;
         overflow-y: scroll;
     }
     .msg-confidentiel {
         margin-top: 20px;
     }
-    .formulaire {
+    /* .formulaire {
         height: 100%;
-    }
+    } */
 }
 
 @media screen and (min-width: 402px) and (max-width: 411px) {
     .gauche {
-        height: 100%;
-        margin-top: -2em;
+        /* height: 100%; */
+        /* margin-top: -2em; */
         overflow-y: scroll;
     }
     .msg-confidentiel {
@@ -383,8 +383,7 @@ label.highlight {
 
 @media screen and (max-width: 475px) {
     .gauche {
-        /* height: 160vh; */
-        margin-top: -2em;
+        /* height: 100%; */
         overflow-y: scroll;
     }
     .msg-confidentiel {
@@ -404,16 +403,16 @@ label.highlight {
     h1 {
         font-size: 1.3em;
     }
-    .formulaire {
+    /* .formulaire {
         height: 100%;
         box-sizing: border-box;
-    }
+    } */
 }
 
 @media screen and (max-width: 320px) {
     .gauche {
-        height: 160vh;
-        margin-top: -2em;
+        /* height: 160vh; */
+        margin-top: 1px;
     }
     .msg-confidentiel {
         margin-top: 20px;
