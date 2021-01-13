@@ -164,13 +164,13 @@
                 </select>
             </div>
 
-            <div class="form-group espace">
+            <!-- <div class="form-group espace">
                 <label for="">Preferez vous apprendre en ligne ou en presentiel <span class="obliger">*</span></label>
                 <select name="type_cours" required class="custom-select" id="cours">
                     <option selected value="P">En presentiel</option>
                     <option value="L">En ligne</option>
                 </select>
-            </div>
+            </div> -->
 
             <div class="form-group espace">
                 <label for="">Horaire <span class="obliger">*</span></label>
