@@ -274,7 +274,7 @@
                         </div>
                     </div>
                     <!--===*** Type de formation ***===-->
-                    <div class="groupe-champ-de-saisie">
+                    <!-- <div class="groupe-champ-de-saisie">
                         <div class="les-champs ">
                             <div class="select type-de-formation">
                                 <div class="couleur"><span class="etoile1">*</span></div>
@@ -289,7 +289,7 @@
 
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--===*** Les attentes ***===-->
                     <div class="les-champs">
                         <label classe="label1"><span class="etoile1"></span></label>

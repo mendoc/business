@@ -45,9 +45,9 @@ class Candidat extends CI_Controller
         //     'required' => 'Le champ %s est obligatoire',
         // ));
 
-        $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-        ));
+        // $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+        // ));
 
         $this->form_validation->set_rules('horaire', 'horaire de formation', 'required', array(
             'required' => 'Veuillez choisir votre %s',
@@ -80,7 +80,6 @@ class Candidat extends CI_Controller
             $domaine_act = $this->input->post('domaine');
             // $type_serv   = $this->input->post('service');
             $attentes    = $this->input->post('attentes');
-            $type_cours  = $this->input->post('type_cours');
             $hash        = $this->input->post('hash');
             // On crée un candidat
             $candidat = new Candidat_model();
@@ -94,7 +93,6 @@ class Candidat extends CI_Controller
             $candidat->domaine_act = $domaine_act;
             //$candidat->type_serv   = $type_serv;
             $candidat->attentes    = $attentes;
-            $candidat->type_cours  = $type_cours;
             $candidat->horaire     = $horaire;
 
             if (isset($hash) and !empty($hash)) {
@@ -171,9 +169,9 @@ class Candidat extends CI_Controller
             'required' => 'Le champ %s est obligatoire',
         ));
 
-        $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-        ));
+        // $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+        // ));
 
         $this->form_validation->set_rules('horaire', 'Horaire de formation', 'required', array(
             'required' => 'precisez votre %s',
@@ -188,7 +186,6 @@ class Candidat extends CI_Controller
             $sexe        = $this->input->post('sexe');
             $num_tel     = $this->input->post('telephone');
             $domaine_act = $this->input->post('domaine');
-            $type_cours  = $this->input->post('type_cours');
             // $modal_paiement = !empty($this->input->post('modalite')) ? $this->input->post('modalite') : 1;
             $date_n      = "";
             //$prenom      = $this->input->post('prenom');
@@ -209,7 +206,6 @@ class Candidat extends CI_Controller
             $candidat->domaine_act = $domaine_act;
             //$candidat->type_serv   = $type_serv;
             $candidat->attentes    = $attentes;
-            $candidat->type_cours  = $type_cours;
             $candidat->horaire     = $horaire;
             // $candidat->modal_paiement = $modal_paiement;
 
@@ -286,9 +282,9 @@ class Candidat extends CI_Controller
             'required' => 'Le champ %s est obligatoire',
         ));
 
-        $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
-            'required' => 'Veuillez choisir votre %s',
-        ));
+        // $this->form_validation->set_rules('type_cours', 'type de cours', 'required', array(
+        //     'required' => 'Veuillez choisir votre %s',
+        // ));
 
         // //$this->form_validation->set_rules('modalite', 'Modalite de paiement', 'required', array(
         //     'required' => 'Veuillez choisir votre %s',
@@ -303,7 +299,6 @@ class Candidat extends CI_Controller
             $sexe        = $this->input->post('sexe');
             $num_tel     = $this->input->post('telephone');
             $domaine_act = $this->input->post('domaine');
-            $type_cours  = $this->input->post('type_cours');
             $modal_paiement = !empty($this->input->post('modalite')) ? $this->input->post('modalite') : 1;
             $date_n      = "";
             $num_what    = "";
@@ -322,7 +317,6 @@ class Candidat extends CI_Controller
             $candidat->domaine_act = $domaine_act;
             //$candidat->type_serv   = $type_serv;
             $candidat->attentes    = $attentes;
-            $candidat->type_cours  = $type_cours;
             $candidat->horaire     = $horaire;
             $candidat->modal_paiement = $modal_paiement;
 
