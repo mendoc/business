@@ -598,7 +598,7 @@
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
                         </div>
                     </div>
-                    <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
+                    <!-- <div class="pricingTierWrapper" style="border-radius: 5px; box-shadow: 0 10px 25px 0 rgba(0, 0, 0, 0.2); background-color: rgba(255, 255, 255, 1);">
                         <div class="pricingTier">
                             <h3 class="pricingTier__title color-1 weight-text-m">EN LIGNE</h3>
                             <p class="pricingTier__description">Cours dispens&eacute;s sur la plateforme Ecole 241 Business, de <strong>(9h-12h)</strong>, <strong>(14h-17h)</strong> et de <strong>(17h-20h)</strong></p>
@@ -627,7 +627,7 @@
                             </ul>
                             <a href="<?= site_url('candidat') ?>" class="btn btn--c btn--primary" style="color: rgba(255, 255, 255, 1); background-color: rgba(255, 51, 51, 1);">Je m'inscris</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

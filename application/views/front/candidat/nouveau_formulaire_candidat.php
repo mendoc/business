@@ -181,7 +181,7 @@
                                 <?= form_error('domaine') ?>
                             </div>
                             <!-- =========* choix du cours *=========-->
-                            <div class="choix-cours">
+                            <!-- <div class="choix-cours">
                                 <label for="cours">Type de Cours<span>*</span></label><br>
                                 <select name="type_cours" id="cours">
                                     <option selected value="P">En présentiel</option>
@@ -190,7 +190,7 @@
                                 <div class="erreurs">
                                     <?= form_error('type_cours') ?>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- =========* choix des modalites *=========-->
                             <div class="choix-cours">
