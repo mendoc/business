@@ -405,6 +405,10 @@ h6,
     color: #007fff;
 }
 
+legend {
+    font-size: 1rem;
+}
+
 h1,
 .h1 {
     font-size: 2rem;
